@@ -1,6 +1,6 @@
 <%-- 
-    Document   : Home
-    Created on : Apr 19, 2024, 2:51:37 PM
+    Document   : index
+    Created on : Apr 22, 2024, 11:38:19 AM
     Author     : danie
 --%>
 
@@ -10,7 +10,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home Page</title>
-        <%@include file="index.html"%>
+        <link href="index.css" rel="stylesheet">
+        <%@include file="bootstrapLinking.html"%>
     </head>
     <body>
         <%@include file="header.jsp"%>

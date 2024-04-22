@@ -10,7 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register Page</title>
-        <%@include file="index.html"%>
+        <%@include file="bootstrapLinking.html"%>
     </head>
     <body style="height: 100%">
         <%@include file="header.jsp"%>

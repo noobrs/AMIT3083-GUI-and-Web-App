@@ -9,8 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <%@include file="index.html"%>
+        <title>Login Page</title>
+        <%@include file="bootstrapLinking.html"%>
     </head>
     <body style="height: 100%">
         <%@include file="header.jsp"%>
