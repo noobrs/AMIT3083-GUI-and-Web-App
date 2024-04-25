@@ -9,9 +9,13 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title><%= application.getInitParameter("storeName")%></title>
+        <%@include file="layout/meta.html"%>
     </head>
     <body>
+        <%@include file="layout/header.jsp"%>
         <h1>Hello World!</h1>
+        
+        <%@include file="layout/footer.jsp"%> 
     </body>
 </html>

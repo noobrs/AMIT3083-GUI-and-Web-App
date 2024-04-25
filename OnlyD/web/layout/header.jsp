@@ -1,14 +1,10 @@
 
-<%-- 
-    Document   : header_footer
-    Created on : Apr 10, 2024, 3:16:46 PM
-    Author     : danie
---%>
-
+<%@ page import="entity.Customer" %>
+<jsp:useBean id="customer" class="entity.Customer" scope="session" ></jsp:useBean>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 
-<html >
+<html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="meta.html"%>
@@ -28,7 +24,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="Home.jsp">Home</a>
+                                <a class="nav-link active" aria-current="page" href="/OnlyD/index.jsp">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
@@ -52,7 +48,21 @@
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
-                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-left: 10px"><a href="Login.jsp">Login</a></button>
+                        <%
+                        if(customer.getUsername() != null){
+                        %>
+                        <form action="logout">
+                            <input type="submit" value="Logout">
+                            
+                        </form>
+                        <%
+                            }else{
+                        %>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-left: 10px"><a href="login.jsp">Login</a></button>
+                        <%
+                        }
+                        %>
+
                     </div>
                 </div>
             </nav>

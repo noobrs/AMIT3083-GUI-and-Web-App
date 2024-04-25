@@ -54,8 +54,8 @@ public class Register extends HttpServlet {
             username = request.getParameter("username");
             phoneNumber = request.getParameter("phoneNumber");
             password = request.getParameter("password");
-            rePassword = request.getParameter("rePassword");
-
+            rePassword = request.getParameter("rePassword");            
+            
             // check null values
             if (name == null || email == null || username == null || phoneNumber == null
                     || password == null || rePassword == null) {
