@@ -32,6 +32,10 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>controller.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterStaff</servlet-name>
+        <servlet-class>controller.RegisterStaff</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
@@ -44,12 +48,20 @@
         <servlet-name>Login</servlet-name>
         <url-pattern>/Login</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterStaff</servlet-name>
+        <url-pattern>/RegisterStaff</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
     <error-page>
         <error-code>403</error-code>
         <location>/unauthorizedError.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404Error.jsp</location>
     </error-page>
     <security-constraint>
         <display-name>AdminConstraint</display-name>

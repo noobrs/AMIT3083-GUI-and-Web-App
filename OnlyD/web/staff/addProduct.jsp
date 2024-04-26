@@ -15,7 +15,7 @@
     </head>
     <body>
         <%
-        if(staff.getStaffID() == null){
+        if(staff.getStaffID() == null && !staff.getAdminStatus()){
         response.sendError(403,"Forbidden");
             }
         %>

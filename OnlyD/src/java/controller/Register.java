@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import service.CustomerService;
@@ -54,12 +55,12 @@ public class Register extends HttpServlet {
             username = request.getParameter("username");
             phoneNumber = request.getParameter("phoneNumber");
             password = request.getParameter("password");
-            rePassword = request.getParameter("rePassword");            
+            rePassword = request.getParameter("rePassword");                       
             
             // check null values
             if (name == null || email == null || username == null || phoneNumber == null
                     || password == null || rePassword == null) {
-                errorMessage += "Null value";
+                errorMessage += "Null values";
                 request.setAttribute("errorMessage", errorMessage);
                 request.getRequestDispatcher("/register.jsp").forward(request, response);
 

@@ -10,28 +10,26 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
-import java.util.List;
 
 /**
  *
  * @author Vin Sen
  */
 @Entity
-@Table(name = "Staff")
+@Table(name = "STAFF")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Staff.findAll", query = "SELECT s FROM Staff s"),
     @NamedQuery(name = "Staff.findByStaffID", query = "SELECT s FROM Staff s WHERE s.staffID = :staffID"),
     @NamedQuery(name = "Staff.findByName", query = "SELECT s FROM Staff s WHERE s.name = :name"),
     @NamedQuery(name = "Staff.findByEmail", query = "SELECT s FROM Staff s WHERE s.email = :email"),
-    @NamedQuery(name = "Staff.findByPassword", query = "SELECT s FROM Staff s WHERE s.password = :password")})
+    @NamedQuery(name = "Staff.findByPassword", query = "SELECT s FROM Staff s WHERE s.password = :password"),
+    @NamedQuery(name = "Staff.findByIsActive", query = "SELECT s FROM Staff s WHERE s.isActive = :isActive")})
 public class Staff implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -39,26 +37,34 @@ public class Staff implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 5)
-    @Column(name = "StaffID")
+    @Column(name = "STAFFID")
     private String staffID;
     @Size(max = 100)
-    @Column(name = "Name")
+    @Column(name = "NAME")
     private String name;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Size(max = 100)
-    @Column(name = "Email")
+    @Column(name = "EMAIL")
     private String email;
     @Size(max = 255)
-    @Column(name = "Password")
+    @Column(name = "PASSWORD")
     private String password;
-    @OneToMany(mappedBy = "staffID")
-    private List<Product> productList;
+    @Column(name = "ISACTIVE")
+    private Boolean isActive;
+
+    public static final String STAFFID_REGEX = "^S\\d{4}$";
 
     public Staff() {
     }
 
     public Staff(String staffID) {
         this.staffID = staffID;
+    }
+
+    public Staff(String staffID, String name, Boolean isActive) {
+        this.staffID = staffID;
+        this.name = name;        
+        this.isActive = isActive;
     }
 
     public String getStaffID() {
@@ -93,13 +99,16 @@ public class Staff implements Serializable {
         this.password = password;
     }
 
-    @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
+    }
+
+    public String getDefaultPassword() {
+        return "OnlyD@" + staffID;
     }
 
     @Override
@@ -126,5 +135,5 @@ public class Staff implements Serializable {
     public String toString() {
         return "entity.Staff[ staffID=" + staffID + " ]";
     }
-    
+
 }
