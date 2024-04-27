@@ -15,7 +15,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
                 <div class="container">
 
-<!--                    <img src="Icons/Only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px">-->
+                    <img src="../Icons/only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px">
 
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -27,7 +27,7 @@
                                 <a class="nav-link active" aria-current="page" href="/OnlyD/index.jsp">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
+                                <a class="nav-link" href="product/product.jsp">Product</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
