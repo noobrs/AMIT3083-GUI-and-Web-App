@@ -33,7 +33,7 @@ public class Login extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         String username;
         String password;
@@ -41,10 +41,13 @@ public class Login extends HttpServlet {
         Customer cust;
 
         // means login ady
-        if(session.getAttribute("customer") != null){
+        if (session.getAttribute("customer") != null) {
             response.sendRedirect("index.jsp");
+        } else if (session.getAttribute("staff") != null) {
+            // automatically log out staff if customer attempt to login
+            session.removeAttribute("staff");
         }
-        
+
         try {
             username = request.getParameter("username");
             password = request.getParameter("password");
@@ -57,7 +60,7 @@ public class Login extends HttpServlet {
                 if (!cust.getPassword().equals(password)) {
                     request.setAttribute("errorMessage", "Login fail! Incorrect username or password!");
                     request.getRequestDispatcher("/login.jsp").forward(request, response);
-                }else{
+                } else {
                     session.setAttribute("customer", cust);
                     response.sendRedirect("index.jsp");
                 }

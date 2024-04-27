@@ -15,9 +15,14 @@
     <body>
         <%@include file="../layout/header.jsp"%>
         
-        <a href="registerStaff.jsp">Add a staff</a>
-        <a href="updateStaff.jsp">Update staff</a>
-        <a href="deleteStaff.jsp">Delete staff</a>
+        <a href="registerStaff.jsp">Add a staff</a><br>
+        <a href="updateStaff.jsp">Update staff</a><br>
+        <a href="deleteStaff.jsp">Delete staff</a><br>
+        <form action="../logout">
+            <input type="submit" value="Log Out">
+        </form>
+        <%= request.isUserInRole("AdminRole") %><br>
+        
         
         <%@include file="../layout/footer.jsp"%>
     </body>

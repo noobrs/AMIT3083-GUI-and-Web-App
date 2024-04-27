@@ -13,7 +13,12 @@
     </head>
     <body style="height: 100%">
         <%@include file="../layout/header.jsp"%>
+        <%
 
+    if(session.getAttribute("staffIDValue") == null){
+    response.sendRedirect("../RegisterStaff");
+            }
+        %>
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="RegisterCard container">
