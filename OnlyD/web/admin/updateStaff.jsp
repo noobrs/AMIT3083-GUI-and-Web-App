@@ -20,15 +20,15 @@
             String errorMessage = (String)session.getAttribute("errorMessage");
             if(staff != null){
             
-            String enteredStaffName = (String)session.getAttribute("enteredStaffName");
-            String enteredStaffEmail = (String)session.getAttribute("enteredStaffEmail");
-            
-            if(enteredStaffName == null || enteredStaffEmail == null){
-            enteredStaffName = staff.getName();
-            enteredStaffEmail = staff.getEmail();
-            }
+                String enteredStaffName = (String)session.getAttribute("enteredStaffName");
+                String enteredStaffEmail = (String)session.getAttribute("enteredStaffEmail");
+
+                if(enteredStaffName == null || enteredStaffEmail == null){
+                    enteredStaffName = staff.getName();
+                    enteredStaffEmail = staff.getEmail();
+                    }
         %>
-        <h1>Delete Staff</h1>
+        <h1>Update Staff</h1>
         <form action="../UpdateStaff" method="POST" onsubmit="return window.confirm('Confirm update this staff?')">
             <table>
                 <tr>

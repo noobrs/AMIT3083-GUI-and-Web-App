@@ -85,20 +85,14 @@ public class StaffService {
 
     public List<Staff> findAll() {
         List<Staff> staffList;
-        List<Staff> activeStaffList = new ArrayList<>();
         try {
-            staffList = em.createNamedQuery("Staff.findAll").getResultList();
-
-            for (Staff s : staffList) {
-                if (s.getStatus() != Staff.DELETED_STATUS) {
-                    activeStaffList.add(s);
-                }
-            }
+            staffList = em.createNamedQuery("Staff.findAll")
+                    .setParameter("deletedStatus", Staff.DELETED_STATUS)
+                    .getResultList();
         } catch (Exception e) {
             return null;
         }
-
-        return activeStaffList;
+        return staffList;
     }
 
 }

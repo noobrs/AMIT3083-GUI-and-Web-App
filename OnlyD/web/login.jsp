@@ -10,10 +10,20 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Page</title>
-        <%@include file="layout/meta.html"%>
     </head>
     <body>
         <%@include file="layout/header.jsp"%>
+        
+        <%
+        String statusMsg = (String)session.getAttribute("statusMsg");
+        if(statusMsg != null){
+        %>
+        <div><%= statusMsg %></div>
+        <%
+            session.removeAttribute("statusMsg");
+            }
+        %>
+        
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">

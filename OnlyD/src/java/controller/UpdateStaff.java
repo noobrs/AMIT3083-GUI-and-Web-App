@@ -49,6 +49,8 @@ public class UpdateStaff extends HttpServlet {
         String staffEmail = "";
         String staffPassword = "";
         String reStaffPassword = "";
+        Staff tempStaff;
+        
         try {
             staffName = request.getParameter("staffName");
             staffEmail = request.getParameter("staffEmail");
@@ -59,7 +61,9 @@ public class UpdateStaff extends HttpServlet {
 
             Staff staff = (Staff) session.getAttribute("staffFound");
 
-            if (staffService.findStaffByEmail(staffEmail) != null) {
+            // email validation
+            tempStaff = staffService.findStaffByEmail(staffEmail);
+            if (staffService.findStaffByEmail(staffEmail) != null && (tempStaff.getStaffID() != staff.getStaffID())) {
                 throw new NullPointerException("Email existed!");
             } else if (!staffEmail.matches(Staff.EMAIL_REGEX)) {
                 throw new NullPointerException("Invalid Email Format!");

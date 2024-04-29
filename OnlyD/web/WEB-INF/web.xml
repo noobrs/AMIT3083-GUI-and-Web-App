@@ -68,6 +68,30 @@
         <servlet-name>ViewStaff</servlet-name>
         <servlet-class>controller.ViewStaff</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>viewCustomer</servlet-name>
+        <servlet-class>controller.viewCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCustomer</servlet-name>
+        <servlet-class>controller.ViewCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadCustomerList</servlet-name>
+        <servlet-class>controller.LoadCustomerList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCustomer</servlet-name>
+        <servlet-class>controller.SearchCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <servlet-class>controller.DeleteCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <servlet-class>controller.UpdateCustomer</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
@@ -115,6 +139,30 @@
     <servlet-mapping>
         <servlet-name>ViewStaff</servlet-name>
         <url-pattern>/ViewStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewCustomer</servlet-name>
+        <url-pattern>/viewCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCustomer</servlet-name>
+        <url-pattern>/ViewCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCustomerList</servlet-name>
+        <url-pattern>/LoadCustomerList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCustomer</servlet-name>
+        <url-pattern>/SearchCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <url-pattern>/DeleteCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <url-pattern>/UpdateCustomer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

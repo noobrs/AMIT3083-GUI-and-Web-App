@@ -34,7 +34,10 @@ public class CustomerService {
     public Customer findCustomerByUsername(String username){
         Customer cust;
         try {
-            cust = (Customer)em.createNamedQuery("Customer.findByUsername").setParameter("username", username).getSingleResult();
+            cust = (Customer)em.createNamedQuery("Customer.findByUsername")
+                    .setParameter("username", username)
+                    .setParameter("deletedStatus", Customer.DELETED_STATUS)
+                    .getSingleResult();
         } catch (Exception e) {
             return null;
         }
@@ -46,7 +49,10 @@ public class CustomerService {
         Customer cust;
         
         try {
-            cust = (Customer)em.createNamedQuery("Customer.findByEmail").setParameter("email", email).getSingleResult();
+            cust = (Customer)em.createNamedQuery("Customer.findByEmail")
+                    .setParameter("email", email)
+                    .setParameter("deletedStatus", Customer.DELETED_STATUS)
+                    .getSingleResult();
         } catch (Exception e) {
             return null;
         }
@@ -58,7 +64,10 @@ public class CustomerService {
         Customer cust;
         
         try {
-            cust = (Customer)em.createNamedQuery("Customer.findByPhoneNumber").setParameter("phoneNumber", phoneNumber).getSingleResult();
+            cust = (Customer)em.createNamedQuery("Customer.findByPhoneNumber")
+                    .setParameter("phoneNumber", phoneNumber)
+                    .setParameter("deletedStatus", Customer.DELETED_STATUS)
+                    .getSingleResult();
         } catch (Exception e) {
             return null;
         }
@@ -78,17 +87,27 @@ public class CustomerService {
         Customer tempCust = this.findCustomerById(customer.getCustomerID());
         if(tempCust != null){
             tempCust.setEmail(customer.getEmail());
-            tempCust.setName(customer.getEmail());
+            tempCust.setName(customer.getName());
             tempCust.setPassword(customer.getPassword());
             tempCust.setPhoneNumber(customer.getPhoneNumber());
             tempCust.setUsername(customer.getUsername());
+            tempCust.setStatus(customer.getStatus());
             return true;
         }
         return false;
     }
     
     public List<Customer> findAll() {
-        List<Customer> customerList = em.createNamedQuery("Customer.findAll").getResultList();
+        List<Customer> customerList;
+        
+        try {
+            customerList = em.createNamedQuery("Customer.findAll")
+                .setParameter("deletedStatus", Customer.DELETED_STATUS)
+                .getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        
         return customerList;
     }
 }
