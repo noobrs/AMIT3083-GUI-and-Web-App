@@ -19,7 +19,7 @@
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">
                 <div class="card" style="width: 50%">
-                    <h5 class="card-header">Login page</h5>
+                    <h5 class="card-header">Admin Login page</h5>
                     <div class="card-body">
                         <form action="j_security_check" method="POST">
                             <h5 class="card-title">Welcome, please enter your:</h5>

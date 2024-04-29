@@ -6,20 +6,21 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="staff" class="entity.Staff" scope="session" ></jsp:useBean>
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>First Time Login</title>
-    </head>
-    <body>
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+            <title>First Time Login</title>
+        </head>
+        <body>
+        <%@include file="../layout/header.jsp"%> 
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">
                 <div class="card" style="width: 50%">
                     <h5 class="card-header">First Time Login</h5>
                     <div class="card-body">
-                        <form action="../RegisterStaff?action=2" method="POST">
+                        <form action="../StaffVerification" method="POST">
                             <h5 class="card-title">Welcome ${staff.name}, please setup your details:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Staff ID</span>
@@ -57,5 +58,7 @@
                 </div>
             </div>
         </div>
+
+        <%@include file="../layout/footer.jsp"%> 
     </body>
 </html>

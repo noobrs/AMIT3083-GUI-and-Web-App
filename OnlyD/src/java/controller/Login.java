@@ -63,7 +63,8 @@ public class Login extends HttpServlet {
                 } else {
                     session.setAttribute("customer", cust);
                     response.sendRedirect("index.jsp");
-                }
+                }              
+                
             }
 
         } catch (Exception ex) {

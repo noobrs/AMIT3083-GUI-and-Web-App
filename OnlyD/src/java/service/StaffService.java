@@ -74,13 +74,20 @@ public class StaffService {
             tempStaff.setName(staff.getName());
             tempStaff.setEmail(staff.getEmail());
             tempStaff.setPassword(staff.getPassword());
+            tempStaff.setStatus(staff.getStatus());
             return true;
         }
         return false;
     }
     
     public List<Staff> findAll(){
-        List<Staff> staffList = em.createNamedQuery("Staff.findAll").getResultList();
+        List<Staff> staffList;
+        try {
+            staffList = em.createNamedQuery("Staff.findAll").getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        
         return staffList;
     }
 

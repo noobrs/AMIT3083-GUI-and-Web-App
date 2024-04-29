@@ -29,7 +29,7 @@ import java.io.Serializable;
     @NamedQuery(name = "Staff.findByName", query = "SELECT s FROM Staff s WHERE s.name = :name"),
     @NamedQuery(name = "Staff.findByEmail", query = "SELECT s FROM Staff s WHERE s.email = :email"),
     @NamedQuery(name = "Staff.findByPassword", query = "SELECT s FROM Staff s WHERE s.password = :password"),
-    @NamedQuery(name = "Staff.findByIsActive", query = "SELECT s FROM Staff s WHERE s.isActive = :isActive")})
+    @NamedQuery(name = "Staff.findByStatus", query = "SELECT s FROM Staff s WHERE s.status = :status")})
 public class Staff implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,22 +49,35 @@ public class Staff implements Serializable {
     @Size(max = 255)
     @Column(name = "PASSWORD")
     private String password;
-    @Column(name = "ISACTIVE")
-    private Boolean isActive;
-
-    public static final String STAFFID_REGEX = "^S\\d{4}$";
+    @Column(name = "STATUS")
+    private Integer status;
+    
+    public static final int ACTIVE_STATUS = 1;
+    public static final int VERIFICATION_STATUS = 2;
+    public static final int DELETED_STATUS = 3;
+    
+    public static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    public static final String PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[\\W_]).+$";
 
     public Staff() {
     }
 
-    public Staff(String staffID) {
+    // fake constructor
+    public Staff(String staffID, String name, Integer status) {
         this.staffID = staffID;
+        this.name = name;
+        this.status = status;
     }
 
-    public Staff(String staffID, String name, Boolean isActive) {
+    public Staff(String staffID, String name, String password, Integer status) {
         this.staffID = staffID;
-        this.name = name;        
-        this.isActive = isActive;
+        this.name = name;
+        this.password = password;
+        this.status = status;
+    }        
+
+    public Staff(String staffID) {
+        this.staffID = staffID;
     }
 
     public String getStaffID() {
@@ -99,16 +112,16 @@ public class Staff implements Serializable {
         this.password = password;
     }
 
-    public Boolean getIsActive() {
-        return isActive;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
-
-    public String getDefaultPassword() {
-        return "OnlyD@" + staffID;
+    
+    public String getDefaultPassword(){
+        return "OnlyD@" + getStaffID();
     }
 
     @Override
@@ -135,5 +148,5 @@ public class Staff implements Serializable {
     public String toString() {
         return "entity.Staff[ staffID=" + staffID + " ]";
     }
-
+    
 }

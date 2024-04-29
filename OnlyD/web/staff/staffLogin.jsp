@@ -5,23 +5,43 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="entity.Staff" %>
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="../layout/meta.html"%>  
-        <title>JSP Page</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
+        <title>Staff Login</title>
     </head>
     <body>
-        <%@include file="../layout/header.jsp"%>      
+        <%
+        String verificationStatus = (String)session.getAttribute("verificationStatus");
+        Staff staff = (Staff)session.getAttribute("staff");
         
+        if(verificationStatus == null){
+            if(staff != null && staff.getStatus() == Staff.ACTIVE_STATUS){
+                response.sendRedirect("staffDashboard.jsp");
+            }    
+        }
+        
+        %>
+        <%@include file="../layout/header.jsp"%>      
+
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
+
+            <%
+            if(verificationStatus != null){
+            %>
+            <div><%= verificationStatus %></div>
+            <%
+                session.removeAttribute("verificationStatus");
+                }
+            %>
             <div class="loginCard container">
                 <div class="card" style="width: 50%">
                     <h5 class="card-header">Staff Login page</h5>
                     <div class="card-body">
-                        <form action="StaffLogin">
+                        <form action="../StaffLogin">
                             <h5 class="card-title">Welcome, please enter your:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Staff ID</span>

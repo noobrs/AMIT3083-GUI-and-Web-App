@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="staff" class="entity.Staff" scope="session"></jsp:useBean>
 <!DOCTYPE html>
 <html>
     <head>
@@ -15,7 +16,14 @@
     <body>
         <%@include file="/layout/header.jsp"%>
         
-        <a></a>
+        <p><%= staff.getStaffID() %></p>
+        <p><%= staff.getName() %></p>
+        <p><%= staff.getEmail() %></p>
+        <p><%= staff.getPassword() %></p>
+        
+        <form action="../logout">
+            <input type="submit" value="log out">
+        </form>
         
         <%@include file="/layout/footer.jsp"%>
     </body>

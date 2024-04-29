@@ -40,6 +40,14 @@
         <servlet-name>StaffLogin</servlet-name>
         <servlet-class>controller.StaffLogin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StaffRegister</servlet-name>
+        <servlet-class>controller.StaffRegister</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StaffVerification</servlet-name>
+        <servlet-class>controller.StaffVerification</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
@@ -59,6 +67,14 @@
     <servlet-mapping>
         <servlet-name>StaffLogin</servlet-name>
         <url-pattern>/StaffLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffRegister</servlet-name>
+        <url-pattern>/StaffRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffVerification</servlet-name>
+        <url-pattern>/StaffVerification</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
