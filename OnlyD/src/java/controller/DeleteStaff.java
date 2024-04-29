@@ -56,6 +56,7 @@ public class DeleteStaff extends HttpServlet {
             utx.commit();
             
             session.setAttribute("deleteStaffStatus", success);
+            session.removeAttribute("staffFound");
             response.sendRedirect("admin/adminDashboard.jsp");
             
         } catch (Exception e) {

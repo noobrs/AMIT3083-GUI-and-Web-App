@@ -14,9 +14,20 @@
     </head>
     <body>
         <%@include file="../layout/header.jsp"%>
-        
+        <h2>Staff</h2>
+        <a href="../ViewStaff">View All Staffs</a><br>
         <a href="registerStaff.jsp">Add a staff</a><br>        
         <a href="../LoadStaffList">Delete/Update staff</a><br>
+        
+        <h2>Customer</h2>
+        <a href="../ViewStaff">View All Customers</a><br>
+        <a href="registerStaff.jsp">Add a Customer</a><br>        
+        <a href="../LoadStaffList">Delete/Update customer</a><br>
+        
+        <h2>Product</h2>
+        <a href="../ViewStaff">View All Product</a><br>
+        <a href="registerStaff.jsp">Add a Product</a><br>        
+        <a href="../LoadStaffList">Delete/Update Product</a><br>
         <form action="../logout">
             <input type="submit" value="Log Out">
         </form>

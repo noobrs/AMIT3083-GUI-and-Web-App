@@ -81,6 +81,9 @@ public class UpdateStaff extends HttpServlet {
 
             session.setAttribute("updateStaffStatus", success);
             session.removeAttribute("errorMessage");
+            session.removeAttribute("staffFound");
+            session.removeAttribute("enteredStaffName");
+            session.removeAttribute("enteredStaffEmail");
             response.sendRedirect("admin/adminDashboard.jsp");
 
         } catch (NullPointerException e) {

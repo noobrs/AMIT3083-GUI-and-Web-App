@@ -64,6 +64,10 @@
         <servlet-name>UpdateStaff</servlet-name>
         <servlet-class>controller.UpdateStaff</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewStaff</servlet-name>
+        <servlet-class>controller.ViewStaff</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LogoutServlet</servlet-name>
         <url-pattern>/LogoutServlet</url-pattern>
@@ -107,6 +111,10 @@
     <servlet-mapping>
         <servlet-name>UpdateStaff</servlet-name>
         <url-pattern>/UpdateStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewStaff</servlet-name>
+        <url-pattern>/ViewStaff</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
