@@ -9,6 +9,7 @@ import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -25,51 +26,53 @@ public class StaffService {
     public StaffService(EntityManager em) {
         this.em = em;
     }
-    
-    public void addStaff(Staff staff){
+
+    public void addStaff(Staff staff) {
         em.persist(staff);
     }
-    
+
 //    public Staff findStaffById(String id){
 //        Staff staff = em.find(Staff.class, id);
 //        return staff;
 //    }
-    
-    public Staff findStaffByStaffId(String staffID){
+    public Staff findStaffByStaffId(String staffID) {
         Staff staff;
         try {
-            staff = (Staff)em.createNamedQuery("Staff.findByStaffID").setParameter("staffID", staffID).getSingleResult();
+            staff = (Staff) em.createNamedQuery("Staff.findByStaffID").setParameter("staffID", staffID).getSingleResult();
         } catch (Exception e) {
             return null;
         }
-        
+
         return staff;
     }
-    
-    public Staff findStaffByEmail(String email){
+
+    public Staff findStaffByEmail(String email) {
         Staff staff;
-        
+
         try {
-            staff = (Staff)em.createNamedQuery("Staff.findByEmail").setParameter("email", email).getSingleResult();
+            staff = (Staff) em.createNamedQuery("Staff.findByEmail")
+                    .setParameter("email", email)
+                    .setParameter("deletedStatus", Staff.DELETED_STATUS)
+                    .getSingleResult();
         } catch (Exception e) {
             return null;
         }
-        
+
         return staff;
     }
-    
-    public boolean deleteStaff(String staffID){
+
+    public boolean deleteStaff(String staffID) {
         Staff staff = this.findStaffByStaffId(staffID);
-        if(staff != null){
+        if (staff != null) {
             em.remove(staff);
             return true;
-        }        
+        }
         return false;
     }
-    
-    public boolean updateStaff(Staff staff){
+
+    public boolean updateStaff(Staff staff) {
         Staff tempStaff = this.findStaffByStaffId(staff.getStaffID());
-        if(tempStaff != null){
+        if (tempStaff != null) {
             tempStaff.setStaffID(staff.getStaffID());
             tempStaff.setName(staff.getName());
             tempStaff.setEmail(staff.getEmail());
@@ -79,16 +82,23 @@ public class StaffService {
         }
         return false;
     }
-    
-    public List<Staff> findAll(){
+
+    public List<Staff> findAll() {
         List<Staff> staffList;
+        List<Staff> activeStaffList = new ArrayList<>();
         try {
             staffList = em.createNamedQuery("Staff.findAll").getResultList();
+
+            for (Staff s : staffList) {
+                if (s.getStatus() != Staff.DELETED_STATUS) {
+                    activeStaffList.add(s);
+                }
+            }
         } catch (Exception e) {
             return null;
         }
-        
-        return staffList;
+
+        return activeStaffList;
     }
 
 }
