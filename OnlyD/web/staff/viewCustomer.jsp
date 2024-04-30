@@ -21,10 +21,10 @@
         
         <table>
             <tr>
-                <th>Customer Name</th>
-                <th>Customer Username</th>
-                <th>Customer Email</th>
-                <th>Customer Phone Number</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone Number</th>
             </tr>
             <% for(Customer c:custList){ %>
             <tr>

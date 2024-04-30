@@ -42,23 +42,27 @@ public class DeleteStaff extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             StaffService staffService = new StaffService(em);
             HttpSession session = request.getSession();
-            Staff staff = (Staff)session.getAttribute("staffFound");
-            
-            
+            Staff staff = (Staff) session.getAttribute("staffFound");
+
             staff.setStatus(Staff.DELETED_STATUS);
-            
+
             utx.begin();
             boolean success = staffService.updateStaff(staff);
             utx.commit();
-            
-            session.setAttribute("deleteStaffStatus", success);
+
+            if (success) {
+                session.setAttribute("statusMsg", "Staff deleted successfully!");
+            } else {
+                session.setAttribute("statusMsg", "Unable to delete staff!");
+            }
+
             session.removeAttribute("staffFound");
             response.sendRedirect("admin/adminDashboard.jsp");
-            
+
         } catch (Exception e) {
         }
     }

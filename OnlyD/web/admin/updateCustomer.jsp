@@ -72,11 +72,13 @@
                         <input type="password" name="rePassword">
                     </td>
                 </tr>
-                <input type="submit" value="Update Customer">
             </table>
+            <input type="submit" value="Update Customer">
         </form>
+        <% if(errorMessage != null){ %>
         <div><%= errorMessage %></div> 
-        <% } else { %>
+        <%  }
+          } else { %>
         Customer not found
         <p><a href="../index.jsp">Back to home page</a></p>
         <% } %>

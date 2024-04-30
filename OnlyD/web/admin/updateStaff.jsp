@@ -61,13 +61,13 @@
                         <input type="password" name="reStaffPassword">
                     </td>
                 </tr>
-                <input type="submit" value="Update Staff">
             </table>
+            <input type="submit" value="Update Staff">
         </form> 
-        <div><%= errorMessage %></div>    
-        <%
-            } else{
-        %>
+        <% if(errorMessage != null){ %>
+        <div><%= errorMessage %></div> 
+        <%  }
+          } else { %>
         Staff not found
         <p><a href="../index.jsp">Back to home page</a></p>
         <%
