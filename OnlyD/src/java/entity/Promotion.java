@@ -58,8 +58,7 @@ public class Promotion implements Serializable {
     public Promotion() {
     }
 
-    public Promotion(int promotionID, double discountPercentage, Date startDateTime, Date endDateTime) {
-        this.promotionID = promotionID;
+    public Promotion( Double discountPercentage, Date startDateTime, Date endDateTime) {
         this.discountPercentage = discountPercentage;
         this.startDateTime = startDateTime;
         this.endDateTime = endDateTime;

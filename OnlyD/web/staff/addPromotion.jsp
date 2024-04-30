@@ -5,6 +5,9 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="Promotion" scope="session" class="entity.Promotion"></jsp:useBean>
+
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,18 +15,12 @@
         <title>Add Promotion</title>
     </head>
     <body>
-<form action="controller/AddPromotion.java" method="POST">
+        <form action="AddPromotion" method="POST">
             <table>
-                <tr>
-                    <td>Enter Promotion ID:</td>
-                    <td>
-                        <input type="text" name="promotionID" size="50">
-                    </td>
-                </tr>
                 <tr>
                     <td>Enter Discount percentage:</td>
                     <td>
-                        <input type="text" name="discountPercentage" size="50">
+                        <input type="number" name="discountPercentage" size="50">
                     </td>
                 </tr>
                 <tr>
@@ -39,8 +36,8 @@
                     </td>
                 </tr>
             </table>
-                <input type="submit" name="Confirm" value="Add Promotion">
-                <input type="reset" name="Reset" value="Reset">
+            <input type="submit" name="Confirm" value="Add Promotion">
+            <input type="reset" name="Reset" value="Reset">
         </form>
     </body>
 </html>
