@@ -35,13 +35,13 @@ public class DeleteCategory extends HttpServlet {
             HttpSession session = request.getSession();
             Category category = (Category)session.getAttribute("category");
             int id = category.getCategoryid();
-               
+
             utx.begin();
             boolean success = categoryService.deleteCategory(id);
             utx.commit();
             
             session.setAttribute("successDltCategory", success);
-            response.sendRedirect("staff/deleteCategoryConfirm.jsp");
+            response.sendRedirect("UpdateProductAfterDltCat");
         } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());
         } 

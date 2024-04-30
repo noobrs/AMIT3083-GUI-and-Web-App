@@ -9,10 +9,13 @@
     <tr>
         <td>Category ID</td>
         <td><select name="categoryId">
-                <% for (Category category: categoryList){%>
+                <% for (Category category: categoryList){
+                if(!category.getCategoryname().equals("NULL")){
+                %>      
                 <option value="<%=category.getCategoryid()%>">
                     <%=category.getCategoryid()%>
-                <%}%>
+                    <%}
+}%>
             </select>
             <br>
         </td>

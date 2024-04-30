@@ -16,7 +16,7 @@
             <table border="0">
                 <tr>
                     <td>Category Name</td>
-                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="name" pattern="^(?!.*\bNULL\b).*$" title="The word 'NULL' is not allowed."></td>
                 </tr>
                 <tr>
                     <td>Status</td>

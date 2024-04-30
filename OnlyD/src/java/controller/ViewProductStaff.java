@@ -26,7 +26,6 @@ public class ViewProductStaff extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-    int i = 0;
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,6 +33,7 @@ public class ViewProductStaff extends HttpServlet {
             ProductService productService = new ProductService(em);
             List<Product> productList = productService.findAll();
             HttpSession session = request.getSession();
+            int i = 0;
             
             session.setAttribute("productListStaff", productList);
             
@@ -45,8 +45,7 @@ public class ViewProductStaff extends HttpServlet {
                 session.setAttribute("Staff" + i, staff);
                 i++;
             }
-           
-            //session.setAttribute("path","staff/productListStaff.jsp");
+
             response.sendRedirect("staff/productListStaff.jsp");
         } catch (Exception ex) {
            response.getWriter().println(ex.getMessage());

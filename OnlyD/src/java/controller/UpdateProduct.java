@@ -49,7 +49,7 @@ public class UpdateProduct extends HttpServlet {
 
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);
-            Category categoryid = new Category(cid);
+            Category categoryid = new Category(cid);            
 
             String sid = request.getParameter("staffid");
             Staff staffid = new Staff(sid);
@@ -59,7 +59,7 @@ public class UpdateProduct extends HttpServlet {
             
             ProductService productService = new ProductService(em);
             Product product = new Product(id, name, price, stock, description, image, status, categoryid, staffid);
-
+            
             utx.begin();
             boolean success = productService.updateProduct(product);
             utx.commit();

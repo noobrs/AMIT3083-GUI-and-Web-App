@@ -76,6 +76,10 @@
         <servlet-name>GetCategoryForProduct</servlet-name>
         <servlet-class>controller.GetCategoryForProduct</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateProductAfterDltCat</servlet-name>
+        <servlet-class>controller.UpdateProductAfterDltCat</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProduct</servlet-name>
         <url-pattern>/ViewProduct</url-pattern>
@@ -131,6 +135,10 @@
     <servlet-mapping>
         <servlet-name>GetCategoryForProduct</servlet-name>
         <url-pattern>/GetCategoryForProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductAfterDltCat</servlet-name>
+        <url-pattern>/UpdateProductAfterDltCat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

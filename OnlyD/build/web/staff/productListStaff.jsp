@@ -5,11 +5,9 @@
 
 <%
   int i = 0; 
-  //String catName = null;
   String msg = null;
   List<Product> productList = (List)session.getAttribute("productListStaff");
-  //session.setAttribute("path","staff/addProduct.jsp");
-  //List<Category> categoryList = (List)session.getAttribute("categoryListProduct");
+  session.setAttribute("path","staff/addProduct.jsp");
 %>
 
 <table border="1">
@@ -26,12 +24,6 @@
     <% for (Product product: productList){ %>
     <% 
           Category categoryP = (Category) session.getAttribute("Category" + i);
-//          for (Category category: categoryList){
-//            if(categoryP.getCategoryid() == category.getCategoryid()){
-//                catName = category.getCategoryname();
-//                break;
-//            }
-//          } 
           Staff staff = (Staff) session.getAttribute("Staff" + i);
     %>
     <tr>
@@ -45,7 +37,7 @@
         <%}else{ %>
         <td> Active </td>
         <% } %>
-        <td><%= categoryP.getCategoryid() %></td>
+        <td><%= categoryP.getCategoryname() %></td>
         <td><%= staff.getStaffid() %></td>
     </tr>
     <% i++; %>

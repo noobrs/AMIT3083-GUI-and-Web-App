@@ -3,15 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/AddProduct.java</file>
-            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/SearchProduct.java</file>
-            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/ViewProduct.java</file>
-            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/GetCategoryForProduct.java</file>
-            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/web/staff/productListStaff.jsp</file>
-            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/web/staff/addProduct.jsp</file>
+            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/UpdateProduct.java</file>
+            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/LoadProductList.java</file>
+            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/web/staff/displayCategoryList.jsp</file>
+            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/DeleteCategory.java</file>
+            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/entity/Category.java</file>
+            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/service/ProductService.java</file>
+            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/UpdateProductAfterDltCat.java</file>
             <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/ViewCategory.java</file>
-            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/web/staff/updateProductConfirmation.jsp</file>
-            <file>file:/C:/Users/GIGABYTE/Desktop/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/ViewProductStaff.java</file>
         </group>
     </open-files>
 </project-private>
