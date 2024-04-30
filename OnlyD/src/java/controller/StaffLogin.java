@@ -29,7 +29,7 @@ public class StaffLogin extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String staffID;
+        String staffID = "";
         String password;
         StaffService staffService = new StaffService(em);
         Staff staff;
@@ -40,24 +40,21 @@ public class StaffLogin extends HttpServlet {
             staff = staffService.findStaffByStaffId(staffID);
 
             // unable to find the staff
-            if (staff == null) {
-                request.setAttribute("errorMessage", "Login fail! Incorrect Staff ID or password");
-                request.setAttribute("staffIDValue", staffID);
-
-                RequestDispatcher rd = request.getRequestDispatcher("/staff/staffLogin.jsp");
-                rd.forward(request, response);
-//            }else if(!staff.getIsActive()){
-//                session.setAttribute("staff", staff);
-//                response.sendRedirect("firstTimeLogin.jsp");
-            }else if(staff.getStatus() == Staff.VERIFICATION_STATUS){
+            if (staff == null || (!staff.getPassword().equals(password) && staff.getStatus() != Staff.VERIFICATION_STATUS)) {
+                throw new IllegalArgumentException("Login fail! Incorrect username or password!");
+            } else if (staff.getStatus() == Staff.VERIFICATION_STATUS) {
                 session.setAttribute("staff", staff);
                 response.sendRedirect("staff/firstTimeLogin.jsp");
-            }
-            else {
+            } else {
                 session.setAttribute("staff", staff);
+                session.setAttribute("isStaff", true);
                 response.sendRedirect("staff/staffDashboard.jsp");
             }
 
+        } catch (IllegalArgumentException e) {
+            session.setAttribute("errorMessage", e.getMessage());
+            session.setAttribute("enteredStaffID", staffID);
+            response.sendRedirect("staff/staffLogin.jsp");           
         } catch (Exception e) {
         }
     }

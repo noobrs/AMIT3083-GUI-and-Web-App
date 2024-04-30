@@ -40,19 +40,19 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Phone Number</span>
-                                <input type="text" name="phoneNumber" value="<%= (enteredPhoneNumber == null)?"":enteredPhoneNumber %>" class="form-control" placeholder="01xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="tel" name="phoneNumber" value="<%= (enteredPhoneNumber == null)?"":enteredPhoneNumber %>"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" class="form-control" placeholder="012-34567890" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Email</span>
-                                <input type="text" name="email" value="<%= (enteredEmail == null)?"":enteredEmail %>" class="form-control" placeholder="xxxx@gmail.com" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="email" name="email" value="<%= (enteredEmail == null)?"":enteredEmail %>" class="form-control" placeholder="xxxx@gmail.com" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
-                                <input type="password" name="password" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>                            
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Re-enter Password</span>
-                                <input type="password" name="rePassword" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="password" name="rePassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input class="btn btn-primary me-2" type="submit" value="Register">

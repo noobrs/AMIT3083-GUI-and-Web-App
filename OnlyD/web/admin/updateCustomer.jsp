@@ -63,13 +63,13 @@
                 <tr>
                     <td>Password</td>
                     <td>
-                        <input type="password" name="password">
+                        <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                     </td>
                 </tr>
                 <tr>
                     <td>Re-enter Password</td>
                     <td>
-                        <input type="password" name="rePassword">
+                        <input type="password" name="rePassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                     </td>
                 </tr>
             </table>

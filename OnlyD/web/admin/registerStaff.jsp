@@ -30,7 +30,7 @@
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Staff ID</span>
-                                <input type="text" name="staffID" value="${reStaffIDValue}" class="form-control" placeholder="xxxxxx" aria-label="StaffID" aria-describedby="basic-addon1" required>
+                                <input type="text" name="staffID" value="${reStaffIDValue}" class="form-control" placeholder="xxxxxx" aria-label="StaffID" aria-describedby="basic-addon1" readonly>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Staff Name</span>

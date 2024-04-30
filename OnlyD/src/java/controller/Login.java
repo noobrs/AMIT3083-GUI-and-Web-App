@@ -22,7 +22,7 @@ import service.CustomerService;
 public class Login extends HttpServlet {
 
     @PersistenceContext
-    EntityManager em;   
+    EntityManager em;
 
 //    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
 //            throws ServletException, IOException {
@@ -65,11 +65,11 @@ public class Login extends HttpServlet {
 //            response.getWriter().println(ex.getMessage());
 //        }
 //    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-                HttpSession session = request.getSession();
+        
+        HttpSession session = request.getSession();
         String username = "";
         String password = "";
         CustomerService custService = new CustomerService(em);
@@ -96,13 +96,14 @@ public class Login extends HttpServlet {
                 throw new IllegalArgumentException("Login fail! Incorrect username or password!");
             } else {
                 session.setAttribute("customer", cust);
+                session.setAttribute("isCustomer", true);
                 response.sendRedirect("index.jsp");
             }
 
         } catch (IllegalArgumentException e) {
             session.setAttribute("errorMessage", e.getMessage());
             session.setAttribute("enteredUsername", username);
-            response.sendRedirect("login.jsp");            
+            response.sendRedirect("login.jsp");
         } catch (IOException e) {
         }
     }

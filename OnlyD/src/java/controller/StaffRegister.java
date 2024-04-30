@@ -40,18 +40,24 @@ public class StaffRegister extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         StaffService staffService = new StaffService(em);
-        int newStaffID;
+        int newStaffID = 0;
 
         try {
-            List<Staff> staffList = staffService.findAll();
+            List<Staff> staffList = staffService.findAllWithDeletedStatus();
 
-            if (staffList == null) {
-                newStaffID = 1;
-            } else if (staffList.isEmpty()) {
+            if (staffList == null || staffList.isEmpty()) {
                 newStaffID = 1;
             } else {
-                Staff lastStaff = staffList.get(staffList.size() - 1);
-                newStaffID = Integer.parseInt(lastStaff.getStaffID(), 1, 5, 10) + 1;
+                for(int i = 0; i < staffList.size(); i++){
+                    int temp = Integer.parseInt(staffList.get(i).getStaffID(),1,5,10);
+                    if(newStaffID < temp){
+                        newStaffID = temp;
+                    }
+                }
+                newStaffID++;
+                
+//                Staff lastStaff = staffList.get(staffList.size() - 1);
+//                newStaffID = Integer.parseInt(lastStaff.getStaffID(), 1, 5, 10) + 1;
             }
 
             session.setAttribute("reStaffIDValue", String.format("S%04d", newStaffID));

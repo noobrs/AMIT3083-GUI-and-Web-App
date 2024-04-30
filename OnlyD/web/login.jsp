@@ -40,7 +40,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
-                                <input type="password" name="password" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input class="btn btn-primary me-2" type="submit" value="Sign In">
@@ -51,7 +51,13 @@
                         <div class="error-message" style="color: red;">
                             <%= errorMessage %>
                         </div>
-                        <% } %>
+                        <% 
+                            session.removeAttribute("errorMessage");
+                            } 
+                            if(enteredUsername != null){
+                                session.removeAttribute("enteredUsername");
+                            }
+                        %>
                     </div>
                     <div class="text-center">
                         <p>OR</p>

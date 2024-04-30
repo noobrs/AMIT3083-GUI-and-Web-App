@@ -14,6 +14,13 @@
         </head>
         <body>
         <%@include file="../layout/header.jsp"%> 
+        
+        <%
+            String errorMessage = (String)session.getAttribute("errorMessage");
+            String enteredStaffName = (String)session.getAttribute("enteredStaffName");
+            String enteredStaffEmail = (String)session.getAttribute("enteredStaffEmail");
+        %>
+        
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">
@@ -21,35 +28,40 @@
                     <h5 class="card-header">First Time Login</h5>
                     <div class="card-body">
                         <form action="../StaffVerification" method="POST">
-                            <h5 class="card-title">Welcome ${staff.name}, please setup your details:</h5>
+                            <h5 class="card-title">Welcome Staff ${staff.staffID}, please setup your details:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Staff ID</span>
                                 <input type="text" name="staffID" value="${staff.staffID}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" disabled>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Name</span>
-                                <input type="text" name="staffName" value="${staff.name}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="text" name="staffName" value="<%= (enteredStaffName== null)? staff.getName():enteredStaffName %>" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Email</span>
-                                <input type="text" name="staffEmail" value="${staffEmailValue}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="email" name="staffEmail" value="<%= (enteredStaffEmail==null)?"":enteredStaffEmail %>" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
-                                <input type="password" name="staffPassword" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1" required>
+                                <input type="password" name="staffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Re-enter Password</span>
-                                <input type="password" name="reStaffPassword" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1" required>
+                                <input type="password" name="reStaffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input class="btn btn-primary me-2" type="submit" value="Submit">
                                 <input class="btn btn-primary" type="reset" value="Reset">                              
                             </div>
                         </form>
+                        <% if(errorMessage != null) { %>
                         <div class="error-message" style="color: red;">
                             ${errorMessage}
                         </div>
+                        <% 
+                            session.removeAttribute("errorMessage");
+                            }
+                        %>
                     </div>
                     <div class="text-center">
                         <p>OR</p>

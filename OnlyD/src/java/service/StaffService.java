@@ -38,7 +38,10 @@ public class StaffService {
     public Staff findStaffByStaffId(String staffID) {
         Staff staff;
         try {
-            staff = (Staff) em.createNamedQuery("Staff.findByStaffID").setParameter("staffID", staffID).getSingleResult();
+            staff = (Staff) em.createNamedQuery("Staff.findByStaffID")
+                    .setParameter("staffID", staffID)
+                    .setParameter("deletedStatus", Staff.DELETED_STATUS)
+                    .getSingleResult();
         } catch (Exception e) {
             return null;
         }
@@ -73,7 +76,6 @@ public class StaffService {
     public boolean updateStaff(Staff staff) {
         Staff tempStaff = this.findStaffByStaffId(staff.getStaffID());
         if (tempStaff != null) {
-            tempStaff.setStaffID(staff.getStaffID());
             tempStaff.setName(staff.getName());
             tempStaff.setEmail(staff.getEmail());
             tempStaff.setPassword(staff.getPassword());
@@ -81,6 +83,17 @@ public class StaffService {
             return true;
         }
         return false;
+    }
+    
+     public List<Staff> findAllWithDeletedStatus() {
+        List<Staff> staffList;
+        try {
+            staffList = em.createNamedQuery("Staff.findAllWithDeletedStatus")                    
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+        return staffList;
     }
 
     public List<Staff> findAll() {

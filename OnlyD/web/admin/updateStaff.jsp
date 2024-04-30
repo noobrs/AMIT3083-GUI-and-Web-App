@@ -52,13 +52,13 @@
                 <tr>
                     <td>Password</td>
                     <td>
-                        <input type="password" name="staffPassword">
+                        <input type="password" name="staffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                     </td>
                 </tr>
                 <tr>
                     <td>Re-enter Password</td>
                     <td>
-                        <input type="password" name="reStaffPassword">
+                        <input type="password" name="reStaffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                     </td>
                 </tr>
             </table>

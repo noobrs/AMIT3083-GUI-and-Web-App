@@ -12,7 +12,7 @@
         <title>Admin Dashboard</title>
     </head>
     <body>
-        <%@include file="../layout/header.jsp"%>
+        <%@include file="../layout/header.jsp"%>        
         
         <%
             String statusMsg = (String)session.getAttribute("statusMsg");
