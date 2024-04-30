@@ -40,7 +40,7 @@ public class DeleteProduct extends HttpServlet {
             boolean success = productService.deleteProduct(id);
             utx.commit();
             
-            session.setAttribute("success", success);
+            session.setAttribute("successDltProduct", success);
             response.sendRedirect("staff/deleteProductConfirm.jsp");
         } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());

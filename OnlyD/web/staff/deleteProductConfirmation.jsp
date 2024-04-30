@@ -10,7 +10,7 @@
         <form action="../DeleteProduct" method="post" onsubmit="return window.confirm('Are you sure you want to delete this product?')">
             <table border="0">
                 <tr>
-                    <td>ID</td>
+                    <td>Product ID</td>
                     <td><input type="text" name="id"
                                value="<%=product.getProductid()%>" readonly></td>
                 </tr>

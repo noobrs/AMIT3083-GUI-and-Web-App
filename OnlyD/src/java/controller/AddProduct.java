@@ -7,7 +7,6 @@ package controller;
 import entity.Category;
 import entity.Product;
 import entity.Staff;
-import exception.NegativeException;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -31,57 +30,29 @@ public class AddProduct extends HttpServlet {
     @Resource
     UserTransaction utx;
 
-    String errorMsg = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
             String name = request.getParameter("name");
-            if (name == null || name.isEmpty()) {
-                throw new NullPointerException("Name cannot be empty");
-            }
 
             String priceStr = request.getParameter("price");
-            if (priceStr == null || priceStr.isEmpty()) {
-                throw new NullPointerException("Price cannot be empty");
-            }
             double price = Double.parseDouble(priceStr);
-            if( price <= 0){
-                throw new NegativeException("Price cannot be zero or negative");
-            }
 
             String stockStr = request.getParameter("stock");
-            if (stockStr == null || stockStr.isEmpty()) {
-                throw new NullPointerException("Stock cannot be empty");
-            }
             int stock = Integer.parseInt(stockStr);
-            if( stock <= 0){
-                throw new NegativeException("Stock cannot be negative");
-            }
 
             String description = request.getParameter("description");
-            if (description == null || description.isEmpty()) {
-                throw new NullPointerException("Description cannot be empty");
-            }
 
             String image = request.getParameter("image");
-            if (image == null || image.isEmpty()) {
-                throw new NullPointerException("Image cannot be empty");
-            }
             
             int status = Integer.parseInt(request.getParameter("status"));
 
             String categoryidStr = request.getParameter("categoryid");
-            if (categoryidStr == null || categoryidStr.isEmpty()) {
-                throw new NullPointerException("Category ID cannot be empty");
-            }
             int cid = Integer.parseInt(categoryidStr);
             Category categoryid = new Category(cid);
 
             String sid = request.getParameter("staffid");
-            if (sid == null || sid.isEmpty()) {
-                throw new NullPointerException("Staff ID cannot be empty");
-            }
             Staff staffid = new Staff(sid);
 
             Product product = new Product(name, price, stock, description, image, status, categoryid, staffid);
@@ -90,16 +61,9 @@ public class AddProduct extends HttpServlet {
             boolean success = productService.addProduct(product);
             utx.commit();
             HttpSession session = request.getSession();
-            session.setAttribute("success", success);
-            response.sendRedirect("staff/addconfirm.jsp");
-        } catch (NullPointerException | NegativeException ex) {
-            errorMsg = ex.getMessage();
-            HttpSession session = request.getSession();
-            session.setAttribute("errorAdd", errorMsg);
-
-            response.sendRedirect("staff/addProduct.jsp");
-
-        }catch (Exception ex) {
+            session.setAttribute("successAddProduct", success);
+            response.sendRedirect("staff/addProductConfirm.jsp");
+        } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());
         }
     }

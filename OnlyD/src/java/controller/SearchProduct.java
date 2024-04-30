@@ -31,9 +31,9 @@ public class SearchProduct extends HttpServlet {
        try {
             ProductService productService = new ProductService(em);
             HttpSession session = request.getSession();
-            String code = (String) session.getAttribute("id");
+            String code = (String) session.getAttribute("productId");
             int id = Integer.parseInt(code);
-            String button = (String) session.getAttribute("button");
+            String button = (String) session.getAttribute("productButton");
 
             Product product = productService.findProductByID(id);
             Category category = product.getCategoryid();
@@ -44,7 +44,8 @@ public class SearchProduct extends HttpServlet {
             if (button.equals("Delete")) {
                 response.sendRedirect("staff/deleteProductConfirmation.jsp");
             } else {
-                response.sendRedirect("staff/updateProductConfirmation.jsp");
+                session.setAttribute("path","staff/updateProductConfirmation.jsp");
+                response.sendRedirect("GetCategoryForProduct");
             }
   
         } catch (Exception ex) {

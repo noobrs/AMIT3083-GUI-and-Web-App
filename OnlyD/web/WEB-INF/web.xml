@@ -48,6 +48,34 @@
         <servlet-name>ViewProductStaff</servlet-name>
         <servlet-class>controller.ViewProductStaff</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddCategory</servlet-name>
+        <servlet-class>controller.AddCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCategory</servlet-name>
+        <servlet-class>controller.ViewCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadCategoryList</servlet-name>
+        <servlet-class>controller.LoadCategoryList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCategory</servlet-name>
+        <servlet-class>controller.SearchCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCategory</servlet-name>
+        <servlet-class>controller.DeleteCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCategory</servlet-name>
+        <servlet-class>controller.UpdateCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetCategoryForProduct</servlet-name>
+        <servlet-class>controller.GetCategoryForProduct</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProduct</servlet-name>
         <url-pattern>/ViewProduct</url-pattern>
@@ -75,6 +103,34 @@
     <servlet-mapping>
         <servlet-name>ViewProductStaff</servlet-name>
         <url-pattern>/ViewProductStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCategory</servlet-name>
+        <url-pattern>/AddCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCategory</servlet-name>
+        <url-pattern>/ViewCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCategoryList</servlet-name>
+        <url-pattern>/LoadCategoryList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCategory</servlet-name>
+        <url-pattern>/SearchCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCategory</servlet-name>
+        <url-pattern>/DeleteCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCategory</servlet-name>
+        <url-pattern>/UpdateCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCategoryForProduct</servlet-name>
+        <url-pattern>/GetCategoryForProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

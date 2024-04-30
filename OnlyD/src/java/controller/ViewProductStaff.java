@@ -45,7 +45,8 @@ public class ViewProductStaff extends HttpServlet {
                 session.setAttribute("Staff" + i, staff);
                 i++;
             }
-            
+           
+            //session.setAttribute("path","staff/productListStaff.jsp");
             response.sendRedirect("staff/productListStaff.jsp");
         } catch (Exception ex) {
            response.getWriter().println(ex.getMessage());

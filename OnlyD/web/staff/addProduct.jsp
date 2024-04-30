@@ -1,12 +1,9 @@
-<%-- 
-    Document   : addProduct
-    Created on : 25 Apr 2024, 3:37:05 PM
-    Author     : Vin Sen
---%>
-
-<%@ page import="entity.Staff" %>
-<jsp:useBean id="staff" class="entity.Staff" scope="session" ></jsp:useBean>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page  import="entity.Category" %>
+<%
+  List<Category> categoryList = (List)session.getAttribute("categoryListProduct");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -19,35 +16,46 @@
             <table border="0">
                 <tr>
                     <td>Name</td>
-                    <td><input type="text" name="name"></td>
+                    <td><input type="text" name="name" required></td>
                 </tr>
                 <tr>
                     <td>Price</td>
-                    <td><input type="text" name="price"></td>
+                    <td><input type="number" name="price" min="0.00" step="0.01" required></td>
                 </tr>
                 <tr>
                     <td>Stock</td>
-                    <td><input type="text" name="stock"></td>
+                    <td><input type="number" name="stock"  min="0" required></td>
                 </tr>
                 <tr>
                     <td>Description</td>
-                    <td><input type="text" name="description" size="50"></td>
+                    <td><input type="text" name="description" size="50" required></td>
                 </tr>
                 <tr>
                     <td>Image</td>
-                    <td><input type="text" name="image"></td>
+                    <td><input type="text" name="image" required></td>
                 </tr>
                 <tr>
                     <td>Status</td>
-                    <td><input type="text" name="status"></td>
+                    <td><select name="status">
+                            <option value="0"> Deleted
+                            <option value="1"> Active
+                        </select>
+                    </td>
                 </tr>
                 <tr>
-                    <td>Category ID</td>
-                    <td><input type="text" name="categoryid" size="50"></td>
+                    <td>Category Name</td>
+                    <td><select name="categoryid">
+                <% for (Category category: categoryList){%>
+                <option value="<%=category.getCategoryid()%>">
+                    <%=category.getCategoryname()%>
+                <%}%>
+            </select>
+            <br>
+        </td>
                 </tr>
                 <tr>
                     <td>Staff ID</td>
-                    <td><input type="text" name="staffid" size="50"></td>
+                    <td><input type="text" name="staffid" size="50" required></td>
                 </tr>
 
 
@@ -56,11 +64,7 @@
             <input type="reset" value="Reset">
         </form>
         <div>
-            <% 
-                String error = (String)session.getAttribute("errorAdd"); 
-                out.println(error);
-                session.setAttribute("errorAdd",null);
-            %>
+
         </div>
     </body>
 </html>

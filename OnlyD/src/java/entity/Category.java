@@ -5,9 +5,7 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.List;
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,10 +13,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -30,7 +26,8 @@ import jakarta.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
     @NamedQuery(name = "Category.findByCategoryid", query = "SELECT c FROM Category c WHERE c.categoryid = :categoryid"),
-    @NamedQuery(name = "Category.findByCategoryname", query = "SELECT c FROM Category c WHERE c.categoryname = :categoryname")})
+    @NamedQuery(name = "Category.findByCategoryname", query = "SELECT c FROM Category c WHERE c.categoryname = :categoryname"),
+    @NamedQuery(name = "Category.findByStatus", query = "SELECT c FROM Category c WHERE c.status = :status")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -41,10 +38,21 @@ public class Category implements Serializable {
     private Integer categoryid;
     @Column(name = "CATEGORYNAME")
     private String categoryname;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
-    private List<Product> productList;
+    @Column(name = "STATUS")
+    private Integer status;
 
     public Category() {
+    }
+    
+    public Category(Integer id, String name, Integer status) {
+        this.categoryid = id;
+        this.categoryname = name;
+        this.status = status;
+    }
+    
+    public Category(String name, Integer status) {
+        this.categoryname = name;
+        this.status = status;
     }
 
     public Category(Integer categoryid) {
@@ -67,13 +75,12 @@ public class Category implements Serializable {
         this.categoryname = categoryname;
     }
 
-    @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override
