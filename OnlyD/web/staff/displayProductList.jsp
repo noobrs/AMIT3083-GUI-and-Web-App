@@ -8,7 +8,7 @@
 <form action="searchProduct.jsp" method="post">
     <tr>
         <td>Product ID</td>
-        <td><select name="id">
+        <td><select name="productId">
                 <% for (Product product: productList){%>
                 <option value="<%=product.getProductid()%>">
                     <%=product.getProductid()%>
@@ -19,8 +19,8 @@
     </tr>
     <tr>
         <td colspan="2">
-            <input type="submit" value="Delete" name="button"/>
-            <input type="submit" value="Update" name="button"/>
+            <input type="submit" value="Delete" name="productButton"/>
+            <input type="submit" value="Update" name="productButton"/>
         </td>
     </tr>
 </form>

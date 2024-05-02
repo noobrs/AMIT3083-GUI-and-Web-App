@@ -1,10 +1,10 @@
 <h3>
 <%
-  boolean success = (Boolean)session.getAttribute("success");
+  boolean success = (Boolean)session.getAttribute("successDltProduct");
   if (success)
-      out.println("Item deleted successfully.");
+      out.println("Product deleted successfully.");
   else
-      out.println("Error: Unable to delete item.");
+      out.println("Error: Unable to delete Product.");
 %>
 </h3>
 <p><a href="../index.html">Back to home page</a></p>

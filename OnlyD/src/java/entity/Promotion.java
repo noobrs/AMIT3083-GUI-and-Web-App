@@ -4,6 +4,9 @@
  */
 package entity;
 
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -18,80 +21,77 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 
 /**
  *
- * @author Vin Sen
+ * @author GIGABYTE
  */
 @Entity
-@Table(name = "Promotion")
+@Table(name = "PROMOTION")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Promotion.findAll", query = "SELECT p FROM Promotion p"),
-    @NamedQuery(name = "Promotion.findByPromotionID", query = "SELECT p FROM Promotion p WHERE p.promotionID = :promotionID"),
-    @NamedQuery(name = "Promotion.findByDiscountPercentage", query = "SELECT p FROM Promotion p WHERE p.discountPercentage = :discountPercentage"),
-    @NamedQuery(name = "Promotion.findByStartDateTime", query = "SELECT p FROM Promotion p WHERE p.startDateTime = :startDateTime"),
-    @NamedQuery(name = "Promotion.findByEndDateTime", query = "SELECT p FROM Promotion p WHERE p.endDateTime = :endDateTime")})
+    @NamedQuery(name = "Promotion.findByPromotionid", query = "SELECT p FROM Promotion p WHERE p.promotionid = :promotionid"),
+    @NamedQuery(name = "Promotion.findByDiscountpercentage", query = "SELECT p FROM Promotion p WHERE p.discountpercentage = :discountpercentage"),
+    @NamedQuery(name = "Promotion.findByStartdatetime", query = "SELECT p FROM Promotion p WHERE p.startdatetime = :startdatetime"),
+    @NamedQuery(name = "Promotion.findByEnddatetime", query = "SELECT p FROM Promotion p WHERE p.enddatetime = :enddatetime")})
 public class Promotion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "PromotionID")
-    private Integer promotionID;
+    @Column(name = "PROMOTIONID")
+    private Integer promotionid;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "DiscountPercentage")
-    private Double discountPercentage;
-    @Column(name = "StartDateTime")
+    @Column(name = "DISCOUNTPERCENTAGE")
+    private Double discountpercentage;
+    @Column(name = "STARTDATETIME")
     @Temporal(TemporalType.DATE)
-    private Date startDateTime;
-    @Column(name = "EndDateTime")
+    private Date startdatetime;
+    @Column(name = "ENDDATETIME")
     @Temporal(TemporalType.DATE)
-    private Date endDateTime;
+    private Date enddatetime;
     @ManyToMany(mappedBy = "promotionList")
     private List<Product> productList;
 
     public Promotion() {
     }
 
-    public Promotion(Integer promotionID) {
-        this.promotionID = promotionID;
+    public Promotion(Integer promotionid) {
+        this.promotionid = promotionid;
     }
 
-    public Integer getPromotionID() {
-        return promotionID;
+    public Integer getPromotionid() {
+        return promotionid;
     }
 
-    public void setPromotionID(Integer promotionID) {
-        this.promotionID = promotionID;
+    public void setPromotionid(Integer promotionid) {
+        this.promotionid = promotionid;
     }
 
-    public Double getDiscountPercentage() {
-        return discountPercentage;
+    public Double getDiscountpercentage() {
+        return discountpercentage;
     }
 
-    public void setDiscountPercentage(Double discountPercentage) {
-        this.discountPercentage = discountPercentage;
+    public void setDiscountpercentage(Double discountpercentage) {
+        this.discountpercentage = discountpercentage;
     }
 
-    public Date getStartDateTime() {
-        return startDateTime;
+    public Date getStartdatetime() {
+        return startdatetime;
     }
 
-    public void setStartDateTime(Date startDateTime) {
-        this.startDateTime = startDateTime;
+    public void setStartdatetime(Date startdatetime) {
+        this.startdatetime = startdatetime;
     }
 
-    public Date getEndDateTime() {
-        return endDateTime;
+    public Date getEnddatetime() {
+        return enddatetime;
     }
 
-    public void setEndDateTime(Date endDateTime) {
-        this.endDateTime = endDateTime;
+    public void setEnddatetime(Date enddatetime) {
+        this.enddatetime = enddatetime;
     }
 
     @XmlTransient
@@ -106,7 +106,7 @@ public class Promotion implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (promotionID != null ? promotionID.hashCode() : 0);
+        hash += (promotionid != null ? promotionid.hashCode() : 0);
         return hash;
     }
 
@@ -117,7 +117,7 @@ public class Promotion implements Serializable {
             return false;
         }
         Promotion other = (Promotion) object;
-        if ((this.promotionID == null && other.promotionID != null) || (this.promotionID != null && !this.promotionID.equals(other.promotionID))) {
+        if ((this.promotionid == null && other.promotionid != null) || (this.promotionid != null && !this.promotionid.equals(other.promotionid))) {
             return false;
         }
         return true;
@@ -125,7 +125,7 @@ public class Promotion implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Promotion[ promotionID=" + promotionID + " ]";
+        return "entity.Promotion[ promotionid=" + promotionid + " ]";
     }
     
 }

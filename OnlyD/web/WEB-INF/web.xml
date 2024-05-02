@@ -21,44 +21,124 @@
         <param-value>ONLY D. All rights reserved.</param-value>
     </context-param>
     <servlet>
-        <servlet-name>LogoutServlet</servlet-name>
-        <servlet-class>controller.LogoutServlet</servlet-class>
+        <servlet-name>ViewProduct</servlet-name>
+        <servlet-class>controller.ViewProduct</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Register</servlet-name>
-        <servlet-class>controller.Register</servlet-class>
+        <servlet-name>AddProduct</servlet-name>
+        <servlet-class>controller.AddProduct</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>Login</servlet-name>
-        <servlet-class>controller.Login</servlet-class>
+        <servlet-name>DeleteProduct</servlet-name>
+        <servlet-class>controller.DeleteProduct</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RegisterStaff</servlet-name>
-        <servlet-class>controller.RegisterStaff</servlet-class>
+        <servlet-name>LoadProductList</servlet-name>
+        <servlet-class>controller.LoadProductList</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StaffLogin</servlet-name>
-        <servlet-class>controller.StaffLogin</servlet-class>
+        <servlet-name>UpdateProduct</servlet-name>
+        <servlet-class>controller.UpdateProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchProduct</servlet-name>
+        <servlet-class>controller.SearchProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProductStaff</servlet-name>
+        <servlet-class>controller.ViewProductStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddCategory</servlet-name>
+        <servlet-class>controller.AddCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCategory</servlet-name>
+        <servlet-class>controller.ViewCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadCategoryList</servlet-name>
+        <servlet-class>controller.LoadCategoryList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCategory</servlet-name>
+        <servlet-class>controller.SearchCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCategory</servlet-name>
+        <servlet-class>controller.DeleteCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCategory</servlet-name>
+        <servlet-class>controller.UpdateCategory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GetCategoryForProduct</servlet-name>
+        <servlet-class>controller.GetCategoryForProduct</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateProductAfterDltCat</servlet-name>
+        <servlet-class>controller.UpdateProductAfterDltCat</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>LogoutServlet</servlet-name>
-        <url-pattern>/LogoutServlet</url-pattern>
+        <servlet-name>ViewProduct</servlet-name>
+        <url-pattern>/ViewProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Register</servlet-name>
-        <url-pattern>/Register</url-pattern>
+        <servlet-name>AddProduct</servlet-name>
+        <url-pattern>/AddProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Login</servlet-name>
-        <url-pattern>/Login</url-pattern>
+        <servlet-name>DeleteProduct</servlet-name>
+        <url-pattern>/DeleteProduct</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RegisterStaff</servlet-name>
-        <url-pattern>/RegisterStaff</url-pattern>
+        <servlet-name>LoadProductList</servlet-name>
+        <url-pattern>/LoadProductList</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StaffLogin</servlet-name>
-        <url-pattern>/StaffLogin</url-pattern>
+        <servlet-name>UpdateProduct</servlet-name>
+        <url-pattern>/UpdateProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProduct</servlet-name>
+        <url-pattern>/SearchProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductStaff</servlet-name>
+        <url-pattern>/ViewProductStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddCategory</servlet-name>
+        <url-pattern>/AddCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCategory</servlet-name>
+        <url-pattern>/ViewCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCategoryList</servlet-name>
+        <url-pattern>/LoadCategoryList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCategory</servlet-name>
+        <url-pattern>/SearchCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCategory</servlet-name>
+        <url-pattern>/DeleteCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCategory</servlet-name>
+        <url-pattern>/UpdateCategory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetCategoryForProduct</servlet-name>
+        <url-pattern>/GetCategoryForProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateProductAfterDltCat</servlet-name>
+        <url-pattern>/UpdateProductAfterDltCat</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
@@ -66,10 +146,6 @@
     <error-page>
         <error-code>403</error-code>
         <location>/unauthorizedError.jsp</location>
-    </error-page>
-    <error-page>
-        <error-code>404</error-code>
-        <location>/404Error.jsp</location>
     </error-page>
     <security-constraint>
         <display-name>AdminConstraint</display-name>

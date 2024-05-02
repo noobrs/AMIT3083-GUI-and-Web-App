@@ -4,8 +4,8 @@
  */
 package entity;
 
+import java.io.Serializable;
 import jakarta.persistence.Basic;
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,75 +13,80 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
-import java.io.Serializable;
-import java.util.List;
 
 /**
  *
- * @author Vin Sen
+ * @author GIGABYTE
  */
 @Entity
-@Table(name = "Category")
+@Table(name = "CATEGORY")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Category.findAll", query = "SELECT c FROM Category c"),
-    @NamedQuery(name = "Category.findByCategoryID", query = "SELECT c FROM Category c WHERE c.categoryID = :categoryID"),
-    @NamedQuery(name = "Category.findByCategoryName", query = "SELECT c FROM Category c WHERE c.categoryName = :categoryName")})
+    @NamedQuery(name = "Category.findByCategoryid", query = "SELECT c FROM Category c WHERE c.categoryid = :categoryid"),
+    @NamedQuery(name = "Category.findByCategoryname", query = "SELECT c FROM Category c WHERE c.categoryname = :categoryname"),
+    @NamedQuery(name = "Category.findByStatus", query = "SELECT c FROM Category c WHERE c.status = :status")})
 public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CategoryID")
-    private Integer categoryID;
-    @Size(max = 80)
-    @Column(name = "CategoryName")
-    private String categoryName;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryID")
-    private List<Product> productList;
+    @Column(name = "CATEGORYID")
+    private Integer categoryid;
+    @Column(name = "CATEGORYNAME")
+    private String categoryname;
+    @Column(name = "STATUS")
+    private Integer status;
 
     public Category() {
     }
-
-    public Category(Integer categoryID) {
-        this.categoryID = categoryID;
+    
+    public Category(Integer id, String name, Integer status) {
+        this.categoryid = id;
+        this.categoryname = name;
+        this.status = status;
+    }
+    
+    public Category(String name, Integer status) {
+        this.categoryname = name;
+        this.status = status;
     }
 
-    public Integer getCategoryID() {
-        return categoryID;
+    public Category(Integer categoryid) {
+        this.categoryid = categoryid;
     }
 
-    public void setCategoryID(Integer categoryID) {
-        this.categoryID = categoryID;
+    public Integer getCategoryid() {
+        return categoryid;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public void setCategoryid(Integer categoryid) {
+        this.categoryid = categoryid;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public String getCategoryname() {
+        return categoryname;
     }
 
-    @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
+    public void setCategoryname(String categoryname) {
+        this.categoryname = categoryname;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (categoryID != null ? categoryID.hashCode() : 0);
+        hash += (categoryid != null ? categoryid.hashCode() : 0);
         return hash;
     }
 
@@ -92,7 +97,7 @@ public class Category implements Serializable {
             return false;
         }
         Category other = (Category) object;
-        if ((this.categoryID == null && other.categoryID != null) || (this.categoryID != null && !this.categoryID.equals(other.categoryID))) {
+        if ((this.categoryid == null && other.categoryid != null) || (this.categoryid != null && !this.categoryid.equals(other.categoryid))) {
             return false;
         }
         return true;
@@ -100,7 +105,7 @@ public class Category implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Category[ categoryID=" + categoryID + " ]";
+        return "entity.Category[ categoryid=" + categoryid + " ]";
     }
     
 }
