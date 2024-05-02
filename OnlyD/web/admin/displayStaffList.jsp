@@ -22,8 +22,8 @@
                             <%
                                 for(Staff s:staffList){
                             %>
-                            <option value="<%=s.getStaffID()%>">
-                                <%=s.getStaffID()%>
+                            <option value="<%=s.getStaffid()%>">
+                                <%=s.getStaffid()%>
                             </option>
                             <%
                                 }

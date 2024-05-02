@@ -24,7 +24,7 @@
             <table>
                 <tr>
                     <td>Staff ID</td>
-                    <td><%= staff.getStaffID() %></td>
+                    <td><%= staff.getStaffid() %></td>
                 </tr>
                 <tr>
                     <td>Staff Name</td>

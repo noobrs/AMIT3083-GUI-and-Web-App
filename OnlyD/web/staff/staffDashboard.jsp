@@ -32,7 +32,7 @@
         %>
 
         <%@include file="/layout/header.jsp"%>
-        <p><%= staff.getStaffID() %></p>
+        <p><%= staff.getStaffid() %></p>
         <p><%= staff.getName() %></p>
         <p><%= staff.getEmail() %></p>
         <p><%= staff.getPassword() %></p>

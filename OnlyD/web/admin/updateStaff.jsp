@@ -34,7 +34,7 @@
                 <tr>
                     <td>Staff ID</td>
                     <td>
-                        <input type="text" name="staffID" value="<%= staff.getStaffID() %>" readonly>
+                        <input type="text" name="staffID" value="<%= staff.getStaffid() %>" readonly>
                     </td>
                 </tr>
                 <tr>

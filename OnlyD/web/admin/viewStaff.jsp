@@ -28,7 +28,7 @@
             </tr>
             <% for(Staff s:staffList){ %>
             <tr>
-                <td><%=s.getStaffID()%></td>
+                <td><%=s.getStaffid()%></td>
                 <td><%=s.getName()%></td>
                 <td><%=s.getEmail()%></td>
                 <td>

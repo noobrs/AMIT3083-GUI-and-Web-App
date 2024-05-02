@@ -12,7 +12,7 @@
         <title>Admin Dashboard</title>
     </head>
     <body>
-        <%@include file="../layout/header.jsp"%>        
+        <%@include file="/layout/header.jsp"%>        
         
         <%
             String statusMsg = (String)session.getAttribute("statusMsg");
@@ -35,15 +35,16 @@
         <a href="../LoadCustomerList">Delete/Update customer</a><br>
         
         <h2>Product</h2>
-        <a href="#">View All Product</a><br>
-        <a href="#">Add a Product</a><br>        
-        <a href="#">Delete/Update Product</a><br>
+<!--        for user-->
+        <a href="../ViewProduct">View All Product</a><br>
+        <a href="../ViewProductStaff">Add a Product</a><br>        
+        <a href="../LoadProductList">Delete/Update Product</a><br>
         <form action="../logout">
             <input type="submit" value="Log Out">
         </form>
         <%= request.isUserInRole("AdminRole") %><br>
         
         
-        <%@include file="../layout/footer.jsp"%>
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>
