@@ -76,7 +76,7 @@ public class ProductcartPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entitytest.ProductcartPK[ customerid=" + customerid + ", productid=" + productid + " ]";
+        return "entity.ProductcartPK[ customerid=" + customerid + ", productid=" + productid + " ]";
     }
     
 }
