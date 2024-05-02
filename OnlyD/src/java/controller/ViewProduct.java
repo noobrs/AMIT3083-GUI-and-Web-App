@@ -32,7 +32,7 @@ public class ViewProduct extends HttpServlet {
             List<Product> productList = productService.findByStatus(1);
             HttpSession session = request.getSession();
             session.setAttribute("productListUser", productList);
-            response.sendRedirect("user/productList.jsp");
+            response.sendRedirect("user/productlist.jsp");
         } catch (Exception ex) {
            response.getWriter().println(ex.getMessage());
         }
