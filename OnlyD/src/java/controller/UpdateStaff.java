@@ -63,7 +63,7 @@ public class UpdateStaff extends HttpServlet {
 
             // email validation
             tempStaff = staffService.findStaffByEmail(staffEmail);
-            if (staffService.findStaffByEmail(staffEmail) != null && (tempStaff.getStaffID() != staff.getStaffID())) {
+            if (staffService.findStaffByEmail(staffEmail) != null && (tempStaff.getStaffid() != staff.getStaffid())) {
                 throw new NullPointerException("Email existed!");
             } else if (!staffEmail.matches(Staff.EMAIL_REGEX)) {
                 throw new NullPointerException("Invalid Email Format!");

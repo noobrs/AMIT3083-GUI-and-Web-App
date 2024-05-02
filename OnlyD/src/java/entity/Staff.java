@@ -81,12 +81,12 @@ public class Staff implements Serializable {
         this.staffID = staffID;
     }
 
-    public String getStaffID() {
+    public String getStaffid() {
         return staffID;
     }
 
-    public void setStaffID(String staffID) {
-        this.staffID = staffID;
+    public void setStaffid(String staffid) {
+        this.staffID = staffid;
     }
 
     public String getName() {
@@ -122,7 +122,7 @@ public class Staff implements Serializable {
     }
     
     public String getDefaultPassword(){
-        return "OnlyD@" + getStaffID();
+        return "OnlyD@" + getStaffid();
     }
 
     @Override

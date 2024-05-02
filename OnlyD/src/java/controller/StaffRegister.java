@@ -49,7 +49,7 @@ public class StaffRegister extends HttpServlet {
                 newStaffID = 1;
             } else {
                 for(int i = 0; i < staffList.size(); i++){
-                    int temp = Integer.parseInt(staffList.get(i).getStaffID(),1,5,10);
+                    int temp = Integer.parseInt(staffList.get(i).getStaffid(),1,5,10);
                     if(newStaffID < temp){
                         newStaffID = temp;
                     }
@@ -57,7 +57,7 @@ public class StaffRegister extends HttpServlet {
                 newStaffID++;
                 
 //                Staff lastStaff = staffList.get(staffList.size() - 1);
-//                newStaffID = Integer.parseInt(lastStaff.getStaffID(), 1, 5, 10) + 1;
+//                newStaffID = Integer.parseInt(lastStaff.getStaffid(), 1, 5, 10) + 1;
             }
 
             session.setAttribute("reStaffIDValue", String.format("S%04d", newStaffID));

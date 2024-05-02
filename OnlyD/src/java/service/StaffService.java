@@ -74,7 +74,7 @@ public class StaffService {
     }
 
     public boolean updateStaff(Staff staff) {
-        Staff tempStaff = this.findStaffByStaffId(staff.getStaffID());
+        Staff tempStaff = this.findStaffByStaffId(staff.getStaffid());
         if (tempStaff != null) {
             tempStaff.setName(staff.getName());
             tempStaff.setEmail(staff.getEmail());
