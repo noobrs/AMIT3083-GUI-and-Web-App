@@ -15,60 +15,60 @@ import java.io.Serializable;
  * @author Vin Sen
  */
 @Embeddable
-public class ProductCartPK implements Serializable {
+public class ProductcartPK implements Serializable {
 
     @Basic(optional = false)
     @NotNull
-    @Column(name = "CartID")
-    private int cartID;
+    @Column(name = "CUSTOMERID")
+    private int customerid;
     @Basic(optional = false)
     @NotNull
-    @Column(name = "ProductID")
-    private int productID;
+    @Column(name = "PRODUCTID")
+    private int productid;
 
-    public ProductCartPK() {
+    public ProductcartPK() {
     }
 
-    public ProductCartPK(int cartID, int productID) {
-        this.cartID = cartID;
-        this.productID = productID;
+    public ProductcartPK(int customerid, int productid) {
+        this.customerid = customerid;
+        this.productid = productid;
     }
 
-    public int getCartID() {
-        return cartID;
+    public int getCustomerid() {
+        return customerid;
     }
 
-    public void setCartID(int cartID) {
-        this.cartID = cartID;
+    public void setCustomerid(int customerid) {
+        this.customerid = customerid;
     }
 
-    public int getProductID() {
-        return productID;
+    public int getProductid() {
+        return productid;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProductid(int productid) {
+        this.productid = productid;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) cartID;
-        hash += (int) productID;
+        hash += (int) customerid;
+        hash += (int) productid;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductCartPK)) {
+        if (!(object instanceof ProductcartPK)) {
             return false;
         }
-        ProductCartPK other = (ProductCartPK) object;
-        if (this.cartID != other.cartID) {
+        ProductcartPK other = (ProductcartPK) object;
+        if (this.customerid != other.customerid) {
             return false;
         }
-        if (this.productID != other.productID) {
+        if (this.productid != other.productid) {
             return false;
         }
         return true;
@@ -76,7 +76,7 @@ public class ProductCartPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.ProductCartPK[ cartID=" + cartID + ", productID=" + productID + " ]";
+        return "entitytest.ProductcartPK[ customerid=" + customerid + ", productid=" + productid + " ]";
     }
     
 }

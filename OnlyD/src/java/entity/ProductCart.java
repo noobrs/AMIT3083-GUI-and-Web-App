@@ -20,44 +20,44 @@ import java.io.Serializable;
  * @author Vin Sen
  */
 @Entity
-@Table(name = "ProductCart")
+@Table(name = "PRODUCTCART")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProductCart.findAll", query = "SELECT p FROM ProductCart p"),
-    @NamedQuery(name = "ProductCart.findByCartID", query = "SELECT p FROM ProductCart p WHERE p.productCartPK.cartID = :cartID"),
-    @NamedQuery(name = "ProductCart.findByProductID", query = "SELECT p FROM ProductCart p WHERE p.productCartPK.productID = :productID"),
-    @NamedQuery(name = "ProductCart.findByQuantity", query = "SELECT p FROM ProductCart p WHERE p.quantity = :quantity")})
-public class ProductCart implements Serializable {
+    @NamedQuery(name = "Productcart.findAll", query = "SELECT p FROM Productcart p"),
+    @NamedQuery(name = "Productcart.findByCustomerid", query = "SELECT p FROM Productcart p WHERE p.productcartPK.customerid = :customerid"),
+    @NamedQuery(name = "Productcart.findByProductid", query = "SELECT p FROM Productcart p WHERE p.productcartPK.productid = :productid"),
+    @NamedQuery(name = "Productcart.findByQuantity", query = "SELECT p FROM Productcart p WHERE p.quantity = :quantity")})
+public class Productcart implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected ProductCartPK productCartPK;
-    @Column(name = "Quantity")
+    protected ProductcartPK productcartPK;
+    @Column(name = "QUANTITY")
     private Integer quantity;
-    @JoinColumn(name = "CartID", referencedColumnName = "CartID", insertable = false, updatable = false)
+    @JoinColumn(name = "CUSTOMERID", referencedColumnName = "CUSTOMERID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Cart cart;
-    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
+    private Customer customer;
+    @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;
 
-    public ProductCart() {
+    public Productcart() {
     }
 
-    public ProductCart(ProductCartPK productCartPK) {
-        this.productCartPK = productCartPK;
+    public Productcart(ProductcartPK productcartPK) {
+        this.productcartPK = productcartPK;
     }
 
-    public ProductCart(int cartID, int productID) {
-        this.productCartPK = new ProductCartPK(cartID, productID);
+    public Productcart(int customerid, int productid) {
+        this.productcartPK = new ProductcartPK(customerid, productid);
     }
 
-    public ProductCartPK getProductCartPK() {
-        return productCartPK;
+    public ProductcartPK getProductcartPK() {
+        return productcartPK;
     }
 
-    public void setProductCartPK(ProductCartPK productCartPK) {
-        this.productCartPK = productCartPK;
+    public void setProductcartPK(ProductcartPK productcartPK) {
+        this.productcartPK = productcartPK;
     }
 
     public Integer getQuantity() {
@@ -68,12 +68,12 @@ public class ProductCart implements Serializable {
         this.quantity = quantity;
     }
 
-    public Cart getCart() {
-        return cart;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Product getProduct() {
@@ -87,18 +87,18 @@ public class ProductCart implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (productCartPK != null ? productCartPK.hashCode() : 0);
+        hash += (productcartPK != null ? productcartPK.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductCart)) {
+        if (!(object instanceof Productcart)) {
             return false;
         }
-        ProductCart other = (ProductCart) object;
-        if ((this.productCartPK == null && other.productCartPK != null) || (this.productCartPK != null && !this.productCartPK.equals(other.productCartPK))) {
+        Productcart other = (Productcart) object;
+        if ((this.productcartPK == null && other.productcartPK != null) || (this.productcartPK != null && !this.productcartPK.equals(other.productcartPK))) {
             return false;
         }
         return true;
@@ -106,7 +106,7 @@ public class ProductCart implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.ProductCart[ productCartPK=" + productCartPK + " ]";
+        return "entitytest.Productcart[ productcartPK=" + productcartPK + " ]";
     }
     
 }

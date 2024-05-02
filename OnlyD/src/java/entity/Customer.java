@@ -5,6 +5,7 @@
 package entity;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -12,10 +13,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
+import java.util.List;
 
 /**
  *
@@ -59,10 +62,14 @@ public class Customer implements Serializable {
     private String password;
     @Column(name = "STATUS")
     private Integer status;
-    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerid")
+    private List<Orders> ordersList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private List<Productcart> productcartList;
+
     public static final int ACTIVE_STATUS = 1;
     public static final int DELETED_STATUS = 2;
-    
+
     public static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     public static final String PHONENUMBER_REGEX = "\\d{3}-?\\d{7}$|^\\d{2}-?\\d{8}$|^\\d{10}$";
     public static final String PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[\\W_]).+$";
@@ -72,7 +79,7 @@ public class Customer implements Serializable {
 
     public Customer(Integer customerID) {
         this.customerID = customerID;
-    }    
+    }
 
     public Customer(String name, String username, String phoneNumber, String email, String password, Integer status) {
         this.name = name;
@@ -171,5 +178,5 @@ public class Customer implements Serializable {
     public String toString() {
         return "entity.Customer[ customerID=" + customerID + " ]";
     }
-    
+
 }

@@ -4,6 +4,7 @@
  */
 package entity;
 
+import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -13,51 +14,50 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
 
 /**
  *
- * @author Vin Sen
+ * @author GIGABYTE
  */
 @Entity
-@Table(name = "ProductOrder")
+@Table(name = "PRODUCTORDER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProductOrder.findAll", query = "SELECT p FROM ProductOrder p"),
-    @NamedQuery(name = "ProductOrder.findByOrderID", query = "SELECT p FROM ProductOrder p WHERE p.productOrderPK.orderID = :orderID"),
-    @NamedQuery(name = "ProductOrder.findByProductID", query = "SELECT p FROM ProductOrder p WHERE p.productOrderPK.productID = :productID"),
-    @NamedQuery(name = "ProductOrder.findByQuantity", query = "SELECT p FROM ProductOrder p WHERE p.quantity = :quantity")})
-public class ProductOrder implements Serializable {
+    @NamedQuery(name = "Productorder.findAll", query = "SELECT p FROM Productorder p"),
+    @NamedQuery(name = "Productorder.findByOrderid", query = "SELECT p FROM Productorder p WHERE p.productorderPK.orderid = :orderid"),
+    @NamedQuery(name = "Productorder.findByProductid", query = "SELECT p FROM Productorder p WHERE p.productorderPK.productid = :productid"),
+    @NamedQuery(name = "Productorder.findByQuantity", query = "SELECT p FROM Productorder p WHERE p.quantity = :quantity")})
+public class Productorder implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
-    protected ProductOrderPK productOrderPK;
-    @Column(name = "Quantity")
+    protected ProductorderPK productorderPK;
+    @Column(name = "QUANTITY")
     private Integer quantity;
-    @JoinColumn(name = "OrderID", referencedColumnName = "OrderID", insertable = false, updatable = false)
+    @JoinColumn(name = "ORDERID", referencedColumnName = "ORDERID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Order1 order1;
-    @JoinColumn(name = "ProductID", referencedColumnName = "ProductID", insertable = false, updatable = false)
+    private Orders orders;
+    @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;
 
-    public ProductOrder() {
+    public Productorder() {
     }
 
-    public ProductOrder(ProductOrderPK productOrderPK) {
-        this.productOrderPK = productOrderPK;
+    public Productorder(ProductorderPK productorderPK) {
+        this.productorderPK = productorderPK;
     }
 
-    public ProductOrder(int orderID, int productID) {
-        this.productOrderPK = new ProductOrderPK(orderID, productID);
+    public Productorder(int orderid, int productid) {
+        this.productorderPK = new ProductorderPK(orderid, productid);
     }
 
-    public ProductOrderPK getProductOrderPK() {
-        return productOrderPK;
+    public ProductorderPK getProductorderPK() {
+        return productorderPK;
     }
 
-    public void setProductOrderPK(ProductOrderPK productOrderPK) {
-        this.productOrderPK = productOrderPK;
+    public void setProductorderPK(ProductorderPK productorderPK) {
+        this.productorderPK = productorderPK;
     }
 
     public Integer getQuantity() {
@@ -68,12 +68,12 @@ public class ProductOrder implements Serializable {
         this.quantity = quantity;
     }
 
-    public Order1 getOrder1() {
-        return order1;
+    public Orders getOrders() {
+        return orders;
     }
 
-    public void setOrder1(Order1 order1) {
-        this.order1 = order1;
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 
     public Product getProduct() {
@@ -87,18 +87,18 @@ public class ProductOrder implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (productOrderPK != null ? productOrderPK.hashCode() : 0);
+        hash += (productorderPK != null ? productorderPK.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductOrder)) {
+        if (!(object instanceof Productorder)) {
             return false;
         }
-        ProductOrder other = (ProductOrder) object;
-        if ((this.productOrderPK == null && other.productOrderPK != null) || (this.productOrderPK != null && !this.productOrderPK.equals(other.productOrderPK))) {
+        Productorder other = (Productorder) object;
+        if ((this.productorderPK == null && other.productorderPK != null) || (this.productorderPK != null && !this.productorderPK.equals(other.productorderPK))) {
             return false;
         }
         return true;
@@ -106,7 +106,7 @@ public class ProductOrder implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.ProductOrder[ productOrderPK=" + productOrderPK + " ]";
+        return "entity.Productorder[ productorderPK=" + productorderPK + " ]";
     }
     
 }

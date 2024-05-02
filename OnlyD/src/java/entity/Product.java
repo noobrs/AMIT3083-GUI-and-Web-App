@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.io.Serializable;
+import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,78 +21,98 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
-import java.io.Serializable;
-import java.util.List;
 
 /**
  *
- * @author Vin Sen
+ * @author GIGABYTE
  */
 @Entity
-@Table(name = "Product")
+@Table(name = "PRODUCT")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-    @NamedQuery(name = "Product.findByProductID", query = "SELECT p FROM Product p WHERE p.productID = :productID"),
+    @NamedQuery(name = "Product.findByProductid", query = "SELECT p FROM Product p WHERE p.productid = :productid"),
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
     @NamedQuery(name = "Product.findByStock", query = "SELECT p FROM Product p WHERE p.stock = :stock"),
     @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
-    @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image")})
+    @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"),
+    @NamedQuery(name = "Product.findByStatus", query = "SELECT p FROM Product p WHERE p.status = :status")})
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "ProductID")
-    private Integer productID;
-    @Size(max = 100)
-    @Column(name = "Name")
+    @Column(name = "PRODUCTID")
+    private Integer productid;
+    @Column(name = "NAME")
     private String name;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
-    @Column(name = "Price")
+    @Column(name = "PRICE")
     private Double price;
-    @Column(name = "Stock")
+    @Column(name = "STOCK")
     private Integer stock;
-    @Size(max = 100)
-    @Column(name = "Description")
+    @Column(name = "DESCRIPTION")
     private String description;
-    @Size(max = 100)
-    @Column(name = "Image")
+    @Column(name = "IMAGE")
     private String image;
-    @JoinTable(name = "ProductPromotion", joinColumns = {
-        @JoinColumn(name = "ProductID", referencedColumnName = "ProductID")}, inverseJoinColumns = {
-        @JoinColumn(name = "PromotionID", referencedColumnName = "PromotionID")})
+    @Column(name = "STATUS")
+    private Integer status;
+    @JoinTable(name = "PRODUCTPROMOTION", joinColumns = {
+        @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID")}, inverseJoinColumns = {
+        @JoinColumn(name = "PROMOTIONID", referencedColumnName = "PROMOTIONID")})
     @ManyToMany
     private List<Promotion> promotionList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductCart> productCartList;
-    @JoinColumn(name = "CategoryID", referencedColumnName = "CategoryID")
+    @JoinColumn(name = "CATEGORYID", referencedColumnName = "CATEGORYID")
     @ManyToOne(optional = false)
-    private Category categoryID;
-    @JoinColumn(name = "StaffID", referencedColumnName = "StaffID")
+    private Category categoryid;
+    @JoinColumn(name = "STAFFID", referencedColumnName = "STAFFID")
     @ManyToOne
-    private Staff staffID;
+    private Staff staffid;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
-    private List<ProductOrder> productOrderList;
+    private List<Productorder> productorderList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<Productcart> productcartList;
 
     public Product() {
     }
 
-    public Product(Integer productID) {
-        this.productID = productID;
+    public Product(Integer productid) {
+        this.productid = productid;
+    }
+    
+    public Product(Integer productid, String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
+        this.productid = productid;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.description = description;
+        this.image = image;
+        this.status = status;
+        this.categoryid = categoryid;
+        this.staffid = staffid;
+    }
+    
+    public Product(String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.description = description;
+        this.image = image;
+        this.status = status;
+        this.categoryid = categoryid;
+        this.staffid = staffid;
     }
 
-    public Integer getProductID() {
-        return productID;
+    public Integer getProductid() {
+        return productid;
     }
 
-    public void setProductID(Integer productID) {
-        this.productID = productID;
+    public void setProductid(Integer productid) {
+        this.productid = productid;
     }
 
     public String getName() {
@@ -133,6 +155,14 @@ public class Product implements Serializable {
         this.image = image;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @XmlTransient
     public List<Promotion> getPromotionList() {
         return promotionList;
@@ -142,44 +172,44 @@ public class Product implements Serializable {
         this.promotionList = promotionList;
     }
 
-    @XmlTransient
-    public List<ProductCart> getProductCartList() {
-        return productCartList;
+    public Category getCategoryid() {
+        return categoryid;
     }
 
-    public void setProductCartList(List<ProductCart> productCartList) {
-        this.productCartList = productCartList;
+    public void setCategoryid(Category categoryid) {
+        this.categoryid = categoryid;
     }
 
-    public Category getCategoryID() {
-        return categoryID;
+    public Staff getStaffid() {
+        return staffid;
     }
 
-    public void setCategoryID(Category categoryID) {
-        this.categoryID = categoryID;
-    }
-
-    public Staff getStaffID() {
-        return staffID;
-    }
-
-    public void setStaffID(Staff staffID) {
-        this.staffID = staffID;
+    public void setStaffid(Staff staffid) {
+        this.staffid = staffid;
     }
 
     @XmlTransient
-    public List<ProductOrder> getProductOrderList() {
-        return productOrderList;
+    public List<Productorder> getProductorderList() {
+        return productorderList;
     }
 
-    public void setProductOrderList(List<ProductOrder> productOrderList) {
-        this.productOrderList = productOrderList;
+    public void setProductorderList(List<Productorder> productorderList) {
+        this.productorderList = productorderList;
+    }
+
+    @XmlTransient
+    public List<Productcart> getProductcartList() {
+        return productcartList;
+    }
+
+    public void setProductcartList(List<Productcart> productcartList) {
+        this.productcartList = productcartList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (productID != null ? productID.hashCode() : 0);
+        hash += (productid != null ? productid.hashCode() : 0);
         return hash;
     }
 
@@ -190,7 +220,7 @@ public class Product implements Serializable {
             return false;
         }
         Product other = (Product) object;
-        if ((this.productID == null && other.productID != null) || (this.productID != null && !this.productID.equals(other.productID))) {
+        if ((this.productid == null && other.productid != null) || (this.productid != null && !this.productid.equals(other.productid))) {
             return false;
         }
         return true;
@@ -198,7 +228,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Product[ productID=" + productID + " ]";
+        return "entity.Product[ productid=" + productid + " ]";
     }
     
 }

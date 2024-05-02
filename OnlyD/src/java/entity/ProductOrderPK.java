@@ -4,71 +4,68 @@
  */
 package entity;
 
+import java.io.Serializable;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
-import jakarta.validation.constraints.NotNull;
-import java.io.Serializable;
 
 /**
  *
- * @author Vin Sen
+ * @author GIGABYTE
  */
 @Embeddable
-public class ProductOrderPK implements Serializable {
+public class ProductorderPK implements Serializable {
 
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "OrderID")
-    private int orderID;
+    @Column(name = "ORDERID")
+    private int orderid;
     @Basic(optional = false)
-    @NotNull
-    @Column(name = "ProductID")
-    private int productID;
+    @Column(name = "PRODUCTID")
+    private int productid;
 
-    public ProductOrderPK() {
+    public ProductorderPK() {
     }
 
-    public ProductOrderPK(int orderID, int productID) {
-        this.orderID = orderID;
-        this.productID = productID;
+    public ProductorderPK(int orderid, int productid) {
+        this.orderid = orderid;
+        this.productid = productid;
     }
 
-    public int getOrderID() {
-        return orderID;
+    public int getOrderid() {
+        return orderid;
     }
 
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
+    public void setOrderid(int orderid) {
+        this.orderid = orderid;
     }
 
-    public int getProductID() {
-        return productID;
+    public int getProductid() {
+        return productid;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProductid(int productid) {
+        this.productid = productid;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) orderID;
-        hash += (int) productID;
+        hash += (int) orderid;
+        hash += (int) productid;
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof ProductOrderPK)) {
+        if (!(object instanceof ProductorderPK)) {
             return false;
         }
-        ProductOrderPK other = (ProductOrderPK) object;
-        if (this.orderID != other.orderID) {
+        ProductorderPK other = (ProductorderPK) object;
+        if (this.orderid != other.orderid) {
             return false;
         }
-        if (this.productID != other.productID) {
+        if (this.productid != other.productid) {
             return false;
         }
         return true;
@@ -76,7 +73,7 @@ public class ProductOrderPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.ProductOrderPK[ orderID=" + orderID + ", productID=" + productID + " ]";
+        return "entity.ProductorderPK[ orderid=" + orderid + ", productid=" + productid + " ]";
     }
     
 }
