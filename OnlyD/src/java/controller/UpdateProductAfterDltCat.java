@@ -6,7 +6,6 @@ package controller;
 
 import entity.Category;
 import entity.Product;
-import entity.Staff;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;

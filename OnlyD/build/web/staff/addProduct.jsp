@@ -54,7 +54,7 @@
         </td>
                 </tr>
                 <tr>
-                    <td>Staff ID</td>
+                    <td>Add by</td>
                     <td><input type="text" name="staffid" size="50" required></td>
                 </tr>
 
