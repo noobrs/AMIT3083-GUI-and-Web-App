@@ -39,10 +39,6 @@
         <a href="../ViewProduct">View All Product</a><br>
         <a href="../ViewProductStaff">Add a Product</a><br>        
         <a href="../LoadProductList">Delete/Update Product</a><br>
-        <form action="../logout">
-            <input type="submit" value="Log Out">
-        </form>
-        <%= request.isUserInRole("AdminRole") %><br>
         
         
         <%@include file="/layout/footer.jsp"%>

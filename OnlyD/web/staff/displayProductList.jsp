@@ -19,7 +19,11 @@
     </tr>
     <tr>
         <td colspan="2">
+            
+            <!<!-- only admin can delete product -->
+            <% if(request.isUserInRole("AdminRole")){ %>
             <input type="submit" value="Delete" name="productButton"/>
+            <% } %>
             <input type="submit" value="Update" name="productButton"/>
         </td>
     </tr>

@@ -3,6 +3,7 @@
 
 <%
   List<Product> productList = (List)session.getAttribute("productListUser");
+  if(productList != null){
 %>
 
 <table border="1">
@@ -21,5 +22,10 @@
         </tr>
     <% } %>
 </table>
+<%
+    } else{
+%>
+No product found!
+<% } %>
 <br><br>
-<p><a href="../index.html">Back to home page</a></p>
+<p><a href="<%=request.getContextPath()%>/">Back to home page</a></p>

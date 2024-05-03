@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="entity.Staff, entity.Customer" %>
+<%@page import="entity.Staff" %>
 <jsp:useBean id="staff" class="entity.Staff" scope="session"></jsp:useBean>
 
 <%@include file="staffAuthentication.jsp"%>
@@ -23,14 +23,17 @@
     </head>
     <body>        
         <%@include file="/layout/header.jsp"%>
-        <p><%= staff.getStaffid() %></p>
-        <p><%= staff.getName() %></p>
-        <p><%= staff.getEmail() %></p>
-        <p><%= staff.getPassword() %></p>
+        <p>Welcome staff <%= staff.getStaffid() %> <%= staff.getName() %>,</p>
+        <p>Choose an action:</p>
 
-        <form action="../logout">
-            <input type="submit" value="log out">
-        </form>
+        <h2>Customer</h2>
+        <a href="../ViewCustomer">View All Customers</a><br>
+        
+        <h2>Product</h2>
+<!--        for user-->
+        <a href="../ViewProduct">View All Product</a><br>
+        <a href="../ViewProductStaff">Add a Product</a><br>        
+        <a href="../LoadProductList">Update Product</a><br>
 
         <%@include file="/layout/footer.jsp"%>
     </body>

@@ -1,8 +1,5 @@
-
-<%@ page import="entity.Customer" %>
-<jsp:useBean id="customer" class="entity.Customer" scope="session" ></jsp:useBean>
-<jsp:setProperty name="customer" property="*"></jsp:setProperty>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 
 <html>
@@ -50,16 +47,18 @@
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                         <%
-                        if(customer.getUsername() != null){
+                        if((Boolean) session.getAttribute("isCustomer") != null || (Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole") == true){
                         %>
-                        <form action="logout">
-                            <input type="submit" value="Logout">
+                        <form action="<%=request.getContextPath()%>/logout">
+                            <input class="btn btn-outline-dark loginBtn" style="margin-left: 10px" type="submit" value="Logout">
 
                         </form>
                         <%
                             }else{
                         %>
-                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-left: 10px"><a href="login.jsp">Login</a></button>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-left: 10px"><a href="<%=request.getContextPath()%>/login.jsp">User</a></button>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-left: 10px"><a href="<%=request.getContextPath()%>/staff/staffLogin.jsp">Staff</a></button>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-left: 10px"><a href="<%=request.getContextPath()%>/admin/adminLogin.jsp">Admin</a></button>
                         <%
                         }
                         %>
