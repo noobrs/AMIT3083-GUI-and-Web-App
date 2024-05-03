@@ -154,6 +154,22 @@ public class Customer implements Serializable {
         this.status = status;
     }
 
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
+    }
+
+    public List<Productcart> getProductcartList() {
+        return productcartList;
+    }
+
+    public void setProductcartList(List<Productcart> productcartList) {
+        this.productcartList = productcartList;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
