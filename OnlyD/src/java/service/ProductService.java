@@ -56,6 +56,14 @@ public class ProductService {
         productList.setParameter("status",status);
         return productList.getResultList();
     }
+    
+    public List<Product> findByNamePrefix(String prefix, int status) {
+        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByNamePrefix",Product.class);
+        productList.setParameter("prefix",prefix + "%");
+        productList.setParameter("status",status);
+        return productList.getResultList();
+    }
+
 
     public boolean updateProduct(Product product) {
         Product tempProduct = findProductByID(product.getProductid());

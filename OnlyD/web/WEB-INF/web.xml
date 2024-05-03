@@ -80,6 +80,10 @@
         <servlet-name>UpdateProductAfterDltCat</servlet-name>
         <servlet-class>controller.UpdateProductAfterDltCat</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchProductByUser</servlet-name>
+        <servlet-class>controller.SearchProductByUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProduct</servlet-name>
         <url-pattern>/ViewProduct</url-pattern>
@@ -139,6 +143,10 @@
     <servlet-mapping>
         <servlet-name>UpdateProductAfterDltCat</servlet-name>
         <url-pattern>/UpdateProductAfterDltCat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductByUser</servlet-name>
+        <url-pattern>/SearchProductByUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
