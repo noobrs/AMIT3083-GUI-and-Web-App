@@ -5,6 +5,7 @@
 package service;
 
 import entity.Product;
+import entity.Category;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -61,6 +62,14 @@ public class ProductService {
         TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByNamePrefix",Product.class);
         productList.setParameter("prefix",prefix + "%");
         productList.setParameter("status",status);
+        return productList.getResultList();
+    }
+    
+    public List<Product> findByCatPrefix(String prefix, int status, Category id) {
+        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByCatPrefix",Product.class);
+        productList.setParameter("prefix",prefix + "%");
+        productList.setParameter("status",status);
+        productList.setParameter("categoryid",id);
         return productList.getResultList();
     }
 

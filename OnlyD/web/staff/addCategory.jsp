@@ -18,14 +18,6 @@
                     <td>Category Name</td>
                     <td><input type="text" name="name" pattern="^(?!.*\bNULL\b).*$" title="The word 'NULL' is not allowed."></td>
                 </tr>
-                <tr>
-                    <td>Status</td>
-                    <td><select name="status">
-                            <option value="0"> Deleted
-                            <option value="1"> Active
-                        </select>
-                    </td>
-                </tr>
             </table>    
             <input type="submit" value="Add">
             <input type="reset" value="Reset">

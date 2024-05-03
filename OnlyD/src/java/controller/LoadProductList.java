@@ -25,7 +25,7 @@ public class LoadProductList extends HttpServlet {
             throws ServletException, IOException {
          try {
             ProductService productService = new ProductService(em);
-            List<Product> productList = productService.findAll();
+            List<Product> productList = productService.findByStatus(1);
             
             HttpSession session = request.getSession();
             session.setAttribute("productList", productList);

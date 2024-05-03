@@ -46,7 +46,7 @@ public class AddProduct extends HttpServlet {
 
             String image = request.getParameter("image");
             
-            int status = Integer.parseInt(request.getParameter("status"));
+            int status = 1;
 
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);

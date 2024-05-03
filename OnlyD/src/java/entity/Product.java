@@ -40,7 +40,8 @@ import jakarta.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
     @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"),
     @NamedQuery(name = "Product.findByStatus", query = "SELECT p FROM Product p WHERE p.status = :status"),
-    @NamedQuery(name = "Product.findByNamePrefix", query = "SELECT p FROM Product p WHERE p.name LIKE CONCAT('%', :prefix, '%') AND p.status = :status")})
+    @NamedQuery(name = "Product.findByNamePrefix", query = "SELECT p FROM Product p WHERE p.name LIKE CONCAT('%', :prefix, '%') AND p.status = :status"),
+    @NamedQuery(name = "Product.findByCatPrefix", query = "SELECT p FROM Product p WHERE p.name LIKE CONCAT('%', :prefix, '%') AND p.status = :status AND p.categoryid = :categoryid")})
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;

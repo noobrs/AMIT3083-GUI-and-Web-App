@@ -35,14 +35,6 @@
                     <td><input type="text" name="image" required></td>
                 </tr>
                 <tr>
-                    <td>Status</td>
-                    <td><select name="status">
-                            <option value="0"> Deleted
-                            <option value="1"> Active
-                        </select>
-                    </td>
-                </tr>
-                <tr>
                     <td>Category Name</td>
                     <td><select name="categoryid">
                 <% for (Category category: categoryList){%>

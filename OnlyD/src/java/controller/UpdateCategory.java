@@ -33,7 +33,7 @@ public class UpdateCategory extends HttpServlet {
         try {
             String name = request.getParameter("name");
 
-            int status = Integer.parseInt(request.getParameter("status"));
+            int status = 1;
 
             HttpSession session = request.getSession();
             String code = (String) session.getAttribute("categoryId");

@@ -18,7 +18,7 @@
                 <tr>
                     <td>Name</td>
                     <td><input type="text" name="name"
-                               value="<%=product.getName()%>" readonly required></td>
+                               value="<%=product.getName()%>" required></td>
                 </tr>
                 <tr>
                     <td>Price (RM)</td>
@@ -39,21 +39,6 @@
                     <td>Image</td>
                     <td><input type="text" name="image"
                                value="<%=product.getImage()%>" required></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td><select name="status">
-                                <%
-                                    if(product.getStatus() == 0){
-                                %>  
-                            <option value="0">Deleted    
-                            <option value="1">Active
-                                <% }else{%>   
-                            <option value="1">Active
-                            <option value="0">Deleted
-                                <%}%>
-                        </select>
-                    </td>
                 </tr>
                 <tr>
                     <td>Category Name</td>

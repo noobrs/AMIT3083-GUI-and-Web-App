@@ -32,7 +32,7 @@ public class AddCategory extends HttpServlet {
             throws ServletException, IOException {
         try{
             String name = request.getParameter("name");
-            int status = Integer.parseInt(request.getParameter("status"));
+            int status = 1;
             
             Category category = new Category(name, status);
             CategoryService categoryService = new CategoryService(em);
