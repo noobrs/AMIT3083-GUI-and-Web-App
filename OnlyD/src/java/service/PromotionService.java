@@ -16,15 +16,15 @@ import jakarta.persistence.Query;
 public class PromotionService {
 
     @PersistenceContext
-    EntityManager mgr;
+    EntityManager em;
     @Resource
     Query query;
 
     public PromotionService(EntityManager em) {
-        this.mgr = mgr;
+        this.em = em;
     }
     
     public void addPromotion(Promotion promotion){
-        mgr.persist(promotion);
+        em.persist(promotion);
     }
 }

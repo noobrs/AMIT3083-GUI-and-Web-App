@@ -4,6 +4,8 @@
  */
 package entity;
 
+import java.io.Serializable;
+import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -15,79 +17,67 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
-import java.io.Serializable;
-import java.util.List;
 
 /**
  *
- * @author Vin Sen
+ * @author danie
  */
 @Entity
-@Table(name = "Customer")
+@Table(name = "CUSTOMER")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
-    @NamedQuery(name = "Customer.findByCustomerID", query = "SELECT c FROM Customer c WHERE c.customerID = :customerID"),
+    @NamedQuery(name = "Customer.findByCustomerid", query = "SELECT c FROM Customer c WHERE c.customerid = :customerid"),
     @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name"),
     @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Customer c WHERE c.username = :username"),
-    @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Customer c WHERE c.phoneNumber = :phoneNumber"),
+    @NamedQuery(name = "Customer.findByPhonenumber", query = "SELECT c FROM Customer c WHERE c.phonenumber = :phonenumber"),
     @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
-    @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")})
+    @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password"),
+    @NamedQuery(name = "Customer.findByStatus", query = "SELECT c FROM Customer c WHERE c.status = :status")})
 public class Customer implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @Column(name = "CustomerID")
-    private Integer customerID;
-    @Size(max = 100)
-    @Column(name = "Name")
+    @Column(name = "CUSTOMERID")
+    private Integer customerid;
+    @Column(name = "NAME")
     private String name;
-    @Size(max = 50)
-    @Column(name = "Username")
+    @Column(name = "USERNAME")
     private String username;
-    @Size(max = 20)
-    @Column(name = "PhoneNumber")
-    private String phoneNumber;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 100)
-    @Column(name = "Email")
+    @Column(name = "PHONENUMBER")
+    private String phonenumber;
+    @Column(name = "EMAIL")
     private String email;
-    @Size(max = 255)
-    @Column(name = "Password")
+    @Column(name = "PASSWORD")
     private String password;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerID")
-    private List<Order1> order1List;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerID")
-    private List<Cart> cartList;
+    @Column(name = "STATUS")
+    private Integer status;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerid")
+    private List<Orders> ordersList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    private List<Productcart> productcartList;
 
     public Customer() {
     }
 
-    public Customer(Integer customerID) {
-        this.customerID = customerID;
+    public Customer(Integer customerid) {
+        this.customerid = customerid;
     }
 
     public Customer(String name, String email, String username, String phoneNumber, String password) {
-        this.name = name;
-        this.username = username;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.password = password;
-    }
-    
-    
-
-    public Integer getCustomerID() {
-        return customerID;
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void setCustomerID(Integer customerID) {
-        this.customerID = customerID;
+    public Integer getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(Integer customerid) {
+        this.customerid = customerid;
     }
 
     public String getName() {
@@ -106,12 +96,12 @@ public class Customer implements Serializable {
         this.username = username;
     }
 
-    public String getPhoneNumber() {
-        return phoneNumber;
+    public String getPhonenumber() {
+        return phonenumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
     }
 
     public String getEmail() {
@@ -130,28 +120,36 @@ public class Customer implements Serializable {
         this.password = password;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @XmlTransient
-    public List<Order1> getOrder1List() {
-        return order1List;
+    public List<Orders> getOrdersList() {
+        return ordersList;
     }
 
-    public void setOrder1List(List<Order1> order1List) {
-        this.order1List = order1List;
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 
     @XmlTransient
-    public List<Cart> getCartList() {
-        return cartList;
+    public List<Productcart> getProductcartList() {
+        return productcartList;
     }
 
-    public void setCartList(List<Cart> cartList) {
-        this.cartList = cartList;
+    public void setProductcartList(List<Productcart> productcartList) {
+        this.productcartList = productcartList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (customerID != null ? customerID.hashCode() : 0);
+        hash += (customerid != null ? customerid.hashCode() : 0);
         return hash;
     }
 
@@ -162,7 +160,7 @@ public class Customer implements Serializable {
             return false;
         }
         Customer other = (Customer) object;
-        if ((this.customerID == null && other.customerID != null) || (this.customerID != null && !this.customerID.equals(other.customerID))) {
+        if ((this.customerid == null && other.customerid != null) || (this.customerid != null && !this.customerid.equals(other.customerid))) {
             return false;
         }
         return true;
@@ -170,7 +168,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Customer[ customerID=" + customerID + " ]";
+        return "entity.Customer[ customerid=" + customerid + " ]";
     }
     
 }

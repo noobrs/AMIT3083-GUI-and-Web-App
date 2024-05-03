@@ -49,7 +49,7 @@ public class Register extends HttpServlet {
         CustomerService custService = new CustomerService(em);
         String errorMessage = "";
 
-        try {
+        try {   
             name = request.getParameter("name");
             email = request.getParameter("email");
             username = request.getParameter("username");

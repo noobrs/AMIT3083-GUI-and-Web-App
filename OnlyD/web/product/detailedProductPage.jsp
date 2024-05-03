@@ -10,7 +10,10 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
+<<<<<<< Updated upstream:OnlyD/web/product/detailedProductPage.jsp
         <%@include file="/layout/meta.html"%>
+=======
+>>>>>>> Stashed changes:GUI_WEB_ASSIGNMENT/web/detailedProductPage.jsp
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
@@ -47,14 +50,15 @@
 
 
                 <div class="col">
-                    <div>
-                        <p class="separator">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
-                            dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
-                            proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                        </p>
-                    </div>
+                    <h2>Product name</h2>
+                    </br>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure 
+                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non 
+                        proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    </p>
+                    </br>
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button class="btn btn-primary" type="button">Add to Cart</button>
                     </div>

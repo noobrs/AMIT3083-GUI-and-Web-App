@@ -75,12 +75,12 @@ public class CustomerService {
     }
     
     public boolean updateCustomer(Customer customer){
-        Customer tempCust = this.findCustomerById(customer.getCustomerID());
+        Customer tempCust = this.findCustomerById(customer.getCustomerid());
         if(tempCust != null){
             tempCust.setEmail(customer.getEmail());
             tempCust.setName(customer.getEmail());
             tempCust.setPassword(customer.getPassword());
-            tempCust.setPhoneNumber(customer.getPhoneNumber());
+            tempCust.setPhonenumber(customer.getPhonenumber());
             tempCust.setUsername(customer.getUsername());
             return true;
         }

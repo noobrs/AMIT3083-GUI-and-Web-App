@@ -4,75 +4,68 @@
  */
 package entity;
 
+import java.io.Serializable;
+import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import java.io.Serializable;
+import jakarta.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Vin Sen
+ * @author danie
  */
 @Entity
 @Table(name = "STAFF")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Staff.findAll", query = "SELECT s FROM Staff s"),
-    @NamedQuery(name = "Staff.findByStaffID", query = "SELECT s FROM Staff s WHERE s.staffID = :staffID"),
+    @NamedQuery(name = "Staff.findByStaffid", query = "SELECT s FROM Staff s WHERE s.staffid = :staffid"),
     @NamedQuery(name = "Staff.findByName", query = "SELECT s FROM Staff s WHERE s.name = :name"),
-    @NamedQuery(name = "Staff.findByEmail", query = "SELECT s FROM Staff s WHERE s.email = :email"),
     @NamedQuery(name = "Staff.findByPassword", query = "SELECT s FROM Staff s WHERE s.password = :password"),
-    @NamedQuery(name = "Staff.findByIsActive", query = "SELECT s FROM Staff s WHERE s.isActive = :isActive")})
+    @NamedQuery(name = "Staff.findByStatus", query = "SELECT s FROM Staff s WHERE s.status = :status"),
+    @NamedQuery(name = "Staff.findByEmail", query = "SELECT s FROM Staff s WHERE s.email = :email")})
 public class Staff implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 5)
     @Column(name = "STAFFID")
-    private String staffID;
-    @Size(max = 100)
+    private String staffid;
     @Column(name = "NAME")
     private String name;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 100)
-    @Column(name = "EMAIL")
-    private String email;
-    @Size(max = 255)
     @Column(name = "PASSWORD")
     private String password;
-    @Column(name = "ISACTIVE")
-    private Boolean isActive;
-
-    public static final String STAFFID_REGEX = "^S\\d{4}$";
+    @Column(name = "STATUS")
+    private Integer status;
+    @Column(name = "EMAIL")
+    private String email;
+    @OneToMany(mappedBy = "staffid")
+    private List<Product> productList;
 
     public Staff() {
     }
 
-    public Staff(String staffID) {
-        this.staffID = staffID;
+    public Staff(String staffid) {
+        this.staffid = staffid;
     }
 
-    public Staff(String staffID, String name, Boolean isActive) {
-        this.staffID = staffID;
-        this.name = name;        
-        this.isActive = isActive;
+    public Staff(String staffID, String staffName, boolean b) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public String getStaffID() {
-        return staffID;
+    public String getStaffid() {
+        return staffid;
     }
 
-    public void setStaffID(String staffID) {
-        this.staffID = staffID;
+    public void setStaffid(String staffid) {
+        this.staffid = staffid;
     }
 
     public String getName() {
@@ -83,14 +76,6 @@ public class Staff implements Serializable {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
     public String getPassword() {
         return password;
     }
@@ -99,22 +84,35 @@ public class Staff implements Serializable {
         this.password = password;
     }
 
-    public Boolean getIsActive() {
-        return isActive;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setIsActive(Boolean isActive) {
-        this.isActive = isActive;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
 
-    public String getDefaultPassword() {
-        return "OnlyD@" + staffID;
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @XmlTransient
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (staffID != null ? staffID.hashCode() : 0);
+        hash += (staffid != null ? staffid.hashCode() : 0);
         return hash;
     }
 
@@ -125,7 +123,7 @@ public class Staff implements Serializable {
             return false;
         }
         Staff other = (Staff) object;
-        if ((this.staffID == null && other.staffID != null) || (this.staffID != null && !this.staffID.equals(other.staffID))) {
+        if ((this.staffid == null && other.staffid != null) || (this.staffid != null && !this.staffid.equals(other.staffid))) {
             return false;
         }
         return true;
@@ -133,7 +131,11 @@ public class Staff implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Staff[ staffID=" + staffID + " ]";
+        return "entity.Staff[ staffid=" + staffid + " ]";
     }
 
+    public String getDefaultPassword() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+    
 }
