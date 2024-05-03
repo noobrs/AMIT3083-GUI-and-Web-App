@@ -25,7 +25,6 @@
 //                response.sendRedirect("staffDashboard.jsp");
 //            }    
         }
-        
         %>
         <%@include file="../layout/header.jsp"%>      
 

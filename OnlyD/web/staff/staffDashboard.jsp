@@ -7,29 +7,21 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="entity.Staff, entity.Customer" %>
 <jsp:useBean id="staff" class="entity.Staff" scope="session"></jsp:useBean>
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+<%@include file="staffAuthentication.jsp"%>
+<%
+    if(request.isUserInRole("AdminRole")){
+        request.getRequestDispatcher("/admin/adminDashboard.jsp").forward(request, response);
+    }
+%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Staff Dashboard</title>
     </head>
-    <body>
-        <%
-//        Staff activeStaff = (Staff)session.getAttribute("staff");
-//        Customer activeCustomer = (Customer)session.getAttribute("customer");
-
-        Boolean isStaff = (Boolean)session.getAttribute("isStaff");
-        Boolean isCustomer = (Boolean)session.getAttribute("isCustomer");
-        boolean isAdmin = request.isUserInRole("AdminRole");
-
-        // guest
-        if(!isAdmin && isStaff == null && isCustomer == null){
-            request.getRequestDispatcher("/staff/staffLogin.jsp").forward(request, response);
-        } else if(isCustomer != null){
-            request.getRequestDispatcher("/unauthorizedError.jsp").forward(request,response);
-        }
-        %>
-
+    <body>        
         <%@include file="/layout/header.jsp"%>
         <p><%= staff.getStaffid() %></p>
         <p><%= staff.getName() %></p>
