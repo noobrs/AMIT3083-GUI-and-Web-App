@@ -12,18 +12,14 @@
         <header style="top: 0; position:relative; width: 100%;">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
                 <div class="container">
-
-                    <!--                    <img src="Icons/Only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px">-->
-
+                    <a href="<%=request.getContextPath()%>">
+                    <img src="<%=request.getContextPath()%>/layout/only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px" />
+                    </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
-
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                            <li class="nav-item">
-                                <a class="nav-link active" aria-current="page" href="/OnlyD/index.jsp">Home</a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Link</a>
                             </li>
