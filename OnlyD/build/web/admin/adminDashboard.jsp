@@ -8,22 +8,43 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="../layout/meta.html"%>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">        
         <title>Admin Dashboard</title>
     </head>
     <body>
-        <%@include file="../layout/header.jsp"%>
+        <%@include file="/layout/header.jsp"%>        
         
-        <a href="registerStaff.jsp">Add a staff</a><br>
-        <a href="updateStaff.jsp">Update staff</a><br>
-        <a href="deleteStaff.jsp">Delete staff</a><br>
+        <%
+            String statusMsg = (String)session.getAttribute("statusMsg");
+            if(statusMsg != null){
+        %>
+        <div><%= statusMsg %></div>
+        <%
+            session.removeAttribute("statusMsg");
+            }
+        %>
+        
+        <h2>Staff</h2>
+        <a href="../ViewStaff">View All Staffs</a><br>
+        <a href="registerStaff.jsp">Add a staff</a><br>        
+        <a href="../LoadStaffList">Delete/Update staff</a><br>
+        
+        <h2>Customer</h2>
+        <a href="../ViewCustomer">View All Customers</a><br>
+        <a href="../register.jsp">Add a Customer</a><br>        
+        <a href="../LoadCustomerList">Delete/Update customer</a><br>
+        
+        <h2>Product</h2>
+<!--        for user-->
+        <a href="../ViewProduct">View All Product</a><br>
+        <a href="../ViewProductStaff">Add a Product</a><br>        
+        <a href="../LoadProductList">Delete/Update Product</a><br>
         <form action="../logout">
             <input type="submit" value="Log Out">
         </form>
         <%= request.isUserInRole("AdminRole") %><br>
         
         
-        <%@include file="../layout/footer.jsp"%>
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

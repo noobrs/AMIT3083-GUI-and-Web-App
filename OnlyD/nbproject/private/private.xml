@@ -4,6 +4,17 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/entity/Productcart.java</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/entity/Staff.java</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/web/user/productlist.jsp</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/web/index.html</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/AddToCart.java</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/entity/ProductcartPK.java</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/ViewProduct.java</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/entity/Customer.java</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/web/user/cart.jsp</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/service/CartService.java</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/entity/Product.java</file>
         </group>
     </open-files>
 </project-private>

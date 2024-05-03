@@ -11,6 +11,7 @@
         <th>Product Name</th>
         <th>Description</th>
         <th>Price (RM)</th>
+        <th>Action</th> <!-- New column for the "Add to Cart" button -->
     </tr>
     <% for (Product product: productList){ %>
         <tr>
@@ -18,6 +19,13 @@
             <td><%= product.getName() %></td>
             <td><%= product.getDescription() %> </td>
             <td><%= String.format("%.2f", product.getPrice()) %></td>
+            <!-- Add an "Add to Cart" button -->
+            <td>
+                <form action="../AddToCart" method="POST"> 
+                    <input type="hidden" name="productId" value="<%= product.getProductid() %>">
+                    <input type="submit" value="Add to Cart">
+                </form>
+            </td>
         </tr>
     <% } %>
 </table>

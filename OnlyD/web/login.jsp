@@ -10,38 +10,54 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Login Page</title>
-        <%@include file="layout/meta.html"%>
     </head>
     <body>
         <%@include file="layout/header.jsp"%>
+        
+        <%
+        String statusMsg = (String)session.getAttribute("statusMsg");
+        String errorMessage = (String)session.getAttribute("errorMessage");
+        String enteredUsername = (String)session.getAttribute("enteredUsername");
+        if(statusMsg != null){
+        %>
+        <div><%= statusMsg %></div>
+        <%
+            session.removeAttribute("statusMsg");
+            }
+        %>
+        
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">
                 <div class="card" style="width: 50%">
-                    <h5 class="card-header">Login page</h5>
+                    <h5 class="card-header">Customer Login page</h5>
                     <div class="card-body">
                         <form action="Login">
                             <h5 class="card-title">Welcome, please enter your:</h5>
-                            <!--                            <div class="input-group mb-3">
-                                                            <span class="input-group-text" id="basic-addon1">Email</span>
-                                                            <input type="text" class="form-control" placeholder="xxxx@gmail.com" aria-label="Username" aria-describedby="basic-addon1">
-                                                        </div>-->
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Username</span>
-                                <input type="text" name="username" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" name="username" value="<%= (enteredUsername==null)?"":enteredUsername %>" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
-                                <input type="password" name="password" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input class="btn btn-primary me-2" type="submit" value="Sign In">
                                 <input class="btn btn-primary" type="reset" value="Reset">                              
                             </div>
                         </form>
+                        <% if(errorMessage != null) { %>
                         <div class="error-message" style="color: red;">
-                            ${errorMessage}
+                            <%= errorMessage %>
                         </div>
+                        <% 
+                            session.removeAttribute("errorMessage");
+                            } 
+                            if(enteredUsername != null){
+                                session.removeAttribute("enteredUsername");
+                            }
+                        %>
                     </div>
                     <div class="text-center">
                         <p>OR</p>

@@ -72,7 +72,7 @@
                         </select>
                     </td>
                 </tr>
-                    <td>Staff ID</td>
+                    <td>Add/Last Modified by</td>
                     <td><input type="text" name="staffid"
                                value="<%=staff.getStaffid()%>" ></td>
                 </tr>
