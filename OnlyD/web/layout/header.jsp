@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="entity.Customer"%>
 
 <!DOCTYPE html>
 
@@ -38,11 +39,17 @@
                                 <a class="nav-link disabled">Disabled</a>
                             </li>
                         </ul>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-left: 10px"><a href="<%=request.getContextPath()%>/ViewCart">Cart</a></button>
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>
                         </form>
                         <%
+//                        Customer headCust = (Customer)session.getAttribute("customer");
+//                        if(headCust.getName() != null){
+//                            out.println(headCust.getName());
+//                            }
+                        
                         if((Boolean) session.getAttribute("isCustomer") != null || (Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole") == true){
                         %>
                         <form action="<%=request.getContextPath()%>/logout">
