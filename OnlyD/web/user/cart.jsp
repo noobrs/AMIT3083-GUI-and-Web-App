@@ -40,6 +40,12 @@
                 <td><%= product.getName() %></td>
                 <td><%= String.format("%.2f", product.getPrice()) %></td>
                 <td><%= cartItem.getQuantity() %></td>
+                <td> <!-- Add a Remove button -->
+                    <form action="../RemoveFromCart" method="post">
+                        <input type="hidden" name="productId" value="<%= product.getProductid() %>">
+                        <input type="submit" value="Remove">
+                    </form>
+                </td>
             </tr>
             <% 
                 }
