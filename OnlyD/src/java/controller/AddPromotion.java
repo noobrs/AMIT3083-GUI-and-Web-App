@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entity.ProductPromotion;
 import entity.Promotion;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -25,6 +26,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import service.ProductPromotionService;
 import service.PromotionService;
 
 /**
@@ -46,6 +48,7 @@ public class AddPromotion extends HttpServlet {
         Date startDateTime;
         Date endDateTime;
         PromotionService promotionService = new PromotionService(em);
+        ProductPromotionService productPromotionService = new ProductPromotionService(em);
 
         try {
             discountPercentage = Double.parseDouble(request.getParameter("discountPercentage"));
