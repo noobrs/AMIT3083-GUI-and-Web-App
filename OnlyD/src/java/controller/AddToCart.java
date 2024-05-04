@@ -51,7 +51,7 @@ public class AddToCart extends HttpServlet {
 //                int customerId = customer.getCustomerID();
 //            }
             
-            int customerId = 2;
+            int customerId = 1;
             CustomerService custService = new CustomerService(em);
             Customer cust = custService.findCustomerById(customerId);
             
