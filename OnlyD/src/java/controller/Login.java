@@ -80,17 +80,6 @@ public class Login extends HttpServlet {
 
         try {
 
-            // means login ady
-//            if (session.getAttribute("customer") != null) {
-//                response.sendRedirect("index.jsp");
-//            } else if (session.getAttribute("staff") != null) {
-//                // automatically log out staff if customer attempt to login
-//                session.invalidate();
-//                session = request.getSession();
-//            } else if (request.isUserInRole("AdminRole")) {
-//                session.invalidate();
-//                session = request.getSession();
-//            }
             username = request.getParameter("username");
             password = request.getParameter("password");
             cust = custService.findCustomerByUsername(username);
