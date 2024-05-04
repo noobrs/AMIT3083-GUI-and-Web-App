@@ -51,6 +51,12 @@ public class CartService {
             return false;
         }
     }
+    
+    public void updateCartItems(List<Productcart> cartItems) {
+        for (Productcart cartItem : cartItems) {
+            em.merge(cartItem); // Use merge to update existing entities
+        }
+    }
 
     public boolean removeCartItem(int customerId, int productId) {
         try {

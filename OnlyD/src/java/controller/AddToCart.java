@@ -21,6 +21,7 @@ import jakarta.transaction.UserTransaction;
 import java.util.List;
 import service.CartService;
 import service.CustomerService;
+import service.ProductService;
 
 /**
  * Servlet implementation class AddToCart
@@ -43,7 +44,14 @@ public class AddToCart extends HttpServlet {
             
             // Retrieve the customer ID from the session (replace "customerIdKey" with your actual session attribute key)
             //int customerId = (int) request.getSession().getAttribute("customerIdKey");
-            int customerId = 1;
+         
+            //// vinsen part
+//            Customer customer = (Customer) session.getAttribute("customer");
+//            if(customer != null){
+//                int customerId = customer.getCustomerID();
+//            }
+            
+            int customerId = 2;
             CustomerService custService = new CustomerService(em);
             Customer cust = custService.findCustomerById(customerId);
             
@@ -55,6 +63,7 @@ public class AddToCart extends HttpServlet {
             
             // Add the product to the cart
             Productcart cartItem = new Productcart(new ProductcartPK(customerId, productId));
+            cartItem.setProduct(new ProductService(em).findProductByID(productId));
             cartItem.setQuantity(quantity);
             
             
@@ -68,8 +77,11 @@ public class AddToCart extends HttpServlet {
             
             if (addedToCart) {
                 // If product successfully added to cart, redirect to the Cart.jsp page
-                session.setAttribute("productcartList", productcartList);
-                response.sendRedirect("user/cart.jsp");
+//                session.setAttribute("productcartList", productcartList);
+//                response.sendRedirect("user/cart.jsp");
+                    session.setAttribute("customer", cust); //just temp object, need to remove when combine
+                    request.getRequestDispatcher("/ViewCart").forward(request, response);
+
             } else {
                 // If product addition failed, handle the error (e.g., display an error message)
                 response.getWriter().println("Failed to add product to cart");
