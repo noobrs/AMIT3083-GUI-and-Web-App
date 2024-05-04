@@ -68,7 +68,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         String username = "";
         String password = "";
@@ -76,6 +76,7 @@ public class Login extends HttpServlet {
         Customer cust;
 
         try {
+
             // means login ady
 //            if (session.getAttribute("customer") != null) {
 //                response.sendRedirect("index.jsp");
@@ -87,7 +88,6 @@ public class Login extends HttpServlet {
 //                session.invalidate();
 //                session = request.getSession();
 //            }
-
             username = request.getParameter("username");
             password = request.getParameter("password");
             cust = custService.findCustomerByUsername(username);
@@ -105,6 +105,7 @@ public class Login extends HttpServlet {
             session.setAttribute("enteredUsername", username);
             response.sendRedirect("login.jsp");
         } catch (IOException e) {
+        } catch (Exception e) {
         }
     }
 

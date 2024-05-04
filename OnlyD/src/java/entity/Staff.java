@@ -16,6 +16,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
 import java.io.Serializable;
 import java.util.List;
 
@@ -36,6 +37,19 @@ import java.util.List;
     @NamedQuery(name = "Staff.findByStatus", query = "SELECT s FROM Staff s WHERE s.status = :status")})
 public class Staff implements Serializable {
 
+    @Size(max = 100)
+    @Column(name = "NAME")
+    private String name;
+    @Size(max = 255)
+    @Column(name = "PASSWORD")
+    private String password;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 100)
+    @Column(name = "EMAIL")
+    private String email;
+    @OneToMany(mappedBy = "staffid")
+    private List<Product> productList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -43,16 +57,6 @@ public class Staff implements Serializable {
     @Size(min = 1, max = 5)
     @Column(name = "STAFFID")
     private String staffID;
-    @Size(max = 100)
-    @Column(name = "NAME")
-    private String name;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    @Size(max = 100)
-    @Column(name = "EMAIL")
-    private String email;
-    @Size(max = 255)
-    @Column(name = "PASSWORD")
-    private String password;
     @Column(name = "STATUS")
     private Integer status;
     
@@ -92,29 +96,6 @@ public class Staff implements Serializable {
         this.staffID = staffid;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public Integer getStatus() {
         return status;
@@ -151,6 +132,39 @@ public class Staff implements Serializable {
     @Override
     public String toString() {
         return "entity.Staff[ staffID=" + staffID + " ]";
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    @XmlTransient
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
     
 }

@@ -6,6 +6,7 @@ package entity;
 
 import java.io.Serializable;
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,8 +14,11 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.xml.bind.annotation.XmlTransient;
+import java.util.List;
 
 /**
  *
@@ -29,6 +33,9 @@ import jakarta.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Category.findByCategoryname", query = "SELECT c FROM Category c WHERE c.categoryname = :categoryname"),
     @NamedQuery(name = "Category.findByStatus", query = "SELECT c FROM Category c WHERE c.status = :status")})
 public class Category implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
+    private List<Product> productList;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -106,6 +113,15 @@ public class Category implements Serializable {
     @Override
     public String toString() {
         return "entity.Category[ categoryid=" + categoryid + " ]";
+    }
+
+    @XmlTransient
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
     
 }
