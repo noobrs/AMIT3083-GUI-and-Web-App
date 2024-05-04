@@ -37,11 +37,9 @@ public class AddToCart extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            // Retrieve the product ID from the request parameter
             int productId = Integer.parseInt(request.getParameter("productId"));
-            boolean addedToCart;
-            // Retrieve the customer ID from the session (replace "customerIdKey" with your actual session attribute key)
-            //int customerId = (int) request.getSession().getAttribute("customerIdKey");
+            boolean addedToCart = false;
+
             CustomerService custService = new CustomerService(em);
             CartService cartService = new CartService(em);
             int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -54,25 +52,27 @@ public class AddToCart extends HttpServlet {
                 cartItem.setQuantity(quantity);
                 List<Productcart> productcartList = cust.getProductcartList();
                 productcartList.add(cartItem);
-                
+
                 boolean itemExisted = false;
-                
+
                 utx.begin();
-                
-                for(Productcart existedPC : productcartList){
-                    if(Objects.equals(existedPC.getProduct().getProductid(), cartItem.getProduct().getProductid())){
-                        itemExisted = true;
+                System.out.println(productcartList.size());
+                if (productcartList.size() > 1) {
+                    for (Productcart existedPC : productcartList) {
+                        if (Objects.equals(existedPC.getProduct().getProductid(), cartItem.getProduct().getProductid())) {
+                            itemExisted = true;
+                        }
                     }
                 }
-                
-                if(itemExisted){
+
+                if (itemExisted) {
                     addedToCart = cartService.addCartItemQuantity(cartItem);
-                }else{
+                } else {
                     addedToCart = cartService.addToCart(cartItem);
-                }               
+                }
                 utx.commit();
+
                 if (addedToCart) {
-                    // If product successfully added to cart, redirect to the Cart.jsp page
 //                session.setAttribute("productcartList", productcartList);
 //                response.sendRedirect("user/cart.jsp");
                     session.setAttribute("customer", cust); //just temp object, need to remove when combine

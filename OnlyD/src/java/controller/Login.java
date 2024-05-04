@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import service.CartService;
 import service.CustomerService;
 
 /**
@@ -74,6 +75,8 @@ public class Login extends HttpServlet {
         String password = "";
         CustomerService custService = new CustomerService(em);
         Customer cust;
+        
+        CartService cartService = new CartService(em);
 
         try {
 
@@ -96,6 +99,7 @@ public class Login extends HttpServlet {
                 throw new IllegalArgumentException("Login fail! Incorrect username or password!");
             } else {
                 session.setAttribute("customer", cust);
+                cust.setProductcartList(cartService.getCartItems(cust.getCustomerID()));
                 session.setAttribute("isCustomer", true);
                 response.sendRedirect("index.jsp");
             }
