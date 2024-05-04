@@ -5,7 +5,6 @@
 package controller;
 
 import entity.Customer;
-import entity.Product;
 import entity.Productcart;
 import entity.ProductcartPK;
 import jakarta.annotation.Resource;
@@ -21,7 +20,6 @@ import jakarta.transaction.UserTransaction;
 import java.util.List;
 import java.util.Objects;
 import service.CartService;
-import service.CustomerService;
 import service.ProductService;
 
 public class AddToCart extends HttpServlet {

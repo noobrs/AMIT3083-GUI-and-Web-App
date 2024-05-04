@@ -39,7 +39,14 @@
                                 <a class="nav-link disabled">Disabled</a>
                             </li>
                         </ul>
-                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-left: 10px"><a href="<%=request.getContextPath()%>/ViewCart">Cart</a></button>
+                        <%if((Boolean) session.getAttribute("isCustomer") != null){%>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/ViewCart">Cart</a></button>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/#">Orders</a></button>
+                        <% } else if ((Boolean) session.getAttribute("isStaff") != null) { %>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/staff/staffDashboard.jsp">Dashboard</a></button>
+                        <% } else if(request.isUserInRole("AdminRole")) { %>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/admin/adminDashboard.jsp">Dashboard</a></button>
+                        <% } %>
                         <form class="d-flex">
                             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                             <button class="btn btn-outline-success" type="submit">Search</button>

@@ -1,9 +1,4 @@
-<%-- 
-    Document   : firstTimeLogin
-    Created on : 26 Apr 2024, 4:38:37 PM
-    Author     : Vin Sen
---%>
-
+<%@include file="staffAuthentication.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="staff" class="entity.Staff" scope="session" ></jsp:useBean>
     <!DOCTYPE html>

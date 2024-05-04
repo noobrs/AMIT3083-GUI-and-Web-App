@@ -1,3 +1,4 @@
+<%@include file="staffAuthentication.jsp"%>
 <%@page import="java.util.List"%>
 <%@page  import="entity.Product" %>
 <%

@@ -40,7 +40,10 @@
         <a href="../ViewProductStaff">Add a Product</a><br>        
         <a href="../LoadProductList">Delete/Update Product</a><br>
         
-        
+        <h2>Report Generation</h2>
+        <a href="#">View TOP 10 Sold Products</a>
+        <a href="#">View Sales Records</a>
+         
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>
