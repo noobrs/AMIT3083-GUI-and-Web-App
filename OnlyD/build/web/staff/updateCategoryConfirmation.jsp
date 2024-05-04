@@ -1,3 +1,4 @@
+<%@include file="staffAuthentication.jsp"%>
 <%@page import="entity.Category"%>
 <html>
     <head></head>

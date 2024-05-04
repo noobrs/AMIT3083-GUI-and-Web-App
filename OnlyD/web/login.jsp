@@ -32,7 +32,7 @@
                 <div class="card" style="width: 50%">
                     <h5 class="card-header">Customer Login page</h5>
                     <div class="card-body">
-                        <form action="Login">
+                        <form action="<%=request.getContextPath()%>/Login">
                             <h5 class="card-title">Welcome, please enter your:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Username</span>

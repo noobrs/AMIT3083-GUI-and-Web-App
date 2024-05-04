@@ -1,3 +1,4 @@
+<%@include file="staffAuthentication.jsp"%>
 <h3>
 <%
   boolean success = (Boolean)session.getAttribute("successUpdCategory");

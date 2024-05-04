@@ -4,9 +4,6 @@
  */
 package entity;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -21,10 +18,13 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
- * @author GIGABYTE
+ * @author Vin Sen
  */
 @Entity
 @Table(name = "PROMOTION")

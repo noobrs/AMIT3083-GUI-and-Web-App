@@ -5,40 +5,35 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="entity.Staff, entity.Customer" %>
+<%@page import="entity.Staff" %>
 <jsp:useBean id="staff" class="entity.Staff" scope="session"></jsp:useBean>
-    <!DOCTYPE html>
-    <html>
-        <head>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+
+<%@include file="staffAuthentication.jsp"%>
+<%
+    if(request.isUserInRole("AdminRole")){
+        request.getRequestDispatcher("/admin/adminDashboard.jsp").forward(request, response);
+    }
+%>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Staff Dashboard</title>
     </head>
-    <body>
-        <%
-//        Staff activeStaff = (Staff)session.getAttribute("staff");
-//        Customer activeCustomer = (Customer)session.getAttribute("customer");
-
-        Boolean isStaff = (Boolean)session.getAttribute("isStaff");
-        Boolean isCustomer = (Boolean)session.getAttribute("isCustomer");
-        boolean isAdmin = request.isUserInRole("AdminRole");
-
-        // guest
-        if(!isAdmin && isStaff == null && isCustomer == null){
-            request.getRequestDispatcher("/staff/staffLogin.jsp").forward(request, response);
-        } else if(isCustomer != null){
-            request.getRequestDispatcher("/unauthorizedError.jsp").forward(request,response);
-        }
-        %>
-
+    <body>        
         <%@include file="/layout/header.jsp"%>
-        <p><%= staff.getStaffid() %></p>
-        <p><%= staff.getName() %></p>
-        <p><%= staff.getEmail() %></p>
-        <p><%= staff.getPassword() %></p>
+        <p>Welcome staff <%= staff.getStaffid() %> <%= staff.getName() %>,</p>
+        <p>Choose an action:</p>
 
-        <form action="../logout">
-            <input type="submit" value="log out">
-        </form>
+        <h2>Customer</h2>
+        <a href="../ViewCustomer">View All Customers</a><br>
+        
+        <h2>Product</h2>
+<!--        for user-->
+        <a href="../ViewProduct">View All Product</a><br>
+        <a href="../ViewProductStaff">Add a Product</a><br>        
+        <a href="../LoadProductList">Update Product</a><br>
 
         <%@include file="/layout/footer.jsp"%>
     </body>

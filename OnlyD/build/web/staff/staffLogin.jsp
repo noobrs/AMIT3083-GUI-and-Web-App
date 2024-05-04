@@ -1,9 +1,3 @@
-<%-- 
-    Document   : staffLogin
-    Created on : 26 Apr 2024, 4:15:27 PM
-    Author     : Vin Sen
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="entity.Staff" %>
 <!DOCTYPE html>
@@ -20,14 +14,13 @@
         String errorMessage = (String)session.getAttribute("errorMessage");
         String enteredStaffID = (String)session.getAttribute("enteredStaffID");
         
-        if(verificationStatus == null){
+//        if(verificationStatus == null){
 //            if(staff != null && staff.getStatus() == Staff.ACTIVE_STATUS){
 //                response.sendRedirect("staffDashboard.jsp");
 //            }    
-        }
-        
+//        }
         %>
-        <%@include file="../layout/header.jsp"%>      
+        <%@include file="/layout/header.jsp"%>      
 
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
@@ -80,6 +73,6 @@
             </div>
         </div>
 
-        <%@include file="../layout/footer.jsp"%>
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

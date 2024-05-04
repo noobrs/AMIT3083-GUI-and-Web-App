@@ -1,8 +1,4 @@
-<%-- 
-    Document   : viewCustomer
-    Created on : 29 Apr 2024, 9:11:18 PM
-    Author     : Vin Sen
---%>
+<%@include file="staffAuthentication.jsp"%>
 <%@page import="entity.Customer, java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
