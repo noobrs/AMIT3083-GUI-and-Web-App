@@ -33,7 +33,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-    @NamedQuery(name = "Product.findByProductid", query = "SELECT p FROM Product p WHERE p.productid = :productid"),
+    @NamedQuery(name = "Product.findByProductID", query = "SELECT p FROM Product p WHERE p.productID = :productID"),
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
     @NamedQuery(name = "Product.findByStock", query = "SELECT p FROM Product p WHERE p.stock = :stock"),
@@ -47,7 +47,7 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PRODUCTID")
-    private Integer productid;
+    private Integer productID;
     @Column(name = "NAME")
     private String name;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -80,16 +80,39 @@ public class Product implements Serializable {
     public Product() {
     }
 
-    public Product(Integer productid) {
-        this.productid = productid;
+    public Product(Integer productID) {
+        this.productID = productID;
     }
 
-    public Integer getProductid() {
-        return productid;
+    public Product(Integer productID, String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
+        this.productID = productID;
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.description = description;
+        this.image = image;
+        this.status = status;
+        this.categoryid = categoryid;
+        this.staffid = staffid;
     }
 
-    public void setProductid(Integer productid) {
-        this.productid = productid;
+    public Product(String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
+        this.name = name;
+        this.price = price;
+        this.stock = stock;
+        this.description = description;
+        this.image = image;
+        this.status = status;
+        this.categoryid = categoryid;
+        this.staffid = staffid;
+    }
+
+    public Integer getProductID() {
+        return productID;
+    }
+
+    public void setProductID(Integer productID) {
+        this.productID = productID;
     }
 
     public String getName() {
@@ -186,7 +209,7 @@ public class Product implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (productid != null ? productid.hashCode() : 0);
+        hash += (productID != null ? productID.hashCode() : 0);
         return hash;
     }
 
@@ -197,7 +220,7 @@ public class Product implements Serializable {
             return false;
         }
         Product other = (Product) object;
-        if ((this.productid == null && other.productid != null) || (this.productid != null && !this.productid.equals(other.productid))) {
+        if ((this.productID == null && other.productID != null) || (this.productID != null && !this.productID.equals(other.productID))) {
             return false;
         }
         return true;
@@ -205,7 +228,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Product[ productid=" + productid + " ]";
+        return "entity.Product[ productID=" + productID + " ]";
     }
-    
+
 }

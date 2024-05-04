@@ -5,21 +5,30 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+
+<%
+    Boolean isStaff = (Boolean) session.getAttribute("isStaff");
+    Boolean isCustomer = (Boolean) session.getAttribute("isCustomer");
+    
+    if(isStaff != null || isCustomer != null){
+        request.getRequestDispatcher("/unauthorizedError.jsp").forward(request, response);
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="../layout/meta.html"%>
-        <title>JSP Page</title>
+        <title>Admin Login</title>
     </head>
     <body>
-        <%@include file="../layout/header.jsp"%>      
+        <%@include file="/layout/header.jsp"%>      
         
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">
                 <div class="card" style="width: 50%">
-                    <h5 class="card-header">Login page</h5>
+                    <h5 class="card-header">Admin Login page</h5>
                     <div class="card-body">
                         <form action="j_security_check" method="POST">
                             <h5 class="card-title">Welcome, please enter your:</h5>
@@ -48,6 +57,6 @@
             </div>
         </div>
 
-        <%@include file="../layout/footer.jsp"%>
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

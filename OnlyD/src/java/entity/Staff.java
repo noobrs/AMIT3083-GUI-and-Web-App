@@ -25,12 +25,13 @@ import jakarta.xml.bind.annotation.XmlTransient;
 @Table(name = "STAFF")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Staff.findAll", query = "SELECT s FROM Staff s"),
-    @NamedQuery(name = "Staff.findByStaffid", query = "SELECT s FROM Staff s WHERE s.staffid = :staffid"),
+    @NamedQuery(name = "Staff.findAll", query = "SELECT s FROM Staff s WHERE s.status != :deletedStatus"),
+    @NamedQuery(name = "Staff.findAllWithDeletedStatus", query = "SELECT s FROM Staff s"),
+    @NamedQuery(name = "Staff.findByStaffid", query = "SELECT s FROM Staff s WHERE s.staffid = :staffid AND s.status != :deletedStatus"),
     @NamedQuery(name = "Staff.findByName", query = "SELECT s FROM Staff s WHERE s.name = :name"),
     @NamedQuery(name = "Staff.findByPassword", query = "SELECT s FROM Staff s WHERE s.password = :password"),
     @NamedQuery(name = "Staff.findByStatus", query = "SELECT s FROM Staff s WHERE s.status = :status"),
-    @NamedQuery(name = "Staff.findByEmail", query = "SELECT s FROM Staff s WHERE s.email = :email")})
+    @NamedQuery(name = "Staff.findByEmail", query = "SELECT s FROM Staff s WHERE s.email = :email AND s.status != :deletedStatus")})
 public class Staff implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -49,14 +50,35 @@ public class Staff implements Serializable {
     @OneToMany(mappedBy = "staffid")
     private List<Product> productList;
 
+    public static final int ACTIVE_STATUS = 1;
+    public static final int VERIFICATION_STATUS = 2;
+    public static final int DELETED_STATUS = 3;
+
+    public static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    public static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{};:',.<>?])(?=.{8,}).*$";
+
     public Staff() {
+    }
+
+    // fake constructor
+    public Staff(String staffid, String name, Integer status) {
+        this.staffid = staffid;
+        this.name = name;
+        this.status = status;
+    }
+
+    public Staff(String staffid, String name, String password, Integer status) {
+        this.staffid = staffid;
+        this.name = name;
+        this.password = password;
+        this.status = status;
     }
 
     public Staff(String staffid) {
         this.staffid = staffid;
     }
 
-    public Staff(String staffID, String staffName, boolean b) {
+    public Staff(String staffid, String staffName, boolean b) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -137,5 +159,5 @@ public class Staff implements Serializable {
     public String getDefaultPassword() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
-    
+
 }

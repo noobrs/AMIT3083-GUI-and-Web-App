@@ -29,10 +29,10 @@ import jakarta.xml.bind.annotation.XmlTransient;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
-    @NamedQuery(name = "Customer.findByCustomerid", query = "SELECT c FROM Customer c WHERE c.customerid = :customerid"),
+    @NamedQuery(name = "Customer.findByCustomerID", query = "SELECT c FROM Customer c WHERE c.customerid = :customerid"),
     @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name"),
     @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Customer c WHERE c.username = :username"),
-    @NamedQuery(name = "Customer.findByPhonenumber", query = "SELECT c FROM Customer c WHERE c.phonenumber = :phonenumber"),
+    @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Customer c WHERE c.phoneNumber = :phoneNumber"),
     @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
     @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password"),
     @NamedQuery(name = "Customer.findByStatus", query = "SELECT c FROM Customer c WHERE c.status = :status")})
@@ -49,7 +49,7 @@ public class Customer implements Serializable {
     @Column(name = "USERNAME")
     private String username;
     @Column(name = "PHONENUMBER")
-    private String phonenumber;
+    private String phoneNumber;
     @Column(name = "EMAIL")
     private String email;
     @Column(name = "PASSWORD")
@@ -61,22 +61,42 @@ public class Customer implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
     private List<Productcart> productcartList;
 
+    public static final int ACTIVE_STATUS = 1;
+    public static final int DELETED_STATUS = 2;
+
+    public static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    public static final String PHONENUMBER_REGEX = "\\d{3}-?\\d{7}$|^\\d{2}-?\\d{8}$|^\\d{10}$";
+    public static final String PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[\\W_]).+$";
+
     public Customer() {
     }
 
     public Customer(Integer customerid) {
         this.customerid = customerid;
     }
-
-    public Customer(String name, String email, String username, String phoneNumber, String password) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    
+        public Customer(String name, String username, String phoneNumber, String email, String password, Integer status) {
+        this.name = name;
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.status = status;
     }
 
-    public Integer getCustomerid() {
+    public Customer(String name, String email, String username, String phoneNumber, String password) {
+        this.name = name;
+        this.username = username;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+    }
+
+    public Integer getCustomerID() {
         return customerid;
     }
 
-    public void setCustomerid(Integer customerid) {
+    public void setCustomerID(Integer customerid) {
         this.customerid = customerid;
     }
 
@@ -96,12 +116,12 @@ public class Customer implements Serializable {
         this.username = username;
     }
 
-    public String getPhonenumber() {
-        return phonenumber;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setPhonenumber(String phonenumber) {
-        this.phonenumber = phonenumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getEmail() {
@@ -170,5 +190,5 @@ public class Customer implements Serializable {
     public String toString() {
         return "entity.Customer[ customerid=" + customerid + " ]";
     }
-    
+
 }

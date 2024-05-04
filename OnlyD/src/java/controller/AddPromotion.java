@@ -42,7 +42,7 @@ public class AddPromotion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        double discountPercentage;
+        double discountPercentage = 0;
         Date startDateTime;
         Date endDateTime;
         PromotionService promotionService = new PromotionService(em);
@@ -67,6 +67,7 @@ public class AddPromotion extends HttpServlet {
                 request.setAttribute("startDateTime", startDateTime);
                 request.setAttribute("endDateTime", endDateTime);
                 request.setAttribute("errorMessage", errorMessage);
+                
                 //request.getRequestDispatcher("/register.jsp").forward(request, response);
                 //response.sendRedirect("register.jsp");
 
@@ -108,19 +109,22 @@ public class AddPromotion extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
+//             Promotion promotion = (Promotion) session.getAttribute("promotion");
+            
             discountPercentage = Double.parseDouble(request.getParameter("discountPercentage"));
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             startDateTime = dateFormat.parse(request.getParameter("startDateTime"));
             endDateTime = dateFormat.parse(request.getParameter("endDateTime"));
-
+            
 //            RequestDispatcher rd = request.getRequestDispatcher("addPromotion.jsp");
 //            rd.forward(request, response);
             // Creating a new Promotion object with the retrieved parameters
 //            Promotion promotion = new Promotion();
-//            promotion.setDiscountPercentage(discountPercentage);
-//            promotion.setStartDateTime(startDateTime);
-//            promotion.setEndDateTime(endDateTime);
-            Promotion promotion = new Promotion(discountPercentage, startDateTime, endDateTime);
+//            promotion.setDiscountpercentage(discountPercentage);
+//            promotion.setStartdatetime(startDateTime);
+//            promotion.setEnddatetime(endDateTime);
+//            promotion.setStatus(Promotion.ACTIVE_STATUS);
+            Promotion promotion = new Promotion(discountPercentage, startDateTime, endDateTime, Promotion.ACTIVE_STATUS);
 
             // Starting a new transaction
             utx.begin();

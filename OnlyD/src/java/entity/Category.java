@@ -50,6 +50,17 @@ public class Category implements Serializable {
     public Category() {
     }
 
+    public Category(Integer id, String name, Integer status) {
+        this.categoryid = id;
+        this.categoryname = name;
+        this.status = status;
+    }
+
+    public Category(String name, Integer status) {
+        this.categoryname = name;
+        this.status = status;
+    }
+
     public Category(Integer categoryid) {
         this.categoryid = categoryid;
     }
@@ -111,5 +122,5 @@ public class Category implements Serializable {
     public String toString() {
         return "entity.Category[ categoryid=" + categoryid + " ]";
     }
-    
+
 }

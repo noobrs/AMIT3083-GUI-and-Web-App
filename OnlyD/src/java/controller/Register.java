@@ -49,14 +49,14 @@ public class Register extends HttpServlet {
         CustomerService custService = new CustomerService(em);
         String errorMessage = "";
 
-        try {   
+        try {
             name = request.getParameter("name");
             email = request.getParameter("email");
             username = request.getParameter("username");
             phoneNumber = request.getParameter("phoneNumber");
             password = request.getParameter("password");
-            rePassword = request.getParameter("rePassword");                       
-            
+            rePassword = request.getParameter("rePassword");
+
             // check null values
             if (name == null || email == null || username == null || phoneNumber == null
                     || password == null || rePassword == null) {
@@ -150,6 +150,76 @@ public class Register extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+
+        HttpSession session = request.getSession();
+        String name = "";
+        String email = "";
+        String username = "";
+        String phoneNumber = "";
+        String password = "";
+        String rePassword = "";
+        CustomerService custService = new CustomerService(em);
+
+        try {
+            name = request.getParameter("name");
+            email = request.getParameter("email");
+            username = request.getParameter("username");
+            phoneNumber = request.getParameter("phoneNumber");
+            password = request.getParameter("password");
+            rePassword = request.getParameter("rePassword");
+
+            // username validation
+            if (custService.findCustomerByUsername(username) != null) {
+                throw new IllegalArgumentException("Username existed!");
+            } else if (username.length() < 8) {
+                throw new IllegalArgumentException("Username must have at least 8 characters!");
+            }
+
+            // email validation
+            if (custService.findCustomerByEmail(email) != null) {
+                throw new IllegalArgumentException("Email existed!");
+            } else if (!email.matches(Customer.EMAIL_REGEX)) {
+                throw new IllegalArgumentException("Invalid Email Format!");
+            }
+
+            // phone number validation
+            if (custService.findCustomerByPhoneNumber(phoneNumber) != null) {
+                throw new IllegalArgumentException("Phone Number existed!");
+            } else if (!phoneNumber.matches(Customer.PHONENUMBER_REGEX)) {
+                throw new IllegalArgumentException("Invalid Phone Number Format!");
+            }
+
+            // password validation
+            if (!password.matches(rePassword)) {
+                throw new IllegalArgumentException("Passwords not match!");
+            } else if (password.length() < 8 || !password.matches(Customer.PASSWORD_REGEX)) {
+                throw new IllegalArgumentException("Invalid Password Format!");
+            }
+            
+            Customer cust = new Customer(name, username, phoneNumber, email, password, Customer.ACTIVE_STATUS);
+            
+            utx.begin();
+            custService.addCustomer(cust);
+            utx.commit();
+            
+            session.setAttribute("statusMsg", "Customer Register Successfully!");
+            
+            if(request.isUserInRole("AdminRole")){
+                response.sendRedirect("admin/adminDashboard.jsp");
+            }else{               
+                response.sendRedirect("login.jsp");
+            }            
+
+        } catch (IllegalArgumentException e) {
+            
+            session.setAttribute("enteredName", name);
+            session.setAttribute("enteredEmail", email);
+            session.setAttribute("enteredUsername", username);
+            session.setAttribute("enteredPhoneNumber", phoneNumber);
+            session.setAttribute("errorMessage", e.getMessage());
+            response.sendRedirect("register.jsp");
+            
+        } catch (Exception e) {
+        }
     }
 }

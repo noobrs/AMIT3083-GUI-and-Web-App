@@ -15,12 +15,12 @@
     <body>
         <form action="../addPromotion" method="POST">
             <table>
-                <!--                <tr>
-                                    <td>Enter Promotion ID</td>
-                                    <td>
-                                        <input type="text" name="promotionID" value="${AddPromotion.promotionID}" size="50">
-                                    </td>
-                                </tr>-->
+                <tr>
+                    <td>Enter Promotion ID</td>
+                    <td>
+                        <input type="text" name="productID" value="${AddPromotion.productID}" size="50">
+                    </td>
+                </tr>
                 <tr>
                     <td>Enter Discount percentage:</td>
                     <td>
