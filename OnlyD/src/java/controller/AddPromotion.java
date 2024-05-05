@@ -4,7 +4,6 @@
  */
 package controller;
 
-import entity.ProductPromotion;
 import entity.Promotion;
 import java.text.SimpleDateFormat;
 import java.util.logging.Level;
@@ -27,6 +26,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import service.ProductPromotionService;
+import service.ProductService;
 import service.PromotionService;
 
 /**
@@ -44,13 +44,16 @@ public class AddPromotion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
+        Integer productID = 0;
         double discountPercentage = 0;
         Date startDateTime;
         Date endDateTime;
         PromotionService promotionService = new PromotionService(em);
+        ProductService productService = new ProductService(em);
         ProductPromotionService productPromotionService = new ProductPromotionService(em);
 
         try {
+            productID = Integer.parseInt(request.getParameter("productID"));
             discountPercentage = Double.parseDouble(request.getParameter("discountPercentage"));
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             startDateTime = dateFormat.parse(request.getParameter("startDateTime"));
@@ -70,10 +73,9 @@ public class AddPromotion extends HttpServlet {
                 request.setAttribute("startDateTime", startDateTime);
                 request.setAttribute("endDateTime", endDateTime);
                 request.setAttribute("errorMessage", errorMessage);
-                
+
                 //request.getRequestDispatcher("/register.jsp").forward(request, response);
                 //response.sendRedirect("register.jsp");
-
                 RequestDispatcher rd = getServletContext().getRequestDispatcher("/register.jsp");
                 rd.forward(request, response);
                 return;
@@ -92,7 +94,7 @@ public class AddPromotion extends HttpServlet {
 //            request.setAttribute("errorMessage", errorMessage);
 //            request.getRequestDispatcher("/addPromotion.jsp").forward(request, response);
 //        } 
-        }catch (Exception e) {
+        } catch (Exception e) {
             // Handle other unexpected errors
             String errorMessage = "Unexpected error occurred";
             request.setAttribute("errorMessage", errorMessage);
@@ -113,12 +115,12 @@ public class AddPromotion extends HttpServlet {
 
         try {
 //             Promotion promotion = (Promotion) session.getAttribute("promotion");
-            
+
             discountPercentage = Double.parseDouble(request.getParameter("discountPercentage"));
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             startDateTime = dateFormat.parse(request.getParameter("startDateTime"));
             endDateTime = dateFormat.parse(request.getParameter("endDateTime"));
-            
+
 //            RequestDispatcher rd = request.getRequestDispatcher("addPromotion.jsp");
 //            rd.forward(request, response);
             // Creating a new Promotion object with the retrieved parameters

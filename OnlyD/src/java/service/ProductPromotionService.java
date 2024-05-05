@@ -27,4 +27,6 @@ public class ProductPromotionService {
     public void addProductPromotionService(ProductPromotion productPromotion){
         em.persist(productPromotion);
     }
+    
+    
 }

@@ -34,6 +34,7 @@ public class GetCategoryForProduct extends HttpServlet {
             List<Category> categoryList = categoryService.findByStatus(1);
             HttpSession session = request.getSession();
             session.setAttribute("categoryListProduct", categoryList);
+            //The path is due to there ebing two jsp files that needs this servelet so by using this way we can use this one servlet to handle the logic for both.
             path = (String) session.getAttribute("path");
             response.sendRedirect(path);  
         } catch (Exception ex) {

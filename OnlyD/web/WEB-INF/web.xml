@@ -156,6 +156,10 @@
         <servlet-name>AddProductPromotion</servlet-name>
         <servlet-class>controller.AddProductPromotion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>getProductIDForPromotion</servlet-name>
+        <servlet-class>controller.GetProductIDForPromotion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProduct</servlet-name>
         <url-pattern>/ViewProduct</url-pattern>
@@ -291,6 +295,10 @@
     <servlet-mapping>
         <servlet-name>AddProductPromotion</servlet-name>
         <url-pattern>/AddProductPromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>getProductIDForPromotion</servlet-name>
+        <url-pattern>/getProductIDForPromotion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

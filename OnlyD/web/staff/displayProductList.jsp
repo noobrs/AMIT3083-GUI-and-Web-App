@@ -10,8 +10,8 @@
         <td>Product ID</td>
         <td><select name="productId">
                 <% for (Product product: productList){%>
-                <option value="<%=product.getProductid()%>">
-                    <%=product.getProductid()%>
+                <option value="<%=product.getProductID()%>">
+                    <%=product.getProductID()%>
                 <%}%>
             </select>
             <br>

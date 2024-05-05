@@ -73,7 +73,7 @@
                     </div>
                     <div class="text-center">
                         <p>OR</p>
-                        <p>Don't have an account ?<br><a href="register.jsp">Sign Up</a></p>
+                        <p>Don't have an account ?<br><a href="../register.jsp">Sign Up</a></p>
                     </div>
                 </div>
             </div>
