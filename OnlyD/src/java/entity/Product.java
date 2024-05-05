@@ -76,6 +76,8 @@ public class Product implements Serializable {
     private List<Productorder> productorderList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Productcart> productcartList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<Productpromotion> productpromotionList;
 
     public Product() {
     }

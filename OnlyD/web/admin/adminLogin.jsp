@@ -22,7 +22,7 @@
         <title>Admin Login</title>
     </head>
     <body>
-        <%@include file="/layout/header.jsp"%>      
+        <%@include file="/layout/header.jsp"%>  
         
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
@@ -34,24 +34,25 @@
                             <h5 class="card-title">Welcome, please enter your:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Username</span>
-                                <input type="text" name="j_username" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" name="j_username" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
-                                <input type="password" name="j_password" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1">
+                                <input type="password" name="j_password" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1" required> 
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input class="btn btn-primary me-2" type="submit" value="Log In">
                                 <input class="btn btn-primary" type="reset" value="Reset">                              
                             </div>
                         </form>
+                        <% if((String)session.getAttribute("errorMessage") != null) { %>
                         <div class="error-message" style="color: red;">
-                            ${errorMessage}
+                            <%= (String)session.getAttribute("errorMessage") %>
                         </div>
-                    </div>
-                    <div class="text-center">
-                        <p>OR</p>
-                        <p>Don't have an account ?<br><a href="register.jsp">Sign Up</a></p>
+                        <% 
+                            session.removeAttribute("errorMessage");
+                            } 
+                        %>
                     </div>
                 </div>
             </div>

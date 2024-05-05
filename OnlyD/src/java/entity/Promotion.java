@@ -34,7 +34,10 @@ import java.util.List;
     @NamedQuery(name = "Promotion.findByPromotionid", query = "SELECT p FROM Promotion p WHERE p.promotionid = :promotionid"),
     @NamedQuery(name = "Promotion.findByDiscountpercentage", query = "SELECT p FROM Promotion p WHERE p.discountpercentage = :discountpercentage"),
     @NamedQuery(name = "Promotion.findByStartdatetime", query = "SELECT p FROM Promotion p WHERE p.startdatetime = :startdatetime"),
-    @NamedQuery(name = "Promotion.findByEnddatetime", query = "SELECT p FROM Promotion p WHERE p.enddatetime = :enddatetime")})
+    @NamedQuery(name = "Promotion.findByEnddatetime", query = "SELECT p FROM Promotion p WHERE p.enddatetime = :enddatetime"),
+    @NamedQuery(name = "Promotion.findByStatus", query = "SELECT p FROM Promotion p WHERE p.status = :status")
+
+})
 public class Promotion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,8 +55,14 @@ public class Promotion implements Serializable {
     @Column(name = "ENDDATETIME")
     @Temporal(TemporalType.DATE)
     private Date enddatetime;
+    @Column(name = "STATUS")
+    private Integer status;
     @ManyToMany(mappedBy = "promotionList")
     private List<Product> productList;
+
+    public static final int ACTIVE_STATUS = 1;
+    public static final int VERIFICATION_STATUS = 2;
+    public static final int DELETED_STATUS = 3;
 
     public Promotion() {
     }
@@ -94,6 +103,14 @@ public class Promotion implements Serializable {
         this.enddatetime = enddatetime;
     }
 
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
     @XmlTransient
     public List<Product> getProductList() {
         return productList;
@@ -127,5 +144,5 @@ public class Promotion implements Serializable {
     public String toString() {
         return "entity.Promotion[ promotionid=" + promotionid + " ]";
     }
-    
+
 }
