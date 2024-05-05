@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package service;
+
+import entity.Productpromotion;
 import entity.Promotion;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import java.util.List;
+
 /**
  *
  * @author danie
@@ -23,11 +26,46 @@ public class PromotionService {
     public PromotionService(EntityManager em) {
         this.em = em;
     }
-    
-    public void addPromotion(Promotion promotion){
+
+    public void addPromotion(Promotion promotion) {
         em.persist(promotion);
     }
-    
+
+    public boolean addProductPromotion(List<Productpromotion> newProductpromoList) {
+
+        Productpromotion temp;
+        
+        try {
+            for (Productpromotion p : newProductpromoList) {
+                temp = em.find(Productpromotion.class, p.getProductpromotionPK());
+                
+                if(temp == null){
+                    em.persist(p);
+                } else{
+                    return false;
+                }
+            }
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public List<Productpromotion> getPromotionItems(int promotionId) {
+
+        List<Productpromotion> productpromotionList;
+        try {
+            productpromotionList = (List<Productpromotion>) em.createNamedQuery("Productpromotion.findByPromotionid")
+                    .setParameter("promotionid", promotionId)
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+
+        return productpromotionList;
+
+    }
+
     public Promotion findPromotionByPromotionId(Integer promotionid) {
         Promotion promotion;
         try {
@@ -62,11 +100,11 @@ public class PromotionService {
         }
         return false;
     }
-    
-     public List<Promotion> findAllWithDeletedStatus() {
+
+    public List<Promotion> findAllWithDeletedStatus() {
         List<Promotion> promotionList;
         try {
-            promotionList = em.createNamedQuery("Promotion.findAllWithDeletedStatus")                    
+            promotionList = em.createNamedQuery("Promotion.findAllWithDeletedStatus")
                     .getResultList();
         } catch (Exception e) {
             return null;

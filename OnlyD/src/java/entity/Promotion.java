@@ -5,6 +5,7 @@
 package entity;
 
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -57,11 +59,13 @@ public class Promotion implements Serializable {
     private Date enddatetime;
     @Column(name = "STATUS")
     private Integer status;
-    @ManyToMany(mappedBy = "promotionList")
-    private List<Product> productList;
+//    @ManyToMany(mappedBy = "promotionList")
+//    private List<Product> productList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Promotion")
+    private List<Productpromotion> productpromotionList;
 
     public static final int ACTIVE_STATUS = 1;
-    public static final int VERIFICATION_STATUS = 2;
+    public static final int EXPIRED_STATUS = 2;
     public static final int DELETED_STATUS = 3;
 
     public Promotion() {
@@ -69,6 +73,13 @@ public class Promotion implements Serializable {
 
     public Promotion(Integer promotionid) {
         this.promotionid = promotionid;
+    }
+
+    public Promotion(Double discountpercentage, Date startdatetime, Date enddatetime, Integer status) {
+        this.discountpercentage = discountpercentage;
+        this.startdatetime = startdatetime;
+        this.enddatetime = enddatetime;
+        this.status = status;
     }
 
     public Integer getPromotionid() {
@@ -111,14 +122,14 @@ public class Promotion implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
+//    @XmlTransient
+//    public List<Product> getProductList() {
+//        return productList;
+//    }
+//
+//    public void setProductList(List<Product> productList) {
+//        this.productList = productList;
+//    }
 
     @Override
     public int hashCode() {

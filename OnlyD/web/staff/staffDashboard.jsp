@@ -37,6 +37,9 @@
 
         <h2>Category</h2>
         <a href="../ViewCategory">View Category</a><br>
+        
+        <h2>Promotion</h2>
+        <a href="../ViewProductToPromo">Add Promotion</a><br>
 
         <%@include file="/layout/footer.jsp"%>
     </body>

@@ -164,6 +164,18 @@
         <servlet-name>RemoveFromCart</servlet-name>
         <servlet-class>controller.RemoveFromCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProductToPromo</servlet-name>
+        <servlet-class>controller.ViewProductToPromo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessProductToPromo</servlet-name>
+        <servlet-class>controller.ProcessProductToPromo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewProductToPromo</servlet-name>
+        <url-pattern>/ViewProductToPromo</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddToCart</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
@@ -307,6 +319,10 @@
     <servlet-mapping>
         <servlet-name>RemoveFromCart</servlet-name>
         <url-pattern>/RemoveFromCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessProductToPromo</servlet-name>
+        <url-pattern>/ProcessProductToPromo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
