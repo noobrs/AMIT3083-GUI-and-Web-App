@@ -176,6 +176,10 @@
         <servlet-name>Checkout</servlet-name>
         <servlet-class>controller.Checkout</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchProductByUser</servlet-name>
+        <servlet-class>controller.SearchProductByUser</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -331,6 +335,10 @@
     <servlet-mapping>
         <servlet-name>Checkout</servlet-name>
         <url-pattern>/Checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchProductByUser</servlet-name>
+        <url-pattern>/SearchProductByUser</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

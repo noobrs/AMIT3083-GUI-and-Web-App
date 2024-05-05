@@ -4,6 +4,7 @@
  */
 package service;
 
+import entity.Category;
 import entity.Product;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
@@ -54,6 +55,21 @@ public class ProductService {
     public List<Product> findByStatus(int status) {
         TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByStatus", Product.class);
         productList.setParameter("status", status);
+        return productList.getResultList();
+    }
+
+    public List<Product> findByNamePrefix(String prefix, int status) {
+        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByNamePrefix", Product.class);
+        productList.setParameter("prefix", prefix + "%");
+        productList.setParameter("status", status);
+        return productList.getResultList();
+    }
+
+    public List<Product> findByCatPrefix(String prefix, int status, Category id) {
+        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByCatPrefix", Product.class);
+        productList.setParameter("prefix", prefix + "%");
+        productList.setParameter("status", status);
+        productList.setParameter("categoryid", id);
         return productList.getResultList();
     }
 
