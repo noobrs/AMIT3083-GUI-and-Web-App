@@ -58,7 +58,7 @@ public class ProductService {
     }
 
     public boolean updateProduct(Product product) {
-        Product tempProduct = findProductByID(product.getProductID());
+        Product tempProduct = findProductByID(product.getProductid());
         if (tempProduct != null) {
             tempProduct.setName(product.getName());
             tempProduct.setStock(product.getStock());
@@ -68,6 +68,7 @@ public class ProductService {
             tempProduct.setStatus(product.getStatus());
             tempProduct.setCategoryid(product.getCategoryid());
             tempProduct.setStaffid(product.getStaffid());
+            tempProduct.setIspromo(product.getIspromo());
             return true;
         }
         return false;

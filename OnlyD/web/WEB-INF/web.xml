@@ -153,13 +153,37 @@
         <servlet-class>controller.UpdateProductAfterDltCat</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddProductPromotion</servlet-name>
-        <servlet-class>controller.AddProductPromotion</servlet-class>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>controller.AddToCart</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>getProductIDForPromotion</servlet-name>
-        <servlet-class>controller.GetProductIDForPromotion</servlet-class>
+        <servlet-name>ViewCart</servlet-name>
+        <servlet-class>controller.ViewCart</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RemoveFromCart</servlet-name>
+        <servlet-class>controller.RemoveFromCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProductToPromo</servlet-name>
+        <servlet-class>controller.ViewProductToPromo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessProductToPromo</servlet-name>
+        <servlet-class>controller.ProcessProductToPromo</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewProductToPromo</servlet-name>
+        <url-pattern>/ViewProductToPromo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCart</servlet-name>
+        <url-pattern>/ViewCart</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewProduct</servlet-name>
         <url-pattern>/ViewProduct</url-pattern>
@@ -293,12 +317,12 @@
         <url-pattern>/UpdateCustomer</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddProductPromotion</servlet-name>
-        <url-pattern>/AddProductPromotion</url-pattern>
+        <servlet-name>RemoveFromCart</servlet-name>
+        <url-pattern>/RemoveFromCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>getProductIDForPromotion</servlet-name>
-        <url-pattern>/getProductIDForPromotion</url-pattern>
+        <servlet-name>ProcessProductToPromo</servlet-name>
+        <url-pattern>/ProcessProductToPromo</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
@@ -331,19 +355,11 @@
         <realm-name>form</realm-name>
         <form-login-config>
             <form-login-page>/admin/adminLogin.jsp</form-login-page>
-            <form-error-page>/loginError.html</form-error-page>
+            <form-error-page>/loginError.jsp</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
         <description>Users added to this role will have access to 'admin' directory of the server.</description>
         <role-name>AdminRole</role-name>
-    </security-role>
-    <security-role>
-        <description>Users added to this role will have access to 'user' directory of the server</description>
-        <role-name>UserRole</role-name>
-    </security-role>
-    <security-role>
-        <description/>
-        <role-name>StaffRole</role-name>
     </security-role>
 </web-app>

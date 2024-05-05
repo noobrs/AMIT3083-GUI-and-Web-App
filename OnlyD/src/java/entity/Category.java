@@ -5,7 +5,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -19,10 +18,11 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
+import java.util.List;
 
 /**
  *
- * @author danie
+ * @author GIGABYTE
  */
 @Entity
 @Table(name = "CATEGORY")
@@ -34,6 +34,9 @@ import jakarta.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Category.findByStatus", query = "SELECT c FROM Category c WHERE c.status = :status")})
 public class Category implements Serializable {
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
+    private List<Product> productList;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,18 +47,16 @@ public class Category implements Serializable {
     private String categoryname;
     @Column(name = "STATUS")
     private Integer status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "categoryid")
-    private List<Product> productList;
 
     public Category() {
     }
-
+    
     public Category(Integer id, String name, Integer status) {
         this.categoryid = id;
         this.categoryname = name;
         this.status = status;
     }
-
+    
     public Category(String name, Integer status) {
         this.categoryname = name;
         this.status = status;
@@ -89,15 +90,6 @@ public class Category implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
-    }
-
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
-    }
-
     @Override
     public int hashCode() {
         int hash = 0;
@@ -123,4 +115,13 @@ public class Category implements Serializable {
         return "entity.Category[ categoryid=" + categoryid + " ]";
     }
 
+    @XmlTransient
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
+    }
+    
 }

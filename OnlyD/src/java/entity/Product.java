@@ -14,8 +14,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -26,20 +24,21 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author danie
+ * @author GIGABYTE
  */
 @Entity
 @Table(name = "PRODUCT")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
-    @NamedQuery(name = "Product.findByProductID", query = "SELECT p FROM Product p WHERE p.productID = :productID"),
+    @NamedQuery(name = "Product.findByProductid", query = "SELECT p FROM Product p WHERE p.productid = :productid"),
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
     @NamedQuery(name = "Product.findByStock", query = "SELECT p FROM Product p WHERE p.stock = :stock"),
     @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
     @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"),
-    @NamedQuery(name = "Product.findByStatus", query = "SELECT p FROM Product p WHERE p.status = :status")})
+    @NamedQuery(name = "Product.findByStatus", query = "SELECT p FROM Product p WHERE p.status = :status"),
+    @NamedQuery(name = "Product.findByIspromo", query = "SELECT p FROM Product p WHERE p.ispromo = :ispromo")})
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -47,7 +46,7 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PRODUCTID")
-    private Integer productID;
+    private Integer productid;
     @Column(name = "NAME")
     private String name;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -61,11 +60,13 @@ public class Product implements Serializable {
     private String image;
     @Column(name = "STATUS")
     private Integer status;
-    @JoinTable(name = "PRODUCTPROMOTION", joinColumns = {
-        @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID")}, inverseJoinColumns = {
-        @JoinColumn(name = "PROMOTIONID", referencedColumnName = "PROMOTIONID")})
-    @ManyToMany
-    private List<Promotion> promotionList;
+    @Column(name = "ISPROMO")
+    private Boolean ispromo;
+//    @JoinTable(name = "PRODUCTPROMOTION", joinColumns = {
+//        @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID")}, inverseJoinColumns = {
+//        @JoinColumn(name = "PROMOTIONID", referencedColumnName = "PROMOTIONID")})
+//    @ManyToMany
+//    private List<Promotion> promotionList;
     @JoinColumn(name = "CATEGORYID", referencedColumnName = "CATEGORYID")
     @ManyToOne(optional = false)
     private Category categoryid;
@@ -76,16 +77,18 @@ public class Product implements Serializable {
     private List<Productorder> productorderList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Productcart> productcartList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<Productpromotion> productpromotionList;
 
     public Product() {
     }
 
-    public Product(Integer productID) {
-        this.productID = productID;
+    public Product(Integer productid) {
+        this.productid = productid;
     }
-
-    public Product(Integer productID, String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
-        this.productID = productID;
+    
+    public Product(Integer productid, String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
+        this.productid = productid;
         this.name = name;
         this.price = price;
         this.stock = stock;
@@ -95,7 +98,7 @@ public class Product implements Serializable {
         this.categoryid = categoryid;
         this.staffid = staffid;
     }
-
+    
     public Product(String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
         this.name = name;
         this.price = price;
@@ -107,12 +110,12 @@ public class Product implements Serializable {
         this.staffid = staffid;
     }
 
-    public Integer getProductID() {
-        return productID;
+    public Integer getProductid() {
+        return productid;
     }
 
-    public void setProductID(Integer productID) {
-        this.productID = productID;
+    public void setProductid(Integer productid) {
+        this.productid = productid;
     }
 
     public String getName() {
@@ -163,14 +166,22 @@ public class Product implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public List<Promotion> getPromotionList() {
-        return promotionList;
+    public Boolean getIspromo() {
+        return ispromo;
     }
 
-    public void setPromotionList(List<Promotion> promotionList) {
-        this.promotionList = promotionList;
+    public void setIspromo(Boolean ispromo) {
+        this.ispromo = ispromo;
     }
+
+//    @XmlTransient
+//    public List<Promotion> getPromotionList() {
+//        return promotionList;
+//    }
+//
+//    public void setPromotionList(List<Promotion> promotionList) {
+//        this.promotionList = promotionList;
+//    }
 
     public Category getCategoryid() {
         return categoryid;
@@ -209,7 +220,7 @@ public class Product implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (productID != null ? productID.hashCode() : 0);
+        hash += (productid != null ? productid.hashCode() : 0);
         return hash;
     }
 
@@ -220,7 +231,7 @@ public class Product implements Serializable {
             return false;
         }
         Product other = (Product) object;
-        if ((this.productID == null && other.productID != null) || (this.productID != null && !this.productID.equals(other.productID))) {
+        if ((this.productid == null && other.productid != null) || (this.productid != null && !this.productid.equals(other.productid))) {
             return false;
         }
         return true;
@@ -228,7 +239,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Product[ productID=" + productID + " ]";
+        return "entity.Product[ productid=" + productid + " ]";
     }
-
+    
 }

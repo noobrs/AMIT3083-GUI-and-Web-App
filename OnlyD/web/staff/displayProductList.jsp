@@ -1,3 +1,4 @@
+<%@include file="staffAuthentication.jsp"%>
 <%@page import="java.util.List"%>
 <%@page  import="entity.Product" %>
 <%
@@ -10,8 +11,8 @@
         <td>Product ID</td>
         <td><select name="productId">
                 <% for (Product product: productList){%>
-                <option value="<%=product.getProductID()%>">
-                    <%=product.getProductID()%>
+                <option value="<%=product.getProductid()%>">
+                    <%=product.getProductid()%>
                 <%}%>
             </select>
             <br>

@@ -17,7 +17,7 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author danie
+ * @author GIGABYTE
  */
 @Entity
 @Table(name = "PRODUCTORDER")

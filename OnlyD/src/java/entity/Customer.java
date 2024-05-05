@@ -4,8 +4,6 @@
  */
 package entity;
 
-import java.io.Serializable;
-import java.util.List;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -17,23 +15,25 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Size;
 import jakarta.xml.bind.annotation.XmlRootElement;
-import jakarta.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.List;
 
 /**
  *
- * @author danie
+ * @author Vin Sen
  */
 @Entity
 @Table(name = "CUSTOMER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
-    @NamedQuery(name = "Customer.findByCustomerID", query = "SELECT c FROM Customer c WHERE c.customerid = :customerid"),
-    @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name"),
-    @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Customer c WHERE c.username = :username"),
-    @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Customer c WHERE c.phoneNumber = :phoneNumber"),
-    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
+    @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c WHERE c.status != :deletedStatus"),
+    @NamedQuery(name = "Customer.findByCustomerID", query = "SELECT c FROM Customer c WHERE c.customerID = :customerID AND c.status != :deletedStatus"),
+    @NamedQuery(name = "Customer.findByName", query = "SELECT c FROM Customer c WHERE c.name = :name AND c.status != :deletedStatus"),
+    @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Customer c WHERE c.username = :username AND c.status != :deletedStatus"),
+    @NamedQuery(name = "Customer.findByPhoneNumber", query = "SELECT c FROM Customer c WHERE c.phoneNumber = :phoneNumber AND c.status != :deletedStatus"),
+    @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.status != :deletedStatus"),
     @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password"),
     @NamedQuery(name = "Customer.findByStatus", query = "SELECT c FROM Customer c WHERE c.status = :status")})
 public class Customer implements Serializable {
@@ -43,15 +43,21 @@ public class Customer implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "CUSTOMERID")
-    private Integer customerid;
+    private Integer customerID;
+    @Size(max = 100)
     @Column(name = "NAME")
     private String name;
+    @Size(max = 50)
     @Column(name = "USERNAME")
     private String username;
+    @Size(max = 20)
     @Column(name = "PHONENUMBER")
     private String phoneNumber;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Size(max = 100)
     @Column(name = "EMAIL")
     private String email;
+    @Size(max = 255)
     @Column(name = "PASSWORD")
     private String password;
     @Column(name = "STATUS")
@@ -71,11 +77,11 @@ public class Customer implements Serializable {
     public Customer() {
     }
 
-    public Customer(Integer customerid) {
-        this.customerid = customerid;
+    public Customer(Integer customerID) {
+        this.customerID = customerID;
     }
-    
-        public Customer(String name, String username, String phoneNumber, String email, String password, Integer status) {
+
+    public Customer(String name, String username, String phoneNumber, String email, String password, Integer status) {
         this.name = name;
         this.username = username;
         this.phoneNumber = phoneNumber;
@@ -93,11 +99,11 @@ public class Customer implements Serializable {
     }
 
     public Integer getCustomerID() {
-        return customerid;
+        return customerID;
     }
 
-    public void setCustomerID(Integer customerid) {
-        this.customerid = customerid;
+    public void setCustomerID(Integer customerID) {
+        this.customerID = customerID;
     }
 
     public String getName() {
@@ -148,7 +154,6 @@ public class Customer implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
     public List<Orders> getOrdersList() {
         return ordersList;
     }
@@ -157,7 +162,6 @@ public class Customer implements Serializable {
         this.ordersList = ordersList;
     }
 
-    @XmlTransient
     public List<Productcart> getProductcartList() {
         return productcartList;
     }
@@ -169,7 +173,7 @@ public class Customer implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (customerid != null ? customerid.hashCode() : 0);
+        hash += (customerID != null ? customerID.hashCode() : 0);
         return hash;
     }
 
@@ -180,7 +184,7 @@ public class Customer implements Serializable {
             return false;
         }
         Customer other = (Customer) object;
-        if ((this.customerid == null && other.customerid != null) || (this.customerid != null && !this.customerid.equals(other.customerid))) {
+        if ((this.customerID == null && other.customerID != null) || (this.customerID != null && !this.customerID.equals(other.customerID))) {
             return false;
         }
         return true;
@@ -188,7 +192,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Customer[ customerid=" + customerid + " ]";
+        return "entity.Customer[ customerID=" + customerID + " ]";
     }
 
 }

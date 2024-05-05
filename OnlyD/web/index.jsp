@@ -83,6 +83,6 @@
                 </div>
             </div>
         </div>
-        <%@include file="layout/footer.jsp"%>
+        <%@include file="layout/footer.jsp"%> 
     </body>
 </html>

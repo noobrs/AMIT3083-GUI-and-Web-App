@@ -4,7 +4,6 @@
  */
 package entity;
 
-import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -14,10 +13,11 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  *
- * @author danie
+ * @author Vin Sen
  */
 @Entity
 @Table(name = "PRODUCTCART")
@@ -106,7 +106,7 @@ public class Productcart implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Productcart[ productcartPK=" + productcartPK + " ]";
+        return "entitytest.Productcart[ productcartPK=" + productcartPK + " ]";
     }
     
 }

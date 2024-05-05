@@ -27,7 +27,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author danie
+ * @author GIGABYTE
  */
 @Entity
 @Table(name = "ORDERS")

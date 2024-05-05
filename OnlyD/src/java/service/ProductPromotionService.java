@@ -4,7 +4,7 @@
  */
 package service;
 
-import entity.ProductPromotion;
+import entity.Productpromotion;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -24,7 +24,7 @@ public class ProductPromotionService {
         this.em = em;
     }
     
-    public void addProductPromotionService(ProductPromotion productPromotion){
+    public void addProductPromotionService(Productpromotion productPromotion){
         em.persist(productPromotion);
     }
     

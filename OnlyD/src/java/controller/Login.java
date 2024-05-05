@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import service.CartService;
 import service.CustomerService;
 
 /**
@@ -68,25 +69,16 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
         String username = "";
         String password = "";
         CustomerService custService = new CustomerService(em);
         Customer cust;
+        
+        CartService cartService = new CartService(em);
 
         try {
-            // means login ady
-//            if (session.getAttribute("customer") != null) {
-//                response.sendRedirect("index.jsp");
-//            } else if (session.getAttribute("staff") != null) {
-//                // automatically log out staff if customer attempt to login
-//                session.invalidate();
-//                session = request.getSession();
-//            } else if (request.isUserInRole("AdminRole")) {
-//                session.invalidate();
-//                session = request.getSession();
-//            }
 
             username = request.getParameter("username");
             password = request.getParameter("password");
@@ -96,6 +88,7 @@ public class Login extends HttpServlet {
                 throw new IllegalArgumentException("Login fail! Incorrect username or password!");
             } else {
                 session.setAttribute("customer", cust);
+                cust.setProductcartList(cartService.getCartItems(cust.getCustomerID()));
                 session.setAttribute("isCustomer", true);
                 response.sendRedirect("index.jsp");
             }
@@ -105,6 +98,7 @@ public class Login extends HttpServlet {
             session.setAttribute("enteredUsername", username);
             response.sendRedirect("login.jsp");
         } catch (IOException e) {
+        } catch (Exception e) {
         }
     }
 

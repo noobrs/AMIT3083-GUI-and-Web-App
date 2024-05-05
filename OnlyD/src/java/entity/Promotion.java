@@ -4,8 +4,6 @@
  */
 package entity;
 
-import java.io.Serializable;
-import java.util.Date;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -13,8 +11,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
@@ -23,22 +20,26 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
  *
- * @author danie
+ * @author Vin Sen
  */
 @Entity
 @Table(name = "PROMOTION")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Promotion.findAll", query = "SELECT p FROM Promotion p WHERE p.status != :deletedStatus"),
-    @NamedQuery(name = "Promotion.findByPromotionID", query = "SELECT p FROM Promotion p WHERE p.promotionID = :promotionID AND p.status != :deletedStatus"),
+    @NamedQuery(name = "Promotion.findAll", query = "SELECT p FROM Promotion p"),
+    @NamedQuery(name = "Promotion.findByPromotionid", query = "SELECT p FROM Promotion p WHERE p.promotionid = :promotionid"),
     @NamedQuery(name = "Promotion.findByDiscountpercentage", query = "SELECT p FROM Promotion p WHERE p.discountpercentage = :discountpercentage"),
     @NamedQuery(name = "Promotion.findByStartdatetime", query = "SELECT p FROM Promotion p WHERE p.startdatetime = :startdatetime"),
     @NamedQuery(name = "Promotion.findByEnddatetime", query = "SELECT p FROM Promotion p WHERE p.enddatetime = :enddatetime"),
-    @NamedQuery(name = "Promotion.findByStatus", query = "SELECT p FROM Promotion p WHERE p.status = :status")})
+    @NamedQuery(name = "Promotion.findByStatus", query = "SELECT p FROM Promotion p WHERE p.status = :status")
+
+})
 public class Promotion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -46,7 +47,7 @@ public class Promotion implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "PROMOTIONID")
-    private Integer promotionID;
+    private Integer promotionid;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "DISCOUNTPERCENTAGE")
     private Double discountpercentage;
@@ -58,28 +59,20 @@ public class Promotion implements Serializable {
     private Date enddatetime;
     @Column(name = "STATUS")
     private Integer status;
-    @JoinTable(name = "PRODUCTPROMOTION", joinColumns = {
-        @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID")}, inverseJoinColumns = {
-        @JoinColumn(name = "PROMOTIONID", referencedColumnName = "PROMOTIONID")})
-//    @OneToMany(cascade = CascadeType.ALL, mappedBy = "promotion")
-//    private List<Promotion> promotionList;
-    
+//    @ManyToMany(mappedBy = "promotionList")
+//    private List<Product> productList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Promotion")
+    private List<Productpromotion> productpromotionList;
+
     public static final int ACTIVE_STATUS = 1;
-    public static final int VERIFICATION_STATUS = 2;
+    public static final int EXPIRED_STATUS = 2;
     public static final int DELETED_STATUS = 3;
 
     public Promotion() {
-        
-    }    
-
-    public Promotion(Integer promotionID, boolean b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public Promotion(Double discountpercentage, Date startdatetime, Date enddatetime) {
-        this.discountpercentage = discountpercentage;
-        this.startdatetime = startdatetime;
-        this.enddatetime = enddatetime;
+    public Promotion(Integer promotionid) {
+        this.promotionid = promotionid;
     }
 
     public Promotion(Double discountpercentage, Date startdatetime, Date enddatetime, Integer status) {
@@ -89,16 +82,12 @@ public class Promotion implements Serializable {
         this.status = status;
     }
 
-    public Promotion(Integer promotionID) {
-        this.promotionID = promotionID;
-    }
-
     public Integer getPromotionid() {
-        return promotionID;
+        return promotionid;
     }
 
-    public void setPromotionid(Integer promotionID) {
-        this.promotionID = promotionID;
+    public void setPromotionid(Integer promotionid) {
+        this.promotionid = promotionid;
     }
 
     public Double getDiscountpercentage() {
@@ -133,18 +122,19 @@ public class Promotion implements Serializable {
         this.status = status;
     }
 
-//    public List<Promotion> getPromotionList() {
-//        return promotionList;
+//    @XmlTransient
+//    public List<Product> getProductList() {
+//        return productList;
 //    }
 //
-//    public void setPromotionList(List<Promotion> promotionList) {
-//        this.promotionList = promotionList;
+//    public void setProductList(List<Product> productList) {
+//        this.productList = productList;
 //    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (promotionID != null ? promotionID.hashCode() : 0);
+        hash += (promotionid != null ? promotionid.hashCode() : 0);
         return hash;
     }
 
@@ -155,7 +145,7 @@ public class Promotion implements Serializable {
             return false;
         }
         Promotion other = (Promotion) object;
-        if ((this.promotionID == null && other.promotionID != null) || (this.promotionID != null && !this.promotionID.equals(other.promotionID))) {
+        if ((this.promotionid == null && other.promotionid != null) || (this.promotionid != null && !this.promotionid.equals(other.promotionid))) {
             return false;
         }
         return true;
@@ -163,7 +153,7 @@ public class Promotion implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Promotion[ promotionID=" + promotionID + " ]";
+        return "entity.Promotion[ promotionid=" + promotionid + " ]";
     }
 
 }

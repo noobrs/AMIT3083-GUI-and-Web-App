@@ -23,10 +23,10 @@ import java.util.Objects;
 @Table(name = "PRODUCTPROMOTION")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "ProductPromotion.findAll", query = "SELECT p FROM ProductPromotion p"),
-    @NamedQuery(name = "ProductPromotion.findByPromotionid", query = "SELECT p FROM ProductPromotion p WHERE p.productpromotionPK.promotionid = :promotionid"),
-    @NamedQuery(name = "ProductPromotion.findByProductid", query = "SELECT p FROM ProductPromotion p WHERE p.productpromotionPK.productid = :productid")})
-public class ProductPromotion implements Serializable {
+    @NamedQuery(name = "Productpromotion.findAll", query = "SELECT p FROM Productpromotion p"),
+    @NamedQuery(name = "Productpromotion.findByPromotionid", query = "SELECT p FROM Productpromotion p WHERE p.productpromotionPK.promotionid = :promotionid"),
+    @NamedQuery(name = "Productpromotion.findByProductid", query = "SELECT p FROM Productpromotion p WHERE p.productpromotionPK.productid = :productid")})
+public class Productpromotion implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EmbeddedId
@@ -38,22 +38,22 @@ public class ProductPromotion implements Serializable {
     @ManyToOne(optional = false)
     private Product product;
 
-    public ProductPromotion() {
+    public Productpromotion() {
     }
 
-    public ProductPromotion(ProductpromotionPK productpromotionPK) {
+    public Productpromotion(ProductpromotionPK productpromotionPK) {
         this.productpromotionPK = productpromotionPK;
     }
 
-    public ProductPromotion(int promotionid, int productid) {
+    public Productpromotion(int promotionid, int productid) {
         this.productpromotionPK = new ProductpromotionPK(promotionid, productid);
     }
 
-    public ProductpromotionPK getProductPromotionPK() {
+    public ProductpromotionPK getProductpromotionPK() {
         return productpromotionPK;
     }
 
-    public void setProductPromotionPK(ProductpromotionPK productpromotionPK) {
+    public void setProductpromotionPK(ProductpromotionPK productpromotionPK) {
         this.productpromotionPK = productpromotionPK;
     }
 
@@ -93,7 +93,7 @@ public class ProductPromotion implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final ProductPromotion other = (ProductPromotion) obj;
+        final Productpromotion other = (Productpromotion) obj;
         if (!Objects.equals(this.productpromotionPK, other.productpromotionPK)) {
             return false;
         }
@@ -105,7 +105,7 @@ public class ProductPromotion implements Serializable {
 
     @Override
     public String toString() {
-        return "ProductPromotion{" + "productpromotionPK=" + productpromotionPK + ", promotion=" + promotion + ", product=" + product + '}';
+        return "Productpromotion{" + "productpromotionPK=" + productpromotionPK + ", promotion=" + promotion + ", product=" + product + '}';
     }
     
 }

@@ -28,12 +28,18 @@
 
         <h2>Customer</h2>
         <a href="../ViewCustomer">View All Customers</a><br>
-        
+
         <h2>Product</h2>
-<!--        for user-->
+        <!--        for user-->
         <a href="../ViewProduct">View All Product</a><br>
         <a href="../ViewProductStaff">Add a Product</a><br>        
         <a href="../LoadProductList">Update Product</a><br>
+
+        <h2>Category</h2>
+        <a href="../ViewCategory">View Category</a><br>
+        
+        <h2>Promotion</h2>
+        <a href="../ViewProductToPromo">Add Promotion</a><br>
 
         <%@include file="/layout/footer.jsp"%>
     </body>

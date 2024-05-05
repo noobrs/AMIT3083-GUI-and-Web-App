@@ -4,22 +4,25 @@
  */
 package entity;
 
-import java.io.Serializable;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  *
- * @author danie
+ * @author Vin Sen
  */
 @Embeddable
 public class ProductorderPK implements Serializable {
 
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ORDERID")
     private int orderid;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "PRODUCTID")
     private int productid;
 

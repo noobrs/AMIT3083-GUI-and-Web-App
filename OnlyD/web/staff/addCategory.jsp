@@ -3,7 +3,7 @@
     Created on : 30 Apr 2024, 10:43:54 AM
     Author     : GIGABYTE
 --%>
-
+<%@include file="staffAuthentication.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

@@ -34,7 +34,7 @@ public class DeleteProduct extends HttpServlet {
             ProductService productService = new ProductService(em);
             HttpSession session = request.getSession();
             Product product = (Product)session.getAttribute("product");
-            int id = product.getProductID();
+            int id = product.getProductid();
                
             utx.begin();
             boolean success = productService.deleteProduct(id);
