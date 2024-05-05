@@ -172,6 +172,10 @@
         <servlet-name>ProcessProductToPromo</servlet-name>
         <servlet-class>controller.ProcessProductToPromo</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Checkout</servlet-name>
+        <servlet-class>controller.Checkout</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -323,6 +327,10 @@
     <servlet-mapping>
         <servlet-name>ProcessProductToPromo</servlet-name>
         <url-pattern>/ProcessProductToPromo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Checkout</servlet-name>
+        <url-pattern>/Checkout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

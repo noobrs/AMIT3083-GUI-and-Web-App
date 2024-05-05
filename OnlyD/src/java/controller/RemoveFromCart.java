@@ -43,6 +43,12 @@ public class RemoveFromCart extends HttpServlet {
 
                 if (removed) {
                     utx.commit(); // Commit the transaction
+
+                    utx.begin();
+                    cust = em.find(Customer.class, cust.getCustomerID());
+                    em.refresh(cust);
+                    utx.commit();
+
                     // Redirect back to the cart page
                     response.sendRedirect("ViewCart");
                 } else {
@@ -76,6 +82,5 @@ public class RemoveFromCart extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
-    
+
 }

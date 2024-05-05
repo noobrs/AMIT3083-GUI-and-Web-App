@@ -5,6 +5,7 @@
 package controller;
 
 import entity.Customer;
+import entity.Product;
 import entity.Productcart;
 import entity.ProductcartPK;
 import jakarta.annotation.Resource;
@@ -20,6 +21,7 @@ import jakarta.transaction.UserTransaction;
 import java.util.List;
 import java.util.Objects;
 import service.CartService;
+import service.CustomerService;
 import service.ProductService;
 
 public class AddToCart extends HttpServlet {
@@ -31,50 +33,64 @@ public class AddToCart extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         try {
             HttpSession session = request.getSession();
-            CartService cartService = new CartService(em);           
+            CartService cartService = new CartService(em);
             int productId = Integer.parseInt(request.getParameter("productId"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             boolean addedToCart = false;
 
             Customer cust = (Customer) session.getAttribute("customer");
-            
+
             // cust logged in
             if (cust != null) {
+                Product product = new ProductService(em).findProductByID(productId);
+
                 Productcart cartItem = new Productcart(new ProductcartPK(cust.getCustomerID(), productId));
-                cartItem.setProduct(new ProductService(em).findProductByID(productId));
+                cartItem.setProduct(product);
                 cartItem.setQuantity(quantity);
-                List<Productcart> productcartList = cust.getProductcartList();
+                List<Productcart> productcartList = cust.getProductcartList(); //  old cart list
 
-                boolean itemExisted = false;
 
-                if (productcartList.size() > 1) {
+                if (!productcartList.isEmpty()) {
                     for (Productcart existedPC : productcartList) {
-                        if (Objects.equals(existedPC.getProduct().getProductid(), cartItem.getProduct().getProductid())) {
-                            itemExisted = true;
+                        if (Integer.compare(existedPC.getProduct().getProductid(), cartItem.getProduct().getProductid()) == 0) {          
+                            int sum = existedPC.getQuantity() + quantity;
+                            if (Integer.compare(sum, product.getStock()) > 0) {
+                                response.getWriter().println("not enough stock");
+                                return;
+                            }
                         }
                     }
                 }
-
-                productcartList.add(cartItem);
 
                 utx.begin();
                 addedToCart = cartService.addCart(cartItem);
                 utx.commit();
 
                 if (addedToCart) {
-//                session.setAttribute("productcartList", productcartList);
-//                response.sendRedirect("user/cart.jsp");
-                    session.setAttribute("customer", cust); //just temp object, need to remove when combine
                     
+                    utx.begin();
+                    cust = em.find(Customer.class, cust.getCustomerID());
+                    em.refresh(cust);
+                    utx.commit();
+
+                    session.setAttribute("customer", cust); //just temp object, need to remove when combine
+
                     request.getRequestDispatcher("/ViewCart").forward(request, response);
 
                 } else {
                     // If product addition failed, handle the error (e.g., display an error message)
                     response.getWriter().println("Failed to add product to cart");
                 }
+
+//                // check if current stock is enough
+//                if (product.getStock() >= quantity) {
+//
+//                } else {
+//                    response.getWriter().println("not enough stock");
+//                }
             }
 
         } catch (NumberFormatException e) {

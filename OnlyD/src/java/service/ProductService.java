@@ -52,8 +52,8 @@ public class ProductService {
     }
 
     public List<Product> findByStatus(int status) {
-        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByStatus",Product.class);
-        productList.setParameter("status",status);
+        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByStatus", Product.class);
+        productList.setParameter("status", status);
         return productList.getResultList();
     }
 
@@ -72,5 +72,21 @@ public class ProductService {
             return true;
         }
         return false;
+    }
+
+    public int getProductQuantity(int productId) {
+        // Retrieve the product based on the product ID
+        Product product = findProductByID(productId);
+
+        // Check if the product exists
+        if (product != null) {
+            int quantity = product.getStock();
+            // Add logging statement
+            System.out.println("Product ID(ProductService): " + productId + ", Quantity: " + quantity);
+            return quantity;
+        } else {
+            // Return 0 if the product does not exist
+            return 0;
+        }
     }
 }
