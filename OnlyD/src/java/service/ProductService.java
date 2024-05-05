@@ -68,6 +68,7 @@ public class ProductService {
             tempProduct.setStatus(product.getStatus());
             tempProduct.setCategoryid(product.getCategoryid());
             tempProduct.setStaffid(product.getStaffid());
+            tempProduct.setIspromo(product.getIspromo());
             return true;
         }
         return false;

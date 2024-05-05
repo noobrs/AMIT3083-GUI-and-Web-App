@@ -34,14 +34,14 @@ public class PromotionService {
     public boolean addProductPromotion(List<Productpromotion> newProductpromoList) {
 
         Productpromotion temp;
-        
+
         try {
             for (Productpromotion p : newProductpromoList) {
                 temp = em.find(Productpromotion.class, p.getProductpromotionPK());
-                
-                if(temp == null){
+
+                if (temp == null) {
                     em.persist(p);
-                } else{
+                } else {
                     return false;
                 }
             }
@@ -51,7 +51,7 @@ public class PromotionService {
         }
     }
 
-    public List<Productpromotion> getPromotionItems(int promotionId) {
+    public List<Productpromotion> getPromotionItemsByPromotionId(int promotionId) {
 
         List<Productpromotion> productpromotionList;
         try {
@@ -63,7 +63,50 @@ public class PromotionService {
         }
 
         return productpromotionList;
+    }
+    
+    public Promotion findActivePromotionByProductId(int productId){        
+                
+        List<Productpromotion> productpromoLists = em.createNamedQuery("Productpromotion.findByProductid", Productpromotion.class)
+                .setParameter("productid", productId)
+                .getResultList();
+        
+        if(!productpromoLists.isEmpty()){
+            for(Productpromotion pp : productpromoLists){
+                if(pp.getPromotion().getStatus() == Promotion.ACTIVE_STATUS){
+                    return pp.getPromotion();
+                }
+            }
+        }
+        return null;
+    }
+    
+//    public List<Promotion> findActivePromotions(){
+//        List<Promotion> promoLists;
+//        try {
+//            promoLists = em.createNamedQuery("Promotion.findByStatus", Promotion.class)
+//                    .setParameter("status", Promotion.ACTIVE_STATUS)
+//                    .getResultList();
+//            
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//        return promoLists;
+//    }
 
+    public List<Productpromotion> getPromotionItemsByProductId(int productId) {
+
+        List<Productpromotion> productpromotionList;
+        try {
+            productpromotionList = (List<Productpromotion>) em.createNamedQuery("Productpromotion.findByProductid")
+                    .setParameter("promotionid", productId)
+                    .getResultList();
+        } catch (Exception e) {
+            return null;
+        }
+
+        return productpromotionList;
     }
 
     public Promotion findPromotionByPromotionId(Integer promotionid) {

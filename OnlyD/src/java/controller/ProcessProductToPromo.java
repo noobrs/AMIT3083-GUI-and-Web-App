@@ -22,6 +22,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import service.ProductService;
 import service.PromotionService;
 
 /**
@@ -46,6 +47,7 @@ public class ProcessProductToPromo extends HttpServlet {
             Date startDateTime;
             Date endDateTime;
             PromotionService promotionService = new PromotionService(em);
+            ProductService productService = new ProductService(em);
 
             // get selected product
             for (int i = 0; i < productList.size(); i++) {
@@ -62,14 +64,20 @@ public class ProcessProductToPromo extends HttpServlet {
 
             Promotion promotion = new Promotion(discountPercentage, startDateTime, endDateTime, Promotion.ACTIVE_STATUS);
 
+            // create promotion record
             utx.begin();
             promotionService.addPromotion(promotion);
             utx.commit();
 
+            // insert productpromotion
             utx.begin();
+            boolean setPromo = false;
             List<Productpromotion> productpromoList = new ArrayList<>();
             for (Product p : selectedProductList) {
+                p.setIspromo(true);
                 productpromoList.add(new Productpromotion(new ProductpromotionPK(promotion.getPromotionid(), p.getProductid())));
+                setPromo = productService.updateProduct(p);
+                System.out.println(setPromo);
             }
 
             boolean added = promotionService.addProductPromotion(productpromoList);

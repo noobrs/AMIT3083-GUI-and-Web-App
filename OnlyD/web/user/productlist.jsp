@@ -12,7 +12,9 @@
         <%@include file="/layout/header.jsp"%>
         <%
           List<Product> productList = (List)session.getAttribute("productListUser");
+          double[] promoPrice = (double[])session.getAttribute("promoPrice");
           if(productList != null){
+          int i = 0;
         %>
 
         <table border="1">
@@ -21,6 +23,7 @@
                 <th>Product Name</th>
                 <th>Description</th>
                 <th>Price (RM)</th>
+                <th>Promo Price</th>
             </tr>
             <% for (Product product: productList){ %>
             <tr>
@@ -28,6 +31,16 @@
                 <td><%= product.getName() %></td>
                 <td><%= product.getDescription() %> </td>
                 <td><%= String.format("%.2f", product.getPrice()) %></td>
+                <td>
+                    <%
+                        if(product.getIspromo() == true){
+                        out.println(String.format("%.2f", promoPrice[i]));
+                        }
+                        else{
+                        out.println("-");
+                        }
+                    %>
+                </td>
                 <!-- Add an "Add to Cart" button -->
                 <td>
                     <form action="../AddToCart" method="POST"> 
@@ -37,7 +50,10 @@
                     </form>
                 </td>
             </tr>
-            <% } %>
+            <% 
+                i++;
+                } 
+            %>
         </table>
         <%
             } else{
