@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/AddProduct.java</file>
             <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/RemoveFromCart.java</file>
             <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/Checkout.java</file>
-            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/service/ProductService.java</file>
-            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/web/user/productlist.jsp</file>
             <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/web/checkout.jsp</file>
+            <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/controller/ViewCart.java</file>
             <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/web/user/cart.jsp</file>
             <file>file:/C:/Users/Asus/Documents/AMIT3083-GUI-and-Web-App/OnlyD/src/java/service/CartService.java</file>
         </group>
