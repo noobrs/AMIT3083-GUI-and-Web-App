@@ -21,10 +21,10 @@ import service.CategoryService;
  * @author GIGABYTE
  */
 public class GetCategoryForProduct extends HttpServlet {
-    
+
     @PersistenceContext
     EntityManager em;
-    
+
     String path = null;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -34,12 +34,13 @@ public class GetCategoryForProduct extends HttpServlet {
             List<Category> categoryList = categoryService.findByStatus(1);
             HttpSession session = request.getSession();
             session.setAttribute("categoryListProduct", categoryList);
-            path = (String) session.getAttribute("path");
-            response.sendRedirect(path);  
+
+           path = (String) session.getAttribute("path");
+            response.sendRedirect(path);
         } catch (Exception ex) {
-           response.getWriter().println(ex.getMessage());
+            response.getWriter().println(ex.getMessage());
         }
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

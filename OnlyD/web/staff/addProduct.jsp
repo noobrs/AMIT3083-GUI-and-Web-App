@@ -10,6 +10,18 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Product</title>
+        <style>
+            .image-container {
+                width: 200px;
+                height: 120px;
+                overflow-y: auto;
+            }
+
+            .image-container img{
+                height: 100px;
+                width: 100px;
+            }
+        </style>
     </head>
     <body>
         <form action="../AddProduct" method="post">
@@ -31,19 +43,34 @@
                     <td><input type="text" name="description" size="50" required></td>
                 </tr>
                 <tr>
-                    <td>Image</td>
-                    <td><input type="text" name="image" required></td>
+                    <td>
+                        <div class="image-container">
+                            <%for (int i = 1; i < 4; i++) { %>    <%-- hardcode, rmb to adjust the num --%>
+                            <% String path = "../image/img_" + i +".jpg"; %>
+                            <br/><a><%=i%></a><br/>
+                            <img src="<%=path%>" >
+                            <% } %>
+                        </div>
+                    <td>
+                </tr>
+                <tr>
+                    <td>
+                        Image No
+                    </td>
+                    <td>
+                        <input type="number" name="imgId" min="1" max="3" required> <%-- hardcode, rmb to adjust the max --%>
+                    </td>
                 </tr>
                 <tr>
                     <td>Category Name</td>
                     <td><select name="categoryid">
-                <% for (Category category: categoryList){%>
-                <option value="<%=category.getCategoryid()%>">
-                    <%=category.getCategoryname()%>
-                <%}%>
-            </select>
-            <br>
-        </td>
+                            <% for (Category category: categoryList){%>
+                            <option value="<%=category.getCategoryid()%>">
+                                <%=category.getCategoryname()%>
+                                <%}%>
+                        </select>
+                        <br>
+                    </td>
                 </tr>
                 <tr>
                     <td>Add by</td>

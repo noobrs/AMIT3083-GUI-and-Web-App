@@ -2,8 +2,35 @@
 <%@page import="entity.Category"%>
 <%@page import="entity.Staff"%>
 <%@page import="java.util.List"%>
+<%@page import="java.util.regex.Matcher"%>
+<%@page import="java.util.regex.Pattern"%>
+
+<%!
+    String extractNumber(String word) {
+        Pattern pattern = Pattern.compile("\\d+");
+        Matcher matcher = pattern.matcher(word);
+        if (matcher.find()) {
+            return matcher.group();
+        }
+        return null;
+    }
+%>
+
 <html>
-    <head></head>
+    <head>
+        <style>
+            .image-container {
+                width: 200px;
+                height: 120px;
+                overflow-y: auto;
+            }
+
+            .image-container img{
+                height: 100px;
+                width: 100px;
+            }
+        </style>
+    </head>
     <body>
         <%
             Product product = (Product) session.getAttribute("product");
@@ -37,8 +64,22 @@
                 </tr>
                 <tr>
                     <td>Image</td>
-                    <td><input type="text" name="image"
-                               value="<%=product.getImage()%>" required></td>
+                <tr>
+                    <td>
+                        <div class="image-container">
+                            <%for (int i = 1; i < 4; i++) { %>    <%-- hardcode, rmb to adjust the num --%>
+                            <% String path = "../image/img_" + i +".jpg"; %>
+                            <br/><a><%=i%></a><br/>
+                            <img src="<%=path%>" >
+                            <% } %>
+                        </div>
+                    <td>
+                </tr>
+                <tr>
+                    <td>
+                        <% String str = extractNumber(product.getImage()); %>
+                        <input type="number" name="image" value="<%=str%>" min="1" max="3" required> <%-- hardcode, rmb to adjust the max --%>
+                    </td> <%-- hardcode, rmb to adjust the max --%>
                 </tr>
                 <tr>
                     <td>Category Name</td>
@@ -57,9 +98,9 @@
                         </select>
                     </td>
                 </tr>
-                    <td>Add/Last Modified by</td>
-                    <td><input type="text" name="staffid"
-                               value="<%=staff.getStaffid()%>" ></td>
+                <td>Add/Last Modified by</td>
+                <td><input type="text" name="staffid"
+                           value="<%=staff.getStaffid()%>" ></td>
                 </tr>
             </table>
             <input type="submit" value="Update Product">

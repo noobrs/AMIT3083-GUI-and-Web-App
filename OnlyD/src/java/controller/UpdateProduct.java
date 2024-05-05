@@ -43,7 +43,7 @@ public class UpdateProduct extends HttpServlet {
 
             String description = request.getParameter("description");
             
-            String image = request.getParameter("image");
+            String image = "../image/img_" + request.getParameter("image") +".jpg";
             
             int status = 1;
 

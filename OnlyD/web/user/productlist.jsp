@@ -8,6 +8,13 @@
   List<Category> categoryList = (List)session.getAttribute("categoryListUser");
 %>
 
+<style>
+    img{
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
 <form action="../SearchProductByUser" method="get">
     <input type="text" name="productName" placeholder="Product Name" >
     <input type="submit" value="Search" name="searchButton"><br/> 
@@ -31,6 +38,7 @@
         <th>Product ID</th>
         <th>Product Name</th>
         <th>Description</th>
+        <th>Image</th>
         <th>Price (RM)</th>
         <th>Category Name</th>
     </tr>
@@ -40,6 +48,7 @@
         <td><%= product.getProductid() %></td>
         <td><%= product.getName() %></td>
         <td><%= product.getDescription() %> </td>
+        <td class="img"><img src="<%= product.getImage() %>"></td>
         <td><%= String.format("%.2f", product.getPrice()) %></td>
         <td><%= categoryP.getCategoryname() %></td>
     </tr>

@@ -43,8 +43,8 @@ public class AddProduct extends HttpServlet {
             int stock = Integer.parseInt(stockStr);
 
             String description = request.getParameter("description");
-
-            String image = request.getParameter("image");
+            
+            String image = "../image/img_" + request.getParameter("imgId") +".jpg";
             
             int status = 1;
 
