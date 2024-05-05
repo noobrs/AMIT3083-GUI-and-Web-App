@@ -43,6 +43,7 @@ public class AddToCart extends HttpServlet {
             
             // cust logged in
             if (cust != null) {
+                
                 Productcart cartItem = new Productcart(new ProductcartPK(cust.getCustomerID(), productId));
                 cartItem.setProduct(new ProductService(em).findProductByID(productId));
                 cartItem.setQuantity(quantity);
