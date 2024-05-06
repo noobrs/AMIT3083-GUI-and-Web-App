@@ -184,6 +184,10 @@
         <servlet-name>AddOrder</servlet-name>
         <servlet-class>controller.AddOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProductDetail</servlet-name>
+        <servlet-class>controller.ViewProductDetail</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -347,6 +351,10 @@
     <servlet-mapping>
         <servlet-name>AddOrder</servlet-name>
         <url-pattern>/AddOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductDetail</servlet-name>
+        <url-pattern>/ViewProductDetail</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

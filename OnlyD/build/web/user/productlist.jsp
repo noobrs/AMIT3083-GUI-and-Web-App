@@ -41,13 +41,14 @@
                 <th>Description</th>
                 <th>Price (RM)</th>
                 <th>Promo Price</th>
+                <th>More Details</th> <%--add --%>
             </tr>
             <% 
                 for (Product product: productList){ 
                 Category categoryP = (Category) session.getAttribute("Category" + i);
             %>
             <tr>
-                <td><%= product.getProductid() %></td>
+                <td><a href="../ViewProductDetail?productId=<%= product.getProductid() %>"><%= product.getProductid() %></a></td>  <%-- add a link --%>
                 <td><%= product.getName() %></td>
                 <td><%= product.getDescription() %> </td>
                 <td><%= String.format("%.2f", product.getPrice()) %></td>
