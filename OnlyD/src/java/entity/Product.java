@@ -61,8 +61,6 @@ public class Product implements Serializable {
     private String image;
     @Column(name = "STATUS")
     private Integer status;
-    @Column(name = "ISPROMO")
-    private Boolean ispromo;
     @JoinColumn(name = "CATEGORYID", referencedColumnName = "CATEGORYID")
     @ManyToOne(optional = false)
     private Category categoryid;
@@ -158,14 +156,6 @@ public class Product implements Serializable {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Boolean getIspromo() {
-        return ispromo;
-    }
-
-    public void setIspromo(Boolean ispromo) {
-        this.ispromo = ispromo;
     }
 
     public Category getCategoryid() {

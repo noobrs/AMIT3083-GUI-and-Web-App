@@ -56,7 +56,6 @@ public class AddProduct extends HttpServlet {
             Staff staffid = new Staff(sid);
 
             Product product = new Product(name, price, stock, description, image, status, categoryid, staffid);
-            product.setIspromo(false);
             ProductService productService = new ProductService(em);
             utx.begin();
             boolean success = productService.addProduct(product);
