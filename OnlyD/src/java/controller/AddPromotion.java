@@ -25,7 +25,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import service.ProductPromotionService;
 import service.ProductService;
 import service.PromotionService;
 
@@ -50,7 +49,6 @@ public class AddPromotion extends HttpServlet {
         Date endDateTime;
         PromotionService promotionService = new PromotionService(em);
         ProductService productService = new ProductService(em);
-        ProductPromotionService productPromotionService = new ProductPromotionService(em);
 
         try {
             productID = Integer.parseInt(request.getParameter("productID"));

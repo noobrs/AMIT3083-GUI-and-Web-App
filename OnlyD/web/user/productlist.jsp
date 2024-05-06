@@ -22,12 +22,16 @@
             <input type="submit" value="Search" name="searchButton"><br/> 
             <input type="submit" value="List All" name="searchButton"><br/>
             <br/><br/>
-            <% for (Category category: categoryList){ 
+            <% 
+                if(categoryList != null){
+                for (Category category: categoryList){ 
                 if(!category.getCategoryname().equals("NULL")){
             %>
             <input type="submit" value="<%= category.getCategoryname() %> " name="searchButton">
-            <% } 
-        } %>
+            <%  } 
+                } 
+                }       
+            %>
         </form>
         <br/><br/>
 
@@ -54,12 +58,12 @@
                 <td><%= categoryP.getCategoryname() %></td>
                 <td>
                     <%
-                        if(product.getIspromo() == true){
-                        out.println(String.format("%.2f", promoPrice[i]));
-                        }
-                        else{
-                        out.println("-");
-                        }
+//                        if(product.getIspromo() == true){
+//                        out.println(String.format("%.2f", promoPrice[i]));
+//                        }
+//                        else{
+//                        out.println("-");
+//                        }
                     %>
                 </td>
                 <!-- Add an "Add to Cart" button -->

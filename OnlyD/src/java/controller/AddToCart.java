@@ -52,10 +52,9 @@ public class AddToCart extends HttpServlet {
                 cartItem.setQuantity(quantity);
                 List<Productcart> productcartList = cust.getProductcartList(); //  old cart list
 
-
                 if (!productcartList.isEmpty()) {
                     for (Productcart existedPC : productcartList) {
-                        if (Integer.compare(existedPC.getProduct().getProductid(), cartItem.getProduct().getProductid()) == 0) {          
+                        if (Integer.compare(existedPC.getProduct().getProductid(), cartItem.getProduct().getProductid()) == 0) {
                             int sum = existedPC.getQuantity() + quantity;
                             if (Integer.compare(sum, product.getStock()) > 0) {
                                 response.getWriter().println("not enough stock");
@@ -70,7 +69,7 @@ public class AddToCart extends HttpServlet {
                 utx.commit();
 
                 if (addedToCart) {
-                    
+
                     utx.begin();
                     cust = em.find(Customer.class, cust.getCustomerID());
                     em.refresh(cust);
@@ -91,6 +90,9 @@ public class AddToCart extends HttpServlet {
 //                } else {
 //                    response.getWriter().println("not enough stock");
 //                }
+            } else{
+                session.setAttribute("statusMsg", "Try to login to add to cart!");
+                request.getRequestDispatcher("login.jsp").forward(request, response);
             }
 
         } catch (NumberFormatException e) {

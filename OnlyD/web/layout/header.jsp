@@ -48,9 +48,9 @@
                         <% } else if(request.isUserInRole("AdminRole")) { %>
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/admin/adminDashboard.jsp">Dashboard</a></button>
                         <% } %>
-                        <form class="d-flex">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        <form class="d-flex" action="<%=request.getContextPath()%>/SearchProductByUser">
+                            <input type="text" name="productName" class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search">
+                            <input type="submit" value="Search" name="searchButton"  class="btn btn-outline-success">
                         </form>
                         <%
 //                        Customer headCust = (Customer)session.getAttribute("customer");

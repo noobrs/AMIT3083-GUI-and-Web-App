@@ -32,14 +32,22 @@ public class SearchProductByUser extends HttpServlet {
         try {
             ProductService productService = new ProductService(em);
             CategoryService categoryService = new CategoryService(em);
+            HttpSession session = request.getSession();
             String prefix = request.getParameter("productName");
             String button = request.getParameter("searchButton");
             int tempId = -1;
             int i = 0;
+            
+            // if direct search from header, the cat is null
+            List<Category> categoryListT = (List)session.getAttribute("categoryListUser");
+            if(categoryListT == null){
+                categoryListT = categoryService.findAll();
+                session.setAttribute("categoryListUser", categoryListT);
+            }
 
             if (button.equals("Search") || button.equals("List All")) {
                 List<Product> productList = productService.findByNamePrefix(prefix, 1);
-                HttpSession session = request.getSession();
+                
 
                 for (Product product : productList) {
                     Category category = product.getCategoryid();
@@ -61,8 +69,6 @@ public class SearchProductByUser extends HttpServlet {
                 Category tempCat = new Category(tempId);
 
                 List<Product> productList = productService.findByCatPrefix(prefix, 1, tempCat);
-
-                HttpSession session = request.getSession();
 
                 for (Product product : productList) {
                     Category category = product.getCategoryid();
