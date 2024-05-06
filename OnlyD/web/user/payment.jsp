@@ -12,41 +12,38 @@
         <title>Payment</title>
     </head>
     <body>
-        <h2>Payment</h2>
+        <%@include file="/layout/header.jsp"%>
+
+        <h2>Shipping Details</h2>
         <div>
-            <form action="SelectPaymentType.jsp">
+            <form action="../AddOrder" method="post">
                 Recipient Name :
                 <input type="text" id="rName" name="rName" placeholder="Name" required>
                 <br>
                 Recipient H/P Number :
                 <input type="tel" id="rHPNumber" name="rHPNumber" placeholder="0123456789" required maxlength="11" minlength="10">
                 <br>
-                Recipient E-mail :
-                <input type="email" id="rEmail" name="rEmail" placeholder="abc@abc.com" required>
-                <br>
-                <br>
-                Address 1 :
+                Address :
                 <input type="text" id="sAddress1" name="sAddress1" required>
-                <br>
-                Address 2 :
-                <input type="text" id="sAddress2" name="sAddress2" required>
                 <br>
                 State :
                 <select id="sState" name="sState" required>
-                    <option>Negeri Sembilan</option>
-                    <option>Perak</option>
-                    <option>Pahang</option>
-                    <option>Kedah</option>
-                    <option>Kelantan</option>
-                    <option>Kuala Lumpur</option>
-                    <option>Selangor</option>
-                    <option>Johor</option>
-                    <option>Terengganu</option>
-                    <option>Perlis</option>
-                    <option>Penang</option>
-                    <option>Malacca</option>
-                    <option>Sabah</option>
-                    <option>Sarawak</option>
+                    <option value="Negeri Sembilan">Negeri Sembilan</option>
+                    <option value="Perak">Perak</option>
+                    <option value="Pahang">Pahang</option>
+                    <option value="Kedah">Kedah</option>
+                    <option value="Kelantan">Kelantan</option>
+                    <option value="Kuala Lumpur">Kuala Lumpur</option>
+                    <option value="Labuan">Labuan</option>
+                    <option value="Putrajaya">Putrajaya</option>
+                    <option value="Selangor">Selangor</option>
+                    <option value="Johor">Johor</option>
+                    <option value="Terengganu">Terengganu</option>
+                    <option value="Perlis">Perlis</option>
+                    <option value="Penang">Penang</option>
+                    <option value="Malacca">Malacca</option>
+                    <option value="Sabah">Sabah</option>
+                    <option value="Sarawak">Sarawak</option>
                 </select>
                 <br>
                 City :
@@ -55,9 +52,19 @@
                 Postal Code :
                 <input type="text" id="sPostCode" name="sPostCode" required maxlength="5" minlength="5">
                 <br>
+                Payment Type : 
+                <select id="paymentType" name="paymentType" onchange="showCardDetails()">
+                    <option value="cash">Cash On Delivery</option>
+                    <option value="card">Credit Card/Debit Card</option>
+                </select>
                 <br>
-                <input type="submit" value="Next">
+                <br>
+                <input type="submit" value="Proceed">
             </form>
         </div>
+
+        <%@include file="/layout/footer.jsp"%>
     </body>
+
+
 </html>

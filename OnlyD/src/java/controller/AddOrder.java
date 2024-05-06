@@ -9,6 +9,7 @@ import entity.Orders;
 import entity.Product;
 import entity.Productcart;
 import entity.Productorder;
+import entity.Promotion;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -25,6 +26,7 @@ import java.util.List;
 import service.CartService;
 import service.OrderService;
 import service.ProductService;
+import service.PromotionService;
 
 /**
  *
@@ -41,61 +43,134 @@ public class AddOrder extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+        String button = request.getParameter("orderButton");
         List<Productcart> selected = (List<Productcart>) session.getAttribute("selectedCartItem");
         Customer cust = (Customer) session.getAttribute("customer");
         ProductService productService = new ProductService(em);
         OrderService orderService = new OrderService(em);
         CartService cartService = new CartService(em);
+        PromotionService promoService = new PromotionService(em);
 
         try {
 
-            Date currentDate = new Date();
-            String address = request.getParameter("address");
-            String paymenttype = request.getParameter("paymentMethod");
-            Double subtotal = Double.valueOf(request.getParameter("subtotal"));
-            Double discount = Double.valueOf(request.getParameter("totaldiscount"));
-            Double shippingfee = Double.valueOf(request.getParameter("shippingfee"));
-            Double total = Double.valueOf(request.getParameter("total"));
+            String paymentType = request.getParameter("paymentType");
+            String cardStatus = request.getParameter("cardStatus");
 
-            Orders order = new Orders(currentDate, address, paymenttype, subtotal, discount, shippingfee, total, cust);
+            // select card and havent go to carPayment page
+            if (paymentType.equals("card") && cardStatus == null) {
+                
+                response.sendRedirect("user/cardPayment.jsp");
+                
+            } else {
+                String address = request.getParameter("sAddress1");
+                String state = request.getParameter("sState");
+                String city = request.getParameter("sCity");
+                String postCode = request.getParameter("sPostCode");
 
-            utx.begin();
-            orderService.addOrder(order);
-            utx.commit();
+                String fullAddress = address + "<br>" + city + ", " + postCode + ", " + state;
+                Date currentDate = new Date();
+                Double subtotal = (Double)session.getAttribute("subtotal");
+                Double discount = (Double)session.getAttribute("totaldiscount");
+                Double shippingfee = (Double)session.getAttribute("shippingfee");
+                Double total = (Double)session.getAttribute("total");
+                Promotion promoApplied = (Promotion) session.getAttribute("promoApplied");
+                
+                Orders order = new Orders(currentDate, address, paymentType, subtotal, discount, shippingfee, total, cust);
 
-            int tempOrderId = order.getOrderid();
-
-            for (Productcart productcart : selected) {
-                Product tempP = productcart.getProduct();
-                int id = tempP.getProductid();
-                Product p = productService.findProductByID(id);
-                Productorder po = new Productorder(tempOrderId, id, productcart.getQuantity());
-                p.setStock(p.getStock() - productcart.getQuantity());
                 utx.begin();
-                productService.updateProduct(p);
-                orderService.addProductOrder(po);
+                orderService.addOrder(order);
                 utx.commit();
-            }
+                
+                int tempOrderId = order.getOrderid();
 
-            utx.begin();
-            for (Productcart pc : selected) {
-                boolean removed = cartService.removeCartItem(cust.getCustomerID(), pc.getProduct().getProductid());
-                if (!removed) {
-                    response.getWriter().println("unable to remove");
+                for (Productcart productcart : selected) {
+                    Product tempP = productcart.getProduct();
+                    int id = tempP.getProductid();
+                    Product p = productService.findProductByID(id);
+                    Productorder po = new Productorder(tempOrderId, id, productcart.getQuantity());
+                    p.setStock(p.getStock() - productcart.getQuantity());
+                    utx.begin();
+                    productService.updateProduct(p);
+                    orderService.addProductOrder(po);
+                    utx.commit();
                 }
-            }
-            utx.commit();
-            utx.begin();
-            cust = em.find(Customer.class, cust.getCustomerID());
-            em.refresh(cust);
-            utx.commit();
 
-            response.sendRedirect("payment.jsp");
+                utx.begin();
+                for (Productcart pc : selected) {
+                    boolean removed = cartService.removeCartItem(cust.getCustomerID(), pc.getProduct().getProductid());
+                    if (!removed) {
+                        response.getWriter().println("unable to remove");
+                    }
+                }
+                utx.commit();
+                utx.begin();
+                cust = em.find(Customer.class, cust.getCustomerID());
+                em.refresh(cust);
+
+                if (promoApplied != null) {
+                    int currentQty = promoApplied.getRedemptionquantity() - 1;
+                    promoApplied.setRedemptionquantity(currentQty);
+                    if (currentQty == 0) {
+                        promoApplied.setStatus(Promotion.REDEEMED_STATUS);
+                    }
+                    boolean success = promoService.updatePromotion(promoApplied);
+                }
+
+                utx.commit();
+
+                session.removeAttribute("promoApplied");
+                response.sendRedirect("payment.jsp");
+            }
 
         } catch (Exception e) {
             response.getWriter().println(e.getMessage());
         }
 
+    }
+
+    protected void processPromoCode(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
+        try {
+            String promoCode = request.getParameter("promoCodeEntered");
+            PromotionService promoService = new PromotionService(em);
+
+            Promotion promotion = promoService.findPromotionByPromotionCode(promoCode);
+            if (promotion != null) {
+                if (promotion.getStatus() == Promotion.ACTIVE_STATUS) {
+
+//                    int currentQty = promotion.getRedemptionquantity() - 1;
+//                    promotion.setRedemptionquantity(currentQty);
+//                    if (currentQty == 0) {
+//                        promotion.setStatus(Promotion.REDEEMED_STATUS);
+//                    }
+                    session.setAttribute("promoApplied", promotion);
+                    response.sendRedirect("user/checkout.jsp");
+
+//                    utx.begin();
+//                    boolean success = promoService.updatePromotion(promotion);
+//                    utx.commit();
+//
+//                    if (success) {
+//
+//                    } else {
+//                        response.getWriter().println("fail");
+//                    }
+                } else {
+
+                    response.getWriter().println("promo not same");
+                }
+            } else {
+
+                response.getWriter().println("promo null");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            response.getWriter().println(e.getMessage());
+        }
     }
 
     @Override

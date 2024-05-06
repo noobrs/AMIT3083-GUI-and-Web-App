@@ -5,12 +5,12 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.List, entity.Productcart, entity.Product" %>
+<%@page import="java.util.List, entity.Productcart, entity.Product, entity.Promotion" %>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Checkout</title>
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
@@ -21,11 +21,14 @@
             double totaldiscount = 0;
             double shippingfee = 25;
             double total = 0;
+            
+            Promotion promoApplied = (Promotion)session.getAttribute("promoApplied");
+            
             if(selected != null){
         %>
 
         <h1>CheckOut!</h1>
-        <form action="../AddOrder" method="post">
+        <form action="../CheckOrder" method="post">
             <table>
                 <tr>
                     <th>Product ID</th>
@@ -56,15 +59,22 @@
                 if(subtotal >= 200){
                     shippingfee = 0;
                 }
+                
+                
+                if(promoApplied != null){
+                totaldiscount = subtotal * promoApplied.getDiscountpercentage()/100;
+                subtotal -= totaldiscount;
+                }
+                
                 total = (subtotal * (1 + totaldiscount)) + shippingfee;
             %>
 
             <table>
-                <tr>
+<!--                <tr>
                     <td>Shipping Address</td>
                     <td><input type="text" name="address" required=""></td>
-                </tr>
-                <tr>
+                </tr>-->
+<!--                <tr>
                     <td>Payment Method</td>
                     <td>
                         <select name="paymentMethod">
@@ -73,36 +83,34 @@
                             <option value="Credit Card">Credit Card</option>
                         </select>
                     </td>
-                </tr>
+                </tr>-->
                 <tr>
                     <td>Promotion Code</td>
                     <td>
-                        <form action="FindPromoCode">
-                            <input type="text" name="promoCodeEntered">
-                            <input type="submit" value="Apply" >
-                        </form>
+                        <input type="text" name="promoCodeEntered">
+                        <input type="submit" value="Apply" name="orderButton">
                     </td>
                 </tr>
                 <tr>
                     <td>Subtotal</td>
                     <td>
-                        <input type="number" value="<%=subtotal%>" name="subtotal" readonly>
+                        <input type="number" value="<%=String.format("%.2f", subtotal)%>" name="subtotal" readonly>
                     </td>
                 </tr>
                 <tr>
                     <td>Total Discount</td>
-                    <td><input type="number" value="<%=totaldiscount%>" name="totaldiscount" readonly></td>
+                    <td><input type="number" value="<%=String.format("%.2f", totaldiscount)%>" name="totaldiscount" readonly></td>
                 </tr>
                 <tr>
                     <td>Shipping Fee</td>
-                    <td><input type="number" value="<%=shippingfee%>" name="shippingfee" readonly></td>
+                    <td><input type="number" value="<%=String.format("%.2f", shippingfee)%>" name="shippingfee" readonly></td>
                 </tr>
                 <tr>
                     <td>Total</td>
-                    <td><input type="number" value="<%=total%>" name="total" readonly></td>
+                    <td><input type="number" value="<%=String.format("%.2f", total)%>" name="total" readonly></td>
                 </tr>
             </table>
-            <br/><input type="submit" value="order">
+            <br/><input type="submit" value="Proceed to Payment"  name="orderButton">
         </form>
 
         <%@include file="/layout/footer.jsp"%>

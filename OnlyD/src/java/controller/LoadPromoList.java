@@ -31,7 +31,7 @@ public class LoadPromoList extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             PromotionService promotionService = new PromotionService(em);
-            List<Promotion> promoList = promotionService.findAll();
+            List<Promotion> promoList = promotionService.findByStatus(Promotion.ACTIVE_STATUS);
 
             session.setAttribute("promoList", promoList);
             response.sendRedirect("staff/displayPromoList.jsp");

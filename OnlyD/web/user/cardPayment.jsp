@@ -14,7 +14,7 @@
     <body>
         <h2>Payment</h2>
         <h3>Pay with Credit / Debit Card</h3>
-        <form action="donePayment.jsp">
+        <form action="../AddOrder?paymentType=card&cardStatus=valid" method="post">
             Card Number :
             <input type="text" id="cardNumber" name="cardNumber" required maxlength="16" minlength="16">
             <br>
@@ -24,7 +24,7 @@
             CVC / CVV :
             <input type="text" id="CVC" name="CVC" required maxlength="3" minlength="3">
             <br>
-            <a href="donePayment.jsp"><input type="submit" value="Submit"></a>
+            <a href="donePayment.jsp"><input type="submit" value="Proceed"></a>
         </form>
     </body>
 </html>
