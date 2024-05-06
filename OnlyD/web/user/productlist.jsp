@@ -15,7 +15,6 @@
           int i = 0; 
           List<Product> productList = (List)session.getAttribute("productListUser");
           List<Category> categoryList = (List)session.getAttribute("categoryListUser");
-          double[] promoPrice = (double[])session.getAttribute("promoPrice");
         %>
         <form action="../SearchProductByUser" method="get">
             <input type="text" name="productName" placeholder="Product Name" >
@@ -44,7 +43,6 @@
                 <th>Product Name</th>
                 <th>Description</th>
                 <th>Price (RM)</th>
-                <th>Promo Price</th>
             </tr>
             <% 
                 for (Product product: productList){ 
@@ -56,16 +54,6 @@
                 <td><%= product.getDescription() %> </td>
                 <td><%= String.format("%.2f", product.getPrice()) %></td>
                 <td><%= categoryP.getCategoryname() %></td>
-                <td>
-                    <%
-//                        if(product.getIspromo() == true){
-//                        out.println(String.format("%.2f", promoPrice[i]));
-//                        }
-//                        else{
-//                        out.println("-");
-//                        }
-                    %>
-                </td>
                 <!-- Add an "Add to Cart" button -->
                 <td>
                     <form action="../AddToCart" method="POST"> 

@@ -83,7 +83,7 @@
         </form>
         <%} else {%>
         Product ${product.name} not found
-        <p><a href="../index.html">Back to home page</a></p>
+        <p><a href="<%=request.getContextPath()%>">Back to home page</a></p>
         <%}%>
         <div>
         </div>

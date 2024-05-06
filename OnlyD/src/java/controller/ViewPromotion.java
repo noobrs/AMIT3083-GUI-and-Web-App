@@ -4,34 +4,41 @@
  */
 package controller;
 
-import entity.Product;
+import entity.Promotion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
+import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import service.ProductService;
+import service.PromotionService;
 
-public class ViewProductToPromo extends HttpServlet {
+/**
+ *
+ * @author Vin Sen
+ */
+public class ViewPromotion extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        
         try {
-            ProductService productService = new ProductService(em);
-            List<Product> productList = productService.findByStatus(1);
-//            List<Product> productList = productService.getNotPromoProducts();
-            HttpSession session = request.getSession();
-            session.setAttribute("productListToPromo", productList);
-            response.sendRedirect("staff/addPromotion.jsp");
-        } catch (Exception ex) {
-            response.getWriter().println(ex.getMessage());
+            PromotionService promoService = new PromotionService(em);
+            List<Promotion> promoList = promoService.findAll();
+            
+            session.setAttribute("promoList", promoList);
+            response.sendRedirect("staff/promotionList.jsp");
+            
+        } catch (Exception e) {
         }
     }
 

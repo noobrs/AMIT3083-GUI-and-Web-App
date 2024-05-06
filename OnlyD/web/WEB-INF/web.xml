@@ -180,6 +180,30 @@
         <servlet-name>SearchProductByUser</servlet-name>
         <servlet-class>controller.SearchProductByUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPromo</servlet-name>
+        <servlet-class>controller.AddPromo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewPromotion</servlet-name>
+        <servlet-class>controller.ViewPromotion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadPromoList</servlet-name>
+        <servlet-class>controller.LoadPromoList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchPromotion</servlet-name>
+        <servlet-class>controller.SearchPromotion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePromotion</servlet-name>
+        <servlet-class>controller.DeletePromotion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePromotion</servlet-name>
+        <servlet-class>controller.UpdatePromotion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -339,6 +363,30 @@
     <servlet-mapping>
         <servlet-name>SearchProductByUser</servlet-name>
         <url-pattern>/SearchProductByUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPromo</servlet-name>
+        <url-pattern>/AddPromo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPromotion</servlet-name>
+        <url-pattern>/ViewPromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadPromoList</servlet-name>
+        <url-pattern>/LoadPromoList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPromotion</servlet-name>
+        <url-pattern>/SearchPromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePromotion</servlet-name>
+        <url-pattern>/DeletePromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePromotion</servlet-name>
+        <url-pattern>/UpdatePromotion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
