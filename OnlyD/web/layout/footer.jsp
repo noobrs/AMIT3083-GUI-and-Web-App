@@ -9,7 +9,6 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="/layout/meta.html"%>
     </head>
     <body>     
         <footer style="bottom: 0; position:relative; width: 100%;">

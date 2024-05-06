@@ -25,5 +25,5 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .webPage_header{
-    background-color: #CA1F3D;
+    background-color: #CA1F3D !important;
 }

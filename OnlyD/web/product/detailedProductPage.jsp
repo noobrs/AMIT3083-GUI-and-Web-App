@@ -9,8 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
-        <%@include file="/layout/meta.html"%>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <link href="../layout/index.css" rel="stylesheet">   
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
@@ -25,13 +26,13 @@
                         </div>
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <img src="<%=request.getContextPath()%>/Icons/grey_placeholder.jpg" class="d-block w-100" alt="...">
+                                <img src="<%=request.getContextPath()%>/layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="<%=request.getContextPath()%>/Icons/grey_placeholder.jpg" class="d-block w-100" alt="...">
+                                <img src="<%=request.getContextPath()%>/layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
                             </div>
                             <div class="carousel-item">
-                                <img src="<%=request.getContextPath()%>/Icons/grey_placeholder.jpg" class="d-block w-100" alt="...">
+                                <img src="<%=request.getContextPath()%>/layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
                             </div>
                         </div>
                         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">

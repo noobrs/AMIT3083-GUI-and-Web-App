@@ -6,9 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <%@include file="/layout/meta.html"%>
         <link rel="shortcut icon" type="image/x-icon" href="<%=request.getRequestURL().toString()%>layout/favicon_onlyD.ico">
-        <link href="<%=request.getContextPath()%>/layout/index.css" rel="stylesheet">  
     </head>
 
     <body>

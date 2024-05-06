@@ -10,8 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%= application.getInitParameter("storeName")%></title>
-        <link href="/layout/index.css" rel="stylesheet" type="text/css">
-        <%@include file="layout/meta.html"%>
+        <%@include file="/layout/meta.html"%>
     </head>
     <body>
         <%@include file="layout/header.jsp"%>
@@ -24,13 +23,13 @@
                 </div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="Icons/grey_placeholder.jpg" class="d-block w-100" alt="...">
+                        <img src="layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="Icons/grey_placeholder.jpg" class="d-block w-100" alt="...">
+                        <img src="layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
                     </div>
                     <div class="carousel-item">
-                        <img src="Icons/grey_placeholder.jpg" class="d-block w-100" alt="...">
+                        <img src="layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
                     </div>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -48,7 +47,7 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
                 <div class="col">
                     <div class="card">
-                        <img src="Icons/grey_placeholder.jpg" class="card-img-top" alt="...">
+                        <img src="layout/grey_placeholder.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -57,7 +56,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="Icons/grey_placeholder.jpg" class="card-img-top" alt="...">
+                        <img src="layout/grey_placeholder.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
@@ -66,7 +65,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="Icons/grey_placeholder.jpg" class="card-img-top" alt="...">
+                        <img src="layout/grey_placeholder.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
@@ -75,7 +74,7 @@
                 </div>
                 <div class="col">
                     <div class="card">
-                        <img src="Icons/grey_placeholder.jpg" class="card-img-top" alt="...">
+                        <img src="layout/grey_placeholder.jpg" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">Card title</h5>
                             <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
