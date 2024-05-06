@@ -8,11 +8,12 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="/layout/meta.html"%>
         <link rel="shortcut icon" type="image/x-icon" href="<%=request.getRequestURL().toString()%>layout/favicon_onlyD.ico">
+        <link href="<%=request.getContextPath()%>/layout/index.css" rel="stylesheet">  
     </head>
 
     <body>
         <header style="top: 0; position:relative; width: 100%;">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
+            <nav class="webPage_header navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
                 <div class="container">
                     <a href="<%=request.getContextPath()%>">
                     <img src="<%=request.getContextPath()%>/layout/only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px" />
@@ -23,7 +24,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
+                                <a class="nav-link" href="<%=request.getContextPath()%>/product/allProductPage.jsp">Product</a>
                             </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">

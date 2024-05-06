@@ -10,6 +10,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%= application.getInitParameter("storeName")%></title>
+        <link href="/layout/index.css" rel="stylesheet" type="text/css">
         <%@include file="layout/meta.html"%>
     </head>
     <body>

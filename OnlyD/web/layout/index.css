@@ -23,3 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     display: flex;
     justify-content: center;
 }
+
+.webPage_header{
+    background-color: #CA1F3D;
+}
