@@ -42,7 +42,7 @@
                         </ul>
                         <%if((Boolean) session.getAttribute("isCustomer") != null){%>
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/ViewCart">Cart</a></button>
-                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/#">Orders</a></button>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/ViewOrderHistory">Orders</a></button>
                         <% } else if ((Boolean) session.getAttribute("isStaff") != null) { %>
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/staff/staffDashboard.jsp">Dashboard</a></button>
                         <% } else if(request.isUserInRole("AdminRole")) { %>

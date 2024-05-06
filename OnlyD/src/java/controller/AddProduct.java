@@ -30,9 +30,11 @@ public class AddProduct extends HttpServlet {
     @Resource
     UserTransaction utx;
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
         try {
             String name = request.getParameter("name");
 
@@ -45,22 +47,25 @@ public class AddProduct extends HttpServlet {
             String description = request.getParameter("description");
 
             String image = request.getParameter("image");
-            
+
             int status = Integer.parseInt(request.getParameter("status"));
 
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);
             Category categoryid = new Category(cid);
 
-            String sid = request.getParameter("staffid");
-            Staff staffid = new Staff(sid);
+//            String sid = request.getParameter("staffid");
+//            Staff staffid = new Staff(sid);
 
-            Product product = new Product(name, price, stock, description, image, status, categoryid, staffid);
+            Staff staff = (Staff)session.getAttribute("staff");
+    
+
+            Product product = new Product(name, price, stock, description, image, status, categoryid, staff);
             ProductService productService = new ProductService(em);
             utx.begin();
             boolean success = productService.addProduct(product);
             utx.commit();
-            HttpSession session = request.getSession();
+
             session.setAttribute("successAddProduct", success);
             response.sendRedirect("staff/addProductConfirm.jsp");
         } catch (Exception ex) {

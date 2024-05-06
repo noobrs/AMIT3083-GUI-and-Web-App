@@ -204,6 +204,18 @@
         <servlet-name>UpdatePromotion</servlet-name>
         <servlet-class>controller.UpdatePromotion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddOrder</servlet-name>
+        <servlet-class>controller.AddOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrderHistory</servlet-name>
+        <servlet-class>controller.ViewOrderHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrderDetails</servlet-name>
+        <servlet-class>controller.ViewOrderDetails</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -387,6 +399,18 @@
     <servlet-mapping>
         <servlet-name>UpdatePromotion</servlet-name>
         <url-pattern>/UpdatePromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddOrder</servlet-name>
+        <url-pattern>/AddOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrderHistory</servlet-name>
+        <url-pattern>/ViewOrderHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrderDetails</servlet-name>
+        <url-pattern>/ViewOrderDetails</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

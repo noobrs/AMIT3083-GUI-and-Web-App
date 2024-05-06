@@ -23,10 +23,10 @@
                     <h5 class="card-header">First Time Login</h5>
                     <div class="card-body">
                         <form action="../StaffVerification" method="POST">
-                            <h5 class="card-title">Welcome Staff ${staff.staffID}, please setup your details:</h5>
+                            <h5 class="card-title">Welcome Staff ${staff.staffid}, please setup your details:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Staff ID</span>
-                                <input type="text" name="staffID" value="${staff.staffID}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" disabled>
+                                <input type="text" name="staffID" value="${staff.staffid}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" disabled>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Name</span>

@@ -72,11 +72,10 @@
                } %>
                         </select>
                     </td>
-                </tr>
+<!--                </tr>
                     <td>Add/Last Modified by</td>
-                    <td><input type="text" name="staffid"
-                               value="<%=staff.getStaffid()%>" ></td>
-                </tr>
+                    <td><input type="text" name="staffid" value="<%=product.getStaffid().getStaffid()%>" ></td>
+                </tr>-->
             </table>
             <input type="submit" value="Update Product">
 

@@ -32,6 +32,9 @@ public class UpdateProduct extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        
         try {
             String name = request.getParameter("name");
           
@@ -51,14 +54,16 @@ public class UpdateProduct extends HttpServlet {
             int cid = Integer.parseInt(categoryidStr);
             Category categoryid = new Category(cid);            
 
-            String sid = request.getParameter("staffid");
-            Staff staffid = new Staff(sid);
-            HttpSession session = request.getSession();
+//            String sid = request.getParameter("staffid");
+//            Staff staffid = new Staff(sid);
+            
+            Staff staff = (Staff)session.getAttribute("staff");
+            
             String code = (String) session.getAttribute("productId");
             int id = Integer.parseInt(code);
             
             ProductService productService = new ProductService(em);
-            Product product = new Product(id, name, price, stock, description, image, status, categoryid, staffid);
+            Product product = new Product(id, name, price, stock, description, image, status, categoryid, staff);
             
             utx.begin();
             boolean success = productService.updateProduct(product);

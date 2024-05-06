@@ -54,6 +54,7 @@ public class AddToCart extends HttpServlet {
 
                 if (!productcartList.isEmpty()) {
                     for (Productcart existedPC : productcartList) {
+                        // check if product is in customer cart, then check the stock
                         if (Integer.compare(existedPC.getProduct().getProductid(), cartItem.getProduct().getProductid()) == 0) {
                             int sum = existedPC.getQuantity() + quantity;
                             if (Integer.compare(sum, product.getStock()) > 0) {
@@ -62,6 +63,12 @@ public class AddToCart extends HttpServlet {
                             }
                         }
                     }
+                }
+                
+                // check if input qty > stock
+                if (quantity > product.getStock()) {
+                    response.getWriter().println("not enough stock");
+                    return;
                 }
 
                 utx.begin();
@@ -90,7 +97,7 @@ public class AddToCart extends HttpServlet {
 //                } else {
 //                    response.getWriter().println("not enough stock");
 //                }
-            } else{
+            } else {
                 session.setAttribute("statusMsg", "Try to login to add to cart!");
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }

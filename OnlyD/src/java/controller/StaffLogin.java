@@ -44,6 +44,7 @@ public class StaffLogin extends HttpServlet {
                 throw new IllegalArgumentException("Login fail! Incorrect username or password!");
             } else if (staff.getStatus() == Staff.VERIFICATION_STATUS) {
                 session.setAttribute("staff", staff);
+                session.setAttribute("isStaff", true);
                 response.sendRedirect("staff/firstTimeLogin.jsp");
             } else {
                 session.setAttribute("staff", staff);

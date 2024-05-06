@@ -79,6 +79,17 @@ public class Orders implements Serializable {
         this.orderid = orderid;
     }
 
+    public Orders(Date orderdatetime, String shippingaddress, String paymenttype, Double subtotal, Double totaldiscount, Double shippingfee, Double total, Customer customerid) {
+        this.orderdatetime = orderdatetime;
+        this.shippingaddress = shippingaddress;
+        this.paymenttype = paymenttype;
+        this.subtotal = subtotal;
+        this.totaldiscount = totaldiscount;
+        this.shippingfee = shippingfee;
+        this.total = total;
+        this.customerid = customerid;
+    }
+
     public Integer getOrderid() {
         return orderid;
     }
@@ -184,5 +195,5 @@ public class Orders implements Serializable {
     public String toString() {
         return "entity.Orders[ orderid=" + orderid + " ]";
     }
-    
+
 }

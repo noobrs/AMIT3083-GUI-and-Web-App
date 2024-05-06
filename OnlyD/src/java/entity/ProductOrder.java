@@ -52,6 +52,11 @@ public class Productorder implements Serializable {
         this.productorderPK = new ProductorderPK(orderid, productid);
     }
 
+    public Productorder(int orderid, int productid, int quantity) {
+        this.productorderPK = new ProductorderPK(orderid, productid);
+        this.quantity = quantity;
+    }
+
     public ProductorderPK getProductorderPK() {
         return productorderPK;
     }
@@ -108,5 +113,5 @@ public class Productorder implements Serializable {
     public String toString() {
         return "entity.Productorder[ productorderPK=" + productorderPK + " ]";
     }
-    
+
 }

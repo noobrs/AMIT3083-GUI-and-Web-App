@@ -43,6 +43,8 @@
                 <th>Product Name</th>
                 <th>Description</th>
                 <th>Price (RM)</th>
+                <th>Category</th>
+                <th>Current Stock</th>
             </tr>
             <% 
                 for (Product product: productList){ 
@@ -54,13 +56,18 @@
                 <td><%= product.getDescription() %> </td>
                 <td><%= String.format("%.2f", product.getPrice()) %></td>
                 <td><%= categoryP.getCategoryname() %></td>
+                <td><%= product.getStock() %></td>
                 <!-- Add an "Add to Cart" button -->
                 <td>
+                    <% if(product.getStock() > 0 ) {%>
                     <form action="../AddToCart" method="POST"> 
                         <input type="number" min="1" value="1" name="quantity">
                         <input type="hidden" name="productId" value="<%= product.getProductid() %>">
                         <input type="submit" value="Add to Cart">
                     </form>
+                    <% } else { %>
+                    Out of Stock!
+                    <% } %>
                 </td>
             </tr>
             <% 
