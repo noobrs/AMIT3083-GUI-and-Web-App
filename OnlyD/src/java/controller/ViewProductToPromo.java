@@ -16,10 +16,6 @@ import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import service.ProductService;
 
-/**
- *
- * @author Vin Sen
- */
 public class ViewProductToPromo extends HttpServlet {
 
     @PersistenceContext
