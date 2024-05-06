@@ -216,6 +216,10 @@
         <servlet-name>ViewOrderDetails</servlet-name>
         <servlet-class>controller.ViewOrderDetails</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FindPromoCode</servlet-name>
+        <servlet-class>controller.FindPromoCode</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -411,6 +415,10 @@
     <servlet-mapping>
         <servlet-name>ViewOrderDetails</servlet-name>
         <url-pattern>/ViewOrderDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FindPromoCode</servlet-name>
+        <url-pattern>/FindPromoCode</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

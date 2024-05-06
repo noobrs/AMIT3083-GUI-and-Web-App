@@ -75,6 +75,15 @@
                     </td>
                 </tr>
                 <tr>
+                    <td>Promotion Code</td>
+                    <td>
+                        <form action="FindPromoCode">
+                            <input type="text" name="promoCodeEntered">
+                            <input type="submit" value="Apply" >
+                        </form>
+                    </td>
+                </tr>
+                <tr>
                     <td>Subtotal</td>
                     <td>
                         <input type="number" value="<%=subtotal%>" name="subtotal" readonly>
