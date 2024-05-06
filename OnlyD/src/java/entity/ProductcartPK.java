@@ -4,39 +4,42 @@
  */
 package entity;
 
-import java.io.Serializable;
 import jakarta.persistence.Basic;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
+import jakarta.validation.constraints.NotNull;
+import java.io.Serializable;
 
 /**
  *
- * @author GIGABYTE
+ * @author Vin Sen
  */
 @Embeddable
 public class ProductcartPK implements Serializable {
 
     @Basic(optional = false)
-    @Column(name = "CARTID")
-    private int cartid;
+    @NotNull
+    @Column(name = "CUSTOMERID")
+    private int customerid;
     @Basic(optional = false)
+    @NotNull
     @Column(name = "PRODUCTID")
     private int productid;
 
     public ProductcartPK() {
     }
 
-    public ProductcartPK(int cartid, int productid) {
-        this.cartid = cartid;
+    public ProductcartPK(int customerid, int productid) {
+        this.customerid = customerid;
         this.productid = productid;
     }
 
-    public int getCartid() {
-        return cartid;
+    public int getCustomerid() {
+        return customerid;
     }
 
-    public void setCartid(int cartid) {
-        this.cartid = cartid;
+    public void setCustomerid(int customerid) {
+        this.customerid = customerid;
     }
 
     public int getProductid() {
@@ -50,7 +53,7 @@ public class ProductcartPK implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) cartid;
+        hash += (int) customerid;
         hash += (int) productid;
         return hash;
     }
@@ -62,7 +65,7 @@ public class ProductcartPK implements Serializable {
             return false;
         }
         ProductcartPK other = (ProductcartPK) object;
-        if (this.cartid != other.cartid) {
+        if (this.customerid != other.customerid) {
             return false;
         }
         if (this.productid != other.productid) {
@@ -73,7 +76,7 @@ public class ProductcartPK implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.ProductcartPK[ cartid=" + cartid + ", productid=" + productid + " ]";
+        return "entity.ProductcartPK[ customerid=" + customerid + ", productid=" + productid + " ]";
     }
     
 }

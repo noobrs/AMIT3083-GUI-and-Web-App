@@ -14,8 +14,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
@@ -40,6 +38,7 @@ import jakarta.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
     @NamedQuery(name = "Product.findByImage", query = "SELECT p FROM Product p WHERE p.image = :image"),
     @NamedQuery(name = "Product.findByStatus", query = "SELECT p FROM Product p WHERE p.status = :status"),
+    @NamedQuery(name = "Product.findByIspromo", query = "SELECT p FROM Product p WHERE p.ispromo = :ispromo"),
     @NamedQuery(name = "Product.findByNamePrefix", query = "SELECT p FROM Product p WHERE p.name LIKE CONCAT('%', :prefix, '%') AND p.status = :status"),
     @NamedQuery(name = "Product.findByCatPrefix", query = "SELECT p FROM Product p WHERE p.name LIKE CONCAT('%', :prefix, '%') AND p.status = :status AND p.categoryid = :categoryid")})
 public class Product implements Serializable {
@@ -63,11 +62,13 @@ public class Product implements Serializable {
     private String image;
     @Column(name = "STATUS")
     private Integer status;
-    @JoinTable(name = "PRODUCTPROMOTION", joinColumns = {
-        @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID")}, inverseJoinColumns = {
-        @JoinColumn(name = "PROMOTIONID", referencedColumnName = "PROMOTIONID")})
-    @ManyToMany
-    private List<Promotion> promotionList;
+    @Column(name = "ISPROMO")
+    private Boolean ispromo;
+//    @JoinTable(name = "PRODUCTPROMOTION", joinColumns = {
+//        @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID")}, inverseJoinColumns = {
+//        @JoinColumn(name = "PROMOTIONID", referencedColumnName = "PROMOTIONID")})
+//    @ManyToMany
+//    private List<Promotion> promotionList;
     @JoinColumn(name = "CATEGORYID", referencedColumnName = "CATEGORYID")
     @ManyToOne(optional = false)
     private Category categoryid;
@@ -78,6 +79,8 @@ public class Product implements Serializable {
     private List<Productorder> productorderList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
     private List<Productcart> productcartList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "product")
+    private List<Productpromotion> productpromotionList;
 
     public Product() {
     }
@@ -85,7 +88,7 @@ public class Product implements Serializable {
     public Product(Integer productid) {
         this.productid = productid;
     }
-    
+
     public Product(Integer productid, String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
         this.productid = productid;
         this.name = name;
@@ -97,7 +100,7 @@ public class Product implements Serializable {
         this.categoryid = categoryid;
         this.staffid = staffid;
     }
-    
+
     public Product(String name, Double price, Integer stock, String description, String image, Integer status, Category categoryid, Staff staffid) {
         this.name = name;
         this.price = price;
@@ -165,15 +168,22 @@ public class Product implements Serializable {
         this.status = status;
     }
 
-    @XmlTransient
-    public List<Promotion> getPromotionList() {
-        return promotionList;
+    public Boolean getIspromo() {
+        return ispromo;
     }
 
-    public void setPromotionList(List<Promotion> promotionList) {
-        this.promotionList = promotionList;
+    public void setIspromo(Boolean ispromo) {
+        this.ispromo = ispromo;
     }
 
+//    @XmlTransient
+//    public List<Promotion> getPromotionList() {
+//        return promotionList;
+//    }
+//
+//    public void setPromotionList(List<Promotion> promotionList) {
+//        this.promotionList = promotionList;
+//    }
     public Category getCategoryid() {
         return categoryid;
     }
@@ -232,5 +242,5 @@ public class Product implements Serializable {
     public String toString() {
         return "entity.Product[ productid=" + productid + " ]";
     }
-    
+
 }

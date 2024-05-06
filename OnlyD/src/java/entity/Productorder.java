@@ -51,6 +51,11 @@ public class Productorder implements Serializable {
     public Productorder(int orderid, int productid) {
         this.productorderPK = new ProductorderPK(orderid, productid);
     }
+    
+    public Productorder(int orderid, int productid, int quantity) {
+        this.productorderPK = new ProductorderPK(orderid, productid);
+        this.quantity = quantity;
+    }
 
     public ProductorderPK getProductorderPK() {
         return productorderPK;

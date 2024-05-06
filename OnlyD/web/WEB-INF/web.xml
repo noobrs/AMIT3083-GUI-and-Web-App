@@ -21,6 +21,78 @@
         <param-value>ONLY D. All rights reserved.</param-value>
     </context-param>
     <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>controller.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Register</servlet-name>
+        <servlet-class>controller.Register</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>controller.Login</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegisterStaff</servlet-name>
+        <servlet-class>controller.RegisterStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StaffLogin</servlet-name>
+        <servlet-class>controller.StaffLogin</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StaffRegister</servlet-name>
+        <servlet-class>controller.StaffRegister</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StaffVerification</servlet-name>
+        <servlet-class>controller.StaffVerification</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteStaff</servlet-name>
+        <servlet-class>controller.DeleteStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadStaffList</servlet-name>
+        <servlet-class>controller.LoadStaffList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchStaff</servlet-name>
+        <servlet-class>controller.SearchStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateStaff</servlet-name>
+        <servlet-class>controller.UpdateStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewStaff</servlet-name>
+        <servlet-class>controller.ViewStaff</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>viewCustomer</servlet-name>
+        <servlet-class>controller.viewCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCustomer</servlet-name>
+        <servlet-class>controller.ViewCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadCustomerList</servlet-name>
+        <servlet-class>controller.LoadCustomerList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCustomer</servlet-name>
+        <servlet-class>controller.SearchCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <servlet-class>controller.DeleteCustomer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <servlet-class>controller.UpdateCustomer</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>ViewProduct</servlet-name>
         <servlet-class>controller.ViewProduct</servlet-class>
     </servlet>
@@ -81,9 +153,49 @@
         <servlet-class>controller.UpdateProductAfterDltCat</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>AddToCart</servlet-name>
+        <servlet-class>controller.AddToCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewCart</servlet-name>
+        <servlet-class>controller.ViewCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RemoveFromCart</servlet-name>
+        <servlet-class>controller.RemoveFromCart</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProductToPromo</servlet-name>
+        <servlet-class>controller.ViewProductToPromo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessProductToPromo</servlet-name>
+        <servlet-class>controller.ProcessProductToPromo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Checkout</servlet-name>
+        <servlet-class>controller.Checkout</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SearchProductByUser</servlet-name>
         <servlet-class>controller.SearchProductByUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddOrder</servlet-name>
+        <servlet-class>controller.AddOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewProductToPromo</servlet-name>
+        <url-pattern>/ViewProductToPromo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddToCart</servlet-name>
+        <url-pattern>/AddToCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCart</servlet-name>
+        <url-pattern>/ViewCart</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ViewProduct</servlet-name>
         <url-pattern>/ViewProduct</url-pattern>
@@ -145,15 +257,110 @@
         <url-pattern>/UpdateProductAfterDltCat</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Register</servlet-name>
+        <url-pattern>/Register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/Login</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterStaff</servlet-name>
+        <url-pattern>/RegisterStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffLogin</servlet-name>
+        <url-pattern>/StaffLogin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffRegister</servlet-name>
+        <url-pattern>/StaffRegister</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffVerification</servlet-name>
+        <url-pattern>/StaffVerification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteStaff</servlet-name>
+        <url-pattern>/DeleteStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadStaffList</servlet-name>
+        <url-pattern>/LoadStaffList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchStaff</servlet-name>
+        <url-pattern>/SearchStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateStaff</servlet-name>
+        <url-pattern>/UpdateStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewStaff</servlet-name>
+        <url-pattern>/ViewStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>viewCustomer</servlet-name>
+        <url-pattern>/viewCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewCustomer</servlet-name>
+        <url-pattern>/ViewCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadCustomerList</servlet-name>
+        <url-pattern>/LoadCustomerList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCustomer</servlet-name>
+        <url-pattern>/SearchCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCustomer</servlet-name>
+        <url-pattern>/DeleteCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateCustomer</servlet-name>
+        <url-pattern>/UpdateCustomer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RemoveFromCart</servlet-name>
+        <url-pattern>/RemoveFromCart</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessProductToPromo</servlet-name>
+        <url-pattern>/ProcessProductToPromo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Checkout</servlet-name>
+        <url-pattern>/Checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SearchProductByUser</servlet-name>
         <url-pattern>/SearchProductByUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddOrder</servlet-name>
+        <url-pattern>/AddOrder</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
     <error-page>
         <error-code>403</error-code>
         <location>/unauthorizedError.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404Error.jsp</location>
     </error-page>
     <security-constraint>
         <display-name>AdminConstraint</display-name>
@@ -167,108 +374,16 @@
             <role-name>AdminRole</role-name>
         </auth-constraint>
     </security-constraint>
-    <!--    <security-constraint>
-        <display-name>UserConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>User</web-resource-name>
-            <description/>
-            <url-pattern>/user/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>AdminRole</role-name>
-            <role-name>UserRole</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>StaffConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>staff</web-resource-name>
-            <description/>
-            <url-pattern>/staff/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>AdminRole</role-name>
-            <role-name>StaffRole</role-name>
-        </auth-constraint>
-    </security-constraint>-->
     <login-config>
         <auth-method>FORM</auth-method>
         <realm-name>form</realm-name>
         <form-login-config>
             <form-login-page>/admin/adminLogin.jsp</form-login-page>
-            <form-error-page>/loginError.html</form-error-page>
+            <form-error-page>/loginError.jsp</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
         <description>Users added to this role will have access to 'admin' directory of the server.</description>
         <role-name>AdminRole</role-name>
-    </security-role>
-    <security-role>
-        <description>Users added to this role will have access to 'user' directory of the server</description>
-        <role-name>UserRole</role-name>
-    </security-role>
-    <!--    <login-config>
-        <auth-method>FORM</auth-method>
-        <realm-name>OnlyDRealm</realm-name>
-        <form-login-config>
-            <form-login-page>/login.jsp</form-login-page>        
-            <form-error-page>/loginError.html</form-error-page>
-        </form-login-config>
-    </login-config>
-    
-    <security-role>
-        <role-name>user</role-name>
-    </security-role>
-    <security-role>
-        <role-name>staff</role-name>
-    </security-role>
-    <security-role>
-        <role-name>admin</role-name>
-    </security-role>
-    
-    <security-constraint>
-        <display-name>UserConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>User</web-resource-name>
-            <description/>
-            <url-pattern>/user/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>AdminRole</role-name>
-            <role-name>StaffRole</role-name>
-            <role-name>UserRole</role-name>
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>StaffConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>Staff</web-resource-name>
-            <description/>
-            <url-pattern>/staff/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>AdminRole</role-name>
-            <role-name>StaffRole</role-name>            
-        </auth-constraint>
-    </security-constraint>
-    <security-constraint>
-        <display-name>AdminConstraint</display-name>
-        <web-resource-collection>
-            <web-resource-name>Admin</web-resource-name>
-            <description/>
-            <url-pattern>/admin/*</url-pattern>
-        </web-resource-collection>
-        <auth-constraint>
-            <description/>
-            <role-name>AdminRole</role-name>
-        </auth-constraint>
-    </security-constraint>-->
-    <security-role>
-        <description/>
-        <role-name>StaffRole</role-name>
     </security-role>
 </web-app>

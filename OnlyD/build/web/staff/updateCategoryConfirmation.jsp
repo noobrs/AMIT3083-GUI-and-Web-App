@@ -1,3 +1,4 @@
+<%@include file="staffAuthentication.jsp"%>
 <%@page import="entity.Category"%>
 <html>
     <head></head>
@@ -12,7 +13,22 @@
                 <tr>
                     <td>Name</td>
                     <td><input type="text" name="name"
-                               value="<%=category.getCategoryname()%>" required></td>
+                               value="<%=category.getCategoryname()%>" readonly required></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><select name="status">
+                                <%
+                                    if(category.getStatus() == 0){
+                                %>  
+                            <option value="0">Deleted    
+                            <option value="1">Active
+                                <% }else{%>   
+                            <option value="1">Active
+                            <option value="0">Deleted
+                                <%}%>
+                        </select>
+                    </td>
                 </tr>
             </table>
             <input type="submit" value="Update Category">

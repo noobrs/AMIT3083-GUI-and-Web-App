@@ -1,0 +1,45 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package controller;
+
+import entity.Staff;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import service.StaffService;
+
+/**
+ *
+ * @author Vin Sen
+ */
+public class ViewStaff extends HttpServlet {
+
+    @PersistenceContext
+    EntityManager em;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try {
+            StaffService staffService = new StaffService(em);
+            List<Staff> staffList = staffService.findAll();
+
+            HttpSession session = request.getSession();
+
+            session.setAttribute("staffList", staffList);
+            response.sendRedirect("admin/viewStaff.jsp");
+
+        } catch (Exception e) {
+
+        }
+    }
+
+}

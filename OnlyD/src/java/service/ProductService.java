@@ -4,8 +4,8 @@
  */
 package service;
 
-import entity.Product;
 import entity.Category;
+import entity.Product;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -53,26 +53,25 @@ public class ProductService {
     }
 
     public List<Product> findByStatus(int status) {
-        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByStatus",Product.class);
-        productList.setParameter("status",status);
-        return productList.getResultList();
-    }
-    
-    public List<Product> findByNamePrefix(String prefix, int status) {
-        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByNamePrefix",Product.class);
-        productList.setParameter("prefix",prefix + "%");
-        productList.setParameter("status",status);
-        return productList.getResultList();
-    }
-    
-    public List<Product> findByCatPrefix(String prefix, int status, Category id) {
-        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByCatPrefix",Product.class);
-        productList.setParameter("prefix",prefix + "%");
-        productList.setParameter("status",status);
-        productList.setParameter("categoryid",id);
+        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByStatus", Product.class);
+        productList.setParameter("status", status);
         return productList.getResultList();
     }
 
+    public List<Product> findByNamePrefix(String prefix, int status) {
+        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByNamePrefix", Product.class);
+        productList.setParameter("prefix", prefix + "%");
+        productList.setParameter("status", status);
+        return productList.getResultList();
+    }
+
+    public List<Product> findByCatPrefix(String prefix, int status, Category id) {
+        TypedQuery<Product> productList = mgr.createNamedQuery("Product.findByCatPrefix", Product.class);
+        productList.setParameter("prefix", prefix + "%");
+        productList.setParameter("status", status);
+        productList.setParameter("categoryid", id);
+        return productList.getResultList();
+    }
 
     public boolean updateProduct(Product product) {
         Product tempProduct = findProductByID(product.getProductid());
@@ -85,8 +84,25 @@ public class ProductService {
             tempProduct.setStatus(product.getStatus());
             tempProduct.setCategoryid(product.getCategoryid());
             tempProduct.setStaffid(product.getStaffid());
+            tempProduct.setIspromo(product.getIspromo());
             return true;
         }
         return false;
+    }
+
+    public int getProductQuantity(int productId) {
+        // Retrieve the product based on the product ID
+        Product product = findProductByID(productId);
+
+        // Check if the product exists
+        if (product != null) {
+            int quantity = product.getStock();
+            // Add logging statement
+            System.out.println("Product ID(ProductService): " + productId + ", Quantity: " + quantity);
+            return quantity;
+        } else {
+            // Return 0 if the product does not exist
+            return 0;
+        }
     }
 }

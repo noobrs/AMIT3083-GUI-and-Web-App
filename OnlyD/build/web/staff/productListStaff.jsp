@@ -1,3 +1,4 @@
+<%@include file="staffAuthentication.jsp"%>
 <%@page import="java.util.List"%>
 <%@page import="entity.Product"%>
 <%@page import="entity.Category"%>
@@ -9,19 +10,12 @@
   List<Product> productList = (List)session.getAttribute("productListStaff");
   session.setAttribute("path","staff/addProduct.jsp");
 %>
-<style>
-    img{
-        width: 100px;
-        height: 100px;
-    }
-</style>
 
 <table border="1">
     <tr>
         <th>Product ID</th>
         <th>Product Name</th>
         <th>Description</th>
-        <th>Image</th>
         <th>Price (RM)</th>
         <th>Stock</th>
         <th>Status</th>
@@ -37,7 +31,6 @@
         <td><%= product.getProductid() %></td>
         <td><%= product.getName() %></td>
         <td><%= product.getDescription() %> </td>
-        <td class="img"><img src="<%= product.getImage() %>"></td>
         <td><%= String.format("%.2f", product.getPrice()) %></td>
         <td><%= product.getStock() %></td>
         <%if(product.getStatus() == 0) { %>

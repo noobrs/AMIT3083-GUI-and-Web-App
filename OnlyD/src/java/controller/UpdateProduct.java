@@ -43,9 +43,9 @@ public class UpdateProduct extends HttpServlet {
 
             String description = request.getParameter("description");
             
-            String image = "../image/img_" + request.getParameter("image") +".jpg";
+            String image = request.getParameter("image");
             
-            int status = 1;
+            int status = Integer.parseInt(request.getParameter("status"));
 
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);

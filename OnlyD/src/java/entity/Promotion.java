@@ -4,10 +4,8 @@
  */
 package entity;
 
-import java.io.Serializable;
-import java.util.Date;
-import java.util.List;
 import jakarta.persistence.Basic;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -16,15 +14,19 @@ import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
+import java.io.Serializable;
+import java.util.Date;
+import java.util.List;
 
 /**
  *
- * @author GIGABYTE
+ * @author Vin Sen
  */
 @Entity
 @Table(name = "PROMOTION")
@@ -34,7 +36,10 @@ import jakarta.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Promotion.findByPromotionid", query = "SELECT p FROM Promotion p WHERE p.promotionid = :promotionid"),
     @NamedQuery(name = "Promotion.findByDiscountpercentage", query = "SELECT p FROM Promotion p WHERE p.discountpercentage = :discountpercentage"),
     @NamedQuery(name = "Promotion.findByStartdatetime", query = "SELECT p FROM Promotion p WHERE p.startdatetime = :startdatetime"),
-    @NamedQuery(name = "Promotion.findByEnddatetime", query = "SELECT p FROM Promotion p WHERE p.enddatetime = :enddatetime")})
+    @NamedQuery(name = "Promotion.findByEnddatetime", query = "SELECT p FROM Promotion p WHERE p.enddatetime = :enddatetime"),
+    @NamedQuery(name = "Promotion.findByStatus", query = "SELECT p FROM Promotion p WHERE p.status = :status")
+
+})
 public class Promotion implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -52,14 +57,29 @@ public class Promotion implements Serializable {
     @Column(name = "ENDDATETIME")
     @Temporal(TemporalType.DATE)
     private Date enddatetime;
-    @ManyToMany(mappedBy = "promotionList")
-    private List<Product> productList;
+    @Column(name = "STATUS")
+    private Integer status;
+//    @ManyToMany(mappedBy = "promotionList")
+//    private List<Product> productList;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "Promotion")
+    private List<Productpromotion> productpromotionList;
+
+    public static final int ACTIVE_STATUS = 1;
+    public static final int EXPIRED_STATUS = 2;
+    public static final int DELETED_STATUS = 3;
 
     public Promotion() {
     }
 
     public Promotion(Integer promotionid) {
         this.promotionid = promotionid;
+    }
+
+    public Promotion(Double discountpercentage, Date startdatetime, Date enddatetime, Integer status) {
+        this.discountpercentage = discountpercentage;
+        this.startdatetime = startdatetime;
+        this.enddatetime = enddatetime;
+        this.status = status;
     }
 
     public Integer getPromotionid() {
@@ -94,14 +114,22 @@ public class Promotion implements Serializable {
         this.enddatetime = enddatetime;
     }
 
-    @XmlTransient
-    public List<Product> getProductList() {
-        return productList;
+    public Integer getStatus() {
+        return status;
     }
 
-    public void setProductList(List<Product> productList) {
-        this.productList = productList;
+    public void setStatus(Integer status) {
+        this.status = status;
     }
+
+//    @XmlTransient
+//    public List<Product> getProductList() {
+//        return productList;
+//    }
+//
+//    public void setProductList(List<Product> productList) {
+//        this.productList = productList;
+//    }
 
     @Override
     public int hashCode() {
@@ -127,5 +155,5 @@ public class Promotion implements Serializable {
     public String toString() {
         return "entity.Promotion[ promotionid=" + promotionid + " ]";
     }
-    
+
 }

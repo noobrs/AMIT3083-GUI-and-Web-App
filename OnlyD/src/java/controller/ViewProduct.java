@@ -4,8 +4,9 @@
  */
 package controller;
 
-import entity.Product;
 import entity.Category;
+import entity.Product;
+import entity.Promotion;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
@@ -15,8 +16,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import service.ProductService;
 import service.CategoryService;
+import service.ProductService;
+import service.PromotionService;
 
 /**
  *
@@ -32,9 +34,21 @@ public class ViewProduct extends HttpServlet {
         try {
             ProductService productService = new ProductService(em);
             CategoryService categoryService = new CategoryService(em);
+            PromotionService promotionService = new PromotionService(em);
             List<Product> productList = productService.findByStatus(1);
             List<Category> categoryList = categoryService.findByStatus(1);
             HttpSession session = request.getSession();
+
+            double[] promoPrice = new double[productList.size()];
+            for (int i = 0; i < productList.size(); i++) {
+                if (productList.get(i).getIspromo() == true) {
+
+                    Promotion activePromo = promotionService.findActivePromotionByProductId(productList.get(i).getProductid());
+                    promoPrice[i] = productList.get(i).getPrice() * (100 - activePromo.getDiscountpercentage()) / 100;
+                }
+            }
+            session.setAttribute("promoPrice", promoPrice);
+
             session.setAttribute("productListUser", productList);
             session.setAttribute("categoryListUser", categoryList);
             int i = 0;
@@ -44,50 +58,23 @@ public class ViewProduct extends HttpServlet {
                 session.setAttribute("Category" + i, category);
                 i++;
             }
-
             response.sendRedirect("user/productlist.jsp");
         } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

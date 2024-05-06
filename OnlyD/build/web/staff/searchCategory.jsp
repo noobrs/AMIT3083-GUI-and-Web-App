@@ -1,3 +1,4 @@
+<%@include file="staffAuthentication.jsp"%>
 <%-- retrieve selected item code --%>
 <%
    String id = request.getParameter("categoryId");

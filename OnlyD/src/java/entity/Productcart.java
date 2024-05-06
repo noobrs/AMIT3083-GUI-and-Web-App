@@ -4,7 +4,6 @@
  */
 package entity;
 
-import java.io.Serializable;
 import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
@@ -14,17 +13,18 @@ import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 
 /**
  *
- * @author GIGABYTE
+ * @author Vin Sen
  */
 @Entity
 @Table(name = "PRODUCTCART")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Productcart.findAll", query = "SELECT p FROM Productcart p"),
-    @NamedQuery(name = "Productcart.findByCartid", query = "SELECT p FROM Productcart p WHERE p.productcartPK.cartid = :cartid"),
+    @NamedQuery(name = "Productcart.findByCustomerid", query = "SELECT p FROM Productcart p WHERE p.productcartPK.customerid = :customerid"),
     @NamedQuery(name = "Productcart.findByProductid", query = "SELECT p FROM Productcart p WHERE p.productcartPK.productid = :productid"),
     @NamedQuery(name = "Productcart.findByQuantity", query = "SELECT p FROM Productcart p WHERE p.quantity = :quantity")})
 public class Productcart implements Serializable {
@@ -34,9 +34,9 @@ public class Productcart implements Serializable {
     protected ProductcartPK productcartPK;
     @Column(name = "QUANTITY")
     private Integer quantity;
-    @JoinColumn(name = "CARTID", referencedColumnName = "CARTID", insertable = false, updatable = false)
+    @JoinColumn(name = "CUSTOMERID", referencedColumnName = "CUSTOMERID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
-    private Cart cart;
+    private Customer customer;
     @JoinColumn(name = "PRODUCTID", referencedColumnName = "PRODUCTID", insertable = false, updatable = false)
     @ManyToOne(optional = false)
     private Product product;
@@ -48,8 +48,8 @@ public class Productcart implements Serializable {
         this.productcartPK = productcartPK;
     }
 
-    public Productcart(int cartid, int productid) {
-        this.productcartPK = new ProductcartPK(cartid, productid);
+    public Productcart(int customerid, int productid) {
+        this.productcartPK = new ProductcartPK(customerid, productid);
     }
 
     public ProductcartPK getProductcartPK() {
@@ -68,12 +68,12 @@ public class Productcart implements Serializable {
         this.quantity = quantity;
     }
 
-    public Cart getCart() {
-        return cart;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCart(Cart cart) {
-        this.cart = cart;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     public Product getProduct() {
@@ -106,7 +106,7 @@ public class Productcart implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Productcart[ productcartPK=" + productcartPK + " ]";
+        return "entitytest.Productcart[ productcartPK=" + productcartPK + " ]";
     }
     
 }

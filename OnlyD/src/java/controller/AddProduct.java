@@ -43,10 +43,10 @@ public class AddProduct extends HttpServlet {
             int stock = Integer.parseInt(stockStr);
 
             String description = request.getParameter("description");
+
+            String image = request.getParameter("image");
             
-            String image = "../image/img_" + request.getParameter("imgId") +".jpg";
-            
-            int status = 1;
+            int status = Integer.parseInt(request.getParameter("status"));
 
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);
@@ -56,6 +56,7 @@ public class AddProduct extends HttpServlet {
             Staff staffid = new Staff(sid);
 
             Product product = new Product(name, price, stock, description, image, status, categoryid, staffid);
+            product.setIspromo(false);
             ProductService productService = new ProductService(em);
             utx.begin();
             boolean success = productService.addProduct(product);

@@ -24,7 +24,6 @@ import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import jakarta.xml.bind.annotation.XmlTransient;
-
 /**
  *
  * @author GIGABYTE
@@ -77,6 +76,17 @@ public class Orders implements Serializable {
 
     public Orders(Integer orderid) {
         this.orderid = orderid;
+    }
+    
+    public Orders(Date orderdatetime, String shippingaddress, String paymenttype, Double subtotal, Double totaldiscount, Double shippingfee,Double total, Customer customerid) {
+        this.orderdatetime = orderdatetime;
+        this.shippingaddress = shippingaddress;
+        this.paymenttype = paymenttype;
+        this.subtotal = subtotal;
+        this.totaldiscount = totaldiscount;
+        this.shippingfee = shippingfee;
+        this.total = total;
+        this.customerid = customerid;
     }
 
     public Integer getOrderid() {

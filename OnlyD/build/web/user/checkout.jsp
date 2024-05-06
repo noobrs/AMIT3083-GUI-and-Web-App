@@ -1,0 +1,97 @@
+<%-- 
+    Document   : checkout
+    Created on : May 5, 2024, 3:33:01 PM
+    Author     : Asus
+--%>
+
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List, entity.Productcart, entity.Product" %>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+        <%
+            List<Productcart> selected = (List<Productcart>)session.getAttribute("selectedCartItem");
+            double subtotal = 0;
+            double totaldiscount = 0;
+            double shippingfee = 25;
+            double total = 0;
+            if(selected != null){
+        %>
+
+        <h1>CheckOut!</h1>
+        <form action="../AddOrder" method="post">
+            <table>
+                <tr>
+                    <th>Product ID</th>
+                    <th>Product Name</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>
+                <% 
+                    for (Productcart cartItem : selected) {
+                        Product product = cartItem.getProduct();
+                        if (product != null) {
+                %>
+                <tr>
+                    <td><%= product.getProductid() %></td>
+                    <td><%= product.getName() %></td>
+                    <td><%= String.format("%.2f", product.getPrice()) %></td>
+                    <td><%= cartItem.getQuantity() %></td>
+                </tr>
+                <%
+                     subtotal += product.getPrice() * cartItem.getQuantity();                  
+                    }
+}
+                %>                
+            </table>
+            <% } %>
+
+            <% 
+                if(subtotal >= 200){
+                    shippingfee = 0;
+                }
+                total = (subtotal * (1 + totaldiscount)) + shippingfee;
+            %>
+
+            <table>
+                <tr>
+                    <td>Shipping Address</td>
+                    <td><input type="text" name="address" required=""></td>
+                </tr>
+                <tr>
+                    <td>Payment Method</td>
+                    <td>
+                        <select name="paymentMethod">
+                            <option value="Cash">Cash</option>
+                            <option value="Debit Card">Debit Card</option>
+                            <option value="Credit Card">Credit Card</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Subtotal</td>
+                    <td>
+                        <input type="number" value="<%=subtotal%>" name="subtotal" readonly>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Total Discount</td>
+                    <td><input type="number" value="<%=totaldiscount%>" name="totaldiscount" readonly></td>
+                </tr>
+                <tr>
+                    <td>Shipping Fee</td>
+                    <td><input type="number" value="<%=shippingfee%>" name="shippingfee" readonly></td>
+                </tr>
+                <tr>
+                    <td>Total</td>
+                    <td><input type="number" value="<%=total%>" name="total" readonly></td>
+                </tr>
+            </table>
+            <br/><input type="submit" value="order">
+        </form>
+    </body>
+</html>

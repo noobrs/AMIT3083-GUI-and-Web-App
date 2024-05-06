@@ -4,9 +4,9 @@
  */
 package service;
 
+import entity.Orders;
 import entity.Product;
 import entity.Productorder;
-import entity.Orders;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -14,13 +14,14 @@ import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import java.util.List;
 
+
 public class OrderService {
- 
+    
     @PersistenceContext
     EntityManager mgr;
     @Resource
     Query query;
-    
+
     public OrderService(EntityManager mgr) {
         this.mgr = mgr;
     }
@@ -40,9 +41,8 @@ public class OrderService {
         return order;
     }
     
-    public List<Productorder> findByOrderid(int id) {
-        TypedQuery<Productorder> productList = mgr.createNamedQuery("Productorder.findByOrderid",Productorder.class);
-        productList.setParameter("id",id);
-        return productList.getResultList();
+    public Productorder findProductOrderByID(int id) {
+        Productorder productorder = mgr.find(Productorder.class, id);
+        return productorder;
     }
 }

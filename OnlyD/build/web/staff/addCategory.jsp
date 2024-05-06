@@ -3,7 +3,7 @@
     Created on : 30 Apr 2024, 10:43:54 AM
     Author     : GIGABYTE
 --%>
-
+<%@include file="staffAuthentication.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,6 +17,14 @@
                 <tr>
                     <td>Category Name</td>
                     <td><input type="text" name="name" pattern="^(?!.*\bNULL\b).*$" title="The word 'NULL' is not allowed."></td>
+                </tr>
+                <tr>
+                    <td>Status</td>
+                    <td><select name="status">
+                            <option value="0"> Deleted
+                            <option value="1"> Active
+                        </select>
+                    </td>
                 </tr>
             </table>    
             <input type="submit" value="Add">
