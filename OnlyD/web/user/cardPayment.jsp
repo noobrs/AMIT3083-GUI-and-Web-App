@@ -14,7 +14,7 @@
     <body>
         <h2>Payment</h2>
         <h3>Pay with Credit / Debit Card</h3>
-        <form action="../AddOrder?paymentType=card&cardStatus=valid" method="post">
+        <form action="../AddOrder?cardStatus=valid" method="post">
             Card Number :
             <input type="text" id="cardNumber" name="cardNumber" required maxlength="16" minlength="16">
             <br>

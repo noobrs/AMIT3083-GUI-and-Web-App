@@ -43,7 +43,6 @@ public class AddOrder extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        String button = request.getParameter("orderButton");
         List<Productcart> selected = (List<Productcart>) session.getAttribute("selectedCartItem");
         Customer cust = (Customer) session.getAttribute("customer");
         ProductService productService = new ProductService(em);
@@ -52,35 +51,32 @@ public class AddOrder extends HttpServlet {
         PromotionService promoService = new PromotionService(em);
 
         try {
-
-            String paymentType = request.getParameter("paymentType");
             String cardStatus = request.getParameter("cardStatus");
 
-            // select card and havent go to carPayment page
-            if (paymentType.equals("card") && cardStatus == null) {
-                
-                response.sendRedirect("user/cardPayment.jsp");
-                
-            } else {
-                String address = request.getParameter("sAddress1");
-                String state = request.getParameter("sState");
-                String city = request.getParameter("sCity");
-                String postCode = request.getParameter("sPostCode");
+            String paymentType = (String)session.getAttribute("paymentType");
+            
 
-                String fullAddress = address + "<br>" + city + ", " + postCode + ", " + state;
+            // if select card and havent go to cartPayment page
+            if (paymentType.equals("Credit Card/Debit Card") && cardStatus == null) {
+
+                response.sendRedirect("user/cardPayment.jsp");
+
+            } else {
+
+                String fullAddress = (String)session.getAttribute("fullAddress");
                 Date currentDate = new Date();
-                Double subtotal = (Double)session.getAttribute("subtotal");
-                Double discount = (Double)session.getAttribute("totaldiscount");
-                Double shippingfee = (Double)session.getAttribute("shippingfee");
-                Double total = (Double)session.getAttribute("total");
+                Double subtotal = (Double) session.getAttribute("subtotal");
+                Double discount = (Double) session.getAttribute("discount");
+                Double shippingfee = (Double) session.getAttribute("shippingfee");
+                Double total = (Double) session.getAttribute("total");
                 Promotion promoApplied = (Promotion) session.getAttribute("promoApplied");
-                
-                Orders order = new Orders(currentDate, address, paymentType, subtotal, discount, shippingfee, total, cust);
+
+                Orders order = new Orders(currentDate, fullAddress, paymentType, subtotal, discount, shippingfee, total, cust);
 
                 utx.begin();
                 orderService.addOrder(order);
                 utx.commit();
-                
+
                 int tempOrderId = order.getOrderid();
 
                 for (Productcart productcart : selected) {
@@ -103,6 +99,7 @@ public class AddOrder extends HttpServlet {
                     }
                 }
                 utx.commit();
+
                 utx.begin();
                 cust = em.find(Customer.class, cust.getCustomerID());
                 em.refresh(cust);
@@ -118,8 +115,10 @@ public class AddOrder extends HttpServlet {
 
                 utx.commit();
 
+                session.removeAttribute("paymentType");
+                session.removeAttribute("fullAddress");
                 session.removeAttribute("promoApplied");
-                response.sendRedirect("payment.jsp");
+                response.sendRedirect("ViewCart");
             }
 
         } catch (Exception e) {

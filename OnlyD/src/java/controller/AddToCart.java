@@ -42,6 +42,7 @@ public class AddToCart extends HttpServlet {
             boolean addedToCart = false;
 
             Customer cust = (Customer) session.getAttribute("customer");
+            CustomerService custService = new CustomerService(em);
 
             // cust logged in
             if (cust != null) {
@@ -64,7 +65,7 @@ public class AddToCart extends HttpServlet {
                         }
                     }
                 }
-                
+
                 // check if input qty > stock
                 if (quantity > product.getStock()) {
                     response.getWriter().println("not enough stock");
@@ -78,7 +79,8 @@ public class AddToCart extends HttpServlet {
                 if (addedToCart) {
 
                     utx.begin();
-                    cust = em.find(Customer.class, cust.getCustomerID());
+                    cust = custService.findCustomerById(cust.getCustomerID());
+                    cust.initializeProductcartList();
                     em.refresh(cust);
                     utx.commit();
 

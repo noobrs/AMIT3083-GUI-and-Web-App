@@ -16,7 +16,7 @@
 
         <h2>Shipping Details</h2>
         <div>
-            <form action="../AddOrder" method="post">
+            <form action="processPaymentInput.jsp" method="post">
                 Recipient Name :
                 <input type="text" id="rName" name="rName" placeholder="Name" required>
                 <br>
@@ -54,8 +54,8 @@
                 <br>
                 Payment Type : 
                 <select id="paymentType" name="paymentType" onchange="showCardDetails()">
-                    <option value="cash">Cash On Delivery</option>
-                    <option value="card">Credit Card/Debit Card</option>
+                    <option value="Cash On Delivery">Cash On Delivery</option>
+                    <option value="Credit Card/Debit Card">Credit Card/Debit Card</option>
                 </select>
                 <br>
                 <br>
