@@ -22,11 +22,11 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="<%=request.getContextPath()%>/product/allProductPage.jsp">Product</a>
+                                <a class="nav-link" href="<%=request.getContextPath()%>">Home</a>
                             </li>
                             <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
+                                <a class="nav-link dropdown-toggle" href="<%=request.getContextPath()%>/ViewProduct" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Product
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                                     <li><a class="dropdown-item" href="#">Action</a></li>
@@ -34,9 +34,6 @@
                                     <li><hr class="dropdown-divider"></li>
                                     <li><a class="dropdown-item" href="#">Something else here</a></li>
                                 </ul>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
                             </li>
                         </ul>
                         <%if((Boolean) session.getAttribute("isCustomer") != null){%>

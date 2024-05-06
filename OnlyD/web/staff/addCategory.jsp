@@ -10,25 +10,46 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Add Category</title>
+        <%@include file="/layout/meta.html"%>
+
     </head>
-    <body>
-        <form action="../AddCategory" method="post">
-            <table border="0">
-                <tr>
-                    <td>Category Name</td>
-                    <td><input type="text" name="name" pattern="^(?!.*\bNULL\b).*$" title="The word 'NULL' is not allowed."></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td><select name="status">
-                            <option value="0"> Deleted
-                            <option value="1"> Active
-                        </select>
-                    </td>
-                </tr>
-            </table>    
-            <input type="submit" value="Add">
-            <input type="reset" value="Reset">
-        </form>
+    <body style="background-color: #25182E">
+        <%@include file="/layout/header.jsp"%>
+        <div class="mt-5">
+            <div class="container">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Add Category</h5>  
+                    </div>
+
+                    <div class="card-body">
+                        <form action="../AddCategory" method="post">
+                            <table border="0">
+                                <tr>
+                                    <td>Category Name</td>
+                                    <td><input type="text" name="name" pattern="^(?!.*\bNULL\b).*$" title="The word 'NULL' is not allowed."></td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td><select name="status">
+                                            <option value="0"> Deleted
+                                            <option value="1"> Active
+                                        </select>
+                                    </td>
+                                </tr>
+                            </table>    
+                            <input type="submit" value="Add">
+                            <input type="reset" value="Reset">
+                        </form>
+                    </div>
+
+                </div>            
+            </div>
+        </div>
+
+
+
+        <%@include file="/layout/footer.jsp"%>
+
     </body>
 </html>

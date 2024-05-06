@@ -9,7 +9,9 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Register Page</title>        
+        <title>Register Page</title>  
+        <%@include file="/layout/meta.html"%>
+
     </head>
     <body style="height: 100%">
         <%@include file="layout/header.jsp"%>

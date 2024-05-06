@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entity.Category;
 import entity.Product;
 import entity.Promotion;
 import jakarta.persistence.EntityManager;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import service.CategoryService;
 import service.ProductService;
 import service.PromotionService;
 
@@ -29,27 +31,37 @@ public class ViewProduct extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
+          try {
             ProductService productService = new ProductService(em);
+            CategoryService categoryService = new CategoryService(em);
             PromotionService promotionService = new PromotionService(em);
             List<Product> productList = productService.findByStatus(1);
+            List<Category> categoryList = categoryService.findByStatus(1);
             HttpSession session = request.getSession();
-            
+
             double[] promoPrice = new double[productList.size()];
-            for(int i = 0; i < productList.size(); i++){
-                if(productList.get(i).getIspromo() == true){
-                    
+            for (int i = 0; i < productList.size(); i++) {
+                if (productList.get(i).getIspromo() == true) {
+
                     Promotion activePromo = promotionService.findActivePromotionByProductId(productList.get(i).getProductid());
                     promoPrice[i] = productList.get(i).getPrice() * (100 - activePromo.getDiscountpercentage()) / 100;
                 }
             }
-            
             session.setAttribute("promoPrice", promoPrice);
+
             session.setAttribute("productListUser", productList);
+            session.setAttribute("categoryListUser", categoryList);
+            int i = 0;
+
+            for (Product product : productList) {
+                Category category = product.getCategoryid();
+                session.setAttribute("Category" + i, category);
+                i++;
+            }
             response.sendRedirect("user/productlist.jsp");
         } catch (Exception ex) {
-           response.getWriter().println(ex.getMessage());
-           ex.printStackTrace();
+            response.getWriter().println(ex.getMessage());
+            ex.printStackTrace();
         }
     }
 

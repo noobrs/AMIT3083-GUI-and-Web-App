@@ -13,6 +13,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Shopping Cart</title>
+        <%@include file="/layout/meta.html"%>
+
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>

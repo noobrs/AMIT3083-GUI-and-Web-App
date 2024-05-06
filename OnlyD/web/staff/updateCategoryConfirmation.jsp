@@ -1,7 +1,9 @@
 <%@include file="staffAuthentication.jsp"%>
 <%@page import="entity.Category"%>
 <html>
-    <head></head>
+    <head>
+        
+    </head>
     <body>
         <%
             Category category = (Category) session.getAttribute("category");
