@@ -45,13 +45,14 @@
                 <th>Price (RM)</th>
                 <th>Category</th>
                 <th>Current Stock</th>
+                <th>More Details</th>
             </tr>
             <% 
                 for (Product product: productList){ 
                 Category categoryP = (Category) session.getAttribute("Category" + i);
             %>
             <tr>
-                <td><%= product.getProductid() %></td>
+                <td><a href="../ViewProductDetail?productId=<%= product.getProductid() %>"><%= product.getProductid() %></a></td>
                 <td><%= product.getName() %></td>
                 <td><%= product.getDescription() %> </td>
                 <td><%= String.format("%.2f", product.getPrice()) %></td>

@@ -224,6 +224,14 @@
         <servlet-name>CheckOrder</servlet-name>
         <servlet-class>controller.CheckOrder</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ViewProductDetail</servlet-name>
+        <servlet-class>controller.ViewProductDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewTopSold</servlet-name>
+        <servlet-class>controller.ViewTopSold</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -427,6 +435,14 @@
     <servlet-mapping>
         <servlet-name>CheckOrder</servlet-name>
         <url-pattern>/CheckOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductDetail</servlet-name>
+        <url-pattern>/ViewProductDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewTopSold</servlet-name>
+        <url-pattern>/ViewTopSold</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

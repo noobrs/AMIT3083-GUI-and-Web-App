@@ -44,7 +44,7 @@
         <a href="../ViewCategory">View Category</a><br>
         
         <h2>Report Generation</h2>
-        <a href="#">View TOP 10 Sold Products</a><br>
+        <a href="../ViewTopSold">View TOP 10 Sold Products</a><br>
         <a href="#">View Sales Records</a><br>
          
         <%@include file="/layout/footer.jsp"%>
