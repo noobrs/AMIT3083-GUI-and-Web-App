@@ -10,10 +10,10 @@ import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
-
+import java.util.List;
 
 public class OrderService {
-    
+
     @PersistenceContext
     EntityManager mgr;
     @Resource
@@ -23,21 +23,27 @@ public class OrderService {
         this.mgr = mgr;
     }
 
+    public List<Orders> findAll() {
+        List<Orders> orderList = mgr.createNamedQuery("Orders.findAll").getResultList();
+
+        return orderList;
+    }
+
     public boolean addOrder(Orders order) {
         mgr.persist(order);
         return true;
     }
-    
+
     public boolean addProductOrder(Productorder productorder) {
         mgr.persist(productorder);
         return true;
     }
-    
+
     public Orders findOrderByID(int id) {
         Orders order = mgr.find(Orders.class, id);
         return order;
     }
-    
+
     public Productorder findProductOrderByID(int id) {
         Productorder productorder = mgr.find(Productorder.class, id);
         return productorder;

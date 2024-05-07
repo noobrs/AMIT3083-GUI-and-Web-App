@@ -232,6 +232,14 @@
         <servlet-name>ViewTopSold</servlet-name>
         <servlet-class>controller.ViewTopSold</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProcessSales</servlet-name>
+        <servlet-class>controller.ProcessSales</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSalesReport</servlet-name>
+        <servlet-class>controller.ViewSalesReport</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -443,6 +451,14 @@
     <servlet-mapping>
         <servlet-name>ViewTopSold</servlet-name>
         <url-pattern>/ViewTopSold</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessSales</servlet-name>
+        <url-pattern>/ProcessSales</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSalesReport</servlet-name>
+        <url-pattern>/ViewSalesReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

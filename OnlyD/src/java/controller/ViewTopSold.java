@@ -5,12 +5,9 @@
 package controller;
 
 import entity.Product;
-import entity.Productorder;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.persistence.TypedQuery;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
+import service.ProductService;
 
 /**
  *
@@ -32,26 +30,22 @@ public class ViewTopSold extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
-        
+
         try {
-//            List<Productorder> productorderList = em.createNamedQuery("Productorder.findAll", Productorder.class).getResultList();
-//
-//            List<Object[]> results = em.createQuery(
-//                    "SELECT po.product, SUM(po.quantity) AS totalQuantity "
-//                    + "FROM ProductOrder po "
-//                    + "GROUP BY po.product "
-//                    + "ORDER BY totalQuantity DESC")
-//                    .setMaxResults(10) // Limit the results to the top 10
-//                    .getResultList();
-//
-//            List<Product> topSoldProducts = new ArrayList<>();
-//            for (Object[] result : results) {
-//                Product product = (Product) result[0];
-//                topSoldProducts.add(product);
-//            }
-//            
-//            session.setAttribute("topSoldList", topSoldProducts);
-//            response.sendRedirect("admin/topSoldReport.jsp");
+            ProductService productService = new ProductService(em);
+
+            List<Integer> sold = em.createNativeQuery("select po.productid from PRODUCTORDER po group by po.productid order by sum(po.quantity) desc").getResultList();
+            List<Integer> soldQty = em.createNativeQuery("select sum(po.quantity) from PRODUCTORDER po group by po.productid order by sum(po.quantity) desc").getResultList();
+
+            List<Product> productSold = new ArrayList<>();
+
+            for (Integer pID : sold) {
+                productSold.add(productService.findProductByID(pID));
+            }
+
+            session.setAttribute("productSold", productSold);
+            session.setAttribute("soldQty", soldQty);            
+            response.sendRedirect("admin/topSoldReport.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();

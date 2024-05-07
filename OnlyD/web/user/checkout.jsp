@@ -66,7 +66,7 @@
                 subtotal -= totaldiscount;
                 }
                 
-                total = (subtotal * (1 + totaldiscount)) + shippingfee;
+                total = (subtotal - totaldiscount) + shippingfee;
             %>
 
             <table>
