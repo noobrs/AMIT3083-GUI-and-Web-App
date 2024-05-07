@@ -21,6 +21,7 @@ import jakarta.servlet.http.Part;
 import jakarta.transaction.UserTransaction;
 import java.nio.file.Paths;
 import service.ProductService;
+import service.StaffService;
 
 /**
  *
@@ -38,6 +39,7 @@ public class AddProduct extends HttpServlet {
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
+        StaffService staffService = new StaffService(em);
 
         try {
             String name = request.getParameter("name");
@@ -50,7 +52,6 @@ public class AddProduct extends HttpServlet {
 
             String description = request.getParameter("description");
 
-            //String image = request.getParameter("image");
             Part image = request.getPart("image");
             String imageURL = Paths.get(image.getSubmittedFileName()).getFileName().toString();
 
@@ -60,11 +61,11 @@ public class AddProduct extends HttpServlet {
             int cid = Integer.parseInt(categoryidStr);
             Category categoryid = new Category(cid);
 
-//            String sid = request.getParameter("staffid");
-//            Staff staffid = new Staff(sid);
+            Staff staff = (Staff) session.getAttribute("staff");
 
-            Staff staff = (Staff)session.getAttribute("staff");
-    
+            if (request.isUserInRole("AdminRole") || staff == null) {
+                staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);
+            }
 
             Product product = new Product(name, price, stock, description, imageURL, status, categoryid, staff);
             ProductService productService = new ProductService(em);
