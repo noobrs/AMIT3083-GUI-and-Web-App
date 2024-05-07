@@ -62,17 +62,21 @@ public class ViewSalesReport extends HttpServlet {
 
                 int parsedMonth = Integer.parseInt(requestMonth, 0, 2, 10);
                 int parsedYear = Integer.parseInt(requestMonth, 3, 7, 10);
-                List<Orders> orderList = orderService.findAll();
-
-                Calendar calendar = Calendar.getInstance();
+//                List<Orders> orderList = orderService.findAll();
+//
+//                Calendar calendar = Calendar.getInstance();
                 
+                foundOrderList = em.createNamedQuery("Orders.findByOrderMonth")
+                        .setParameter("year", parsedYear)
+                        .setParameter("month", parsedMonth)
+                        .getResultList();
 
-                for (Orders o : orderList) {
-                    calendar.setTime(o.getOrderdatetime());
-                    if ((calendar.get(Calendar.MONTH)+1 == parsedMonth) && (calendar.get(Calendar.YEAR) == parsedYear)) {
-                        foundOrderList.add(o);
-                    }
-                }
+//                for (Orders o : orderList) {
+//                    calendar.setTime(o.getOrderdatetime());
+//                    if ((calendar.get(Calendar.MONTH)+1 == parsedMonth) && (calendar.get(Calendar.YEAR) == parsedYear)) {
+//                        foundOrderList.add(o);
+//                    }
+//                }
 
                 session.setAttribute("month", requestMonth);
 
