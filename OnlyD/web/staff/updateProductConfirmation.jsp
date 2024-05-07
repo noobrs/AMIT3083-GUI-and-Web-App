@@ -4,7 +4,42 @@
 <%@page import="entity.Staff"%>
 <%@page import="java.util.List"%>
 <html>
-    <head></head>
+    <head>
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('fileInput').addEventListener('change', function (event) {
+                    var files = event.target.files;
+                    var preview = document.getElementById('preview');
+
+                    // Clear any existing content
+                    preview.innerHTML = '';
+
+                    // Check if a file is selected
+                    if (files.length > 0) {
+                        var file = files[0];
+
+                        // Only process image files
+                        if (file.type.match('image.*')) {
+                            var img = document.createElement('img');
+                            img.src = URL.createObjectURL(file);
+                            img.style.height = '100px';
+                            img.style.display = 'block'; // Ensure the image is displayed in a block to put it on a new line
+                            img.style.marginBottom = '10px';
+
+                            // Append the image to the preview div
+                            preview.appendChild(img);
+                        } else {
+                            // Display an error message if the selected file is not an image
+                            preview.innerHTML = 'Please select an image file.';
+                        }
+                    }
+                });
+            });
+
+        </script>
+    </head>
     <body>
         <%
             Product product = (Product) session.getAttribute("product");
@@ -14,7 +49,7 @@
             if (product != null) {
         %>
         <h1>Update Product</h1>
-        <form action="../UpdateProduct" method="post">
+        <form action="../UpdateProduct" method="post" enctype="multipart/form-data">
             <table border="0">
                 <tr>
                     <td>Name</td>
@@ -38,15 +73,17 @@
                 </tr>
                 <tr>
                     <td>Image</td>
-                    <td><input type="text" name="image"
-                               value="<%=product.getImage()%>" required></td>
+                    <td> <input type="file" id="fileInput" name="image" accept="image/*" required /></td>
+                </tr>
+                <tr>
+                    <td><div id="preview"><img src="<%= request.getContextPath() + "/image/" + product.getImage()%>"></div></td>
                 </tr>
                 <tr>
                     <td>Status</td>
                     <td><select name="status">
-                                <%
-                                    if(product.getStatus() == 0){
-                                %>  
+                            <%
+                                if(product.getStatus() == 0){
+                            %>  
                             <option value="0">Deleted    
                             <option value="1">Active
                                 <% }else{%>   
@@ -72,10 +109,10 @@
                } %>
                         </select>
                     </td>
-<!--                </tr>
-                    <td>Add/Last Modified by</td>
-                    <td><input type="text" name="staffid" value="<%=product.getStaffid().getStaffid()%>" ></td>
-                </tr>-->
+                    <!--                </tr>
+                                        <td>Add/Last Modified by</td>
+                                        <td><input type="text" name="staffid" value="<%=product.getStaffid().getStaffid()%>" ></td>
+                                    </tr>-->
             </table>
             <input type="submit" value="Update Product">
 

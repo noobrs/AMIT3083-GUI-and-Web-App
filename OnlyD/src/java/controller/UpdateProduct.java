@@ -12,17 +12,21 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import jakarta.transaction.UserTransaction;
+import java.nio.file.Paths;
 import service.ProductService;
 
 /**
  *
  * @author GIGABYTE
  */
+@MultipartConfig
 public class UpdateProduct extends HttpServlet {
 
     @PersistenceContext
@@ -46,7 +50,8 @@ public class UpdateProduct extends HttpServlet {
 
             String description = request.getParameter("description");
             
-            String image = request.getParameter("image");
+            Part image = request.getPart("image");
+            String imageURL = Paths.get(image.getSubmittedFileName()).getFileName().toString();
             
             int status = Integer.parseInt(request.getParameter("status"));
 
@@ -63,7 +68,7 @@ public class UpdateProduct extends HttpServlet {
             int id = Integer.parseInt(code);
             
             ProductService productService = new ProductService(em);
-            Product product = new Product(id, name, price, stock, description, image, status, categoryid, staff);
+            Product product = new Product(id, name, price, stock, description, imageURL, status, categoryid, staff);
             
             utx.begin();
             boolean success = productService.updateProduct(product);
