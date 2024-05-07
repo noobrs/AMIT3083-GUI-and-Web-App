@@ -30,6 +30,12 @@
         <% } %>
         <p>Choose an action:</p>
 
+        <% if((String)session.getAttribute("statusMsg") != null) { %>
+        <p><%=(String)session.getAttribute("statusMsg")%></p>
+        <% 
+            session.removeAttribute("statusMsg");
+            } %>
+        
         <% if(request.isUserInRole("AdminRole")){ %>
         <h2>Staff</h2>
         <a href="../ViewStaff">View All Staffs</a><br>

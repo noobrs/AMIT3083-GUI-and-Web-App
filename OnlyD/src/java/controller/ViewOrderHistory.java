@@ -41,6 +41,12 @@ public class ViewOrderHistory extends HttpServlet {
             CustomerService custService = new CustomerService(em);
             Customer cust = (Customer) session.getAttribute("customer");
             
+            // if not customer then redirect to login
+            if(cust == null){
+                session.setAttribute("statusMsg", "Not a user, try to login!");
+                response.sendRedirect("login.jsp");
+            }
+            
             // get the latest order list in cust
             utx.begin();
             Customer temp = custService.findCustomerById(cust.getCustomerID());

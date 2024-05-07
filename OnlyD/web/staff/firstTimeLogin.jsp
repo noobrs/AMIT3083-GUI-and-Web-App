@@ -1,6 +1,7 @@
 <%@include file="staffAuthentication.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="staff" class="entity.Staff" scope="session" ></jsp:useBean>
+<%@page  import="entity.Staff" %>
+<jsp:useBean id="staff" class="Staff" scope="session" ></jsp:useBean>
     <!DOCTYPE html>
     <html>
         <head>
@@ -8,9 +9,13 @@
             <title>First Time Login</title>
         </head>
         <body>
-        <%@include file="../layout/header.jsp"%> 
+        <%@include file="/layout/header.jsp"%> 
         
         <%
+            if(staff.getStatus().equals(Staff.ACTIVE_STATUS)){
+            response.sendRedirect("staffDashboard.jsp");
+            }
+            
             String errorMessage = (String)session.getAttribute("errorMessage");
             String enteredStaffName = (String)session.getAttribute("enteredStaffName");
             String enteredStaffEmail = (String)session.getAttribute("enteredStaffEmail");
@@ -58,14 +63,10 @@
                             }
                         %>
                     </div>
-                    <div class="text-center">
-                        <p>OR</p>
-                        <p>Don't have an account ?<br><a href="register.jsp">Sign Up</a></p>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <%@include file="../layout/footer.jsp"%> 
+        <%@include file="/layout/footer.jsp"%> 
     </body>
 </html>

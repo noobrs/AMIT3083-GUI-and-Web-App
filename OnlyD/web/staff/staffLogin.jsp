@@ -14,11 +14,12 @@
         String errorMessage = (String)session.getAttribute("errorMessage");
         String enteredStaffID = (String)session.getAttribute("enteredStaffID");
         
-//        if(verificationStatus == null){
-//            if(staff != null && staff.getStatus() == Staff.ACTIVE_STATUS){
-//                response.sendRedirect("staffDashboard.jsp");
-//            }    
-//        }
+        // if is admin or staff access this page, they will be redirected
+        if(request.isUserInRole("AdminRole") || 
+                (((Boolean)session.getAttribute("isStaff") != null) && (verificationStatus == null))){
+
+            response.sendRedirect("staffDashboard.jsp");  
+            }
         %>
         <%@include file="/layout/header.jsp"%>      
 

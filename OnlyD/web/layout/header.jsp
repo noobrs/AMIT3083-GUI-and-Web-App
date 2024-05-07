@@ -15,7 +15,7 @@
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
                 <div class="container">
                     <a href="<%=request.getContextPath()%>">
-                    <img src="<%=request.getContextPath()%>/layout/only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px" />
+                        <img src="<%=request.getContextPath()%>/layout/only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px" />
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
@@ -40,14 +40,15 @@
                                 <a class="nav-link disabled">Disabled</a>
                             </li>
                         </ul>
-                        <%if((Boolean) session.getAttribute("isCustomer") != null){%>
+
+
+                        <% if ((Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole")) { %>
+                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/staff/staffDashboard.jsp">Dashboard</a></button>
+                        <% } else { %>
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/ViewCart">Cart</a></button>
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/ViewOrderHistory">Orders</a></button>
-                        <% } else if ((Boolean) session.getAttribute("isStaff") != null) { %>
-                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/staff/staffDashboard.jsp">Dashboard</a></button>
-                        <% } else if(request.isUserInRole("AdminRole")) { %>
-                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/admin/adminDashboard.jsp">Dashboard</a></button>
                         <% } %>
+                        
                         <form class="d-flex" action="<%=request.getContextPath()%>/SearchProductByUser">
                             <input type="text" name="productName" class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search">
                             <input type="submit" value="Search" name="searchButton"  class="btn btn-outline-success">

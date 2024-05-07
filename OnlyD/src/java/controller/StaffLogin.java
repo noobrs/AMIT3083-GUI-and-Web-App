@@ -7,7 +7,6 @@ package controller;
 import entity.Staff;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import jakarta.servlet.RequestDispatcher;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -42,11 +41,15 @@ public class StaffLogin extends HttpServlet {
             // unable to find the staff
             if (staff == null || (!staff.getPassword().equals(password) && staff.getStatus() != Staff.VERIFICATION_STATUS)) {
                 throw new IllegalArgumentException("Login fail! Incorrect username or password!");
+                                
             } else if (staff.getStatus() == Staff.VERIFICATION_STATUS) {
+                
                 session.setAttribute("staff", staff);
                 session.setAttribute("isStaff", true);
                 response.sendRedirect("staff/firstTimeLogin.jsp");
+                
             } else {
+                
                 session.setAttribute("staff", staff);
                 session.setAttribute("isStaff", true);
                 response.sendRedirect("staff/staffDashboard.jsp");
@@ -57,6 +60,8 @@ public class StaffLogin extends HttpServlet {
             session.setAttribute("enteredStaffID", staffID);
             response.sendRedirect("staff/staffLogin.jsp");           
         } catch (Exception e) {
+            session.setAttribute("exceptionMsg", e.getMessage());
+            response.sendError(500);
         }
     }
 
