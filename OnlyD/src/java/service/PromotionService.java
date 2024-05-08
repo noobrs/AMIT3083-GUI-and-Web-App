@@ -60,6 +60,14 @@ public class PromotionService {
         
         return promoList;
     }
+    
+    public List<Promotion> findWithoutSelectedStatus(int status){
+        List<Promotion> promoList = em.createNamedQuery("Promotion.findAllWithoutStatus")
+                .setParameter("status", status)
+                .getResultList();
+        
+        return promoList;
+    }
 
     public boolean updatePromotion(Promotion promotion) {
         Promotion temp = this.findPromotionByPromotionId(promotion.getPromotionid());

@@ -74,24 +74,27 @@ public class UpdateCustomer extends HttpServlet {
             tempCust = custService.findCustomerByEmail(email);
             if (tempCust != null && (tempCust.getCustomerID() != cust.getCustomerID())) {
                 throw new IllegalArgumentException("Email existed!");
-            } else if (!email.matches(Customer.EMAIL_REGEX)) {
-                throw new IllegalArgumentException("Invalid Email Format!");
-            }
+            } 
+//            else if (!email.matches(Customer.EMAIL_REGEX)) {
+//                throw new IllegalArgumentException("Invalid Email Format!");
+//            }
 
             // phone number validation
             tempCust = custService.findCustomerByPhoneNumber(phoneNumber);
             if (tempCust != null && (tempCust.getCustomerID() != cust.getCustomerID())) {
                 throw new IllegalArgumentException("Phone Number existed!");
-            } else if (!phoneNumber.matches(Customer.PHONENUMBER_REGEX)) {
-                throw new IllegalArgumentException("Invalid Phone Number Format!");
-            }
+            } 
+//            else if (!phoneNumber.matches(Customer.PHONENUMBER_REGEX)) {
+//                throw new IllegalArgumentException("Invalid Phone Number Format!");
+//            }
 
             // password validation
             if (!password.matches(rePassword)) {
                 throw new IllegalArgumentException("Passwords not match!");
-            } else if (password.length() < 8 || !password.matches(Customer.PASSWORD_REGEX)) {
-                throw new IllegalArgumentException("Invalid Password Format!");
-            }
+            } 
+//            else if (password.length() < 8 || !password.matches(Customer.PASSWORD_REGEX)) {
+//                throw new IllegalArgumentException("Invalid Password Format!");
+//            }
 
             cust.setName(name);
             cust.setUsername(username);

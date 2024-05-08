@@ -47,13 +47,6 @@ public class SearchProductByUser extends HttpServlet {
 
             if (button.equals("Search") || button.equals("List All")) {
                 List<Product> productList = productService.findByNamePrefix(prefix, 1);
-                
-
-                for (Product product : productList) {
-                    Category category = product.getCategoryid();
-                    session.setAttribute("Category" + i, category);
-                    i++;
-                }
 
                 session.setAttribute("productListUser", productList);
                 response.sendRedirect("user/productlist.jsp");
@@ -69,12 +62,6 @@ public class SearchProductByUser extends HttpServlet {
                 Category tempCat = new Category(tempId);
 
                 List<Product> productList = productService.findByCatPrefix(prefix, 1, tempCat);
-
-                for (Product product : productList) {
-                    Category category = product.getCategoryid();
-                    session.setAttribute("Category" + i, category);
-                    i++;
-                }
 
                 session.setAttribute("productListUser", productList);
                 response.sendRedirect("user/productlist.jsp");

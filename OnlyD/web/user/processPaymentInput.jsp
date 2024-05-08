@@ -1,3 +1,4 @@
+<%@include file="custAuthentication.jsp"%>
 <%
 String paymentType = request.getParameter("paymentType");
 String address = request.getParameter("sAddress1");

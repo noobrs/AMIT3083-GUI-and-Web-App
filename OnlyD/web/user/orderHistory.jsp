@@ -31,14 +31,16 @@
                 <th>Order Date</th>
                 <th>Total</th>
             </tr>
-            <% for(Orders order : orderList){ %>
+            <% //for(Orders order : orderList){ %>
             
+            <% for(int i = orderList.size()-1; i >= 0; i--){ %>
             <tr>
-                <td><%= order.getOrderid() %></td>
-                <td><%= dateFormat.format(order.getOrderdatetime()) %></td>
-                <td><%= order.getTotal() %></td>
-                <td><a href="../ViewOrderDetails?orderidD=<%=order.getOrderid()%>">Details</a></td>
+                <td><%= orderList.get(i).getOrderid() %></td>
+                <td><%= dateFormat.format(orderList.get(i).getOrderdatetime()) %></td>
+                <td><%= orderList.get(i).getTotal() %></td>
+                <td><a href="../ViewOrderDetails?orderidD=<%=orderList.get(i).getOrderid()%>">Details</a></td>
             </tr>
+
             
             <% } %>
         </table>

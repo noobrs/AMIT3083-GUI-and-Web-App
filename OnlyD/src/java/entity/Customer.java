@@ -71,10 +71,6 @@ public class Customer implements Serializable {
     public static final int ACTIVE_STATUS = 1;
     public static final int DELETED_STATUS = 2;
 
-    public static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
-    public static final String PHONENUMBER_REGEX = "\\d{3}-?\\d{7}$|^\\d{2}-?\\d{8}$|^\\d{10}$";
-    public static final String PASSWORD_REGEX = "^(?=.*[A-Z])(?=.*[a-z])(?=.*\\d)(?=.*[\\W_]).+$";
-
     public Customer() {
     }
 

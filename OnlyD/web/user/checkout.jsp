@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="custAuthentication.jsp"%>
 <%@page import="java.util.List, entity.Productcart, entity.Product, entity.Promotion" %>
 <!DOCTYPE html>
 <html>
@@ -23,7 +24,16 @@
             double total = 0;
             
             Promotion promoApplied = (Promotion)session.getAttribute("promoApplied");
+            String errorMsg = (String)session.getAttribute("checkoutErrorMsg");
             
+        %>
+        
+        <% if(errorMsg != null) { %>
+        <p><%= errorMsg %></p>
+        <% 
+            session.removeAttribute("checkoutErrorMsg"); } %>
+        
+        <%    
             if(selected != null){
         %>
 
@@ -73,8 +83,14 @@
                 <tr>
                     <td>Promotion Code</td>
                     <td>
-                        <input type="text" name="promoCodeEntered">
+                        <input type="text" name="promoCodeEntered" 
+                               <% if (promoApplied != null) { %>
+                               value="<%= promoApplied.getPromotioncode() %>" disabled>
+                        <input type="submit" value="Remove" name="orderButton">
+                               <% } else { %>
+                               >
                         <input type="submit" value="Apply" name="orderButton">
+                               <% } %>
                     </td>
                 </tr>
                 <tr>
@@ -84,7 +100,9 @@
                     </td>
                 </tr>
                 <tr>
-                    <td>Total Discount</td>
+                    <td>
+                        Total Discount (<%=(promoApplied != null)?promoApplied.getDiscountpercentage():"" %>%)
+                    </td>
                     <td><input type="number" value="<%=String.format("%.2f", totaldiscount)%>" name="totaldiscount" readonly></td>
                 </tr>
                 <tr>

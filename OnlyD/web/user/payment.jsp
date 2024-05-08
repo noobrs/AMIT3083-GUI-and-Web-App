@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="custAuthentication.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,10 @@
         <title>Payment</title>
     </head>
     <body>
+        <%
+            Double total = (Double)session.getAttribute("total");
+        %>
+
         <%@include file="/layout/header.jsp"%>
 
         <h2>Shipping Details</h2>
@@ -28,15 +33,15 @@
                 <br>
                 State :
                 <select id="sState" name="sState" required>
+                    <option value="W.P. Kuala Lumpur">W.P. Kuala Lumpur</option>
+                    <option value="W.P. Labuan">W.P. Labuan</option>
+                    <option value="W.P. Putrajaya">W.P. Putrajaya</option>
+                    <option value="Selangor">Selangor</option>
                     <option value="Negeri Sembilan">Negeri Sembilan</option>
                     <option value="Perak">Perak</option>
                     <option value="Pahang">Pahang</option>
                     <option value="Kedah">Kedah</option>
                     <option value="Kelantan">Kelantan</option>
-                    <option value="Kuala Lumpur">Kuala Lumpur</option>
-                    <option value="Labuan">Labuan</option>
-                    <option value="Putrajaya">Putrajaya</option>
-                    <option value="Selangor">Selangor</option>
                     <option value="Johor">Johor</option>
                     <option value="Terengganu">Terengganu</option>
                     <option value="Perlis">Perlis</option>
@@ -51,6 +56,8 @@
                 <br>
                 Postal Code :
                 <input type="text" id="sPostCode" name="sPostCode" required maxlength="5" minlength="5">
+                <br>
+                Total (RM) : <%= String.format("%.2f", total) %> 
                 <br>
                 Payment Type : 
                 <select id="paymentType" name="paymentType">

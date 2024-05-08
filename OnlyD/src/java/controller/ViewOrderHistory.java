@@ -5,20 +5,16 @@
 package controller;
 
 import entity.Customer;
-import entity.Orders;
-import entity.Productorder;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
-import java.util.List;
 import service.CustomerService;
 
 /**
@@ -40,22 +36,23 @@ public class ViewOrderHistory extends HttpServlet {
         try {
             CustomerService custService = new CustomerService(em);
             Customer cust = (Customer) session.getAttribute("customer");
-            
+
             // if not customer then redirect to login
-            if(cust == null){
+            if (cust == null) {
                 session.setAttribute("statusMsg", "Not a user, try to login!");
                 response.sendRedirect("login.jsp");
+            } else {
+                
+                // get the latest order list in cust
+                utx.begin();
+                Customer temp = custService.findCustomerById(cust.getCustomerID());
+                em.refresh(temp);
+                utx.commit();
+
+                session.setAttribute("customer", temp);
+
+                response.sendRedirect("user/orderHistory.jsp");
             }
-            
-            // get the latest order list in cust
-            utx.begin();
-            Customer temp = custService.findCustomerById(cust.getCustomerID());
-            em.refresh(temp);
-            utx.commit();
-            
-            session.setAttribute("customer", temp);
-            
-            response.sendRedirect("user/orderHistory.jsp");
 
         } catch (Exception e) {
         }

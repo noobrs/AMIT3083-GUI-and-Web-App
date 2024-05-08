@@ -31,58 +31,62 @@ public class CheckOrder extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-    @Resource
-    UserTransaction utx;
+//    @Resource
+//    UserTransaction utx;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
         HttpSession session = request.getSession();
         String button = request.getParameter("orderButton");
-        List<Productcart> selected = (List<Productcart>) session.getAttribute("selectedCartItem");
-        Customer cust = (Customer) session.getAttribute("customer");
-        ProductService productService = new ProductService(em);
-        OrderService orderService = new OrderService(em);
-        CartService cartService = new CartService(em);
+//        List<Productcart> selected = (List<Productcart>) session.getAttribute("selectedCartItem");
+//        Customer cust = (Customer) session.getAttribute("customer");
+//        ProductService productService = new ProductService(em);
+//        OrderService orderService = new OrderService(em);
+//        CartService cartService = new CartService(em);
         PromotionService promoService = new PromotionService(em);
 
         try {
             // check if promo code applied
             if (button.equals("Apply")) {
-                
+
                 String promoCode = request.getParameter("promoCodeEntered");
 
-                Promotion promotion = promoService.findPromotionByPromotionCode(promoCode);
-                if (promotion != null) {
-                    if (promotion.getStatus() == Promotion.ACTIVE_STATUS) {
+                // find active promotion list
+                List<Promotion> promoList = promoService.findByStatus(Promotion.ACTIVE_STATUS);
 
-                        session.setAttribute("promoApplied", promotion);
+                for (Promotion p : promoList) {
+                    if (p.getPromotioncode().equals(promoCode)) {
+                        session.setAttribute("promoApplied", p);
                         response.sendRedirect("user/checkout.jsp");
-
-                    } else {
-                        response.getWriter().println("promo not same");
-                        throw new IllegalArgumentException("promo not same");
+                        return;
                     }
-                } else {
-                    response.getWriter().println("promo null");
                 }
+                // if unable to find promotion code
+                throw new IllegalArgumentException("Invalid Promotion Code!");
 
-            // go to payment
+            } else if (button.equals("Remove")) {
+                session.removeAttribute("promoApplied");
+                response.sendRedirect("user/checkout.jsp");
             } else {
-                //String address = request.getParameter("address");
+                // go to payment
+
                 Double subtotal = Double.valueOf(request.getParameter("subtotal"));
                 Double discount = Double.valueOf(request.getParameter("totaldiscount"));
                 Double shippingfee = Double.valueOf(request.getParameter("shippingfee"));
                 Double total = Double.valueOf(request.getParameter("total"));
-                
-                //session.setAttribute("address", address);
+
                 session.setAttribute("subtotal", subtotal);
                 session.setAttribute("discount", discount);
                 session.setAttribute("shippingfee", shippingfee);
                 session.setAttribute("total", total);
-                
+
                 response.sendRedirect("user/payment.jsp");
             }
+        } catch (IllegalArgumentException e) {
+            session.setAttribute("checkoutErrorMsg", e.getMessage());
+            response.sendRedirect("user/checkout.jsp");
+
         } catch (Exception e) {
             response.getWriter().println(e.getMessage());
         }

@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@include file="custAuthentication.jsp"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,8 @@
         <title>Card Payment</title>
     </head>
     <body>
+        <%@include file="/layout/header.jsp"%>
+        
         <h2>Payment</h2>
         <h3>Pay with Credit / Debit Card</h3>
         <form action="../AddOrder?cardStatus=valid" method="post">
@@ -26,5 +29,7 @@
             <br>
             <a href="donePayment.jsp"><input type="submit" value="Proceed"></a>
         </form>
+        
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

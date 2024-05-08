@@ -32,7 +32,8 @@ import java.io.Serializable;
     @NamedQuery(name = "Promotion.findByPromotioncode", query = "SELECT p FROM Promotion p WHERE p.promotioncode = :promotioncode"),
     @NamedQuery(name = "Promotion.findByDiscountpercentage", query = "SELECT p FROM Promotion p WHERE p.discountpercentage = :discountpercentage"),
     @NamedQuery(name = "Promotion.findByRedemptionquantity", query = "SELECT p FROM Promotion p WHERE p.redemptionquantity = :redemptionquantity"),
-    @NamedQuery(name = "Promotion.findByStatus", query = "SELECT p FROM Promotion p WHERE p.status = :status")})
+    @NamedQuery(name = "Promotion.findByStatus", query = "SELECT p FROM Promotion p WHERE p.status = :status"),
+    @NamedQuery(name = "Promotion.findAllWithoutStatus", query = "SELECT p FROM Promotion p WHERE p.status != :status")})
 public class Promotion implements Serializable {
 
     private static final long serialVersionUID = 1L;
