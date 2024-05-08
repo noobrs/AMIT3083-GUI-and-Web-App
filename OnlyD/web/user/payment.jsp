@@ -26,7 +26,7 @@
                 <input type="text" id="rName" name="rName" placeholder="Name" required>
                 <br>
                 Recipient H/P Number :
-                <input type="tel" id="rHPNumber" name="rHPNumber" placeholder="0123456789" required maxlength="11" minlength="10">
+                <input type="tel" id="rHPNumber" name="rHPNumber"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" placeholder="012-34567890" required>
                 <br>
                 Address :
                 <input type="text" id="sAddress1" name="sAddress1" required>

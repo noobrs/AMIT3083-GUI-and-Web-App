@@ -40,7 +40,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Phone Number</span>
-                                <input type="tel" name="phoneNumber" value="<%= (enteredPhoneNumber == null)?"":enteredPhoneNumber %>"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" class="form-control" placeholder="012-34567890" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="tel" name="phoneNumber" value="<%= (enteredPhoneNumber == null)?"":enteredPhoneNumber %>"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" placeholder="012-3456789" class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Email</span>

@@ -45,9 +45,9 @@ public class StaffRegister extends HttpServlet {
                 newStaffID = 1;
             } else {
                 // find latest staff id and plus 1
-                for(int i = 0; i < staffList.size(); i++){
-                    int temp = Integer.parseInt(staffList.get(i).getStaffid(),1,5,10);
-                    if(newStaffID < temp){
+                for (int i = 0; i < staffList.size(); i++) {
+                    int temp = Integer.parseInt(staffList.get(i).getStaffid(), 1, 5, 10);
+                    if (newStaffID < temp) {
                         newStaffID = temp;
                     }
                 }
@@ -55,7 +55,7 @@ public class StaffRegister extends HttpServlet {
             }
 
             session.setAttribute("reStaffIDValue", String.format("S%04d", newStaffID));
-            
+
             response.sendRedirect("admin/registerStaff.jsp");
         } catch (Exception e) {
             response.getWriter().println(e.getMessage());
@@ -68,56 +68,29 @@ public class StaffRegister extends HttpServlet {
 
         String staffID = "";
         String staffName = "";
-        String errorMessage = "";
         StaffService staffService = new StaffService(em);
         HttpSession session = request.getSession();
 
         try {
             staffID = request.getParameter("staffID");
-            staffName = request.getParameter("staffName");
+            staffName = request.getParameter("staffName").trim();
 
-            // if false
-            if (!validateFirstTimeRegister(staffID, staffName)) {
-                errorMessage += "Staff ID existed or value(s) cannot be null!<br>";
-                request.setAttribute("errorMessage", errorMessage);
-                getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
+            // set staff in verification status
+            Staff staff = new Staff(staffID, staffName, Staff.VERIFICATION_STATUS);
+            staff.setPassword(staff.getDefaultPassword());
 
-            } else {
-                // set staff in verification status
-                Staff staff = new Staff(staffID, staffName, Staff.VERIFICATION_STATUS);
-                staff.setPassword(staff.getDefaultPassword());
+            utx.begin();
+            staffService.addStaff(staff);
+            utx.commit();
 
-                utx.begin();
-                staffService.addStaff(staff);
-                utx.commit();                
+            session.setAttribute("staffRegSuccess", "New staff, " + staff.getName() + " registered successfully.<br>"
+                    + "Default password will be: " + staff.getDefaultPassword() + "<br>");
+            response.sendRedirect("admin/staffRegisterStatus.jsp");
 
-                session.setAttribute("staffRegSuccess", "New staff, " + staff.getName() + " registered successfully.<br>" +
-                        "Default password will be: " + staff.getDefaultPassword() + "<br>");
-                response.sendRedirect("admin/staffRegisterStatus.jsp");
-            }
         } catch (Exception e) {
             request.setAttribute("errorMessage", e.getMessage());
             getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
         }
-    }
-
-    private boolean validateFirstTimeRegister(String staffID, String staffName) {
-
-        StaffService staffService = new StaffService(em);
-
-        try {
-            Staff staff = staffService.findStaffByStaffId(staffID);
-
-            // staffID existed or no value for staffName
-            if (staff != null || staffName == null || staffName.equals("")) {
-                return false;
-            }
-
-        } catch (Exception e) {
-            return false;
-        }
-
-        return true;
     }
 
 }

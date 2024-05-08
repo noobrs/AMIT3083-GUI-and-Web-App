@@ -21,6 +21,9 @@
                         <select name="staffID">
                             <%
                                 for(Staff s:staffList){
+                                if(s.getStaffid().equals(Staff.ADMIN_ID)){
+                                    continue;
+                                }
                             %>
                             <option value="<%=s.getStaffid()%>">
                                 <%=s.getStaffid()%>

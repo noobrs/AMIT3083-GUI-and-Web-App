@@ -69,7 +69,7 @@ public class UpdateProduct extends HttpServlet {
             
             Staff staff = (Staff)session.getAttribute("staff");
             
-            
+            // if is admin action
             if (request.isUserInRole("AdminRole") || staff == null) {
                 StaffService staffService = new StaffService(em);
                 staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);

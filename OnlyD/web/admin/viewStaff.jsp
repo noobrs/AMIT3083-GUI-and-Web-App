@@ -26,7 +26,11 @@
                 <th>Staff Email</th>
                 <th>Staff status</th>
             </tr>
-            <% for(Staff s:staffList){ %>
+            <% for(Staff s:staffList){
+                if(s.getStaffid().equals(Staff.ADMIN_ID)){
+                    continue;
+                }
+            %>
             <tr>
                 <td><%=s.getStaffid()%></td>
                 <td><%=s.getName()%></td>

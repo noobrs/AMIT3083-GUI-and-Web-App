@@ -51,13 +51,13 @@
                 <tr>
                     <td>Email</td>
                     <td>
-                        <input type="text" name="email" value="<%= enteredEmail %>">
+                        <input type="email" name="email" value="<%= enteredEmail %>">
                     </td>
                 </tr>
                 <tr>
                     <td>Phone Number</td>
                     <td>
-                        <input type="text" name="phoneNumber" value="<%= enteredPhoneNumber %>">
+                        <input type="tel" name="phoneNumber" value="<%= enteredPhoneNumber %>"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" placeholder="012-34567890">
                     </td>
                 </tr>
                 <tr>

@@ -22,7 +22,7 @@
         %>
         <%= message %>
 
-        Back to <a href="adminDashboard.jsp">Dashboard</a><br>
+        Back to <a href="../staff/staffDashboard.jsp">Dashboard</a><br>
         <%@include file="/layout/footer.jsp"%>
         
         <%

@@ -17,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
 import service.PromotionService;
+import service.StaffService;
 
 public class DeletePromotion extends HttpServlet {
 
@@ -31,10 +32,17 @@ public class DeletePromotion extends HttpServlet {
         HttpSession session = request.getSession();
         try {
             PromotionService promoService = new PromotionService(em);
-            Staff staff = (Staff)session.getAttribute("staff");
+            Staff staff = (Staff) session.getAttribute("staff");
             Promotion promo = (Promotion) session.getAttribute("promotion");
 
             if (promo != null) {
+
+                // if is admin action
+                if (request.isUserInRole("AdminRole") || staff == null) {
+                    StaffService staffService = new StaffService(em);
+                    staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);
+                }
+
                 promo.setStatus(Promotion.DELETED_STATUS);
                 promo.setStaffid(staff);
                 utx.begin();
@@ -44,7 +52,7 @@ public class DeletePromotion extends HttpServlet {
                 if (success) {
                     session.setAttribute("statusMsg", "Promotion deleted successfully!");
                     response.sendRedirect("staff/staffDashboard.jsp");
-                }else{
+                } else {
                     session.setAttribute("statusMsg", "Failed to delete promotion!");
                     response.sendRedirect("staff/staffDashboard.jsp");
                 }

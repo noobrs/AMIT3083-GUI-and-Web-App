@@ -18,6 +18,7 @@
         String statusMsg = (String)session.getAttribute("statusMsg");
         String errorMessage = (String)session.getAttribute("errorMessage");
         String enteredUsername = (String)session.getAttribute("enteredUsername");
+        
         if(statusMsg != null){
         %>
         <div><%= statusMsg %></div>

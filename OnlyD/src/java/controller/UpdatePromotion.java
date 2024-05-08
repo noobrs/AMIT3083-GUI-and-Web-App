@@ -19,6 +19,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
 import java.util.List;
 import service.PromotionService;
+import service.StaffService;
 
 public class UpdatePromotion extends HttpServlet {
 
@@ -34,27 +35,31 @@ public class UpdatePromotion extends HttpServlet {
 
         try {
             PromotionService promoService = new PromotionService(em);
-            Promotion selectedPromo = (Promotion)session.getAttribute("promotion");
+            Promotion selectedPromo = (Promotion) session.getAttribute("promotion");
             String promoCode = request.getParameter("promoCode");
             double discountPercentage = Double.parseDouble(request.getParameter("discountPercentage"));
             int redemptionQty = Integer.parseInt(request.getParameter("redemptionQty"));
             Staff staff = (Staff) session.getAttribute("staff");
             List<Promotion> activePromoList = promoService.findByStatus(Promotion.ACTIVE_STATUS);
 
-            
-
             for (Promotion p : activePromoList) {
-                if (p.getPromotioncode().equals(promoCode) && 
-                        !p.getPromotionid().equals(selectedPromo.getPromotionid())) {
+                if (p.getPromotioncode().equals(promoCode)
+                        && !p.getPromotionid().equals(selectedPromo.getPromotionid())) {
                     throw new IllegalArgumentException("Promotion Code Existed!");
                 }
             }
-            
+
+            // if is admin action
+            if (request.isUserInRole("AdminRole") || staff == null) {
+                StaffService staffService = new StaffService(em);
+                staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);
+            }
+
             selectedPromo.setPromotioncode(promoCode);
             selectedPromo.setDiscountpercentage(discountPercentage);
             selectedPromo.setRedemptionquantity(redemptionQty);
             selectedPromo.setStaffid(staff);
-            
+
             utx.begin();
             boolean success = promoService.updatePromotion(selectedPromo);
             utx.commit();

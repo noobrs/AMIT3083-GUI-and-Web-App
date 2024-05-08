@@ -18,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
 import java.util.List;
 import service.PromotionService;
+import service.StaffService;
 
 public class AddPromo extends HttpServlet {
 
@@ -28,9 +29,9 @@ public class AddPromo extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         HttpSession session = request.getSession();
-        
+
         try {
             String promoCode = request.getParameter("promoCode");
             double discountPercentage = Double.parseDouble(request.getParameter("discountPercentage"));
@@ -47,6 +48,12 @@ public class AddPromo extends HttpServlet {
                         throw new IllegalArgumentException("Promotion Code Existed!");
                     }
                 }
+            }
+
+            // if is admin action
+            if (request.isUserInRole("AdminRole") || staff == null) {
+                StaffService staffService = new StaffService(em);
+                staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);
             }
 
             Promotion promo = new Promotion(promoCode, discountPercentage, redemptionQty, Promotion.ACTIVE_STATUS, staff);
