@@ -38,13 +38,13 @@ public class ViewProduct extends HttpServlet {
 
             session.setAttribute("productListUser", productList);
             session.setAttribute("categoryListUser", categoryList);
-            int i = 0;
+//            int i = 0;
 
-            for (Product product : productList) {
-                Category category = product.getCategoryid();
-                session.setAttribute("Category" + i, category);
-                i++;
-            }
+//            for (Product product : productList) {
+//                Category category = product.getCategoryid();
+//                session.setAttribute("Category" + i, category);
+//                i++;
+//            }
             response.sendRedirect("user/productlist.jsp");
         } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());

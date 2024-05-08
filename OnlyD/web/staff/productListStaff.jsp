@@ -5,7 +5,7 @@
 <%@page import="entity.Staff"%>
 
 <%
-  int i = 0; 
+//  int i = 0; 
   String msg = null;
   List<Product> productList = (List)session.getAttribute("productListStaff");
   session.setAttribute("path","staff/addProduct.jsp");
@@ -24,8 +24,8 @@
     </tr>
     <% for (Product product: productList){ %>
     <% 
-          Category categoryP = (Category) session.getAttribute("Category" + i);
-          Staff staff = (Staff) session.getAttribute("Staff" + i);
+//          Category categoryP = (Category) session.getAttribute("Category" + i);
+//          Staff staff = (Staff) session.getAttribute("Staff" + i);
     %>
     <tr>
         <td><%= product.getProductid() %></td>
@@ -38,11 +38,12 @@
         <%}else{ %>
         <td> Active </td>
         <% } %>
-        <td><%= categoryP.getCategoryname() %></td>
-        <td><%= staff.getStaffid() %></td>
+        <td><%= product.getCategoryid().getCategoryname() %></td>
+        <td><%= product.getStaffid().getStaffid() %></td>
     </tr>
-    <% i++; %>
-    <% } %>
+    <% 
+//        i++; 
+        } %>
 </table>
 <br><br>
 <p><a href="../GetCategoryForProduct">Add Product</a></p>

@@ -36,10 +36,13 @@ public class ViewCart extends HttpServlet {
 
             // customer logged in
             if (cust != null) {
-                List<Productcart> productcartList = cartService.getCartItems(cust.getCustomerID());
+                // get customer cart
+//                List<Productcart> productcartList = cartService.getCartItems(cust.getCustomerID());
+                List<Productcart> productcartList = cust.getProductcartList();
                 session.setAttribute("productcartList", productcartList);
                 response.sendRedirect("user/cart.jsp");
             } else{
+                
                 session.setAttribute("statusMsg", "Not a user, try to login!");
                 response.sendRedirect("login.jsp");
             }

@@ -19,7 +19,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
 import java.util.List;
-import java.util.Objects;
 import service.CartService;
 import service.CustomerService;
 import service.ProductService;
@@ -100,8 +99,10 @@ public class AddToCart extends HttpServlet {
 //                    response.getWriter().println("not enough stock");
 //                }
             } else {
-                session.setAttribute("statusMsg", "Try to login to add to cart!");
-                request.getRequestDispatcher("login.jsp").forward(request, response);
+//                session.setAttribute("statusMsg", "Try to login to add to cart!");
+//                request.getRequestDispatcher("login.jsp").forward(request, response);
+                session.setAttribute("actionMsg", "Not a user! Try to login");
+                response.sendRedirect("ViewProduct");
             }
 
         } catch (NumberFormatException e) {

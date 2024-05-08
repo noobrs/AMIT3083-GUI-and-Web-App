@@ -15,6 +15,8 @@
           int i = 0; 
           List<Product> productList = (List)session.getAttribute("productListUser");
           List<Category> categoryList = (List)session.getAttribute("categoryListUser");
+          
+          String actionMsg = (String)session.getAttribute("actionMsg");
         %>
         <form action="../SearchProductByUser" method="get">
             <input type="text" name="productName" placeholder="Product Name" >
@@ -34,9 +36,11 @@
         </form>
         <br/><br/>
 
-        <%
-          if(!productList.isEmpty() || productList != null){
-        %>
+        <% if(actionMsg != null){ %>
+        <p><%=actionMsg%></p>
+        <% session.removeAttribute("actionMsg"); } %>
+          
+        <% if(!productList.isEmpty() || productList != null){ %>
         <table border="1">
             <tr>
                 <th>Product ID</th>
@@ -50,33 +54,32 @@
             </tr>
             <% 
                 for (Product product: productList){ 
-                Category categoryP = (Category) session.getAttribute("Category" + i);
             %>
+            <% if(product.getStock() > 0 ) {%>
             <tr>
                 <td><a href="../ViewProductDetail?productId=<%= product.getProductid() %>"><%= product.getProductid() %></a></td>
                 <td><%= product.getName() %></td>
                 <td><img src="<%=request.getContextPath() + "/image/" + product.getImage() %>"></td>
                 <td><%= product.getDescription() %> </td>
                 <td><%= String.format("%.2f", product.getPrice()) %></td>
-                <td><%= categoryP.getCategoryname() %></td>
                 <td><%= product.getCategoryid().getCategoryname() %></td>
                 <td><%= product.getStock() %></td>
                 <!-- Add an "Add to Cart" button -->
                 <td>
-                    <% if(product.getStock() > 0 ) {%>
                     <form action="../AddToCart" method="POST"> 
                         <input type="number" min="1" value="1" name="quantity">
                         <input type="hidden" name="productId" value="<%= product.getProductid() %>">
                         <input type="submit" value="Add to Cart">
                     </form>
-                    <% } else { %>
-                    Out of Stock!
-                    <% } %>
+
+
+
                 </td>
             </tr>
-            <% 
-                i++;
-                } 
+            <% } else { 
+                break;
+            } 
+            } 
             %>
         </table>
         <%

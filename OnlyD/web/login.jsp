@@ -36,11 +36,11 @@
                             <h5 class="card-title">Welcome, please enter your:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Username</span>
-                                <input type="text" name="username" value="<%= (enteredUsername==null)?"":enteredUsername %>" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" name="username" value="<%= (enteredUsername==null)?"":enteredUsername %>" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required >
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Password</span>
-                                <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required >
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input class="btn btn-primary me-2" type="submit" value="Sign In">

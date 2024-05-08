@@ -44,7 +44,7 @@
         <%
             Product product = (Product) session.getAttribute("product");
             List<Category> categoryList = (List)session.getAttribute("categoryListProduct");
-            Category categoryP = (Category) session.getAttribute("category");
+//            Category categoryP = (Category) session.getAttribute("category");
             Staff staff = (Staff) session.getAttribute("staff");
             if (product != null) {
         %>
@@ -97,11 +97,11 @@
                     <td>Category Name</td>
                     <td>
                         <select name="categoryid">
-                            <option value="<%=categoryP.getCategoryid()%>">
-                                <%=categoryP.getCategoryname()%>
+                            <option value="<%=product.getCategoryid().getCategoryid()%>">
+                                <%=product.getCategoryid().getCategoryname()%>
                             </option>
                             <% for (Category category: categoryList) {
-                   if (!category.getCategoryid().equals(categoryP.getCategoryid())) { %>
+                   if (!category.getCategoryid().equals(product.getCategoryid().getCategoryid())) { %>
                             <option value="<%=category.getCategoryid()%>">
                                 <%=category.getCategoryname()%>
                             </option>
@@ -109,10 +109,6 @@
                } %>
                         </select>
                     </td>
-                    <!--                </tr>
-                                        <td>Add/Last Modified by</td>
-                                        <td><input type="text" name="staffid" value="<%=product.getStaffid().getStaffid()%>" ></td>
-                                    </tr>-->
             </table>
             <input type="submit" value="Update Product">
 

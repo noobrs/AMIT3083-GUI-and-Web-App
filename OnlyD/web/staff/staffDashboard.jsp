@@ -39,7 +39,7 @@
         <% if(request.isUserInRole("AdminRole")){ %>
         <h2>Staff</h2>
         <a href="../ViewStaff">View All Staffs</a><br>
-        <a href="registerStaff.jsp">Add a staff</a><br>        
+        <a href="../admin/registerStaff.jsp">Add a staff</a><br>        
         <a href="../LoadStaffList">Delete/Update staff</a><br>
         <% } %>
 
