@@ -12,29 +12,29 @@
     <body style="background-color: #25182E">
         <%@include file="/layout/header.jsp"%>
 
-        <%
-            List<Customer> custList = (List<Customer>)session.getAttribute("custList");
-            if(custList != null){
-        %>
-        <div class="mt-5">
-            <div class="container " style="display: flex; justify-content: center">
-                <table class="table table-striped" style="border: 2px #FFBE00 solid; background-color: window;">
-                    <tr style="background-color: #FFBE00">
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Phone Number</th>
-                    </tr>
-                    <% for(Customer c:custList){ %>
-                    <tr>
-                        <td><%= c.getName() %></td>
-                        <td><%= c.getUsername() %></td>
-                        <td><%= c.getEmail() %></td>
-                        <td><%= c.getPhoneNumber() %></td>
-                    </tr>
-                    <% } %>
-                </table>
-            </div>
+        <div class="container mt-5" style="display: flex; justify-content: center">
+            <%
+                List<Customer> custList = (List<Customer>)session.getAttribute("custList");
+                if(custList != null){
+            %>
+
+            <table class="table table-striped" style="border: 2px #FFBE00 solid; background-color: window;">
+                <tr style="background-color: #FFBE00">
+                    <th>Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                </tr>
+                <% for(Customer c:custList){ %>
+                <tr>
+                    <td><%= c.getName() %></td>
+                    <td><%= c.getUsername() %></td>
+                    <td><%= c.getEmail() %></td>
+                    <td><%= c.getPhoneNumber() %></td>
+                </tr>
+                <% } %>
+            </table>
+
 
 
             <% } else { %>
@@ -42,10 +42,9 @@
                 <p>Empty Customer Record</p> 
             </div>
             <% } %>
-
-            <div style="display: flex; justify-content: center">
-                <a class="btn yellow_black m-2 dashBoardBtn" href="../staff/staffDashboard.jsp">Back to staff dashboard</a><br>
-            </div>
+        </div>
+        <div style="display: flex; justify-content: center">
+            <a class="btn yellow_black m-2 dashBoardBtn" href="../staff/staffDashboard.jsp">Back to staff dashboard</a><br>
         </div>
 
         <%@include file="/layout/footer.jsp"%>
