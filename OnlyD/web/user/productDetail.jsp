@@ -21,7 +21,7 @@
             <tr>
                 <td><%= p.getProductid() %></td>  
                 <td><%= p.getName() %></td>
-                <td><img src="<%=p.getImage()%>"></td>
+                <td><img src="<%= request.getContextPath() + "/image/" + p.getImage()%>"></td>
                 <td><%= p.getDescription() %> </td>
                 <td><%= String.format("%.2f", p.getPrice()) %></td>
                 <td><%= c.getCategoryname() %></td>

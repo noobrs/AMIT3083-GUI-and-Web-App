@@ -9,7 +9,6 @@
         <%@include file="/layout/meta.html"%>
         <link rel="shortcut icon" type="image/x-icon" href="<%=request.getRequestURL().toString()%>layout/favicon_onlyD.ico">
     </head>
-
     <body>
         <header style="top: 0; position:relative; width: 100%;">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
@@ -40,15 +39,15 @@
                                 <a class="nav-link disabled">Disabled</a>
                             </li>
                         </ul>
-
-
+                        
                         <% if ((Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole")) { %>
+                        
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/staff/staffDashboard.jsp">Dashboard</a></button>
                         <% } else { %>
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/ViewCart">Cart</a></button>
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/ViewOrderHistory">Orders</a></button>
                         <% } %>
-                        
+
                         <form class="d-flex" action="<%=request.getContextPath()%>/SearchProductByUser">
                             <input type="text" name="productName" class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search">
                             <input type="submit" value="Search" name="searchButton"  class="btn btn-outline-success">
