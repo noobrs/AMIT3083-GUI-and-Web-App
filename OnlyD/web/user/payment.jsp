@@ -53,7 +53,7 @@
                 <input type="text" id="sPostCode" name="sPostCode" required maxlength="5" minlength="5">
                 <br>
                 Payment Type : 
-                <select id="paymentType" name="paymentType" onchange="showCardDetails()">
+                <select id="paymentType" name="paymentType">
                     <option value="Cash On Delivery">Cash On Delivery</option>
                     <option value="Credit Card/Debit Card">Credit Card/Debit Card</option>
                 </select>

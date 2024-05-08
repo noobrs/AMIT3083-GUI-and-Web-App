@@ -70,20 +70,6 @@
             %>
 
             <table>
-<!--                <tr>
-                    <td>Shipping Address</td>
-                    <td><input type="text" name="address" required=""></td>
-                </tr>-->
-<!--                <tr>
-                    <td>Payment Method</td>
-                    <td>
-                        <select name="paymentMethod">
-                            <option value="Cash">Cash</option>
-                            <option value="Debit Card">Debit Card</option>
-                            <option value="Credit Card">Credit Card</option>
-                        </select>
-                    </td>
-                </tr>-->
                 <tr>
                     <td>Promotion Code</td>
                     <td>

@@ -29,20 +29,18 @@ public class ViewCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            CartService cartService = new CartService(em);
+            //CartService cartService = new CartService(em);
             HttpSession session = request.getSession();
-
             Customer cust = (Customer) session.getAttribute("customer");
 
             // customer logged in
             if (cust != null) {
                 // get customer cart
-//                List<Productcart> productcartList = cartService.getCartItems(cust.getCustomerID());
                 List<Productcart> productcartList = cust.getProductcartList();
                 session.setAttribute("productcartList", productcartList);
                 response.sendRedirect("user/cart.jsp");
-            } else{
-                
+            } else {
+
                 session.setAttribute("statusMsg", "Not a user, try to login!");
                 response.sendRedirect("login.jsp");
             }
@@ -52,6 +50,7 @@ public class ViewCart extends HttpServlet {
             ex.printStackTrace();
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

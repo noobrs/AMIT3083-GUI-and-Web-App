@@ -5,23 +5,18 @@
 package controller;
 
 import entity.Customer;
-import entity.Orders;
-import entity.Product;
 import entity.Productcart;
-import entity.Productorder;
 import entity.Promotion;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
-import java.util.Date;
 import java.util.List;
 import service.CartService;
 import service.OrderService;
@@ -66,6 +61,7 @@ public class CheckOrder extends HttpServlet {
 
                     } else {
                         response.getWriter().println("promo not same");
+                        throw new IllegalArgumentException("promo not same");
                     }
                 } else {
                     response.getWriter().println("promo null");

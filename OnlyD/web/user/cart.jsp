@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="custAuthentication.jsp"%>
-<%@page import="java.util.List, entity.Productcart, entity.Product" %>
+<%@page import="java.util.List, entity.Productcart, entity.Product, entity.Customer" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -25,11 +25,13 @@
         %>
         <div style="color: red;"><%= errorMessage %></div>
         <%
+            session.removeAttribute("errorMessage");
         }
         %>
 
         <% 
         List<Productcart> productcartList = (List<Productcart>) session.getAttribute("productcartList");
+        Customer cust = (Customer)session.getAttribute("customer");
         if (productcartList != null && !productcartList.isEmpty()) {
         %>
         <form action="../Checkout" method="post">
@@ -60,7 +62,6 @@
                 } 
                 %>
             </table>
-            <!-- Checkout button outside the loop -->
             <button type="submit">Checkout</button>
         </form>
 

@@ -33,7 +33,7 @@ public class Checkout extends HttpServlet {
         HttpSession session = request.getSession();
 
         try {
-            session.setAttribute("errorMessage", null);
+//            session.setAttribute("errorMessage", null);
             List<Productcart> productcartList = (List<Productcart>) session.getAttribute("productcartList");
             String[] selectedProductIds = request.getParameterValues("selectedProducts");
             List<Productcart> selected = new ArrayList<>();
@@ -55,10 +55,11 @@ public class Checkout extends HttpServlet {
                             int availableQuantity = getProductQuantity(request, selectedProductId); // Get product quantity from product service
 
                             if (cartQuantity > availableQuantity) {
-                                String errorMessage = "Not enough stock for " + product.getName() + ". Quantity in cart: " + cartQuantity + ", Available quantity: " + availableQuantity;
-                                session.setAttribute("errorMessage", errorMessage);
-                                response.sendRedirect("user/cart.jsp");
-                                return;
+//                                String errorMessage = "Not enough stock for " + product.getName() + ". Quantity in cart: " + cartQuantity + ", Available quantity: " + availableQuantity;
+//                                session.setAttribute("errorMessage", errorMessage);
+//                                response.sendRedirect("user/cart.jsp");
+//                                return;
+                                throw new IllegalArgumentException("Not enough stock for " + product.getName() + ". Quantity in cart: " + cartQuantity + ", Available quantity: " + availableQuantity);
                             }
                             selected.add(cartItem);
                             break; // Break the loop once the product is found
@@ -73,6 +74,9 @@ public class Checkout extends HttpServlet {
                 response.sendRedirect("ViewCart");
             }
 
+        } catch (IllegalArgumentException e) {
+            session.setAttribute("errorMessage", e.getMessage());
+            response.sendRedirect("ViewCart");
         } catch (Exception e) {
             e.printStackTrace();
             session.setAttribute("errorMessage", e.getMessage());

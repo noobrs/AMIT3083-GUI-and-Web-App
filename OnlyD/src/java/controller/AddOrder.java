@@ -53,8 +53,7 @@ public class AddOrder extends HttpServlet {
         try {
             String cardStatus = request.getParameter("cardStatus");
 
-            String paymentType = (String)session.getAttribute("paymentType");
-            
+            String paymentType = (String) session.getAttribute("paymentType");
 
             // if select card and havent go to cartPayment page
             if (paymentType.equals("Credit Card/Debit Card") && cardStatus == null) {
@@ -63,7 +62,7 @@ public class AddOrder extends HttpServlet {
 
             } else {
 
-                String fullAddress = (String)session.getAttribute("fullAddress");
+                String fullAddress = (String) session.getAttribute("fullAddress");
                 Date currentDate = new Date();
                 Double subtotal = (Double) session.getAttribute("subtotal");
                 Double discount = (Double) session.getAttribute("discount");
@@ -95,15 +94,17 @@ public class AddOrder extends HttpServlet {
                 for (Productcart pc : selected) {
                     boolean removed = cartService.removeCartItem(cust.getCustomerID(), pc.getProduct().getProductid());
                     if (!removed) {
-                        response.getWriter().println("unable to remove");
+                        throw new IllegalArgumentException("Unable to remove");
                     }
                 }
                 utx.commit();
 
                 utx.begin();
+                // refresh customer and update in session
                 cust = em.find(Customer.class, cust.getCustomerID());
                 em.refresh(cust);
-
+                session.setAttribute("customer", cust);
+                
                 if (promoApplied != null) {
                     int currentQty = promoApplied.getRedemptionquantity() - 1;
                     promoApplied.setRedemptionquantity(currentQty);
@@ -121,6 +122,9 @@ public class AddOrder extends HttpServlet {
                 response.sendRedirect("ViewCart");
             }
 
+        } catch (IllegalArgumentException e) {
+            session.setAttribute("errorMessage", e.getMessage());
+            
         } catch (Exception e) {
             response.getWriter().println(e.getMessage());
         }

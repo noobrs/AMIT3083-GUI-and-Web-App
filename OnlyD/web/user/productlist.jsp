@@ -77,7 +77,7 @@
                 </td>
             </tr>
             <% } else { 
-                break;
+                continue;
             } 
             } 
             %>

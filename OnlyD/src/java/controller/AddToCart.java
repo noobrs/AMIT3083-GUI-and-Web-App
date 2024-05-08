@@ -33,8 +33,10 @@ public class AddToCart extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
+
         try {
-            HttpSession session = request.getSession();
+
             CartService cartService = new CartService(em);
             int productId = Integer.parseInt(request.getParameter("productId"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
@@ -42,24 +44,29 @@ public class AddToCart extends HttpServlet {
 
             Customer cust = (Customer) session.getAttribute("customer");
             CustomerService custService = new CustomerService(em);
+            ProductService productService = new ProductService(em);
 
             // cust logged in
             if (cust != null) {
-                Product product = new ProductService(em).findProductByID(productId);
+                Product product = productService.findProductByID(productId);
 
                 Productcart cartItem = new Productcart(new ProductcartPK(cust.getCustomerID(), productId));
                 cartItem.setProduct(product);
                 cartItem.setQuantity(quantity);
                 List<Productcart> productcartList = cust.getProductcartList(); //  old cart list
 
+                // check if product is in customer cart
                 if (!productcartList.isEmpty()) {
                     for (Productcart existedPC : productcartList) {
-                        // check if product is in customer cart, then check the stock
+                        // check stock
                         if (Integer.compare(existedPC.getProduct().getProductid(), cartItem.getProduct().getProductid()) == 0) {
                             int sum = existedPC.getQuantity() + quantity;
+
+                            // total quantity > product stock
                             if (Integer.compare(sum, product.getStock()) > 0) {
-                                response.getWriter().println("not enough stock");
-                                return;
+//                                response.getWriter().println("not enough stock");
+//                                return;
+                                throw new IllegalArgumentException("Not enough stock!");
                             }
                         }
                     }
@@ -67,8 +74,9 @@ public class AddToCart extends HttpServlet {
 
                 // check if input qty > stock
                 if (quantity > product.getStock()) {
-                    response.getWriter().println("not enough stock");
-                    return;
+//                    response.getWriter().println("not enough stock");
+//                    return;
+                    throw new IllegalArgumentException("Not enough stock!");
                 }
 
                 utx.begin();
@@ -83,33 +91,25 @@ public class AddToCart extends HttpServlet {
                     em.refresh(cust);
                     utx.commit();
 
-                    session.setAttribute("customer", cust); //just temp object, need to remove when combine
-
+                    session.setAttribute("customer", cust);
                     request.getRequestDispatcher("/ViewCart").forward(request, response);
 
                 } else {
-                    // If product addition failed, handle the error (e.g., display an error message)
-                    response.getWriter().println("Failed to add product to cart");
+                    // if product addition failed
+                    throw new IllegalArgumentException("Failed to add product to cart");
                 }
 
-//                // check if current stock is enough
-//                if (product.getStock() >= quantity) {
-//
-//                } else {
-//                    response.getWriter().println("not enough stock");
-//                }
             } else {
-//                session.setAttribute("statusMsg", "Try to login to add to cart!");
-//                request.getRequestDispatcher("login.jsp").forward(request, response);
+
                 session.setAttribute("actionMsg", "Not a user! Try to login");
                 response.sendRedirect("ViewProduct");
             }
 
-        } catch (NumberFormatException e) {
-            // Handle invalid product ID parameter
-            response.getWriter().println("Invalid product ID");
-            e.printStackTrace();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
+            session.setAttribute("actionMsg", e.getMessage());
+            response.sendRedirect("ViewProduct");
+        } 
+        catch (Exception e) {
             response.getWriter().println("Invalid product ID");
             e.printStackTrace();
         }
