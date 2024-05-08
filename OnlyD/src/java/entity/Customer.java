@@ -8,6 +8,7 @@ import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -64,7 +65,7 @@ public class Customer implements Serializable {
     private Integer status;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerid")
     private List<Orders> ordersList;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Productcart> productcartList;
 
     public static final int ACTIVE_STATUS = 1;
@@ -168,6 +169,12 @@ public class Customer implements Serializable {
 
     public void setProductcartList(List<Productcart> productcartList) {
         this.productcartList = productcartList;
+    }
+
+    public void initializeProductcartList() {
+        if (productcartList != null) {
+            productcartList.size(); // This will trigger the initialization of the lazy relationship
+        }
     }
 
     @Override

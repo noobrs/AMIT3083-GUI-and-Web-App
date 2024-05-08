@@ -5,6 +5,7 @@
 package controller;
 
 import entity.Customer;
+import jakarta.annotation.Resource;
 import jakarta.transaction.UserTransaction;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -14,7 +15,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import java.util.List;
 import javax.naming.InitialContext;
 import service.CartService;
 
@@ -22,6 +22,8 @@ public class RemoveFromCart extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
+    @Resource
+    UserTransaction utx;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,13 +36,19 @@ public class RemoveFromCart extends HttpServlet {
 
             // Check if the customer is logged in
             if (cust != null) {
-                UserTransaction utx = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
+                //UserTransaction utx = (UserTransaction) new InitialContext().lookup("java:comp/UserTransaction");
                 utx.begin(); // Begin the transaction
                 // Remove the item from the cart
                 boolean removed = cartService.removeCartItem(cust.getCustomerID(), productId);
 
                 if (removed) {
                     utx.commit(); // Commit the transaction
+
+                    utx.begin();
+                    cust = em.find(Customer.class, cust.getCustomerID());
+                    em.refresh(cust);
+                    utx.commit();
+
                     // Redirect back to the cart page
                     response.sendRedirect("ViewCart");
                 } else {
@@ -74,6 +82,5 @@ public class RemoveFromCart extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
     }
-    
-    
+
 }

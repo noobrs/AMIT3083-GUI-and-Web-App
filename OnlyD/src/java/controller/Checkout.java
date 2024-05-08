@@ -4,6 +4,7 @@
  */
 package controller;
 
+import entity.Customer;
 import entity.Product;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -16,52 +17,66 @@ import java.util.List;
 import entity.Productcart;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
+import java.util.ArrayList;
+import service.CartService;
 import service.ProductService; // Import ProductService
 
 @WebServlet(name = "Checkout", urlPatterns = {"/Checkout"})
 public class Checkout extends HttpServlet {
+
     @PersistenceContext
     EntityManager em;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
         try {
-            HttpSession session = request.getSession();
             session.setAttribute("errorMessage", null);
             List<Productcart> productcartList = (List<Productcart>) session.getAttribute("productcartList");
             String[] selectedProductIds = request.getParameterValues("selectedProducts");
-            System.out.println("getParam: " + selectedProductIds.toString());
+            List<Productcart> selected = new ArrayList<>();
 
             if (selectedProductIds != null && selectedProductIds.length > 0) {
-                
+
                 // Check if any selected product quantity exceeds available stock
                 for (String productId : selectedProductIds) {
-                    // Add logging statement to check selected product IDs
-        System.out.println("Selected Product ID(Checkout): " + productId);
+
                     int selectedProductId = Integer.parseInt(productId);
+
                     for (Productcart cartItem : productcartList) {
+
                         Product product = cartItem.getProduct();
+
                         if (product.getProductid() == selectedProductId) {
+
                             int cartQuantity = cartItem.getQuantity();
                             int availableQuantity = getProductQuantity(request, selectedProductId); // Get product quantity from product service
+
                             if (cartQuantity > availableQuantity) {
                                 String errorMessage = "Not enough stock for " + product.getName() + ". Quantity in cart: " + cartQuantity + ", Available quantity: " + availableQuantity;
                                 session.setAttribute("errorMessage", errorMessage);
                                 response.sendRedirect("user/cart.jsp");
                                 return;
                             }
+                            selected.add(cartItem);
                             break; // Break the loop once the product is found
                         }
                     }
                 }
+                // If all selected items pass the validation, proceed to the checkout page
+                session.setAttribute("selectedCartItem", selected);
+                response.sendRedirect("user/checkout.jsp");
+            } else {
+                session.setAttribute("errorMessage", "No product selected!");
+                response.sendRedirect("ViewCart");
             }
-
-            // If all selected items pass the validation, proceed to the checkout page
-            response.sendRedirect("checkout.jsp");
 
         } catch (Exception e) {
             e.printStackTrace();
-            response.sendRedirect("error.jsp");
+            session.setAttribute("errorMessage", e.getMessage());
+            response.sendRedirect("ViewCart");
         }
     }
 
@@ -87,5 +102,5 @@ public class Checkout extends HttpServlet {
 
         return quantity;
     }
-}
 
+}

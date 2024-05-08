@@ -31,10 +31,6 @@ public class StaffRegister extends HttpServlet {
     @Resource
     UserTransaction utx;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,6 +44,7 @@ public class StaffRegister extends HttpServlet {
             if (staffList == null || staffList.isEmpty()) {
                 newStaffID = 1;
             } else {
+                // find latest staff id and plus 1
                 for(int i = 0; i < staffList.size(); i++){
                     int temp = Integer.parseInt(staffList.get(i).getStaffid(),1,5,10);
                     if(newStaffID < temp){
@@ -55,15 +52,13 @@ public class StaffRegister extends HttpServlet {
                     }
                 }
                 newStaffID++;
-                
-//                Staff lastStaff = staffList.get(staffList.size() - 1);
-//                newStaffID = Integer.parseInt(lastStaff.getStaffid(), 1, 5, 10) + 1;
             }
 
             session.setAttribute("reStaffIDValue", String.format("S%04d", newStaffID));
             
             response.sendRedirect("admin/registerStaff.jsp");
         } catch (Exception e) {
+            e.printStackTrace();
             response.getWriter().println(e.getMessage());
         }
     }
@@ -89,6 +84,7 @@ public class StaffRegister extends HttpServlet {
                 getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
 
             } else {
+                // set staff in verification status
                 Staff staff = new Staff(staffID, staffName, Staff.VERIFICATION_STATUS);
                 staff.setPassword(staff.getDefaultPassword());
 
@@ -101,8 +97,7 @@ public class StaffRegister extends HttpServlet {
                 response.sendRedirect("admin/staffRegisterStatus.jsp");
             }
         } catch (Exception e) {
-            errorMessage += e.getMessage();
-            request.setAttribute("errorMessage", errorMessage);
+            request.setAttribute("errorMessage", e.getMessage());
             getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
         }
     }
@@ -114,15 +109,11 @@ public class StaffRegister extends HttpServlet {
         try {
             Staff staff = staffService.findStaffByStaffId(staffID);
 
-            // staffID existed
-            if (staff != null) {
+            // staffID existed or no value for staffName
+            if (staff != null || staffName == null || staffName.equals("")) {
                 return false;
             }
 
-            // no value for staffName
-            if (staffName == null || staffName.equals("")) {
-                return false;
-            }
         } catch (Exception e) {
             return false;
         }

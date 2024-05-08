@@ -12,7 +12,7 @@
         <title>Staff Register Status</title>
     </head>
     <body>
-        <%@include file="../layout/header.jsp"%>
+        <%@include file="/layout/header.jsp"%>
         
         <%
         String message = (String)session.getAttribute("staffRegSuccess");
@@ -21,10 +21,9 @@
             }
         %>
         <%= message %>
-        
-        Go to <a href="../staff/staffLogin.jsp">Staff Login</a><br>
+
         Back to <a href="adminDashboard.jsp">Dashboard</a><br>
-        <%@include file="../layout/footer.jsp"%>
+        <%@include file="/layout/footer.jsp"%>
         
         <%
         session.removeAttribute("staffRegSuccess");

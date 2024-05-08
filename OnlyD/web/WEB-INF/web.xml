@@ -165,13 +165,89 @@
         <servlet-class>controller.RemoveFromCart</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>ViewProductToPromo</servlet-name>
+        <servlet-class>controller.ViewProductToPromo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessProductToPromo</servlet-name>
+        <servlet-class>controller.ProcessProductToPromo</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Checkout</servlet-name>
         <servlet-class>controller.Checkout</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>RemoveSelectedFromCart</servlet-name>
-        <servlet-class>controller.RemoveSelectedFromCart</servlet-class>
+        <servlet-name>SearchProductByUser</servlet-name>
+        <servlet-class>controller.SearchProductByUser</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddPromo</servlet-name>
+        <servlet-class>controller.AddPromo</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewPromotion</servlet-name>
+        <servlet-class>controller.ViewPromotion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoadPromoList</servlet-name>
+        <servlet-class>controller.LoadPromoList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchPromotion</servlet-name>
+        <servlet-class>controller.SearchPromotion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeletePromotion</servlet-name>
+        <servlet-class>controller.DeletePromotion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdatePromotion</servlet-name>
+        <servlet-class>controller.UpdatePromotion</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddOrder</servlet-name>
+        <servlet-class>controller.AddOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrderHistory</servlet-name>
+        <servlet-class>controller.ViewOrderHistory</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewOrderDetails</servlet-name>
+        <servlet-class>controller.ViewOrderDetails</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FindPromoCode</servlet-name>
+        <servlet-class>controller.FindPromoCode</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckOrder</servlet-name>
+        <servlet-class>controller.CheckOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewProductDetail</servlet-name>
+        <servlet-class>controller.ViewProductDetail</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewTopSold</servlet-name>
+        <servlet-class>controller.ViewTopSold</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProcessSales</servlet-name>
+        <servlet-class>controller.ProcessSales</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ViewSalesReport</servlet-name>
+        <servlet-class>controller.ViewSalesReport</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchDetailForHome</servlet-name>
+        <servlet-class>controller.SearchDetailForHome</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewProductToPromo</servlet-name>
+        <url-pattern>/ViewProductToPromo</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddToCart</servlet-name>
         <url-pattern>/AddToCart</url-pattern>
@@ -317,12 +393,80 @@
         <url-pattern>/RemoveFromCart</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>ProcessProductToPromo</servlet-name>
+        <url-pattern>/ProcessProductToPromo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Checkout</servlet-name>
         <url-pattern>/Checkout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>RemoveSelectedFromCart</servlet-name>
-        <url-pattern>/RemoveSelectedFromCart</url-pattern>
+        <servlet-name>SearchProductByUser</servlet-name>
+        <url-pattern>/SearchProductByUser</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddPromo</servlet-name>
+        <url-pattern>/AddPromo</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewPromotion</servlet-name>
+        <url-pattern>/ViewPromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoadPromoList</servlet-name>
+        <url-pattern>/LoadPromoList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchPromotion</servlet-name>
+        <url-pattern>/SearchPromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeletePromotion</servlet-name>
+        <url-pattern>/DeletePromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdatePromotion</servlet-name>
+        <url-pattern>/UpdatePromotion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddOrder</servlet-name>
+        <url-pattern>/AddOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrderHistory</servlet-name>
+        <url-pattern>/ViewOrderHistory</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewOrderDetails</servlet-name>
+        <url-pattern>/ViewOrderDetails</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FindPromoCode</servlet-name>
+        <url-pattern>/FindPromoCode</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckOrder</servlet-name>
+        <url-pattern>/CheckOrder</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewProductDetail</servlet-name>
+        <url-pattern>/ViewProductDetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewTopSold</servlet-name>
+        <url-pattern>/ViewTopSold</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProcessSales</servlet-name>
+        <url-pattern>/ProcessSales</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ViewSalesReport</servlet-name>
+        <url-pattern>/ViewSalesReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchDetailForHome</servlet-name>
+        <url-pattern>/SearchDetailForHome</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>
@@ -355,19 +499,11 @@
         <realm-name>form</realm-name>
         <form-login-config>
             <form-login-page>/admin/adminLogin.jsp</form-login-page>
-            <form-error-page>/loginError.html</form-error-page>
+            <form-error-page>/loginError.jsp</form-error-page>
         </form-login-config>
     </login-config>
     <security-role>
         <description>Users added to this role will have access to 'admin' directory of the server.</description>
         <role-name>AdminRole</role-name>
-    </security-role>
-    <security-role>
-        <description>Users added to this role will have access to 'user' directory of the server</description>
-        <role-name>UserRole</role-name>
-    </security-role>
-    <security-role>
-        <description/>
-        <role-name>StaffRole</role-name>
     </security-role>
 </web-app>

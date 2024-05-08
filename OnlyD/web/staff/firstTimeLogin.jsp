@@ -1,6 +1,7 @@
 <%@include file="staffAuthentication.jsp"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="staff" class="entity.Staff" scope="session" ></jsp:useBean>
+<%@page  import="entity.Staff" %>
+<jsp:useBean id="staff" class="Staff" scope="session" ></jsp:useBean>
     <!DOCTYPE html>
     <html>
         <head>
@@ -8,9 +9,13 @@
             <title>First Time Login</title>
         </head>
         <body>
-        <%@include file="../layout/header.jsp"%> 
+        <%@include file="/layout/header.jsp"%> 
         
         <%
+            if(staff.getStatus().equals(Staff.ACTIVE_STATUS)){
+            response.sendRedirect("staffDashboard.jsp");
+            }
+            
             String errorMessage = (String)session.getAttribute("errorMessage");
             String enteredStaffName = (String)session.getAttribute("enteredStaffName");
             String enteredStaffEmail = (String)session.getAttribute("enteredStaffEmail");
@@ -23,10 +28,10 @@
                     <h5 class="card-header">First Time Login</h5>
                     <div class="card-body">
                         <form action="../StaffVerification" method="POST">
-                            <h5 class="card-title">Welcome Staff ${staff.staffID}, please setup your details:</h5>
+                            <h5 class="card-title">Welcome Staff ${staff.staffid}, please setup your details:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Staff ID</span>
-                                <input type="text" name="staffID" value="${staff.staffID}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" disabled>
+                                <input type="text" name="staffID" value="${staff.staffid}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" disabled>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">Name</span>
@@ -58,14 +63,10 @@
                             }
                         %>
                     </div>
-                    <div class="text-center">
-                        <p>OR</p>
-                        <p>Don't have an account ?<br><a href="register.jsp">Sign Up</a></p>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <%@include file="../layout/footer.jsp"%> 
+        <%@include file="/layout/footer.jsp"%> 
     </body>
 </html>

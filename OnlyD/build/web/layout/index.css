@@ -19,7 +19,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     color: window;
 }
 
-.loginCard, .RegisterCard{
+.loginCard, .RegisterCard, .dashBoard{
     display: flex;
     justify-content: center;
+}
+
+.webPage_header{
+    background-color: #CA1F3D !important;
+}
+
+.yellow_black{
+    background-color: #FFBE00;
+    color: #25182E;
+    border: none;
+}
+
+.black_yellow_border{
+    border: 2px #FFBE00 solid;
+    background-color: #25182E;
+    color: #FFBE00;
+}
+
+.dashBoardBtn{
+    width: 250px;
+    height: 40px;
+}
+
+.dashBoardBtn:hover{
+    background-color: #CA1F3D;
+    border:2px #FFBE00 solid;
+    color: #FFFFFF;
+}
+
+.tableDeco{
+    border: 2px #FFBE00 solid;
+    background-color: window;
+}
+
+body{
+/*    background-color: #25182E;*/
 }

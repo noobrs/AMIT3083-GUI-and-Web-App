@@ -11,9 +11,9 @@
         <title>Register Page</title>
     </head>
     <body style="height: 100%">
-        <%@include file="../layout/header.jsp"%>
+        <%@include file="/layout/header.jsp"%>
         <%
-
+    //if new staff id havent set yet then go to servlet to get it
     if(session.getAttribute("reStaffIDValue") == null){
     response.sendRedirect("../staffRegister");
             }
@@ -45,10 +45,10 @@
                             ${errorMessage}
                         </div>
                     </div>
-                    <div class="text-center">
+<!--                    <div class="text-center">
                         <p>OR</p>
                         <p>Already have an account ?<br><a href="login.jsp">Sign In</a></p>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>
@@ -56,6 +56,6 @@
         <%
         session.removeAttribute("reStaffIDValue");
         %>
-        <%@include file="../layout/footer.jsp"%>
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

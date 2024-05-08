@@ -63,6 +63,7 @@ public class Staff implements Serializable {
     public static final int ACTIVE_STATUS = 1;
     public static final int VERIFICATION_STATUS = 2;
     public static final int DELETED_STATUS = 3;
+    public static final String ADMIN_ID = "S0000";
     
     public static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     public static final String PASSWORD_REGEX = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()-_=+{};:',.<>?])(?=.{8,}).*$";

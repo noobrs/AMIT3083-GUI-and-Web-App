@@ -40,7 +40,7 @@ public class SearchProduct extends HttpServlet {
             Staff staff = product.getStaffid();
             session.setAttribute("product", product);
             session.setAttribute("category", category);
-            session.setAttribute("staff", staff);
+            //session.setAttribute("staff", staff);
             if (button.equals("Delete")) {
                 response.sendRedirect("staff/deleteProductConfirmation.jsp");
             } else {

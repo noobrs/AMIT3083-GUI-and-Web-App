@@ -47,4 +47,4 @@
 <br><br>
 <p><a href="../GetCategoryForProduct">Add Product</a></p>
 <p><a href="../LoadProductList">Delete/Update Product</a></p>
-<p><a href="../index.html">Back to home page</a></p>
+<p><a href="<%=request.getContextPath()%>">Back to home page</a></p>
