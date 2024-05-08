@@ -59,6 +59,7 @@
                 <td><%= product.getDescription() %> </td>
                 <td><%= String.format("%.2f", product.getPrice()) %></td>
                 <td><%= categoryP.getCategoryname() %></td>
+                <td><%= product.getCategoryid().getCategoryname() %></td>
                 <td><%= product.getStock() %></td>
                 <!-- Add an "Add to Cart" button -->
                 <td>
