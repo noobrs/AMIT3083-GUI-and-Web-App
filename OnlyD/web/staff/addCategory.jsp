@@ -12,6 +12,8 @@
         <title>Add Category</title>
     </head>
     <body>
+        <%@include file="/layout/header.jsp"%>
+
         <form action="../AddCategory" method="post">
             <table border="0">
                 <tr>
@@ -21,8 +23,8 @@
                 <tr>
                     <td>Status</td>
                     <td><select name="status">
-                            <option value="0"> Deleted
                             <option value="1"> Active
+                            <option value="0"> Deleted
                         </select>
                     </td>
                 </tr>
@@ -30,5 +32,7 @@
             <input type="submit" value="Add">
             <input type="reset" value="Reset">
         </form>
+
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

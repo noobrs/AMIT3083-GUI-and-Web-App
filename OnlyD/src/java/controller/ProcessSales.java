@@ -16,8 +16,6 @@ import jakarta.servlet.http.HttpSession;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +46,7 @@ public class ProcessSales extends HttpServlet {
             List<String> monthList = new ArrayList<>();
             List<String> yearList = new ArrayList<>();
 
+            // filter orders with specified format
             for (Orders o : orderList) {
                 if (!dailyList.contains(dailyFormat.format(o.getOrderdatetime()))) {
                     dailyList.add(dailyFormat.format(o.getOrderdatetime()));

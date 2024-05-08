@@ -4,11 +4,12 @@
 
 <%
     Product p = (Product) session.getAttribute("TempProductDetail");
-    Category c = (Category) session.getAttribute("TempCategoryDetail");
 %>
 
 <html>
     <body>
+        <%@include file="/layout/header.jsp"%>
+
         <table border="1">
             <tr>
                 <th>Product ID</th>
@@ -24,10 +25,12 @@
                 <td><img src="<%= request.getContextPath() + "/image/" + p.getImage()%>"></td>
                 <td><%= p.getDescription() %> </td>
                 <td><%= String.format("%.2f", p.getPrice()) %></td>
-                <td><%= c.getCategoryname() %></td>
+                <td><%= p.getCategoryid().getCategoryname() %></td>
             </tr>
         </table>
-            
-            <a href="<%=request.getContextPath()%>/">Back</a>
+
+        <a href="<%=request.getContextPath()%>/">Back</a>
+
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

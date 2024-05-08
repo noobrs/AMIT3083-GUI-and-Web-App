@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import service.CategoryService;
+import service.ProductService;
 
 /**
  *
@@ -28,20 +29,22 @@ public class ViewProductDetail extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         HttpSession session = request.getSession();
-        int id = Integer.parseInt(request.getParameter("productId"));
-        List<Product> productList = (List) session.getAttribute("productListUser");
-        CategoryService categoryservice = new CategoryService(em);
 
-        for (Product product : productList) {
-            if (product.getProductid() == id) {
-                session.setAttribute("TempProductDetail", product);
-                Category catId = product.getCategoryid();
-                session.setAttribute("TempCategoryDetail", catId);
-            }
+        try {
+            
+            int id = Integer.parseInt(request.getParameter("productId"));
+            ProductService productService = new ProductService(em);
+
+            Product product = productService.findProductByID(id);
+            session.setAttribute("TempProductDetail", product);
+
+            response.sendRedirect("user/productDetail.jsp");
+            
+        } catch (Exception e) {
         }
 
-        response.sendRedirect("user/productDetail.jsp");
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -29,7 +29,7 @@ public class LoadCategoryList extends HttpServlet {
             throws ServletException, IOException {
          try {
             CategoryService categoryService = new CategoryService(em);
-            List<Category> categoryList = categoryService.findAll();
+            List<Category> categoryList = categoryService.findByStatus(1);
             
             HttpSession session = request.getSession();
             session.setAttribute("categoryList", categoryList);

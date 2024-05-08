@@ -11,6 +11,8 @@
   session.setAttribute("path","staff/addProduct.jsp");
 %>
 
+<%@include file="/layout/header.jsp"%>
+
 <table border="1">
     <tr>
         <th>Product ID</th>
@@ -23,10 +25,6 @@
         <th>Staff ID</th>
     </tr>
     <% for (Product product: productList){ %>
-    <% 
-//          Category categoryP = (Category) session.getAttribute("Category" + i);
-//          Staff staff = (Staff) session.getAttribute("Staff" + i);
-    %>
     <tr>
         <td><%= product.getProductid() %></td>
         <td><%= product.getName() %></td>
@@ -49,3 +47,5 @@
 <p><a href="../GetCategoryForProduct">Add Product</a></p>
 <p><a href="../LoadProductList">Delete/Update Product</a></p>
 <p><a href="<%=request.getContextPath()%>">Back to home page</a></p>
+
+<%@include file="/layout/footer.jsp"%>

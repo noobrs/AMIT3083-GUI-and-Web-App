@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
+import java.util.List;
 import service.CategoryService;
 
 /**
@@ -30,20 +31,31 @@ public class AddCategory extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        HttpSession session = request.getSession();
         try{
             String name = request.getParameter("name");
             int status = Integer.parseInt(request.getParameter("status"));
+            CategoryService categoryService = new CategoryService(em);
+            List<Category> catList = categoryService.findByStatus(1);
+            
+            for(Category c: catList){
+                if(name.equals(c.getCategoryname())){
+                    throw new IllegalArgumentException("Category name existed!");
+                }
+            }
             
             Category category = new Category(name, status);
-            CategoryService categoryService = new CategoryService(em);
             utx.begin();
             boolean success = categoryService.addCategory(category);
             utx.commit();
-            HttpSession session = request.getSession();
             session.setAttribute("successAddCategory", success);
             response.sendRedirect("staff/addCategoryConfirm.jsp");
             
-        }catch(Exception ex){
+        } catch(IllegalArgumentException e){
+            session.setAttribute("error", e.getMessage());
+            response.sendRedirect("staff/addCategory.jsp");
+        }
+        catch(Exception ex){
             response.getWriter().println(ex.getMessage());
         }
     }

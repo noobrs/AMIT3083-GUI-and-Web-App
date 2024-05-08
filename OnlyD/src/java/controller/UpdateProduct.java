@@ -20,7 +20,9 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import jakarta.transaction.UserTransaction;
 import java.nio.file.Paths;
+import service.CategoryService;
 import service.ProductService;
+import service.StaffService;
 
 /**
  *
@@ -53,22 +55,31 @@ public class UpdateProduct extends HttpServlet {
             Part image = request.getPart("image");
             String imageURL = Paths.get(image.getSubmittedFileName()).getFileName().toString();
             
-            int status = Integer.parseInt(request.getParameter("status"));
+//            int status = Integer.parseInt(request.getParameter("status"));
 
+            CategoryService catService = new CategoryService(em);
+            
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);
-            Category categoryid = new Category(cid);            
+            //Category categoryid = new Category(cid);  
+            Category categoryid = catService.findCategoryByID(cid);
 
 //            String sid = request.getParameter("staffid");
 //            Staff staffid = new Staff(sid);
             
             Staff staff = (Staff)session.getAttribute("staff");
             
+            
+            if (request.isUserInRole("AdminRole") || staff == null) {
+                StaffService staffService = new StaffService(em);
+                staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);
+            }
+            
             String code = (String) session.getAttribute("productId");
             int id = Integer.parseInt(code);
             
             ProductService productService = new ProductService(em);
-            Product product = new Product(id, name, price, stock, description, imageURL, status, categoryid, staff);
+            Product product = new Product(id, name, price, stock, description, imageURL, 1, categoryid, staff);
             
             utx.begin();
             boolean success = productService.updateProduct(product);
@@ -78,6 +89,7 @@ public class UpdateProduct extends HttpServlet {
             response.sendRedirect("staff/updateProductConfirm.jsp");
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             response.getWriter().println(ex.getMessage());
         } 
     }

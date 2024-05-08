@@ -7,6 +7,9 @@
             Product product = (Product) session.getAttribute("product");
             if (product != null) {
         %>
+        
+        <%@include file="/layout/header.jsp"%>
+        
         <h1>Delete Product</h1>
         <form action="../DeleteProduct" method="post" onsubmit="return window.confirm('Are you sure you want to delete this product?')">
             <table border="0">
@@ -33,6 +36,8 @@
         Product ${product.id} not found
         <p><a href="../index.html">Back to home page</a></p>
         <%}%>
+        
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>
 

@@ -46,6 +46,8 @@
         </script>
     </head>
     <body>
+        <%@include file="/layout/header.jsp"%>
+
         <form action="../AddProduct" method="post" enctype="multipart/form-data">
             <table border="0">
                 <tr>
@@ -103,5 +105,7 @@
         <div>
 
         </div>
+
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

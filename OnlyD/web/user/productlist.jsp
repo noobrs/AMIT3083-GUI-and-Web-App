@@ -64,17 +64,17 @@
                 <td><%= String.format("%.2f", product.getPrice()) %></td>
                 <td><%= product.getCategoryid().getCategoryname() %></td>
                 <td><%= product.getStock() %></td>
-                <!-- Add an "Add to Cart" button -->
+                
+                <!-- only show add cart button to guest or customer -->
+                <% if((Boolean)session.getAttribute("isStaff") == null && !request.isUserInRole("AdminRole")) { %>
                 <td>
                     <form action="../AddToCart" method="POST"> 
                         <input type="number" min="1" value="1" name="quantity">
                         <input type="hidden" name="productId" value="<%= product.getProductid() %>">
                         <input type="submit" value="Add to Cart">
                     </form>
-
-
-
                 </td>
+                <% } %>
             </tr>
             <% } else { 
                 continue;

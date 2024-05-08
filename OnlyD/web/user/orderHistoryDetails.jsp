@@ -21,6 +21,8 @@
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         %>
 
+        <%@include file="/layout/header.jsp"%>
+        
         <h1>Order Details</h1>
         <% if(!productorderList.isEmpty()) { %>
         <p>Order ID : <%= selectedOrder.getOrderid()%></p>
@@ -46,5 +48,7 @@
         <p>Shipping fee : <%= selectedOrder.getShippingfee()%></p>
         <p>Total : <%= selectedOrder.getTotal()%></p>
         <% } %>
+        
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

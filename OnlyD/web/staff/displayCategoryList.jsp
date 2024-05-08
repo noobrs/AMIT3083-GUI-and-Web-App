@@ -4,28 +4,33 @@
 <%
   List<Category> categoryList = (List)session.getAttribute("categoryList");
 %>
+
+<%@include file="/layout/header.jsp"%>
+
 <h1>Search Category </h1>
 <table border="0" cellspacing="10">
-<form action="searchCategory.jsp" method="post">
-    <tr>
-        <td>Category ID</td>
-        <td><select name="categoryId">
-                <% for (Category category: categoryList){
-                if(!category.getCategoryname().equals("NULL")){
-                %>      
-                <option value="<%=category.getCategoryid()%>">
-                    <%=category.getCategoryid()%>
-                    <%}
+    <form action="searchCategory.jsp" method="post">
+        <tr>
+            <td>Category ID</td>
+            <td><select name="categoryId">
+                    <% for (Category category: categoryList){
+                    if(!category.getCategoryname().equals("NULL")){
+                    %>      
+                    <option value="<%=category.getCategoryid()%>">
+                        <%=category.getCategoryid()%>
+                        <%}
 }%>
-            </select>
-            <br>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <input type="submit" value="Delete" name="categoryButton"/>
-            <input type="submit" value="Update" name="categoryButton"/>
-        </td>
-    </tr>
-</form>
+                </select>
+                <br>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Delete" name="categoryButton"/>
+                <input type="submit" value="Update" name="categoryButton"/>
+            </td>
+        </tr>
+    </form>
 </table>
+
+<%@include file="/layout/footer.jsp"%>
