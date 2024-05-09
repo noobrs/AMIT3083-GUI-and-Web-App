@@ -24,25 +24,25 @@
     <body>
         <%@include file="/layout/header.jsp"%>  
         
-        <div class="mainBody" style="display: flex;
+        <div class="mainBody mt-5" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">
-                <div class="card" style="width: 50%">
-                    <h5 class="card-header">Admin Login page</h5>
+                <div class="card card_deco" >
+                    <h5 class="card-header yellow_black">Admin Login page</h5>
                     <div class="card-body">
                         <form action="j_security_check" method="POST">
-                            <h5 class="card-title">Welcome, please enter your:</h5>
+                            <h5 class="card-title" style="text-align: left">Welcome, please enter your:</h5>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Username</span>
+                                <span class="input-group-text yellow_black" id="basic-addon1">Username</span>
                                 <input type="text" name="j_username" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Password</span>
+                                <span class="input-group-text yellow_black" id="basic-addon1">Password</span>
                                 <input type="password" name="j_password" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1" required> 
                             </div>
                             <div class="d-flex justify-content-center">
-                                <input class="btn btn-primary me-2" type="submit" value="Log In">
-                                <input class="btn btn-primary" type="reset" value="Reset">                              
+                                <input class="btn yellow_black me-2" type="submit" value="Log In">
+                                <input class="btn reset_dlt_btn" type="reset" value="Reset">                              
                             </div>
                         </form>
                         <% if((String)session.getAttribute("errorMessage") != null) { %>

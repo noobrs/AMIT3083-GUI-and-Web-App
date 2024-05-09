@@ -42,41 +42,22 @@
                     <% if(request.isUserInRole("AdminRole")){ %>
                     <h2 class="black_yellow_border">Staff</h2>
                     <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewStaff">View All Staffs</a><br>
-                    </div>
-                    <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../admin/registerStaff.jsp">Add a staff</a><br>
-                    </div>
-                    <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../LoadStaffList">Delete/Update staff</a><br>
+                        <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewStaff">View Staffs</a><br>
                     </div>
                     <% } %>
 
                     <h2 class="black_yellow_border mt-2">Customer</h2>
                     <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewCustomer">View All Customers</a><br>
+                        <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewCustomer">View Customers</a><br>
                     </div>
-                    <% if(request.isUserInRole("AdminRole")){ %>
-                    <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../register.jsp">Add a Customer</a><br>    
-                    </div>
-                    <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../LoadCustomerList">Delete/Update customer</a><br>
-                    </div>
-                    <% } %>
 
                     <h2 class="black_yellow_border mt-2">Product</h2>
-                    <!--        for user-->
-                    <div style="height: 50px">
+<!--                    <div style="height: 50px">
                         <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewProduct">View All Product</a><br>
-                    </div>
+                    </div>-->
                     <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewProductStaff">Add a Product</a><br>  
+                        <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewProductStaff">View Products</a><br>  
                     </div>
-                    <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../LoadProductList">Update Product</a><br>
-                    </div>
-
                     <h2 class="black_yellow_border mt-2">Category</h2>
                     <div style="height: 50px">
                         <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewCategory">View Category</a><br>
@@ -85,12 +66,6 @@
                     <h2 class="black_yellow_border mt-2">Promotion</h2>
                     <div style="height: 50px">
                         <a class="btn yellow_black m-2 dashBoardBtn" href="../ViewPromotion">View Promotion</a><br>
-                    </div>
-                    <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="addPromotion.jsp">Add Promotion</a><br>
-                    </div>
-                    <div style="height: 50px">
-                        <a class="btn yellow_black m-2 dashBoardBtn" href="../LoadPromoList">Update Promotion</a><br>
                     </div>
 
                     <% if(request.isUserInRole("AdminRole")){ %>

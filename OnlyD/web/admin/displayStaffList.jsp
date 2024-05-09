@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <form action="searchStaff.jsp" method="post">
                             <div class="input-group mb-3">
-                                <span class="input-group-text yellow_black">Staff ID</span>
+                                <span class="input-group-text yellow_black">Staff</span>
                                 <select class="form-select" name="staffID">
                                     <%
                                         for(Staff s:staffList){
@@ -29,17 +29,18 @@
                                         }
                                     %>
                                     <option value="<%=s.getStaffid()%>">
-                                        <%=s.getStaffid()%>
+                                        <%=s.getStaffid() + ", " + s.getName() %>
                                     </option>
                                     <%
                                         }
                                     %>
                                 </select>
                             </div>
-                            <div>
-                                <input class="btn reset_dlt_btn"  type="submit" value="Delete Staff" name="button"/>
-                                <input class="btn yellow_black me-2" type="submit" value="Update Staff" name="button"/> 
-                            </div>
+                        <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                            <input class="btn yellow_black me-2" type="submit" value="Update Staff" name="button"/> 
+                            <input class="btn reset_dlt_btn"  type="submit" value="Delete Staff" name="button"/>
+                            <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
+                        </div> 
 
                         </form>
 

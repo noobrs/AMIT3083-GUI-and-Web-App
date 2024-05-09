@@ -15,11 +15,11 @@
             <div class="card-body">
                 <form action="searchProduct.jsp" method="post">
                     <div class="input-group mb-3">
-                        <span class="input-group-text yellow_black">Product ID</span>
+                        <span class="input-group-text yellow_black">Product ID/Name</span>
                         <select class="form-select" name="productId">
                             <% for (Product product: productList){%>
                             <option value="<%=product.getProductid()%>">
-                                <%=product.getProductid()%>
+                                <%=product.getProductid() + ". " + product.getName() %>
                                 <%}%>
                         </select>
                     </div>

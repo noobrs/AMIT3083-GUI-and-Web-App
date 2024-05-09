@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>All Staffs</title>
+        <title>Staff List</title>
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
@@ -47,8 +47,18 @@
                             </tr>            
                             <% } %>
                         </table>
+
+                        <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                            <a class="btn yellow_black me-2" href="../staffRegister">Add Staff</a>
+                            <a class="btn yellow_black me-2" href="../LoadStaffList">Delete/Update Staff</a>
+
+                            <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
+                        </div> 
                         <% } else { %>
-                        <p>Empty Staff Record</p>
+                        <p>No Staff Record</p>
+                        <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                             <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
+                        </div> 
                         <% } %>
                     </div>
                 </div>

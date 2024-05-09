@@ -31,7 +31,7 @@
                             <th>Stock</th>
                             <th>Status</th>
                             <th>Category Name</th>
-                            <th>Staff ID</th>
+                            <th>Last Modified By</th>
                         </tr>
                         <% for (Product product: productList){ %>
                         <tr>
@@ -46,11 +46,9 @@
                             <td> Active </td>
                             <% } %>
                             <td><%= product.getCategoryid().getCategoryname() %></td>
-                            <td><%= product.getStaffid().getStaffid() %></td>
+                            <td><%= product.getStaffid().getStaffid() + ", " + product.getStaffid().getName() %></td>
                         </tr>
-                        <% 
-                    //        i++; 
-                            } %>
+                        <% } %>
                     </table>
                     <div style="display: flex; justify-content: center; flex-wrap: nowrap">
                         <a class="btn yellow_black me-2" href="../GetCategoryForProduct">Add Product</a>

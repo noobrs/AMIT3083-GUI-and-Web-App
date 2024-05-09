@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Delete Customer</title>
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
@@ -24,38 +24,38 @@
                     <div class="card-head yellow_black">
                         <h1>Delete Customer</h1>
                     </div>
-                    <div>
+                    <div class="card-body">
                         <form action="../DeleteCustomer" method="POST" onsubmit="return window.confirm('Confirm delete this customer?')">
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">   
                                     Username
                                 </span>
-                                <input type="text" name="staffID" value=" <%= cust.getUsername() %>" readonly>
+                                <input type="text" name="staffID" value=" <%= cust.getUsername() %>" class="form-control" readonly>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">   
                                     Name
                                 </span>
-                                <input type="text" name="staffID" value="<%= cust.getName() %>" readonly>
+                                <input type="text" name="staffID" value="<%= cust.getName() %>" class="form-control" readonly>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">   
                                     Email
                                 </span>
-                                <input type="text" name="staffID" value=" <%= cust.getEmail() %>" readonly>
+                                <input type="text" name="staffID" value=" <%= cust.getEmail() %>" class="form-control" readonly>
                             </div>
 
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">   
                                     Phone Number
                                 </span>
-                                <input type="text" name="staffID" value=" <%= cust.getPhoneNumber() %>" readonly>
+                                <input type="text" name="staffID" value=" <%= cust.getPhoneNumber() %>" class="form-control" readonly>
                             </div>
 
 
-                            <input type="submit" value="Delete Customer">
+                            <input class="btn reset_dlt_btn" type="submit" value="Delete Customer">
 
                         </form>
                     </div>

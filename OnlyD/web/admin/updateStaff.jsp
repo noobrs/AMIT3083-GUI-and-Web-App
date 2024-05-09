@@ -10,60 +10,76 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Update Staff</title>
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
 
-        <%
-            Staff staff = (Staff)session.getAttribute("staffFound");
-            String errorMessage = (String)session.getAttribute("errorMessage");
-            if(staff != null){
-            
-                String enteredStaffName = (String)session.getAttribute("enteredStaffName");
-                String enteredStaffEmail = (String)session.getAttribute("enteredStaffEmail");
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
 
-                if(enteredStaffName == null || enteredStaffEmail == null){
-                    enteredStaffName = staff.getName();
-                    enteredStaffEmail = staff.getEmail();
-                    }
-        %>
-        <h1>Update Staff</h1>
-        <form action="../UpdateStaff" method="POST" onsubmit="return window.confirm('Confirm update this staff?')">
-            <table>
-                <tr>
-                    <td>Staff ID</td>
-                    <td>
-                        <input type="text" name="staffID" value="<%= staff.getStaffid() %>" readonly>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Staff Name</td>
-                    <td>
-                        <input type="text" name="staffName" value="<%= enteredStaffName %>">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Staff Email</td>
-                    <td>
-                        <input type="text" name="staffEmail" value="<%= enteredStaffEmail %>">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Password</td>
-                    <td>
-                        <input type="password" name="staffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-                    </td>
-                </tr>
-                <tr>
-                    <td>Re-enter Password</td>
-                    <td>
-                        <input type="password" name="reStaffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-                    </td>
-                </tr>
-            </table>
-            <input type="submit" value="Update Staff">
-        </form> 
+                    <%
+                        Staff staff = (Staff)session.getAttribute("staffFound");
+                        String errorMessage = (String)session.getAttribute("errorMessage");
+                        if(staff != null){
+            
+                            String enteredStaffName = (String)session.getAttribute("enteredStaffName");
+                            String enteredStaffEmail = (String)session.getAttribute("enteredStaffEmail");
+
+                            if(enteredStaffName == null || enteredStaffEmail == null){
+                                enteredStaffName = staff.getName();
+                                enteredStaffEmail = staff.getEmail();
+                                }
+                    %>
+
+                    <div class="card-head yellow_black">
+                        <h1>Update Staff</h1>
+                    </div>
+
+                    <div class="card-body">
+                        <form action="../UpdateStaff" method="POST" onsubmit="return window.confirm('Confirm update this staff?')">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Staff ID
+                                </span>
+                                <input class="form-control" type="text" name="staffID" value="<%= staff.getStaffid() %>" readonly>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Name
+                                </span>
+                                <input class="form-control" type="text" name="staffName" value="<%= enteredStaffName %>">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Email
+                                </span>
+                                <input class="form-control" type="text" name="staffEmail" value="<%= enteredStaffEmail %>">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Password
+                                </span>
+                                <input class="form-control" type="password" name="staffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Re-enter Password
+                                </span>
+                                <input class="form-control" type="password" name="reStaffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                            </div>
+                            <div>
+                                <input class="btn yellow_black me-2" type="submit" value="Update Staff">
+                            </div>
+  
+                        </form> 
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <% if(errorMessage != null){ %>
         <div><%= errorMessage %></div> 
         <%  }
