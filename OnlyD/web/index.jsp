@@ -53,15 +53,15 @@
 
 
             <h1 style="color:#FFBE00">Use promotion coupon code for discounts !</h1>
-            <div class="container row mb-5 yellow_black" style="height: 300px; display: flex; align-content: center; border-radius: 10px">
+            <div class="container row mb-5 yellow_black" style="padding:20px; height: 300px; display: flex; flex-wrap: nowrap; align-content: center; border-radius: 10px; overflow-y: scroll">
                 <% 
-                    int maxPromotionsToShow = 6; // Change this value to the desired maximum number of promotions to display
+                    int maxPromotionsToShow = 4; // Change this value to the desired maximum number of promotions to display
                     int promotionCount = 0; // Counter variable to keep track of the number of displayed promotions
                     if(promotionList != null){
                         for(Promotion po: promotionList){
-                            if(promotionCount >= maxPromotionsToShow){
-                                break; // Stop iterating if the maximum number of promotions to display has been reached
-                            }
+//                            if(promotionCount >= maxPromotionsToShow){
+//                                break; // Stop iterating if the maximum number of promotions to display has been reached
+//                            }
                 %>
 
                 <div class="col-3">

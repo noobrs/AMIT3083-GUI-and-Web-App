@@ -69,26 +69,17 @@ public class Register extends HttpServlet {
             // email validation
             if (custService.findCustomerByEmail(email) != null) {
                 throw new IllegalArgumentException("Email existed!");
-            } 
-//            else if (!email.matches(Customer.EMAIL_REGEX)) {
-//                throw new IllegalArgumentException("Invalid Email Format!");
-//            }
+            }
 
             // phone number validation
             if (custService.findCustomerByPhoneNumber(phoneNumber) != null) {
                 throw new IllegalArgumentException("Phone Number existed!");
             } 
-//            else if (!phoneNumber.matches(Customer.PHONENUMBER_REGEX)) {
-//                throw new IllegalArgumentException("Invalid Phone Number Format!");
-//            }
 
             // password validation
             if (!password.matches(rePassword)) {
                 throw new IllegalArgumentException("Passwords not match!");
             } 
-//            else if (password.length() < 8 || !password.matches(Customer.PASSWORD_REGEX)) {
-//                throw new IllegalArgumentException("Invalid Password Format!");
-//            }
             
             Customer cust = new Customer(name, username, phoneNumber, email, password, Customer.ACTIVE_STATUS);
             
@@ -99,7 +90,7 @@ public class Register extends HttpServlet {
             session.setAttribute("statusMsg", "Customer Register Successfully!");
             
             if(request.isUserInRole("AdminRole")){
-                response.sendRedirect("admin/adminDashboard.jsp");
+                response.sendRedirect("staff/staffDashboard.jsp");
             }else{               
                 response.sendRedirect("login.jsp");
             }            

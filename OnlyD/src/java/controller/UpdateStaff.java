@@ -82,12 +82,12 @@ public class UpdateStaff extends HttpServlet {
             boolean success = staffService.updateStaff(staff);
             utx.commit();
 
-            session.setAttribute("updateStaffStatus", success);
+            session.setAttribute("statusMsg", "Update Staff Successfully!");
             session.removeAttribute("errorMessage");
             session.removeAttribute("staffFound");
             session.removeAttribute("enteredStaffName");
             session.removeAttribute("enteredStaffEmail");
-            response.sendRedirect("admin/adminDashboard.jsp");
+            response.sendRedirect("staff/staffDashboard.jsp");
 
         } catch (NullPointerException e) {
             session.setAttribute("errorMessage", e.getMessage());

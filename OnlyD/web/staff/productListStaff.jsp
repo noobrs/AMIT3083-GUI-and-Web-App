@@ -20,14 +20,15 @@
         <div class="container mt-5">
             <div class="card" style="border: 2px #FFBE00 solid;">
                 <div class="card-head yellow_black" style="text-align: center">
-                        <h1>Product List</h1>
-                    </div>
+                    <h1>Product List</h1>
+                </div>
                 <div class="card-body">
 
                     <table class="table table-striped tableDeco" border="1">
                         <tr style="background-color: #FFBE00">
-                            <th>Product ID</th>
-                            <th>Product Name</th>
+                            <th>ID</th>
+                            <th>Product</th>
+                            <th></th>
                             <th>Description</th>
                             <th>Price (RM)</th>
                             <th>Stock</th>
@@ -38,6 +39,7 @@
                         <% for (Product product: productList){ %>
                         <tr>
                             <td><%= product.getProductid() %></td>
+                            <td> <img style="height: 120px; width: 120px; margin: auto" src="<%=request.getContextPath() + "/image/" + product.getImage() %>"></td>
                             <td><%= product.getName() %></td>
                             <td><%= product.getDescription() %> </td>
                             <td><%= String.format("%.2f", product.getPrice()) %></td>

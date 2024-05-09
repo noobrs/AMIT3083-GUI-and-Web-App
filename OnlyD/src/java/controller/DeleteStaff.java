@@ -61,7 +61,7 @@ public class DeleteStaff extends HttpServlet {
             }
 
             session.removeAttribute("staffFound");
-            response.sendRedirect("admin/adminDashboard.jsp");
+            response.sendRedirect("staff/staffDashboard.jsp");
 
         } catch (Exception e) {
         }
