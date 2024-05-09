@@ -13,6 +13,7 @@
         <%
             Promotion promo = (Promotion)session.getAttribute("promotion");
             Staff staff = (Staff)session.getAttribute("staff");
+            String updatePromoMsg = (String)session.getAttribute("updatePromoMsg");
         %>
 
         <%@include file="/layout/header.jsp"%>
@@ -23,6 +24,13 @@
                         <h1>Update Promotion</h1>
                     </div>
                     <div class="card-body">
+
+                        <% if(updatePromoMsg != null) { %>
+                        <div><%=updatePromoMsg%></div>
+                        <% 
+                            session.removeAttribute("updatePromoMsg");
+                            } %>
+
                         <% if(promo != null) { %>
                         <form action="../UpdatePromotion" method="post">
                             <div class="input-group mb-3">

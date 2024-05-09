@@ -44,11 +44,11 @@
                             <h5 class="card-title" style="text-align: left">Welcome, please enter your:</h5>
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">Staff ID</span>
-                                <input type="text" name="staffID" value="<%= (enteredStaffID==null)?"":enteredStaffID %>" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1">
+                                <input type="text" name="staffID" value="<%= (enteredStaffID==null)?"":enteredStaffID %>" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required> 
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">Password</span>
-                                <input type="password" name="staffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1">
+                                <input type="password" name="staffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Password" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="d-flex justify-content-center">
                                 <input class="btn yellow_black me-2" type="submit" value="Log In">

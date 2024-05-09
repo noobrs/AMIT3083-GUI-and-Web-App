@@ -65,15 +65,15 @@ public class UpdatePromotion extends HttpServlet {
             utx.commit();
 
             if (success) {
-                session.setAttribute("statusMsg", "Promotion updated successfully!");
+                session.setAttribute("updatePromoMsg", "Promotion updated successfully!");
                 response.sendRedirect("staff/staffDashboard.jsp");
             } else {
-                session.setAttribute("statusMsg", "Failed to update promotion!");
+                session.setAttribute("updatePromoMsg", "Failed to update promotion!");
                 response.sendRedirect("staff/staffDashboard.jsp");
             }
 
         } catch (IllegalArgumentException e) {
-            session.setAttribute("statusMsg", e.getMessage());
+            session.setAttribute("updatePromoMsg", e.getMessage());
             response.sendRedirect("staff/updatePromoConfirmation.jsp");
         } catch (Exception e) {
             e.printStackTrace();

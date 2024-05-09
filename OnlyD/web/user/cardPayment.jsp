@@ -14,23 +14,42 @@
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
-        
-        <h2>Payment</h2>
-        <h3>Pay with Credit / Debit Card</h3>
-        <form action="../AddOrder?cardStatus=valid" method="post">
-            Card Number :
-            <input type="text" id="cardNumber" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="^(\d{4}[-\s]?){3}\d{4}$" required>
-            <br>
-            Expiry :
-            <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" required>
-            <input type="month" >
-            <br>
-            CVV :
-            <input type="text" id="CVC" name="CVC" required placeholder="123" maxlength="3" minlength="3">
-            <br>
-            <a href="donePayment.jsp"><input type="submit" value="Proceed"></a>
-        </form>
-        
+        <div class="container p-0 mt-5 card_deco">
+            <div class="card">
+
+                <div class="card-head yellow_black">
+                    <h2>Payment</h2>
+                    <h3>Pay with Credit / Debit Card</h3>
+                </div>
+
+                <div class="card-body">
+                    <form action="../AddOrder?cardStatus=valid" method="post">
+                        <div class="input-group mb-1">
+                            <span class="input-group-text yellow_black">
+                                Card Number : 
+                            </span>
+                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="^(\d{4}[-\s]?){3}\d{4}$" required>
+                        </div>
+                        <br>
+                        <div class="input-group mb-1">
+                            <span class="input-group-text yellow_black">
+                                Expiry :
+                            </span>
+                            <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" required>
+                        </div>
+                        <br>
+                        <div class="input-group mb-1">
+                            <span class="input-group-text yellow_black">
+                                CVV :
+                            </span>
+                            <input type="text" id="CVC" name="CVC" required placeholder="123" maxlength="3" minlength="3">
+                        </div>
+                        <br>
+                        <a href="donePayment.jsp"><input class="btn yellow_black" type="submit" value="Proceed"></a>
+                    </form>
+                </div>
+            </div>
+        </div>
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>
