@@ -48,8 +48,8 @@
 
                         <div class="input-group mb-1">
                             <span class="input-group-text yellow_black">Shipping address : </span>
-                            <input class="form-control" type="text" name="price"
-                                   value="<%= selectedOrder.getShippingaddress()%>" readonly>
+                            <textarea class="form-control" type="text" name="price" aria-label="With textarea"
+                                      value="<%= selectedOrder.getShippingaddress()%>" readonly><%= selectedOrder.getShippingaddress()%></textarea>
                         </div>
                     </div>
                     <div class=" mb-2"> 
