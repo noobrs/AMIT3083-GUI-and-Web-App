@@ -64,9 +64,11 @@
                 <% if(product.getStock() > 0 ) {%>
 
                 <div class="col-3" > 
-                    <div class="card" style="min-height: 640px ">
-                        <img style="height: 300px; width: 300px; margin: auto" src="<%=request.getContextPath() + "/image/" + product.getImage() %>">
-                        <div class="card-body">
+                    <div class="card" style="min-height: 550px ">
+                        <div style="display: flex; justify-content: center; margin: auto;">
+                            <img style="height: 100%; margin: auto" src="../image/images.jpeg">
+                        </div>
+                        <div class="card-body" style="max-height: 300px">
                             <h5 class="card-title"><a href="../ViewProductDetail?productId=<%= product.getProductid() %>"><%= product.getProductid() %></a></h5>
                             <h5><%= product.getName() %></h5>
                             <p><%= product.getCategoryid().getCategoryname() %></p>
