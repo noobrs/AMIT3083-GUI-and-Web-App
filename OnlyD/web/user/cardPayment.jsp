@@ -28,23 +28,24 @@
                             <span class="input-group-text yellow_black">
                                 Card Number : 
                             </span>
-                            <input type="text" id="cardNumber" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="^(\d{4}[-\s]?){3}\d{4}$" required>
+                            <input class="form-control" type="text" id="cardNumber" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="^(\d{4}[-\s]?){3}\d{4}$" required>
                         </div>
                         <br>
                         <div class="input-group mb-1">
                             <span class="input-group-text yellow_black">
                                 Expiry :
                             </span>
-                            <input type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" required>
+                            <input class="form-control" type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" required>
                         </div>
                         <br>
                         <div class="input-group mb-1">
                             <span class="input-group-text yellow_black">
                                 CVV :
                             </span>
-                            <input type="text" id="CVC" name="CVC" required placeholder="123" maxlength="3" minlength="3">
+                            <input class="form-control" type="text" id="CVC" name="CVC" required placeholder="123" maxlength="3" minlength="3">
                         </div>
                         <br>
+                        <a href="payment.jsp" class="btn yellow_black">Back</a>
                         <a href="donePayment.jsp"><input class="btn yellow_black" type="submit" value="Proceed"></a>
                     </form>
                 </div>

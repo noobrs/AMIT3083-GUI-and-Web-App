@@ -48,23 +48,22 @@
 
                         <div class="input-group mb-1">
                             <span class="input-group-text yellow_black">Shipping address : </span>
-                            <input class="form-control" type="text" name="price"
-                                   value="<%= selectedOrder.getShippingaddress()%>" readonly>
-                        </div>
+                            <textarea class="form-control" type="text" name="price" aria-label="With textarea"
+                                      readonly><%= selectedOrder.getShippingaddress()%></textarea>
+                        </div>
                     </div>
                     <div class=" mb-2"> 
                         <h4 style="text-align: left">Product Details: </h4>
                         <table class="table table-striped tableDeco">
                             <tr style="background-color: #FFBE00">
                                 <th>Product</th>
+                                <th>Name</th>
                                 <th>Quantity</th>
                             </tr>
                             <% for(Productorder po : productorderList) { %>
                             <tr>
-                                <td>
-                                    <img style="height: 120px; width: 120px; margin-right: 100px" src="<%=request.getContextPath() + "/image/" + po.getProduct().getImage() %>">
-                                    <span style="vertical-align: top;"><%= po.getProduct().getName() %></span>
-                                </td>
+                                <td><img style="height: 120px; width: 120px; margin-right: auto" src="<%=request.getContextPath() + "/image/" + po.getProduct().getImage() %>"></td>
+                                <td><%= po.getProduct().getName() %></td>
                                 <td><%= po.getQuantity() %></td>
                             </tr>
                             <% } %>       

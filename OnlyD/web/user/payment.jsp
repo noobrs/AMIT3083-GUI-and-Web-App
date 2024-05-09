@@ -38,7 +38,7 @@
                             <span class="input-group-text yellow_black">
                                 Recipient H/P Number :
                             </span>
-                            <input class="form-control" type="tel" id="rHPNumber" name="rHPNumber"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" placeholder="012-34567890" required>
+                            <input class="form-control" type="tel" id="rHPNumber" name="rHPNumber"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" placeholder="012-3456789" required>
                         </div>
                         <br>
                         <div class="input-group mb-1">
@@ -101,6 +101,7 @@
                         </div>
                         <br>
                         <br>
+                        <a href="checkout.jsp" class="btn yellow_black">Back</a>
                         <input class="btn yellow_black" type="submit" value="Proceed">
                     </form>
                 </div>
@@ -109,6 +110,4 @@
 
         <%@include file="/layout/footer.jsp"%>
     </body>
-
-
 </html>

@@ -39,8 +39,8 @@
             <form action="../Checkout" method="post">
                 <table class="table table-striped tableDeco" border="1">
                     <tr style="background-color: #FFBE00">
-                        <th>Product ID</th>
-                        <th>Product Name</th>
+                        <th>Product</th>
+                        <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
                         <th>Checkout</th>
@@ -52,7 +52,7 @@
                         if (product != null) {
                     %>
                     <tr>
-                        <td><%= product.getProductid() %></td>
+                        <td><img style="max-height: 120px; max-width: 120px; margin: auto" src="<%=request.getContextPath() + "/image/" + product.getImage() %>"></td>
                         <td><%= product.getName() %></td>
                         <td><%= String.format("%.2f", product.getPrice()) %></td>
                         <td><%= cartItem.getQuantity() %></td>

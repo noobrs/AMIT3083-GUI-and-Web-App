@@ -90,6 +90,7 @@ public class AddOrder extends HttpServlet {
                     utx.commit();
                 }
 
+                // remove bought item from cust cart
                 utx.begin();
                 for (Productcart pc : selected) {
                     boolean removed = cartService.removeCartItem(cust.getCustomerID(), pc.getProduct().getProductid());
@@ -114,17 +115,14 @@ public class AddOrder extends HttpServlet {
                     boolean success = promoService.updatePromotion(promoApplied);
                 }
 
-                utx.commit();
-
-                session.removeAttribute("paymentType");
-                session.removeAttribute("fullAddress");
-                session.removeAttribute("promoApplied");
-                session.removeAttribute("subtotal");
-                session.removeAttribute("discount");
-                session.removeAttribute("shippingfee");
-                session.removeAttribute("total");
+                order = em.find(Orders.class, order.getOrderid());
+                em.refresh(order);
+                session.setAttribute("orderSuccess", order);
                 
-                response.sendRedirect("ViewCart");
+                utx.commit();
+                
+                
+                response.sendRedirect("user/orderSuccess.jsp");
             }
 
         } catch (IllegalArgumentException e) {

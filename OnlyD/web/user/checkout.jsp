@@ -44,8 +44,8 @@
             <form action="../CheckOrder" method="post">
                 <table class="table table-striped tableDeco">
                     <tr style="background-color: #FFBE00">
-                        <th>Product ID</th>
-                        <th>Product Name</th>
+                        <th>Product</th>
+                        <th>Name</th>
                         <th>Price</th>
                         <th>Quantity</th>
                     </tr>
@@ -55,7 +55,7 @@
                             if (product != null) {
                     %>
                     <tr>
-                        <td><%= product.getProductid() %></td>
+                        <td><img style="max-height: 120px; max-width: 120px; margin: auto" src="<%=request.getContextPath() + "/image/" + product.getImage() %>"></td>
                         <td><%= product.getName() %></td>
                         <td><%= String.format("%.2f", product.getPrice()) %></td>
                         <td><%= cartItem.getQuantity() %></td>
@@ -91,7 +91,7 @@
                                     <input class="form-control" type="text" name="promoCodeEntered" 
                                            <% if (promoApplied != null) { %>
                                            value="<%= promoApplied.getPromotioncode() %>" disabled>
-                                    <input type="submit" value="Remove" name="orderButton">
+                                    <input type="submit" class="btn reset_dlt_btn" value="Remove" name="orderButton">
                                     <% } else { %>
                                     >
                                     <input class="btn" style="background-color: #25182E; color: #FFFFFF; border-bottom-right-radius: 10px; border-top-right-radius: 10px;" type="submit" value="Apply" name="orderButton">
@@ -121,6 +121,7 @@
                                 </div>
 
                                 <br>
+                                <a href="../ViewCart" class="btn yellow_black">Back</a>
                                 <input class="btn yellow_black" type="submit" value="Proceed to Payment"  name="orderButton">
 
                             </div>
