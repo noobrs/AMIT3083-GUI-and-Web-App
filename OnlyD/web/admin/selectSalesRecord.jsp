@@ -19,58 +19,79 @@
         %>              
 
         <%@include file="/layout/header.jsp"%>
-
-        <% if(dailyList != null || !dailyList.isEmpty()) { %>
-        <h1>Daily Sales Report</h1>
-
-        <table>
-            <tr>
-                <th>Date</th>
-            </tr>
-            <% for(String day : dailyList) { %>
-            <tr>
-                <td><a href="../ViewSalesReport?day=<%=day%>"><%= day %></a></td>
-            </tr>
-            <% } %>
-        </table>
-        <% } else { %>
-        no record found!
-        <% } %>
-
-        <% if(monthList != null || !monthList.isEmpty()) { %>
-        <h1>Monthly Sales Report</h1>
-
-        <table>
-            <tr>
-                <th>Date</th>
-            </tr>
-            <% for(String month : monthList) { %>
-            <tr>
-                <td><a href="../ViewSalesReport?month=<%=month%>"><%= month %></a></td>
-            </tr>
-            <% } %>
-        </table>
-        <% } else { %>
-        no record found!
-        <% } %>
-
-        <% if(yearList != null || !yearList.isEmpty()) { %>
-        <h1>Yearly Sales Report</h1>
-
-        <table>
-            <tr>
-                <th>Date</th>
-            </tr>
-            <% for(String year : yearList) { %>
-            <tr>
-                <td><a href="../ViewSalesReport?year=<%=year%>"><%= year %></a></td>
-            </tr>
-            <% } %>
-        </table>
-        <% } else { %>
-        no record found!
-        <% } %>
-
+        <div class="container mt-5">
+            <div class="row dashBoard">
+                <div class="col-4" >
+                <% if(dailyList != null || !dailyList.isEmpty()) { %>
+                
+                    <div style="text-align: center; background-color: #25182E; border:2px #FFBE00 solid; color: #FFFFFF; border-radius: 10px">
+                        <h1>Daily Sales Report</h1> 
+                    </div>
+                    <br>
+                    <div class="card" style="overflow-y: auto; height: 600px; border: none; ">
+                        <table class="table table-striped tableDeco">
+                            <tr style="background-color: #FFBE00">
+                                <th>Date</th>
+                            </tr>
+                            <% for(String day : dailyList) { %>
+                            <tr>
+                                <td><a href="../ViewSalesReport?day=<%=day%>"><%= day %></a></td>
+                            </tr>
+                            <% } %>
+                        </table>
+                        <% } else { %>
+                        no record found!
+                        <% } %>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <% if(monthList != null || !monthList.isEmpty()) { %>
+                    <div style="text-align: center; background-color: #25182E; border:2px #FFBE00 solid; color: #FFFFFF; border-radius: 10px">
+                        <h1>Monthly Sales Report</h1>
+                    </div>
+                    <br>
+                    <div class="card" style="overflow-y: auto; height: 600px;border: none; ">
+                        <table class="table table-striped tableDeco">
+                            <tr style="background-color: #FFBE00">
+                                <th>Date</th>
+                            </tr>
+                            <% for(String month : monthList) { %>
+                            <tr>
+                                <td><a href="../ViewSalesReport?month=<%=month%>"><%= month %></a></td>
+                            </tr>
+                            <% } %>
+                        </table>
+                        <% } else { %>
+                        no record found!
+                        <% } %>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <% if(yearList != null || !yearList.isEmpty()) { %>
+                    <div style="text-align: center; background-color: #25182E; border:2px #FFBE00 solid; color: #FFFFFF; border-radius: 10px">
+                        <h1>Yearly Sales Report</h1>
+                    </div>
+                    <br>
+                    <div class="card" style="overflow-y: auto; height: 600px;border: none; ">
+                        <table class="table table-striped tableDeco">
+                            <tr style="background-color: #FFBE00">
+                                <th>Date</th>
+                            </tr>
+                            <% for(String year : yearList) { %>
+                            <tr>
+                                <td><a href="../ViewSalesReport?year=<%=year%>"><%= year %></a></td>
+                            </tr>
+                            <% } %>
+                        </table>
+                        <% } else { %>
+                        no record found!
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+                    
+                    
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

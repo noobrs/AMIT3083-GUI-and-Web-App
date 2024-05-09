@@ -6,31 +6,40 @@
 %>
 
 <%@include file="/layout/header.jsp"%>
+<div class="container mt-5">
+    <div class="dashBoard">
+        <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
 
-<h1>Search Category </h1>
-<table border="0" cellspacing="10">
-    <form action="searchCategory.jsp" method="post">
-        <tr>
-            <td>Category ID</td>
-            <td><select name="categoryId">
-                    <% for (Category category: categoryList){
-                    if(!category.getCategoryname().equals("NULL")){
-                    %>      
-                    <option value="<%=category.getCategoryid()%>">
-                        <%=category.getCategoryid()%>
-                        <%}
+            <div class="card-head yellow_black">
+                <h1>Search Category </h1>
+            </div>
+
+            <div class="card-body">
+                <form action="searchCategory.jsp" method="post">
+
+                    <div class="input-group mb-3">
+                        <span class="input-group-text yellow_black" id="basic-addon1">  
+                            Category ID
+                        </span>
+                        <select class="form-select" name="categoryId">
+                            <% for (Category category: categoryList){
+                            if(!category.getCategoryname().equals("NULL")){
+                            %>      
+                            <option value="<%=category.getCategoryid()%>">
+                                <%=category.getCategoryid()%>
+                                <%}
 }%>
-                </select>
-                <br>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Delete" name="categoryButton"/>
-                <input type="submit" value="Update" name="categoryButton"/>
-            </td>
-        </tr>
-    </form>
-</table>
+                        </select>
+                    </div>
+                    <div>
+                        <input class="btn reset_dlt_btn" type="submit" value="Delete" name="categoryButton"/>
+                        <input class="btn yellow_black" type="submit" value="Update" name="categoryButton"/>
+                    </div>
 
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
 <%@include file="/layout/footer.jsp"%>
