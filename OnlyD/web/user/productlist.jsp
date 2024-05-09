@@ -51,7 +51,9 @@
 
 
                         <% if(actionMsg != null){ %>
-                        <p><%=actionMsg%></p>
+                        
+                        <h4 class="col-12" style="color: #CA1F3D"><%=actionMsg%></h4>
+                        
                         <% session.removeAttribute("actionMsg"); } %>
 
                         <% if(!productList.isEmpty() || productList != null){ %>
