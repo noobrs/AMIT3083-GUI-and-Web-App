@@ -89,7 +89,8 @@ public class StaffRegister extends HttpServlet {
 
         } catch (Exception e) {
             request.setAttribute("errorMessage", e.getMessage());
-            getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
+            //getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
+            response.sendRedirect("registerStaff.jsp");
         }
     }
 

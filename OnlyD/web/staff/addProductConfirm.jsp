@@ -8,4 +8,4 @@
       out.println("Error: Unable to add new product.");
 %>
 </h3>
-<p><a href="../index.html">Back to home page</a></p>
+<p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>

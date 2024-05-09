@@ -14,7 +14,6 @@ import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -120,6 +119,11 @@ public class AddOrder extends HttpServlet {
                 session.removeAttribute("paymentType");
                 session.removeAttribute("fullAddress");
                 session.removeAttribute("promoApplied");
+                session.removeAttribute("subtotal");
+                session.removeAttribute("discount");
+                session.removeAttribute("shippingfee");
+                session.removeAttribute("total");
+                
                 response.sendRedirect("ViewCart");
             }
 

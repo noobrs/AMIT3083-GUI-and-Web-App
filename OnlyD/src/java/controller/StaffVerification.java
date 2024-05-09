@@ -76,6 +76,7 @@ public class StaffVerification extends HttpServlet {
             utx.commit();
             
             session.removeAttribute("staff");
+            session.removeAttribute("isStaff");
             session.removeAttribute("errorMessage");
             session.removeAttribute("enteredStaffName");
             session.removeAttribute("enteredStaffEmail");

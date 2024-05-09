@@ -5,6 +5,7 @@
 
         // guest
         if (!isAdmin && isStaff == null && isCustomer == null) {
-            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            //request.getRequestDispatcher("/login.jsp").forward(request, response);
+            response.sendRedirect("login.jsp");
         }
 %>

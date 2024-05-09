@@ -5,12 +5,21 @@
     <body>
         <%
             Category category = (Category) session.getAttribute("category");
+            String message = (String)session.getAttribute("updateError");
+            
             if (category != null) {
         %>
         
         <%@include file="/layout/header.jsp"%>
         
         <h1>Update Category</h1>
+        
+        <% if(message != null) { %>
+        <p><%= message %></p>
+        <% 
+            session.removeAttribute("updateError");
+            } %>
+        
         <form action="../UpdateCategory" method="post">
             <table border="0">
                 <tr>
@@ -24,7 +33,7 @@
         </form>
         <%} else {%>
         Category ${category.name} not found
-        <p><a href="../index.html">Back to home page</a></p>
+        <p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>
         <%}%>
         <div>
         </div>

@@ -39,11 +39,6 @@ public class CheckOrder extends HttpServlet {
 
         HttpSession session = request.getSession();
         String button = request.getParameter("orderButton");
-//        List<Productcart> selected = (List<Productcart>) session.getAttribute("selectedCartItem");
-//        Customer cust = (Customer) session.getAttribute("customer");
-//        ProductService productService = new ProductService(em);
-//        OrderService orderService = new OrderService(em);
-//        CartService cartService = new CartService(em);
         PromotionService promoService = new PromotionService(em);
 
         try {

@@ -19,7 +19,9 @@
                 (((Boolean)session.getAttribute("isStaff") != null) && (verificationStatus == null))){
 
             response.sendRedirect("staffDashboard.jsp");  
-            }
+        } else if((Boolean) session.getAttribute("isCustomer") != null){
+            response.sendRedirect("../unauthorizedError.jsp");
+        }
         %>
         <%@include file="/layout/header.jsp"%>      
 

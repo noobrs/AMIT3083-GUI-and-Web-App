@@ -63,14 +63,13 @@
                                 <p class="card-text"><%= product.getDescription() %> </p>
                                 <h5><%= String.format("%.2f", product.getPrice()) %></h5>
                                 <p><%= product.getStock() %></p>
-                                <% if(product.getStock() > 0 ) {%>
+                                <!-- only show add cart button to guest or customer -->
+                                <% if((Boolean)session.getAttribute("isStaff") == null && !request.isUserInRole("AdminRole")) { %>
                                 <form action="../AddToCart" method="POST"> 
                                     <input type="number" min="1" value="1" name="quantity">
                                     <input type="hidden" name="productId" value="<%= product.getProductid() %>">
                                     <input type="submit" value="Add to Cart">
                                 </form>
-                                <% } else { %>
-                                Out of Stock!
                                 <% } %>
                             </div>
                         </div>
@@ -90,7 +89,7 @@
                 </div>
                 <br><br>
             </div>
-            <p><a href="<%=request.getContextPath()%>/">Back to home page</a></p>
+            <p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>
         </div>
         <%@include file="/layout/footer.jsp"%>
     </body>

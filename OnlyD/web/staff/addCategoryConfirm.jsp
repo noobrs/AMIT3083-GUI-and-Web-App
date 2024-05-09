@@ -13,7 +13,7 @@
                       out.println("Error: Unable to add new category.");
                 %>
             </h3>
-            <p><a href="<%= request.getContextPath() %>">Back to home page</a></p>
+            <p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>
         </div>
     </div>
 </div>

@@ -27,12 +27,12 @@
             String errorMsg = (String)session.getAttribute("checkoutErrorMsg");
             
         %>
-        
+
         <% if(errorMsg != null) { %>
         <p><%= errorMsg %></p>
         <% 
             session.removeAttribute("checkoutErrorMsg"); } %>
-        
+
         <%    
             if(selected != null){
         %>
@@ -66,17 +66,17 @@
             <% } %>
 
             <% 
+                
+                if(promoApplied != null){
+                    totaldiscount = subtotal * promoApplied.getDiscountpercentage()/100;
+                    subtotal -= totaldiscount;
+                }
+
                 if(subtotal >= 200){
                     shippingfee = 0;
                 }
                 
-                
-                if(promoApplied != null){
-                totaldiscount = subtotal * promoApplied.getDiscountpercentage()/100;
-                subtotal -= totaldiscount;
-                }
-                
-                total = (subtotal - totaldiscount) + shippingfee;
+                total = subtotal + shippingfee;
             %>
 
             <table>
@@ -87,10 +87,10 @@
                                <% if (promoApplied != null) { %>
                                value="<%= promoApplied.getPromotioncode() %>" disabled>
                         <input type="submit" value="Remove" name="orderButton">
-                               <% } else { %>
-                               >
+                        <% } else { %>
+                        >
                         <input type="submit" value="Apply" name="orderButton">
-                               <% } %>
+                        <% } %>
                     </td>
                 </tr>
                 <tr>

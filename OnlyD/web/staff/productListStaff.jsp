@@ -55,7 +55,7 @@
                     <div style="display: flex; justify-content: center; flex-wrap: nowrap">
                         <a class="btn yellow_black me-2" href="../GetCategoryForProduct">Add Product</a>
                         <a class="btn yellow_black me-2" href="../LoadProductList">Delete/Update Product</a>
-                        <a class="btn yellow_black" href="<%=request.getContextPath()%>">Back to home page</a>
+                        <a class="btn yellow_black" href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a>
                     </div> 
                 </div>
 

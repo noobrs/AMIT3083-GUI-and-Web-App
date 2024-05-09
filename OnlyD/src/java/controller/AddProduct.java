@@ -55,8 +55,6 @@ public class AddProduct extends HttpServlet {
             Part image = request.getPart("image");
             String imageURL = Paths.get(image.getSubmittedFileName()).getFileName().toString();
 
-            int status = Integer.parseInt(request.getParameter("status"));
-
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);
             Category categoryid = new Category(cid);
@@ -67,7 +65,7 @@ public class AddProduct extends HttpServlet {
                 staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);
             }
 
-            Product product = new Product(name, price, stock, description, imageURL, status, categoryid, staff);
+            Product product = new Product(name, price, stock, description, imageURL, 1, categoryid, staff);
             ProductService productService = new ProductService(em);
             utx.begin();
             boolean success = productService.addProduct(product);

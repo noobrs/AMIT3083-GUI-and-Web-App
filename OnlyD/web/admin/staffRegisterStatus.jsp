@@ -27,6 +27,7 @@
                                 }
                             %>
                             <%= message %>
+                            <% session.removeAttribute("staffRegSuccess"); %>
 
                         </h4>
                     </div>
@@ -35,11 +36,7 @@
 
                 </div>
             </div>
-            <%@include file="/layout/footer.jsp"%>
-
-            <%
-            session.removeAttribute("staffRegSuccess");
-            %>
         </div>
+        <%@include file="/layout/footer.jsp"%> 
     </body>
 </html>

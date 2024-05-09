@@ -14,7 +14,7 @@
         <header style="top: 0; position:relative; width: 100%;">
             <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
                 <div class="container">
-                    <a href="<%=request.getContextPath()%>">
+                    <a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">
                         <img src="<%=request.getContextPath()%>/layout/only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px" />
                     </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="<%=request.getContextPath()%>">Home</a>
+                                <a class="nav-link" href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Home</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="<%=request.getContextPath()%>/ViewProduct">Product</a>
@@ -66,13 +66,13 @@
                     Staff staffHead = (Staff)session.getAttribute("staff");
                     String userName = "";
 
-                    if(custHead != null){
-                    userName = custHead.getName();
+                    if(request.isUserInRole("AdminRole")){
+                    userName = "Admin";
                     } else if(staffHead != null){
                     userName = staffHead.getName();
-                    } else{
-                    userName = "Admin";
-        }
+                    } else if(custHead != null){
+                    userName = custHead.getName();
+                    }
                     %>
                     
                         Welcome, <%=userName%> | <a href="<%=request.getContextPath()%>/logout">Logout</a> 

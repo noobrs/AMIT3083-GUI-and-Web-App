@@ -67,7 +67,7 @@
                                 </tr>
                                 <tr>
                                     <td>Stock</td>
-                                    <td><input class="form-control" type="number" name="stock"  min="0" required></td>
+                                    <td><input class="form-control" type="number" name="stock"  min="0" step="1" required></td>
                                 </tr>
                                 <tr>
                                     <td>Description</td>
@@ -80,14 +80,6 @@
                                 <tr>
                                     <td></td>
                                     <td><div id="preview"></div></td>
-                                </tr>
-                                <tr>
-                                    <td>Status</td>
-                                    <td><select class="form-select" name="status">
-                                            <option value="1"> Active</option>
-                                            <option value="0"> Deleted</option>
-                                        </select>
-                                    </td>
                                 </tr>
                                 <tr>
                                     <td>Category <br> Name</td>
