@@ -46,9 +46,9 @@
                         </table>
 
                         <div style="display: flex; justify-content: center; flex-wrap: nowrap">
-                            <a class="btn yellow_black" href="../staff/addPromotion.jsp">Add Promotion</a>
-                            <a class="btn yellow_black" href="../LoadPromoList">Update Promotion</a>
-                            <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
+                            <a class="btn yellow_black me-2" href="../staff/addPromotion.jsp">Add Promotion</a>
+                            <a class="btn yellow_black me-2" href="../LoadPromoList">Update Promotion</a>
+                            <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
                         </div> 
                         <% } %>
                     </div>

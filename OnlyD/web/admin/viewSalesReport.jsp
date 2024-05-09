@@ -1,5 +1,5 @@
 
-<%@page import="java.util.List, entity.Orders, java.lang.String"%>
+<%@page import="java.util.List, java.util.ArrayList, java.util.Map, java.util.HashMap, java.lang.String, entity.Orders, entity.Product, entity.Productorder"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -27,22 +27,41 @@
             orderCount++;
             totalDiscount += o.getTotaldiscount();
             totalSales += o.getTotal();
+            
             } %>
             
         <% if(requestDay != null) { %>    
-        <h1><%=requestDay%> Sales Report</h1>
+        <h1><%=requestDay%> Daily Sales Report</h1>
         <% } %>
         <% if(requestMonth != null) { %>    
-        <h1><%=requestMonth%> Sales Report</h1>
+        <h1><%=requestMonth%> Monthly Sales Report</h1>
         <% } %>
         <% if(requestYear != null) { %>    
-        <h1><%=requestYear%> Sales Report</h1>
+        <h1><%=requestYear%> Yearly Sales Report</h1>
         <% } %>
         <table>
             <tr>
                 <td>Number of Sales:</td>
                 <td><%=orderCount%></td>
             </tr>
+            <% 
+                HashMap<Product,Integer> productSoldMap = (HashMap<Product,Integer>)session.getAttribute("productSoldMap");
+                List<Product> prodSoldList = (List<Product>)session.getAttribute("prodSoldList");
+            %>
+            <tr><td>
+            <table>
+                <tr>
+                    <th>Product Sold</th>
+                    <th>Quantity</th>
+                </tr>
+                <% for(Product p : prodSoldList) { %>
+                <tr>
+                    <td><%= p.getName() %></td>
+                    <td><%= productSoldMap.get(p) %></td>
+                </tr>
+                <% } %>
+            </table>
+                </td></tr>
             <tr>
                 <td>Total Discount:</td>
                 <td>RM <%=String.format("%.2f", totalDiscount)%></td>

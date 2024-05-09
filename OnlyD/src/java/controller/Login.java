@@ -53,6 +53,7 @@ public class Login extends HttpServlet {
                 }
 
                 cust.initializeProductcartList();  // initialize lazy relation to productcart
+                cust.initializeOrderList();
                 session.setAttribute("customer", cust);
                 cust.setProductcartList(cartService.getCartItems(cust.getCustomerID()));
                 session.setAttribute("isCustomer", true);

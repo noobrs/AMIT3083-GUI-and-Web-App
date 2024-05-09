@@ -5,10 +5,11 @@
 package controller;
 
 import entity.Orders;
+import entity.Product;
+import entity.Productorder;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,9 +17,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import service.OrderService;
 
 /**
@@ -62,21 +63,11 @@ public class ViewSalesReport extends HttpServlet {
 
                 int parsedMonth = Integer.parseInt(requestMonth, 0, 2, 10);
                 int parsedYear = Integer.parseInt(requestMonth, 3, 7, 10);
-//                List<Orders> orderList = orderService.findAll();
-//
-//                Calendar calendar = Calendar.getInstance();
-                
+
                 foundOrderList = em.createNamedQuery("Orders.findByOrderMonth")
                         .setParameter("year", parsedYear)
                         .setParameter("month", parsedMonth)
                         .getResultList();
-
-//                for (Orders o : orderList) {
-//                    calendar.setTime(o.getOrderdatetime());
-//                    if ((calendar.get(Calendar.MONTH)+1 == parsedMonth) && (calendar.get(Calendar.YEAR) == parsedYear)) {
-//                        foundOrderList.add(o);
-//                    }
-//                }
 
                 session.setAttribute("month", requestMonth);
 
@@ -88,6 +79,27 @@ public class ViewSalesReport extends HttpServlet {
 
                 session.setAttribute("year", requestYear);
 
+            }
+
+            if (!foundOrderList.isEmpty()) {
+                Map<Product, Integer> productSold = new HashMap<>();
+                List<Product> prodSoldList = new ArrayList<>();
+
+                for (Orders o : foundOrderList) {
+                    for (Productorder po : o.getProductorderList()) {
+                        Product p = po.getProduct();
+                        Integer qty = po.getQuantity();
+                        if (productSold.containsKey(p)) {
+                            productSold.replace(p, qty + productSold.get(p));
+                        } else {
+                            productSold.put(p, qty);
+                            prodSoldList.add(p);
+                        }
+                    }
+                }
+                
+                session.setAttribute("productSoldMap", productSold);
+                session.setAttribute("prodSoldList", prodSoldList);
             }
 
             session.setAttribute("foundOrderList", foundOrderList);

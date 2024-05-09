@@ -30,7 +30,7 @@
                     <br>
                     <div class="card" style="overflow-y: auto; height: 600px; border: none; ">
                         <table class="table table-striped tableDeco">
-                            <tr style="background-color: #FFBE00">
+                            <tr style="background-color: #FFBE00; text-align: center;">
                                 <th>Date</th>
                             </tr>
                             <% for(String day : dailyList) { %>
@@ -52,7 +52,7 @@
                     <br>
                     <div class="card" style="overflow-y: auto; height: 600px;border: none; ">
                         <table class="table table-striped tableDeco">
-                            <tr style="background-color: #FFBE00">
+                            <tr style="background-color: #FFBE00; text-align: center;">
                                 <th>Date</th>
                             </tr>
                             <% for(String month : monthList) { %>
@@ -74,7 +74,7 @@
                     <br>
                     <div class="card" style="overflow-y: auto; height: 600px;border: none; ">
                         <table class="table table-striped tableDeco">
-                            <tr style="background-color: #FFBE00">
+                            <tr style="background-color: #FFBE00; text-align: center;">
                                 <th>Date</th>
                             </tr>
                             <% for(String year : yearList) { %>

@@ -63,7 +63,7 @@ public class Customer implements Serializable {
     private String password;
     @Column(name = "STATUS")
     private Integer status;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerid")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "customerid", fetch = FetchType.LAZY)
     private List<Orders> ordersList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "customer", fetch = FetchType.LAZY)
     private List<Productcart> productcartList;
@@ -170,6 +170,12 @@ public class Customer implements Serializable {
     public void initializeProductcartList() {
         if (productcartList != null) {
             productcartList.size(); // This will trigger the initialization of the lazy relationship
+        }
+    }
+    
+        public void initializeOrderList() {
+        if (ordersList != null) {
+            ordersList.size(); // This will trigger the initialization of the lazy relationship
         }
     }
 

@@ -1,36 +1,59 @@
 <%@include file="staffAuthentication.jsp"%>
 <%@page import="java.util.List"%>
 <%@page  import="entity.Category" %>
-<%
-  List<Category> categoryList = (List)session.getAttribute("categoryList");
-%>
 
-<%@include file="/layout/header.jsp"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Category List</title>
+    </head>
+    <body>
+        <%
+          List<Category> categoryList = (List)session.getAttribute("categoryList");
+        %>
 
-<h1>Search Category </h1>
-<table border="0" cellspacing="10">
-    <form action="searchCategory.jsp" method="post">
-        <tr>
-            <td>Category ID</td>
-            <td><select name="categoryId">
-                    <% for (Category category: categoryList){
-                    if(!category.getCategoryname().equals("NULL")){
-                    %>      
-                    <option value="<%=category.getCategoryid()%>">
-                        <%=category.getCategoryid()%>
-                        <%}
+        <%@include file="/layout/header.jsp"%>
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+
+                    <div class="card-head yellow_black">
+                        <h1>Search Category </h1>
+                    </div>
+
+                    <div class="card-body">
+                        <form action="searchCategory.jsp" method="post">
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">  
+                                    Category Name
+                                </span>
+                                <select class="form-select" name="categoryId">
+                                    <% for (Category category: categoryList){
+                                    if(!category.getCategoryname().equals("NULL")){
+                                    %>      
+                                    <option value="<%=category.getCategoryid()%>">
+                                        <%=category.getCategoryname() %>
+                                        <%}
 }%>
-                </select>
-                <br>
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                <input type="submit" value="Delete" name="categoryButton"/>
-                <input type="submit" value="Update" name="categoryButton"/>
-            </td>
-        </tr>
-    </form>
-</table>
+                                </select>
+                            </div>
+                            <div>
+                                <input class="btn yellow_black" type="submit" value="Update" name="categoryButton"/>
+                                <!<!-- only admin can delete product -->
+                                <% if(request.isUserInRole("AdminRole")){ %>
+                                <input class="btn reset_dlt_btn" type="submit" value="Delete" name="categoryButton"/>
+                                <% } %>
+                            </div>
 
-<%@include file="/layout/footer.jsp"%>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <%@include file="/layout/footer.jsp"%>
+
+    </body>
+</html>

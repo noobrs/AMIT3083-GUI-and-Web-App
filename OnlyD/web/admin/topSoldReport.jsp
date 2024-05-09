@@ -23,11 +23,16 @@
                         List<Integer> soldQty = (List<Integer>)session.getAttribute("soldQty");
                         if(productSold != null || !productSold.isEmpty()){
                     %>
+                    
+                    <div class="card-head yellow_black">
+                        <h1>TOP 10 Sold Product</h1>
+                    </div>
+                    
                     <div class="card-body">
                         <table class="table table-striped tableDeco">
                             <tr style="background-color: #FFBE00">
                                 <th>Product Name</th>
-                                <th>Quantity</th>
+                                <th>Quantity Sold</th>
                             </tr>
                             <% for(int i = 0; i < productSold.size(); i++) { %>
                             <tr>
@@ -42,8 +47,14 @@
                             %>
                         </table>
 
+                        
 
+                        <% } else { %>
+                        No product sold!
                         <% } %>
+                        <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                            <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
+                        </div> 
                     </div>
                 </div>
             </div>
