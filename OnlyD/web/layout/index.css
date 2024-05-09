@@ -70,8 +70,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .card_deco{
-    width: 50%; 
-    border: 2px #FFBE00 solid; 
-    background-color: #FFFFFF; 
+    width: 50%;
+    border: 2px #FFBE00 solid;
+    background-color: #FFFFFF;
     text-align: center;
+}
+
+.filter_btn{
+    background-color: #25182E;
+    color: #FFFFFF;
+    width: 100px;
+}
+
+.filter_btn:hover{
+    background-color: #FFFFFF!important;
+    color: #25182E!important;
 }

@@ -100,12 +100,6 @@
                                         <br>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Add by</td>
-                                    <td><input class="form-control" type="text" name="staffid" size="50" required></td>
-                                </tr>
-
-
                             </table>
                             <div class="dashBoard mt-3">
                                 <input class="btn yellow_black me-2" type="submit" value="Add">
