@@ -30,8 +30,10 @@
                     <% if(productList != null){
                         for(int i = 0; i < productList.size(); i++){ 
                             Product p = productList.get(i); %>
-                    <div class="carousel-item <% if(i==0){ %>active<% } %>">
-                        <a href="ViewProductDetail?productId=<%=p.getProductid()%>"><img  src="<%= request.getContextPath() + "/image/" + p.getImage()%>" class="d-block w-100" alt="Product Image"></a>
+                    <div class="carousel-item <% if(i==0){ %>active<% } %>" >
+                        <a href="ViewProductDetail?productId=<%=p.getProductid()%>" style="display: flex; justify-content: center">
+                            <img  src="<%= request.getContextPath() + "/image/" + p.getImage()%>" class="d-block" width="600px" alt="Product Image" >
+                        </a>
                         <div class="carousel-caption d-none d-md-block">
                             <h4>TOP <%= i+1 %></h4>
                             <h5>Most popular item sold !</h5>

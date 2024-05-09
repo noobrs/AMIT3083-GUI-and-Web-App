@@ -15,7 +15,7 @@
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
-        <div class="container mt-5">
+        <div class="container mt-5" style="margin-bottom: 260px">
             <h1 style="color: #FFBE00">Shopping Cart</h1>
 
             <%

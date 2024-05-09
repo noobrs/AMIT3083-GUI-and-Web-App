@@ -22,7 +22,11 @@
         %>
 
         <%@include file="/layout/header.jsp"%>
-        <div class="container mt-5" style="display: flex; justify-content: center">
+        <div class="container mt-5" style="display: flex; flex-direction: column; flex-wrap: wrap; align-content: center; text-align: center ">
+
+
+            <h2 style="color: limegreen">Order was successfully made!</h2>
+
 
             <div class="card card_deco">
                 <div class="card-head ">
@@ -56,11 +60,13 @@
                         <h4 style="text-align: left">Product Details: </h4>
                         <table class="table table-striped tableDeco">
                             <tr style="background-color: #FFBE00">
-                                <th>Product Name</th>
+                                <th>Product</th>
+                                <th>Name</th>
                                 <th>Quantity</th>
                             </tr>
                             <% for(Productorder po : productorderList) { %>
                             <tr>
+                                <td><img style="height: 120px; width: 120px; margin-right: auto" src="<%=request.getContextPath() + "/image/" + po.getProduct().getImage() %>"></td>
                                 <td><%= po.getProduct().getName() %></td>
                                 <td><%= po.getQuantity() %></td>
                             </tr>
