@@ -1,6 +1,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="entity.Customer"%>
+<%@page import="entity.Customer, entity.Staff"%>
 
 <!DOCTYPE html>
 
@@ -28,12 +28,14 @@
                             <li class="nav-item">
                                 <a class="nav-link" href="<%=request.getContextPath()%>/ViewProduct">Product</a>
                             </li>
+                            <% if ((Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole")) { %>
+                            <li class="nav-item">
+                                <a class="nav-link" href="<%=request.getContextPath()%>/staff/staffDashboard.jsp">Dashboard</a>
+                            </li>
                         </ul>
-                        
-                        <% if ((Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole")) { %>
-                        
-                        <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/staff/staffDashboard.jsp">Dashboard</a></button>
+
                         <% } else { %>
+                        </ul>
                         <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Shopping cart" class="cart_order me-2" href="<%=request.getContextPath()%>/ViewCart">
                             <svg xmlns="http://www.w3.org/2000/svg" width="35" height="45" fill="black" class="bi bi-cart3" viewBox="0 0 16 16">
                             <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l.84 4.479 9.144-.459L13.89 4zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
@@ -52,38 +54,41 @@
                             <input type="text" name="productName" class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search" required>
                             <input type="submit" value="Search" name="searchButton"  class="btn btn-outline-success">
                         </form>
-                        <%
-//                        Customer headCust = (Customer)session.getAttribute("customer");
-//                        if(headCust.getName() != null){
-//                            out.println(headCust.getName());
-//                            }
-                        
-                        if((Boolean) session.getAttribute("isCustomer") != null || (Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole") == true){
-                        %>
-                        <form action="<%=request.getContextPath()%>/logout">
-                            <input class="btn btn-outline-dark loginBtn" style="margin-left: 10px" type="submit" value="Logout">
-
-                        </form>
-                        <%
-                            }else{
-                        %>
-
-
                     </div>
                 </div>
             </nav>
-                                    <div class="container-fluid"style="position: absolute; top: 0; display: flex; justify-content: end; ">
-                <div style="margin-right:15%;">
+            <div class="container-fluid"style="position: absolute; top: 0; display: flex; justify-content: end; ">
+                <div style="margin-right:10%;">        
+                    <%
+                    if((Boolean) session.getAttribute("isCustomer") != null || (Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole") == true){
+
+                    Customer custHead = (Customer)session.getAttribute("customer");
+                    Staff staffHead = (Staff)session.getAttribute("staff");
+                    String userName = "";
+
+                    if(custHead != null){
+                    userName = custHead.getName();
+                    } else if(staffHead != null){
+                    userName = staffHead.getName();
+                    } else{
+                    userName = "Admin";
+        }
+                    %>
+                    
+                        Welcome, <%=userName%> | <a href="<%=request.getContextPath()%>/logout">Logout</a> 
+
+                    <% } else { %>
+
+
                     <a href="<%=request.getContextPath()%>/login.jsp">User</a> |
                     <a href="<%=request.getContextPath()%>/staff/staffLogin.jsp">Staff</a> |
                     <a href="<%=request.getContextPath()%>/admin/adminLogin.jsp">Admin</a>
+
+
+
+                    <% } %>
                 </div> 
             </div>
-
-
-            <%
-            }
-            %>
         </header>
     </body>
 

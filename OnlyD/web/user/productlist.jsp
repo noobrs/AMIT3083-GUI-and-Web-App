@@ -19,6 +19,10 @@
           String actionMsg = (String)session.getAttribute("actionMsg");
         %>
         <div class="container-fluid mt-5">
+
+            <% if(actionMsg != null){ %>
+            <p><%=actionMsg%></p>
+            <% session.removeAttribute("actionMsg"); } %>   
             <div class="row ">
                 <div class="col-2">
                     <h4>Search Filter</h4>
@@ -41,10 +45,6 @@
                     </form>
                 </div>
                 <br/><br/>
-
-                <% if(actionMsg != null){ %>
-                <p><%=actionMsg%></p>
-                <% session.removeAttribute("actionMsg"); } %>
 
                 <% if(!productList.isEmpty() || productList != null){ %>
                 <div class="col-10" style="display:flex; flex-wrap: wrap">

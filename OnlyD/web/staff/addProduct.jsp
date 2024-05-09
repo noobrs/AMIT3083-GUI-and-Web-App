@@ -60,7 +60,7 @@
                                     <td>Name</td>
                                     <td><input class="form-control " type="text" name="name" required></td>
                                 </tr>
-                                
+
                                 <tr>
                                     <td>Price</td>
                                     <td><input class="form-control" type="number" name="price" min="0.00" step="0.01" required></td>
@@ -84,8 +84,8 @@
                                 <tr>
                                     <td>Status</td>
                                     <td><select class="form-select" name="status">
-                                            <option value="0"> Deleted
-                                            <option value="1"> Active
+                                            <option value="1"> Active</option>
+                                            <option value="0"> Deleted</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -95,17 +95,12 @@
                                             <% for (Category category: categoryList){%>
                                             <option value="<%=category.getCategoryid()%>">
                                                 <%=category.getCategoryname()%>
-                                                <%}%>
+                                            </option>
+                                            <%}%>
                                         </select>
                                         <br>
                                     </td>
-                                </tr>
-                                <tr>
-                                    <td>Add by</td>
-                                    <td><input class="form-control" type="text" name="staffid" size="50" required></td>
-                                </tr>
-
-
+                                </tr>   
                             </table>
                             <div class="dashBoard mt-3">
                                 <input class="btn yellow_black me-2" type="submit" value="Add">
