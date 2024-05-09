@@ -32,7 +32,10 @@
                         </h4>
                     </div>
 
-                    <p>Back to <a href="../staff/staffDashboard.jsp">Dashboard</a></p>
+                    <div style="display: flex; justify-content: center; flex-wrap: nowrap; margin:20px;">
+                        <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                        <a class="btn yellow_black me-2" href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Home</a>
+                    </div> 
 
                 </div>
             </div>

@@ -37,9 +37,9 @@
                                 </select>
                             </div>
                         <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                            <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                             <input class="btn yellow_black me-2" type="submit" value="Update Staff" name="button"/> 
-                            <input class="btn reset_dlt_btn"  type="submit" value="Delete Staff" name="button"/>
-                            <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
+                            <input class="btn reset_dlt_btn me-2"  type="submit" value="Delete Staff" name="button"/>
                         </div> 
 
                         </form>

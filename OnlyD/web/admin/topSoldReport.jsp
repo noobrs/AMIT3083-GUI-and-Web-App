@@ -31,11 +31,13 @@
                     <div class="card-body">
                         <table class="table table-striped tableDeco">
                             <tr style="background-color: #FFBE00">
-                                <th>Product Name</th>
+                                <th>Product</th>
+                                <th>Name</th>
                                 <th>Quantity Sold</th>
                             </tr>
                             <% for(int i = 0; i < productSold.size(); i++) { %>
                             <tr>
+                                <td><img style="height: 120px; width: 120px; margin: auto" src="<%=request.getContextPath() + "/image/" + productSold.get(i).getImage() %>"></td>
                                 <td><%= productSold.get(i).getName() %></td>
                                 <td><%= soldQty.get(i) %></td>
                             </tr>

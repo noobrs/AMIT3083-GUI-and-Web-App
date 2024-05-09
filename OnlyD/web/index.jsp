@@ -30,11 +30,13 @@
                     <% if(productList != null){
                         for(int i = 0; i < productList.size(); i++){ 
                             Product p = productList.get(i); %>
-                    <div class="carousel-item <% if(i==0){ %>active<% } %>">
-                        <a href="ViewProductDetail?productId=<%=p.getProductid()%>"><img  src="<%= request.getContextPath() + "/image/" + p.getImage()%>" class="d-block w-100" alt="Product Image"></a>
-                        <div class="carousel-caption d-none d-md-block">
-                            <h4>TOP <%= i+1 %></h4>
-                            <h5>Most popular item sold !</h5>
+                    <div class="carousel-item <% if(i==0){ %>active<% } %>" >
+                        <a href="ViewProductDetail?productId=<%=p.getProductid()%>" style="display: flex; justify-content: center">
+                            <img  src="<%= request.getContextPath() + "/image/" + p.getImage()%>" class="d-block" height="600px" alt="Product Image" >
+                        </a>
+                        <div class="carousel-caption d-none d-md-block" style="background-color:#FFBE00;">
+                            <h4>TOP <%= i+1 %> Most popular item sold !</h4>
+                            <h5><%=p.getName()%></h5>
                         </div>
                     </div>
                     <% } } %>
@@ -47,7 +49,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-            </div>
+            </div>
 
 
             <h1 style="color:#FFBE00">Use promotion coupon code for discounts !</h1>
@@ -62,13 +64,14 @@
                             }
                 %>
 
-                <div class="col-2">
-                    <div class="card">
+                <div class="col-3">
+                    <div class="card" style="height: 100%">
                         <div class="card-body">
                             <h5 class="card-title">Coupon Code</h5>
-                            <h3><%=po.getPromotioncode()%></h3>
+                            <h4><%=po.getPromotioncode()%></h4>
                             <p class="card-text">Discount Percentage</p>
-                            <h4><%=po.getDiscountpercentage()%></h4>
+                            <h4><%=po.getDiscountpercentage()%>%</h4>
+                            <p>Remaining: <%=po.getRedemptionquantity()%></p>
                         </div>
                     </div>
                 </div>

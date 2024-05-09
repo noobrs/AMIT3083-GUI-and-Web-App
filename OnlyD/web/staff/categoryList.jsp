@@ -17,6 +17,9 @@
         <div class="container mt-5">
             <div class="dashBoard">
                 <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-head yellow_black">
+                        <h1>Category List</h1>
+                    </div>
                     <div class="card-body">
                         <table class="table table-striped tableDeco" border="1">
                             <tr style="background-color: #FFBE00">
@@ -37,10 +40,10 @@
                             </tr>
                             <% } %>
                         </table>
-                        <div>
-                            <a class="btn yellow_black" href="../staff/addCategory.jsp">Add Category</a>
-                            <a class="btn yellow_black" href="../LoadCategoryList">Delete/Update Category</a>
-                            <a class="btn yellow_black"href="../index.html">Back to home page</a>         
+                        <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                            <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                            <a class="btn yellow_black me-2" href="../staff/addCategory.jsp">Add Category</a>
+                            <a class="btn yellow_black me-2" href="../LoadCategoryList">Delete/Update Category</a>
                         </div>
                     </div>
 

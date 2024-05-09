@@ -6,8 +6,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>All Customers</title>
-        <%@include file="/layout/meta.html"%>
+        <title>Product List</title>
 
     </head>
     <%
@@ -20,6 +19,9 @@
         <%@include file="/layout/header.jsp"%>
         <div class="container mt-5">
             <div class="card" style="border: 2px #FFBE00 solid;">
+                <div class="card-head yellow_black" style="text-align: center">
+                        <h1>Product List</h1>
+                    </div>
                 <div class="card-body">
 
                     <table class="table table-striped tableDeco" border="1">
@@ -51,13 +53,13 @@
                         <% } %>
                     </table>
                     <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                        <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                         <a class="btn yellow_black me-2" href="../GetCategoryForProduct">Add Product</a>
                         <% if(request.isUserInRole("AdminRole")) { %>
                         <a class="btn yellow_black me-2" href="../LoadProductList">Delete/Update Product</a>
                         <% } else { %>
                         <a class="btn yellow_black me-2" href="../LoadProductList">Update Product</a>
                         <% } %>
-                        <a class="btn yellow_black" href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a>
                     </div> 
                 </div>
 

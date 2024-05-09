@@ -51,8 +51,10 @@
                                 </span>
                                 <input class="form-control" type="number" min="1" step="1" name="redemptionQty" value="<%=promo.getRedemptionquantity()%>">
                             </div>
-
-                            <input class="btn yellow_black" type="submit" value="Update Promotion">
+                            <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                                <input class="btn yellow_black" type="submit" value="Update Promotion">
+                            </div>
                         </form>
                         <% } else { %>
                         Promotion not found

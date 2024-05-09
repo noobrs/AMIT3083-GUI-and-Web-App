@@ -6,7 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Register Page</title>        
     </head>
-    <body style="height: 100%">
+    <body>
         <%@include file="layout/header.jsp"%>
 
         <%
@@ -17,7 +17,7 @@
             String enteredPhoneNumber = (String)session.getAttribute("enteredPhoneNumber");         
         %>
 
-        <div class="mainBody" style="display: flex;
+        <div class="mainBody mt-2" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="RegisterCard container">
                 <div class="card card_deco" style="width: 50%">

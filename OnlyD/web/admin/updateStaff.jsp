@@ -70,6 +70,7 @@
                                 <input class="form-control" type="password" name="reStaffPassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                             </div>
                             <div>
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                                 <input class="btn yellow_black me-2" type="submit" value="Update Staff">
                             </div>
   

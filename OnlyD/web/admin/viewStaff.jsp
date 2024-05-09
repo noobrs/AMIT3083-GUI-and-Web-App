@@ -16,6 +16,9 @@
         <div class="container mt-5">
             <div class="dashBoard">
                 <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-head yellow_black">
+                        <h1>Staff List</h1>
+                    </div>
                     <div class="card-body">
                         <table class="table table-striped tableDeco" border="1">
                             <%
@@ -49,15 +52,14 @@
                         </table>
 
                         <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                            <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                             <a class="btn yellow_black me-2" href="../staffRegister">Add Staff</a>
                             <a class="btn yellow_black me-2" href="../LoadStaffList">Delete/Update Staff</a>
-
-                            <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
                         </div> 
                         <% } else { %>
                         <p>No Staff Record</p>
                         <div style="display: flex; justify-content: center; flex-wrap: nowrap">
-                             <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
+                            <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Dashboard</a>
                         </div> 
                         <% } %>
                     </div>

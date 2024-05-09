@@ -17,7 +17,7 @@
             <div class="dashBoard">
                 <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
                     <div class="card-head yellow_black">
-                        <h4 >Add Category</h4>
+                        <h1>Add Category</h1>
                     </div>
                     <div class="card-body">
                         <form action="../AddCategory" method="post">
@@ -26,6 +26,7 @@
                                 <input class="form-control" type="text" name="name" pattern="^(?i)(?!.\bnull\b).$" title="The word 'NULL' is not allowed.">
                             </div>
                             <div>
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                                 <input class="btn yellow_black me-2" type="submit" value="Add">
                                 <input class="btn reset_dlt_btn" type="reset" value="Reset"> 
                             </div>

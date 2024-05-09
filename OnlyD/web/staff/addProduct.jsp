@@ -51,7 +51,7 @@
             <div class="dashBoard">
                 <div class="card "  style="border: 2px #FFBE00 solid;">
                     <div class="card-head dashBoard yellow_black">
-                        <h4>Add Product form</h4>
+                        <h1>Add Product</h1>
                     </div>
                     <div class="card-body">
                         <form action="../AddProduct" method="post" enctype="multipart/form-data">
@@ -95,6 +95,7 @@
                                 </tr>   
                             </table>
                             <div class="dashBoard mt-3">
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                                 <input class="btn yellow_black me-2" type="submit" value="Add">
                                 <input class="btn reset_dlt_btn" type="reset" value="Reset">
                             </div>

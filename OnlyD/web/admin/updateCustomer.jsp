@@ -77,7 +77,8 @@
                                 </span>
                                 <input class="form-control" type="password" name="rePassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
                             </div>
-                            <div>
+                            <div style="display: flex; justify-content: center; flex-wrap: nowrap; margin:20px;">
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                                 <input class="btn yellow_black me-2" type="submit" value="Update Customer">
                             </div>
                         </form>

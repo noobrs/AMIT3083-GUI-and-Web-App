@@ -60,7 +60,7 @@ public class DeleteCustomer extends HttpServlet {
                 session.setAttribute("statusMsg", "Unable to delete customer!");
             }
             session.removeAttribute("custFound");
-            response.sendRedirect("admin/adminDashboard.jsp");
+            response.sendRedirect("staff/staffDashboard.jsp");
             
         } catch (Exception e) {
         }

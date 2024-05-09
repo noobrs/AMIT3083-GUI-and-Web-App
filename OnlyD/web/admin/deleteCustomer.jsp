@@ -54,9 +54,10 @@
                                 <input type="text" name="staffID" value=" <%= cust.getPhoneNumber() %>" class="form-control" readonly>
                             </div>
 
-
-                            <input class="btn reset_dlt_btn" type="submit" value="Delete Customer">
-
+                            <div style="display: flex; justify-content: center; flex-wrap: nowrap; margin:20px;">
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                                <input class="btn reset_dlt_btn" type="submit" value="Delete Customer">
+                            </div> 
                         </form>
                     </div>
 

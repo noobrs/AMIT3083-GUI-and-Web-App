@@ -17,6 +17,9 @@
         <div class="container mt-5">
             <div class="dashBoard">
                 <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-head yellow_black">
+                        <h1>Promotion List</h1>
+                    </div>
                     <div class="card-body">
                         <table class="table table-striped tableDeco" border="1">
                             <tr style="background-color: #FFBE00">
@@ -27,6 +30,8 @@
                                 <th>Last Modified</th>
                             </tr>
                             <% for(Promotion p : promoList){ %>
+                            <% if(p.getStatus() == Promotion.DELETED_STATUS) { continue; } %>
+
                             <tr>
                                 <td><%= p.getPromotioncode() %></td>
                                 <td><%= p.getDiscountpercentage() %></td>
@@ -34,8 +39,6 @@
                                 <td>
                                     <% if(p.getStatus() == Promotion.ACTIVE_STATUS) { %>
                                     Active
-                                    <% } else if(p.getStatus() == Promotion.DELETED_STATUS) { %>
-                                    Deleted
                                     <% } else if(p.getStatus() == Promotion.REDEEMED_STATUS) { %>
                                     Redeemed
                                     <% } %>
@@ -46,9 +49,9 @@
                         </table>
 
                         <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                            <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                             <a class="btn yellow_black me-2" href="../staff/addPromotion.jsp">Add Promotion</a>
-                            <a class="btn yellow_black me-2" href="../LoadPromoList">Update Promotion</a>
-                            <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
+                            <a class="btn yellow_black me-2" href="../LoadPromoList">Delete/Update Promotion</a>
                         </div> 
                         <% } %>
                     </div>

@@ -10,7 +10,6 @@ import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -66,14 +65,14 @@ public class UpdatePromotion extends HttpServlet {
 
             if (success) {
                 session.setAttribute("updatePromoMsg", "Promotion updated successfully!");
-                response.sendRedirect("staff/staffDashboard.jsp");
+                response.sendRedirect("staff/updatePromoConfirm.jsp");
             } else {
                 session.setAttribute("updatePromoMsg", "Failed to update promotion!");
-                response.sendRedirect("staff/staffDashboard.jsp");
+                response.sendRedirect("staff/updatePromoConfirm.jsp");
             }
 
         } catch (IllegalArgumentException e) {
-            session.setAttribute("updatePromoMsg", e.getMessage());
+            session.setAttribute("statusMsg", e.getMessage());
             response.sendRedirect("staff/updatePromoConfirmation.jsp");
         } catch (Exception e) {
             e.printStackTrace();

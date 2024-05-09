@@ -29,6 +29,7 @@
                                 <input class="form-control"  type="number" min="1" step="1" name="redemptionQty"><br>
                             </div>
                             <div>
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                                 <input class="btn yellow_black me-2" type="submit" value="Add">
                                 <input class="btn reset_dlt_btn" type="reset" value="Reset">
                             </div>

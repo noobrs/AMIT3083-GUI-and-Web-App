@@ -21,9 +21,12 @@
         <%@include file="/layout/header.jsp"%>
         <div class="container mt-5">
             <div class="row dashBoard">
+                <div class="col-12" style="margin-bottom: 20px;">
+                    <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                </div>
                 <div class="col-4" >
-                <% if(dailyList != null || !dailyList.isEmpty()) { %>
-                
+                    <% if(dailyList != null || !dailyList.isEmpty()) { %>
+
                     <div style="text-align: center; background-color: #25182E; border:2px #FFBE00 solid; color: #FFFFFF; border-radius: 10px">
                         <h1>Daily Sales Report</h1> 
                     </div>
@@ -90,8 +93,8 @@
                 </div>
             </div>
         </div>
-                    
-                    
+
+
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

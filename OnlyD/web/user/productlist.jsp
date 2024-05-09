@@ -46,14 +46,10 @@
                 <div class="col-1"></div>
                 <br/><br/>
                 <div class="col-9">
+                    <% if(actionMsg != null){ %>
+                    <p><%=actionMsg%></p>
+                    <% session.removeAttribute("actionMsg"); } %>
                     <div class="row row-cols-3" style="margin-left: 30px">
-
-
-
-                        <% if(actionMsg != null){ %>
-                        <p><%=actionMsg%></p>
-                        <% session.removeAttribute("actionMsg"); } %>
-
                         <% if(!productList.isEmpty() || productList != null){ %>
 
                         <% 
@@ -70,15 +66,15 @@
                                     <h5 class=" visually-hidden"><a href="../ViewProductDetail?productId=<%= product.getProductid() %>"><%= product.getProductid() %></a></h5>
                                     <h4 class="card-title" ><a style="text-decoration: none; color: #25182E;" href="../ViewProductDetail?productId=<%= product.getProductid() %>"><%= product.getName() %></a></h4>
                                     <p><%= product.getCategoryid().getCategoryname() %></p>
-                                    <p class="card-text"><%= product.getDescription() %> </p>
+                                    <p> </p>
                                     <h5>RM <%= String.format("%.2f", product.getPrice()) %></h5>
                                     <p>In-stock:  <%= product.getStock() %></p>
                                     <!-- only show add cart button to guest or customer -->
                                     <% if((Boolean)session.getAttribute("isStaff") == null && !request.isUserInRole("AdminRole")) { %>
                                     <form action="../AddToCart" method="POST"> 
-                                        <input type="number" min="1" value="1" name="quantity">
+                                        <input class="btn" style="width:60%; background-color: #FFFFFF; border:1px #25182E solid;" type="number" min="1" value="1" name="quantity">
                                         <input type="hidden" name="productId" value="<%= product.getProductid() %>">
-                                        <input type="submit" value="Add to Cart">
+                                        <input class="btn" style="background-color: #25182E; color: #FFFFFF; border-bottom-right-radius: 10px; border-top-right-radius: 10px; " type="submit" value="Add to Cart">
                                     </form>
                                     <% } %>
                                 </div>

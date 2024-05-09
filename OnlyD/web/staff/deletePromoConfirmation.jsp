@@ -49,8 +49,10 @@
                                 <input class="form-control" type="text" name="staffId" size="50" value="<%= promotion.getStaffid().getStaffid() %>" readonly>
                             </div>
 
-                            <input class="btn reset_dlt_btn" type="submit" value="Delete Promotion">
-
+                            <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                                <input class="btn reset_dlt_btn" type="submit" value="Delete Promotion">
+                            </div>
                         </form>
                         <%} else {%>
                         Promotion not found

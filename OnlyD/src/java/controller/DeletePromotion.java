@@ -50,11 +50,11 @@ public class DeletePromotion extends HttpServlet {
                 utx.commit();
 
                 if (success) {
-                    session.setAttribute("statusMsg", "Promotion deleted successfully!");
+                    session.setAttribute("deletePromoMsg", "Promotion deleted successfully!");
                     response.sendRedirect("staff/staffDashboard.jsp");
                 } else {
-                    session.setAttribute("statusMsg", "Failed to delete promotion!");
-                    response.sendRedirect("staff/staffDashboard.jsp");
+                    session.setAttribute("deletePromoMsg", "Failed to delete promotion!");
+                    response.sendRedirect("staff/deletePromoConfirm.jsp");
                 }
 
             }

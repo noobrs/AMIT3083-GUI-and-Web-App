@@ -62,8 +62,8 @@ public class AddPromo extends HttpServlet {
             promoService.addPromotion(promo);
             utx.commit();
 
-            session.setAttribute("statusMsg", "Promotion Added Successfully!");
-            response.sendRedirect("staff/staffDashboard.jsp");
+            session.setAttribute("addPromoMsg", "Promotion Added Successfully!");
+            response.sendRedirect("staff/addPromoConfirm.jsp");
 
         } catch (IllegalArgumentException e) {
             session.setAttribute("statusMsg", e.getMessage());

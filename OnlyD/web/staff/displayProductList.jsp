@@ -19,12 +19,14 @@
                         <select class="form-select" name="productId">
                             <% for (Product product: productList){%>
                             <option value="<%=product.getProductid()%>">
-                                <%=product.getProductid() + ". " + product.getName() %>
+                                <%=product.getProductid() + ": " + product.getName() %>
                                 <%}%>
+                            </option>
                         </select>
                     </div>
                     <br>
                     <div class="dashBoard">
+                        <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                         <input class="btn yellow_black me-2" type="submit" value="Update" name="productButton"/>
                         <!<!-- only admin can delete product -->
                         <% if(request.isUserInRole("AdminRole")){ %>

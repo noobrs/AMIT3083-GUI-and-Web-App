@@ -40,7 +40,8 @@
                                 </select>
                             </div>
                             <div>
-                                <input class="btn yellow_black" type="submit" value="Update" name="categoryButton"/>
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                                <input class="btn yellow_black me-2" type="submit" value="Update" name="categoryButton"/>
                                 <!<!-- only admin can delete product -->
                                 <% if(request.isUserInRole("AdminRole")){ %>
                                 <input class="btn reset_dlt_btn" type="submit" value="Delete" name="categoryButton"/>

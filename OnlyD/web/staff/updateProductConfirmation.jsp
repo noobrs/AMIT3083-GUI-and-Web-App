@@ -84,7 +84,7 @@
                                 <input class="form-control" type="file" id="fileInput" name="image" accept="image/*" required />
                             </div>
                             <div class="input-group mb-3">
-                               <div id="preview"><img src="<%= request.getContextPath() + "/image/" + product.getImage()%>"></div>
+                                <div id="preview"><img src="<%= request.getContextPath() + "/image/" + product.getImage()%>"></div>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black">Category Name</span>
@@ -101,7 +101,11 @@
                } %>
                                 </select>
                             </div>
-                            <input class="btn yellow_black" type="submit" value="Update Product">
+                                
+                            <div style="display: flex; justify-content: center; flex-wrap: nowrap">
+                                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                                <input class="btn yellow_black" type="submit" value="Update Product">
+                            </div> 
 
                         </form>
                         <%} else {%>
@@ -112,8 +116,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <%@include file="/layout/footer.jsp"%>
     </body>

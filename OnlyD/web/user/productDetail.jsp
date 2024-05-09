@@ -18,7 +18,6 @@
 
 
                 <div class="col-6" style="padding: 20px; border-left: 2px #25182E solid; display: flex; flex-direction: column; justify-content: center ">
-                    <p><%= p.getProductid() %></p>
                     <h1><%= p.getName() %></h1>
                     <h5><%= p.getCategoryid().getCategoryname() %></h5>
                     </br>
@@ -28,11 +27,13 @@
                     <h3>RM <%= String.format("%.2f", p.getPrice()) %></h3>
                     <h5>In-stock: <%= p.getStock() %></h5>
                     <div> 
+                        <% if((Boolean)session.getAttribute("isStaff") == null && !request.isUserInRole("AdminRole")) { %>
                         <form action="../AddToCart" method="POST" > 
                             <input class="btn" style="width:60%; background-color: #FFFFFF; border:1px #25182E solid;" type="number" min="1" value="1" name="quantity">
                             <input type="hidden" name="productId" value="<%= p.getProductid() %>">
                             <input class="btn" style="background-color: #25182E; color: #FFFFFF; border-bottom-right-radius: 10px; border-top-right-radius: 10px; " type="submit" value="Add to Cart">
                         </form>
+                        <% } %>
                     </div>
 
                 </div>

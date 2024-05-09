@@ -13,10 +13,12 @@
                       out.println("Error: Unable to add new category.");
                 %>
             </h3>
-            <p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>
+            <div style="display: flex; justify-content: center; flex-wrap: nowrap; margin:20px;">
+                <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
+                <a class="btn yellow_black me-2" href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Home</a>
+            </div> 
         </div>
     </div>
 </div>
-
 
 <%@include file="/layout/footer.jsp"%>

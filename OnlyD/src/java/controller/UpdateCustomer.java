@@ -97,14 +97,14 @@ public class UpdateCustomer extends HttpServlet {
             boolean success = custService.updateCustomer(cust);
             utx.commit();
 
-            session.setAttribute("updateCustStatus", success);
+            session.setAttribute("statusMsg", "Update Customer Successfully!");
             session.removeAttribute("errorMessage");
             session.removeAttribute("custFound");
             session.removeAttribute("enteredName");
             session.removeAttribute("enteredEmail");
             session.removeAttribute("enteredUsername");
             session.removeAttribute("enteredPhoneNumber");
-            response.sendRedirect("admin/adminDashboard.jsp");
+            response.sendRedirect("staff/staffDashboard.jsp");
 
         } catch (IllegalArgumentException e) {
             session.setAttribute("enteredName", name);
