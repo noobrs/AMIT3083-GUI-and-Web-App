@@ -9,9 +9,9 @@
         <%@include file="/layout/meta.html"%>
         <link rel="shortcut icon" type="image/x-icon" href="<%=request.getRequestURL().toString()%>layout/favicon_onlyD.ico">
     </head>
-    <body>
-        <header style="top: 0; position:relative; width: 100%;">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
+    <body >
+        <header  style="top: 0; position:relative; width: 100%;">
+            <nav class=" webPage_header navbar navbar-expand-lg navbar-light bg-light" style="top: 0">
                 <div class="container">
                     <a href="<%=request.getContextPath()%>">
                         <img src="<%=request.getContextPath()%>/layout/only_D_Logo.png" alt="" width="50px" height="80px" style="margin-right: 10px" />
@@ -22,26 +22,15 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Link</a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Dropdown
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                    <li><a class="dropdown-item" href="#">Action</a></li>
-                                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                </ul>
+                                <a class="nav-link" href="<%=request.getContextPath()%>">Home</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link disabled">Disabled</a>
+                                <a class="nav-link" href="<%=request.getContextPath()%>/ViewProduct">Products</a>
                             </li>
                         </ul>
-                        
+
                         <% if ((Boolean) session.getAttribute("isStaff") != null || request.isUserInRole("AdminRole")) { %>
-                        
+
                         <button class="btn btn-outline-dark loginBtn" type="submit" style="margin-right: 10px"><a href="<%=request.getContextPath()%>/staff/staffDashboard.jsp">Dashboard</a></button>
                         <% } else { %>
                         <a data-bs-toggle="tooltip" data-bs-placement="bottom" title="Shopping cart" class="cart_order me-2" href="<%=request.getContextPath()%>/ViewCart">
@@ -60,7 +49,7 @@
 
                         <form class="d-flex" action="<%=request.getContextPath()%>/SearchProductByUser">
                             <input type="text" name="productName" class="form-control me-2" type="search" placeholder="Search Product" aria-label="Search">
-                            <input type="submit" value="Search" name="searchButton"  class="btn btn-outline-success">
+                            <input type="submit" value="Search" name="searchButton"  class="btn" style="background-color: #25182E; color: #FFFFFF;">
                         </form>
                         <%
 //                        Customer headCust = (Customer)session.getAttribute("customer");
@@ -82,7 +71,7 @@
                     </div>
                 </div>
             </nav>
-                                    <div class="container-fluid"style="position: absolute; top: 0; display: flex; justify-content: end; ">
+            <div class="container-fluid"style="position: absolute; top: 0; display: flex; justify-content: end; ">
                 <div style="margin-right:15%;">
                     <a href="<%=request.getContextPath()%>/login.jsp">User</a> |
                     <a href="<%=request.getContextPath()%>/staff/staffLogin.jsp">Staff</a> |

@@ -32,6 +32,10 @@
                             Product p = productList.get(i); %>
                     <div class="carousel-item <% if(i==0){ %>active<% } %>">
                         <a href="ViewProductDetail?productId=<%=p.getProductid()%>"><img  src="<%= request.getContextPath() + "/image/" + p.getImage()%>" class="d-block w-100" alt="Product Image"></a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>TOP <%= i+1 %></h4>
+                            <h5>Most popular item sold !</h5>
+                        </div>
                     </div>
                     <% } } %>
                 </div>
@@ -44,26 +48,43 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
-        </div>
 
 
-        <%if(promotionList != null){%>
-        <%for(Promotion po: promotionList){%>
-        <div class="row">
-            <div class="col-2">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Promotion Code</h5>
+            <h1 style="color:#FFBE00">Use promotion coupon code for discounts !</h1>
+            <div class="container row mb-5 yellow_black" style="height: 300px; display: flex; align-content: center; border-radius: 10px">
+                <% 
+                    int maxPromotionsToShow = 6; // Change this value to the desired maximum number of promotions to display
+                    int promotionCount = 0; // Counter variable to keep track of the number of displayed promotions
+                    if(promotionList != null){
+                        for(Promotion po: promotionList){
+                            if(promotionCount >= maxPromotionsToShow){
+                                break; // Stop iterating if the maximum number of promotions to display has been reached
+                            }
+                %>
 
-                        <h3><%=po.getPromotioncode()%></h3>
-                        <p class="card-text">Discount Percentage</p>
-                        <h4><%=po.getDiscountpercentage()%></h4>
+                <div class="col-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Coupon Code</h5>
+                            <h3><%=po.getPromotioncode()%></h3>
+                            <p class="card-text">Discount Percentage</p>
+                            <h4><%=po.getDiscountpercentage()%></h4>
+                        </div>
                     </div>
                 </div>
+
+                <%
+                            promotionCount++; // Increment the promotion counter after displaying each promotion
+                        }
+                    }
+                %>
             </div>
+            <br>
+            <div class="container mb-5 mt-5" style=" text-align: center">
+                <a href="<%=request.getContextPath()%>/ViewProduct" class="btn yellow_black"><h2>See More</h2></a>
+            </div>
+
         </div>
-        <% } %>
-        <% } %>
         <%@include file="layout/footer.jsp"%> 
     </body>
 </html>
