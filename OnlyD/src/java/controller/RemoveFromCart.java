@@ -48,8 +48,9 @@ public class RemoveFromCart extends HttpServlet {
 
                     utx.begin();
                     cust = custService.findCustomerById(cust.getCustomerID());
-                    cust.initializeProductcartList();
                     em.refresh(cust);
+                    cust.initializeProductcartList();
+                    cust.initializeOrderList();
                     session.setAttribute("customer", cust);
                     utx.commit();
 

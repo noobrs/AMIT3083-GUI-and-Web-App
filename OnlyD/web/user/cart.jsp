@@ -65,7 +65,7 @@
                     } 
                     %>
                 </table>
-                <button class="btn yellow_black" type="submit">Checkout</button>
+                <button class="btn yellow_black" type="submit">Checkout</button>                
             </form>
   
                 <% 
@@ -74,7 +74,7 @@
                 }
                 %>
                 <br>
-            <p>OR</p>
+                <p>OR</p>
             <a class="btn yellow_black" href="../ViewProduct">Continue Shopping</a>
         </div>
         <%@include file="/layout/footer.jsp"%>

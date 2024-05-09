@@ -47,6 +47,8 @@ public class ViewOrderHistory extends HttpServlet {
                 utx.begin();
                 Customer temp = custService.findCustomerById(cust.getCustomerID());
                 em.refresh(temp);
+                temp.initializeOrderList();
+                temp.initializeProductcartList();
                 utx.commit();
 
                 session.setAttribute("customer", temp);

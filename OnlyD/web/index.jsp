@@ -4,77 +4,87 @@
 <%@page import="entity.Promotion"%>
 <!DOCTYPE html>
 
-    <%
-          List<Product> productList = (List<Product>)session.getAttribute("productListImage");
-          List<Promotion> promotionList = (List<Promotion>)session.getAttribute("promotionListHome");
-        if(productList == null || promotionList == null){
-            response.sendRedirect("SearchDetailForHome"); 
-        }
-    %>
+<%
+      List<Product> productList = (List<Product>)session.getAttribute("productListImage");
+      List<Promotion> promotionList = (List<Promotion>)session.getAttribute("promotionListHome");
+    if(productList == null || promotionList == null){
+        response.sendRedirect("SearchDetailForHome"); 
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%= application.getInitParameter("storeName")%></title>
     </head>
-<style>
-        .rolling-banner {
-  width: 100%;
-  height: 300px; /* Adjust as needed */
-  overflow: hidden;
-  position: relative;
-}
-
-.banner-images {
-  width: 300%; /* 3 images side by side */
-  height: 100%;
-  display: flex;
-  animation: roll 10s linear infinite;
-}
-
-.banner-images img {
-  width: 100%; /* Each image takes 33.33% of the container width */
-  height: 100%;
-  object-fit: cover; /* Ensure images cover the entire area */
-}
-
-/*@keyframes roll {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-100%);
-  }
-}*/
-</style>
     <body>
         <%@include file="layout/header.jsp"%>
-        <div class="rolling-banner">
-            <div class="banner-images">
-                   <% if(productList != null){
-                        for(Product p : productList){%>
-                        <a href="ViewProductDetail?productId=<%=p.getProductid()%>"><img src="<%= request.getContextPath() + "/image/" + p.getImage()%>"></a>
+        <div class="container">
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" style="margin: 50px 0 50px 0">
+                <div class="carousel-indicators">
+                    <% if(productList != null){
+            for(int i = 0; i < productList.size(); i++){ %>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=i%>" <% if(i==0){ %>class="active"<% } %> aria-label="Slide <%=i+1%>"></button>
+                    <% } } %>
+                </div>
+                <div class="carousel-inner">
+                    <% if(productList != null){
+                        for(int i = 0; i < productList.size(); i++){ 
+                            Product p = productList.get(i); %>
+                    <div class="carousel-item <% if(i==0){ %>active<% } %>">
+                        <a href="ViewProductDetail?productId=<%=p.getProductid()%>"><img  src="<%= request.getContextPath() + "/image/" + p.getImage()%>" class="d-block w-100" alt="Product Image"></a>
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>TOP <%= i+1 %></h4>
+                            <h5>Most popular item sold !</h5>
+                        </div>
+                    </div>
+                    <% } } %>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+
+
+            <h1 style="color:#FFBE00">Use promotion coupon code for discounts !</h1>
+            <div class="container row mb-5 yellow_black" style="height: 300px; display: flex; align-content: center; border-radius: 10px">
                 <% 
-                    } 
-                  }
+                    int maxPromotionsToShow = 6; // Change this value to the desired maximum number of promotions to display
+                    int promotionCount = 0; // Counter variable to keep track of the number of displayed promotions
+                    if(promotionList != null){
+                        for(Promotion po: promotionList){
+                            if(promotionCount >= maxPromotionsToShow){
+                                break; // Stop iterating if the maximum number of promotions to display has been reached
+                            }
+                %>
+
+                <div class="col-2">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Coupon Code</h5>
+                            <h3><%=po.getPromotioncode()%></h3>
+                            <p class="card-text">Discount Percentage</p>
+                            <h4><%=po.getDiscountpercentage()%></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <%
+                            promotionCount++; // Increment the promotion counter after displaying each promotion
+                        }
+                    }
                 %>
             </div>
+            <br>
+            <div class="container mb-5 mt-5" style=" text-align: center">
+                <a href="<%=request.getContextPath()%>/ViewProduct" class="btn yellow_black"><h2>See More</h2></a>
+            </div>
+
         </div>
-            <%if(promotionList != null){%>
-                
-            <table border="1">
-                <tr>
-                    <th>Promotion Code</th>
-                    <th>Discount Percentage</th>
-                    
-                </tr>
-                <%for(Promotion po: promotionList){%>
-                <tr>
-                    <th><%=po.getPromotioncode()%></th>
-                    <th><%=po.getDiscountpercentage()%></th>
-                </tr>
-                <% } %>
-            </table>
-        <% } %>
         <%@include file="layout/footer.jsp"%> 
     </body>
 </html>

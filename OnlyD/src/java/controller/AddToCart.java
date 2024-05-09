@@ -87,8 +87,9 @@ public class AddToCart extends HttpServlet {
 
                     utx.begin();
                     cust = custService.findCustomerById(cust.getCustomerID());
-                    cust.initializeProductcartList();
                     em.refresh(cust);
+                    cust.initializeProductcartList();
+                    cust.initializeOrderList();
                     utx.commit();
 
                     session.setAttribute("customer", cust);

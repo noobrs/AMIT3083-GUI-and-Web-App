@@ -11,8 +11,18 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>404</title>
     </head>
+
+
     <body>
-        <h1>Page Not Found!</h1>
-        <p>Back to <a href="index.jsp">Home</a></p>
+        <%@include file="/layout/header.jsp"%>
+        <div class="container mt-5" style="display: flex; justify-content: center; margin-bottom: 30%; margin-top: 30%">
+            <div class="card card_deco">
+                <h1 style="font-size: 100px">404</h1>
+                <h1>Page Not Found!</h1>
+                <p>Back to <a href="<%=request.getContextPath()%>">Home</a></p>
+            </div>
+        </div>
+
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

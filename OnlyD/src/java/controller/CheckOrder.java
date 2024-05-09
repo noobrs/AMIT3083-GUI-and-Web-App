@@ -4,10 +4,7 @@
  */
 package controller;
 
-import entity.Customer;
-import entity.Productcart;
 import entity.Promotion;
-import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
@@ -16,11 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import jakarta.transaction.UserTransaction;
 import java.util.List;
-import service.CartService;
-import service.OrderService;
-import service.ProductService;
 import service.PromotionService;
 
 /**
@@ -31,8 +24,6 @@ public class CheckOrder extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-//    @Resource
-//    UserTransaction utx;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

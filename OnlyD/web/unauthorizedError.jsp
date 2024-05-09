@@ -9,9 +9,20 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Unauthorized Access!</title>
     </head>
+
+
     <body>
-        <h1>Unauthorized error</h1>
+        <%@include file="/layout/header.jsp"%>
+        <div class="container mt-5" style="display: flex; justify-content: center; margin-bottom: 30%; margin-top: 30%">
+            <div class="card card_deco">
+                <h1>Unauthorized Access!</h1>
+                <p>You do not have permission to visit this page!</p>
+                <p>Back to <a href="<%=request.getContextPath()%>">Home</a></p>
+            </div>
+        </div>
+
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>
