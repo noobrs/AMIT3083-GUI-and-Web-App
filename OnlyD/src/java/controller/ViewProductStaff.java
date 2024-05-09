@@ -33,18 +33,18 @@ public class ViewProductStaff extends HttpServlet {
             ProductService productService = new ProductService(em);
             List<Product> productList = productService.findAll();
             HttpSession session = request.getSession();
-            int i = 0;
-            
+//            int i = 0;
+//            
             session.setAttribute("productListStaff", productList);
-            
-            for (Product product: productList){ 
-                Category category = product.getCategoryid();
-                Staff staff = product.getStaffid();
-                
-                session.setAttribute("Category" + i, category);
-                session.setAttribute("Staff" + i, staff);
-                i++;
-            }
+//            
+//            for (Product product: productList){ 
+//                Category category = product.getCategoryid();
+//                Staff staff = product.getStaffid();
+//                
+//                session.setAttribute("Category" + i, category);
+//                session.setAttribute("Staff" + i, staff);
+//                i++;
+//            }
 
             response.sendRedirect("staff/productListStaff.jsp");
         } catch (Exception ex) {

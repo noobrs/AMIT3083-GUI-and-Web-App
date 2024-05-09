@@ -25,7 +25,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .webPage_header{
-    background-color: #CA1F3D !important;
+    background-color: #FFBE00 !important;
+    color: #FFFFFF !important;
 }
 
 .yellow_black{
@@ -38,6 +39,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border: 2px #FFBE00 solid;
     background-color: #25182E;
     color: #FFBE00;
+    border-radius: 20px;
+    height:50px ;
 }
 
 .dashBoardBtn{
@@ -56,6 +59,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     background-color: window;
 }
 
-body{
-    background-color: #25182E;
+.cart_order{
+    text-decoration: none !important;
+    color: #25182E !important;
+}
+
+.reset_dlt_btn{
+    background-color: #CA1F3D;
+    color: #FFFFFF;
+}
+
+.card_deco{
+    width: 50%; 
+    border: 2px #FFBE00 solid; 
+    background-color: #FFFFFF; 
+    text-align: center;
 }

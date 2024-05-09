@@ -5,19 +5,15 @@
 <%
   List<Category> categoryList = (List)session.getAttribute("categoryList");
 %>
-<html>
-    <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">         
-        <title>Category List</title>
-        <%@include file="/layout/meta.html"%>
-    </head>
-    <body style="background-color: #25182E">
-        <%@include file="/layout/header.jsp"%>        
 
-        <div class="mt-5"> 
-            <div class="container">
-                <table class="table table-striped " border="1" style="border: 2px #FFBE00 solid; background-color: window;">
-                    <tr class="yellow_black">
+
+<%@include file="/layout/header.jsp"%>
+<div class="container mt-5">
+    <div class="dashBoard">
+        <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+            <div class="card-body">
+                <table class="table table-striped tableDeco" border="1">
+                    <tr style="background-color: #FFBE00">
                         <th>Category ID</th>
                         <th>Category Name</th>
                         <th>Status</th>
@@ -35,20 +31,15 @@
                     </tr>
                     <% } %>
                 </table>
-                <br><br>
-                <div style="display: flex; justify-content: center">
-                    <p>
-                        <a class="btn yellow_black" href="../staff/addCategory.jsp">Add Category</a>
-                        <a class="btn yellow_black" href="../LoadCategoryList">Delete/Update Category</a>
-                        <a class="btn yellow_black" href="../staff/staffDashboard.jsp">Back to Dashboard</a>
-                    </p>                
+                <div>
+                    <a class="btn yellow_black" href="../staff/addCategory.jsp">Add Category</a>
+                    <a class="btn yellow_black" href="../LoadCategoryList">Delete/Update Category</a>
+                    <a class="btn yellow_black"href="../index.html">Back to home page</a>         
                 </div>
-
             </div>
+
+
         </div>
-
-
-
-        <%@include file="/layout/footer.jsp"%>
-    </body>
-</html>
+    </div>
+</div>
+<%@include file="/layout/footer.jsp"%>

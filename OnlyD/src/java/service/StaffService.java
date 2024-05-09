@@ -30,10 +30,6 @@ public class StaffService {
         em.persist(staff);
     }
 
-//    public Staff findStaffById(String id){
-//        Staff staff = em.find(Staff.class, id);
-//        return staff;
-//    }
     public Staff findStaffByStaffId(String staffID) {
         Staff staff;
         try {
@@ -63,15 +59,6 @@ public class StaffService {
         return staff;
     }
 
-    public boolean deleteStaff(String staffID) {
-        Staff staff = this.findStaffByStaffId(staffID);
-        if (staff != null) {
-            em.remove(staff);
-            return true;
-        }
-        return false;
-    }
-
     public boolean updateStaff(Staff staff) {
         Staff tempStaff = this.findStaffByStaffId(staff.getStaffid());
         if (tempStaff != null) {
@@ -83,11 +70,11 @@ public class StaffService {
         }
         return false;
     }
-    
-     public List<Staff> findAllWithDeletedStatus() {
+
+    public List<Staff> findAllWithDeletedStatus() {
         List<Staff> staffList;
         try {
-            staffList = em.createNamedQuery("Staff.findAllWithDeletedStatus")                    
+            staffList = em.createNamedQuery("Staff.findAllWithDeletedStatus")
                     .getResultList();
         } catch (Exception e) {
             return null;
@@ -105,6 +92,10 @@ public class StaffService {
             return null;
         }
         return staffList;
+    }
+
+    public Staff findAdminStaffObject() {
+        return this.findStaffByStaffId(Staff.ADMIN_ID);
     }
 
 }

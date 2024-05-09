@@ -1,7 +1,7 @@
 <%-- 
-    Document   : promotion
-    Created on : Apr 27, 2024, 3:15:09 AM
-    Author     : danie
+    Document   : 500Error
+    Created on : 7 May 2024, 9:25:42 PM
+    Author     : Vin Sen
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -12,6 +12,6 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <p>Promotion added</p>
+        <h1>Hello World!</h1>
     </body>
 </html>

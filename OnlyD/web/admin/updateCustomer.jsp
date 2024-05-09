@@ -10,15 +10,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        <%@include file="/layout/meta.html"%>
-
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
-        <div class=" mainBody mt-5">
+        <div class="container mt-5">
             <div class="dashBoard">
-                <div class="card" style="width: 50%; border: 2px #FFBE00 solid; background-color: #25182E; text-align: center" >
-
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
 
                     <%
                         Customer cust = (Customer)session.getAttribute("custFound");
@@ -38,55 +35,57 @@
                                 enteredPhoneNumber = cust.getPhoneNumber();
                             }
                     %>
-
-                    <div class="card-head yellow_black" >
-                        <h1>Update Customer</h1> 
+                    <div class="card-head yellow_black">
+                        <h1>Update Customer</h1>
                     </div>
+                    <div class="card-body">
 
-                    <div class="card-body" >
                         <form action="../UpdateCustomer" method="POST" onsubmit="return window.confirm('Confirm update this customer?')">
-                            <table class="table table-striped tableDeco">
-                                <tr>
-                                    <td>Username</td>
-                                    <td>
-                                        <input class="form-control" type="text" name="username" value="<%= enteredUsername %>">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>
-                                        <input class="form-control" type="text" name="name" value="<%= enteredName %>">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Email</td>
-                                    <td>
-                                        <input class="form-control" type="text" name="email" value="<%= enteredEmail %>">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Phone Number</td>
-                                    <td>
-                                        <input class="form-control" type="text" name="phoneNumber" value="<%= enteredPhoneNumber %>">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Password</td>
-                                    <td>
-                                        <input class="form-control" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Re-enter Password</td>
-                                    <td>
-                                        <input class="form-control" type="password" name="rePassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
-                                    </td>
-                                </tr>
-                            </table>
-                            <input class="btn yellow_black" type="submit" value="Update Customer">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Username
+                                </span>
+                                <input class="form-control" type="text" name="username" value="<%= enteredUsername %>">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Name
+                                </span>
+                                <input class="form-control" type="text" name="name" value="<%= enteredName %>">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Email
+                                </span>
+                                <input class="form-control" type="email" name="email" value="<%= enteredEmail %>">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Phone Number
+                                </span>
+                                <input class="form-control" type="tel" name="phoneNumber" value="<%= enteredPhoneNumber %>"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" placeholder="012-34567890">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Password
+                                </span>
+                                    <input class="form-control" type="password" name="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">
+                                    Re-enter Password
+                                </span>
+                                <input class="form-control" type="password" name="rePassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}">
+                            </div>
+                            <div>
+                                <input class="btn yellow_black me-2" type="submit" value="Update Customer">
+                            </div>
                         </form>
-                    </div>
 
+                    </div>
+                </div>
+            </div>
+        </div>
                     <% if(errorMessage != null){ %>
                     <div><%= errorMessage %></div> 
                     <%  }
@@ -94,10 +93,6 @@
                     Customer not found
                     <p><a href="../index.jsp">Back to home page</a></p>
                     <% } %>
-
-                </div>
-            </div>
-        </div>
-        <%@include file="/layout/footer.jsp"%>
-    </body>
-</html>
+                    <%@include file="/layout/footer.jsp"%>
+                    </body>
+                    </html>

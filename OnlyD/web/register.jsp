@@ -9,9 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Register Page</title>  
-        <%@include file="/layout/meta.html"%>
-
+        <title>Register Page</title>        
     </head>
     <body style="height: 100%">
         <%@include file="layout/header.jsp"%>
@@ -27,8 +25,10 @@
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="RegisterCard container">
-                <div class="card mt-5 black_yellow_border" style="width: 50%">
-                    <h5 class="card-header yellow_black">Customer Register page</h5>
+                <div class="card card_deco" style="width: 50%">
+                    <div class="card-header yellow_black">
+                        <h1>Customer Register page</h1>
+                    </div>
                     <div class="card-body">
                         <form action="Register" method="POST">
                             <h5 class="card-title">Welcome, please enter your:</h5>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">Phone Number</span>
-                                <input type="tel" name="phoneNumber" value="<%= (enteredPhoneNumber == null)?"":enteredPhoneNumber %>"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" class="form-control" placeholder="012-34567890" aria-label="Username" aria-describedby="basic-addon1" required>
+                                <input type="tel" name="phoneNumber" value="<%= (enteredPhoneNumber == null)?"":enteredPhoneNumber %>"  pattern="[0-9]{3}-[0-9]{7}|[0-9]{2}-[0-9]{8}|[0-9]{3}-[0-9]{8}" placeholder="012-3456789" class="form-control" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">Email</span>
@@ -57,8 +57,8 @@
                                 <input type="password" name="rePassword" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" class="form-control" placeholder="xxxxxx" aria-label="Username" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <input class="btn  me-2 yellow_black" type="submit" value="Register">
-                                <input class="btn " type="reset" value="Reset" style="background-color: #CA1F3D; color: #FFFFFF">                              
+                                <input class="btn yellow_black me-2" type="submit" value="Register">
+                                <input class="btn reset_dlt_btn" type="reset" value="Reset">                              
                             </div>
                         </form>
                         <% if(errorMessage != null){ %>

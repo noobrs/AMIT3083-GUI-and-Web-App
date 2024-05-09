@@ -41,7 +41,12 @@ import jakarta.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Orders.findBySubtotal", query = "SELECT o FROM Orders o WHERE o.subtotal = :subtotal"),
     @NamedQuery(name = "Orders.findByTotaldiscount", query = "SELECT o FROM Orders o WHERE o.totaldiscount = :totaldiscount"),
     @NamedQuery(name = "Orders.findByShippingfee", query = "SELECT o FROM Orders o WHERE o.shippingfee = :shippingfee"),
-    @NamedQuery(name = "Orders.findByTotal", query = "SELECT o FROM Orders o WHERE o.total = :total")})
+    @NamedQuery(name = "Orders.findByTotal", query = "SELECT o FROM Orders o WHERE o.total = :total"),
+    @NamedQuery(name = "Orders.findByOrderDate", query = "SELECT o FROM Orders o WHERE EXTRACT(YEAR FROM o.orderdatetime) = :year AND EXTRACT(MONTH FROM o.orderdatetime) = :month AND EXTRACT(DAY FROM o.orderdatetime) = :day"),
+    @NamedQuery(name = "Orders.findByOrderMonth", query = "SELECT o FROM Orders o WHERE EXTRACT(YEAR FROM o.orderdatetime) = :year AND EXTRACT(MONTH FROM o.orderdatetime) = :month"),
+    @NamedQuery(name = "Orders.findByOrderYear", query = "SELECT o FROM Orders o WHERE EXTRACT(YEAR FROM o.orderdatetime) = :year")
+
+})
 public class Orders implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -77,6 +82,17 @@ public class Orders implements Serializable {
 
     public Orders(Integer orderid) {
         this.orderid = orderid;
+    }
+
+    public Orders(Date orderdatetime, String shippingaddress, String paymenttype, Double subtotal, Double totaldiscount, Double shippingfee, Double total, Customer customerid) {
+        this.orderdatetime = orderdatetime;
+        this.shippingaddress = shippingaddress;
+        this.paymenttype = paymenttype;
+        this.subtotal = subtotal;
+        this.totaldiscount = totaldiscount;
+        this.shippingfee = shippingfee;
+        this.total = total;
+        this.customerid = customerid;
     }
 
     public Integer getOrderid() {
@@ -184,5 +200,5 @@ public class Orders implements Serializable {
     public String toString() {
         return "entity.Orders[ orderid=" + orderid + " ]";
     }
-    
+
 }

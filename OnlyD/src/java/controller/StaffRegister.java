@@ -31,10 +31,6 @@ public class StaffRegister extends HttpServlet {
     @Resource
     UserTransaction utx;
 
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -48,20 +44,18 @@ public class StaffRegister extends HttpServlet {
             if (staffList == null || staffList.isEmpty()) {
                 newStaffID = 1;
             } else {
-                for(int i = 0; i < staffList.size(); i++){
-                    int temp = Integer.parseInt(staffList.get(i).getStaffid(),1,5,10);
-                    if(newStaffID < temp){
+                // find latest staff id and plus 1
+                for (int i = 0; i < staffList.size(); i++) {
+                    int temp = Integer.parseInt(staffList.get(i).getStaffid(), 1, 5, 10);
+                    if (newStaffID < temp) {
                         newStaffID = temp;
                     }
                 }
                 newStaffID++;
-                
-//                Staff lastStaff = staffList.get(staffList.size() - 1);
-//                newStaffID = Integer.parseInt(lastStaff.getStaffid(), 1, 5, 10) + 1;
             }
 
             session.setAttribute("reStaffIDValue", String.format("S%04d", newStaffID));
-            
+
             response.sendRedirect("admin/registerStaff.jsp");
         } catch (Exception e) {
             response.getWriter().println(e.getMessage());
@@ -74,60 +68,29 @@ public class StaffRegister extends HttpServlet {
 
         String staffID = "";
         String staffName = "";
-        String errorMessage = "";
         StaffService staffService = new StaffService(em);
         HttpSession session = request.getSession();
 
         try {
             staffID = request.getParameter("staffID");
-            staffName = request.getParameter("staffName");
+            staffName = request.getParameter("staffName").trim();
 
-            // if false
-            if (!validateFirstTimeRegister(staffID, staffName)) {
-                errorMessage += "Staff ID existed or value(s) cannot be null!<br>";
-                request.setAttribute("errorMessage", errorMessage);
-                getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
+            // set staff in verification status
+            Staff staff = new Staff(staffID, staffName, Staff.VERIFICATION_STATUS);
+            staff.setPassword(staff.getDefaultPassword());
 
-            } else {
-                Staff staff = new Staff(staffID, staffName, Staff.VERIFICATION_STATUS);
-                staff.setPassword(staff.getDefaultPassword());
+            utx.begin();
+            staffService.addStaff(staff);
+            utx.commit();
 
-                utx.begin();
-                staffService.addStaff(staff);
-                utx.commit();                
+            session.setAttribute("staffRegSuccess", "New staff, " + staff.getName() + " registered successfully.<br>"
+                    + "Default password will be: " + staff.getDefaultPassword() + "<br>");
+            response.sendRedirect("admin/staffRegisterStatus.jsp");
 
-                session.setAttribute("staffRegSuccess", "New staff, " + staff.getName() + " registered successfully.<br>" +
-                        "Default password will be: " + staff.getDefaultPassword() + "<br>");
-                response.sendRedirect("admin/staffRegisterStatus.jsp");
-            }
         } catch (Exception e) {
-            errorMessage += e.getMessage();
-            request.setAttribute("errorMessage", errorMessage);
+            request.setAttribute("errorMessage", e.getMessage());
             getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
         }
-    }
-
-    private boolean validateFirstTimeRegister(String staffID, String staffName) {
-
-        StaffService staffService = new StaffService(em);
-
-        try {
-            Staff staff = staffService.findStaffByStaffId(staffID);
-
-            // staffID existed
-            if (staff != null) {
-                return false;
-            }
-
-            // no value for staffName
-            if (staffName == null || staffName.equals("")) {
-                return false;
-            }
-        } catch (Exception e) {
-            return false;
-        }
-
-        return true;
     }
 
 }

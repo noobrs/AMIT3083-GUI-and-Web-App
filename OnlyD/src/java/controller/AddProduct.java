@@ -12,17 +12,22 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import jakarta.transaction.UserTransaction;
+import java.nio.file.Paths;
 import service.ProductService;
+import service.StaffService;
 
 /**
  *
  * @author GIGABYTE
  */
+@MultipartConfig
 public class AddProduct extends HttpServlet {
 
     @PersistenceContext
@@ -30,9 +35,12 @@ public class AddProduct extends HttpServlet {
     @Resource
     UserTransaction utx;
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        StaffService staffService = new StaffService(em);
+
         try {
             String name = request.getParameter("name");
 
@@ -44,24 +52,27 @@ public class AddProduct extends HttpServlet {
 
             String description = request.getParameter("description");
 
-            String image = request.getParameter("image");
-            
+            Part image = request.getPart("image");
+            String imageURL = Paths.get(image.getSubmittedFileName()).getFileName().toString();
+
             int status = Integer.parseInt(request.getParameter("status"));
 
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);
             Category categoryid = new Category(cid);
 
-            String sid = request.getParameter("staffid");
-            Staff staffid = new Staff(sid);
+            Staff staff = (Staff) session.getAttribute("staff");
 
-            Product product = new Product(name, price, stock, description, image, status, categoryid, staffid);
-            product.setIspromo(false);
+            if (request.isUserInRole("AdminRole") || staff == null) {
+                staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);
+            }
+
+            Product product = new Product(name, price, stock, description, imageURL, status, categoryid, staff);
             ProductService productService = new ProductService(em);
             utx.begin();
             boolean success = productService.addProduct(product);
             utx.commit();
-            HttpSession session = request.getSession();
+
             session.setAttribute("successAddProduct", success);
             response.sendRedirect("staff/addProductConfirm.jsp");
         } catch (Exception ex) {

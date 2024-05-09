@@ -7,6 +7,9 @@
             Category category = (Category) session.getAttribute("category");
             if (category != null) {
         %>
+
+        <%@include file="/layout/header.jsp"%>
+
         <h1>Delete Category</h1>
         <form action="../DeleteCategory" method="post" onsubmit="return window.confirm('Are you sure you want to delete this category?')">
             <table border="0">
@@ -28,6 +31,8 @@
         Category ${category.id} not found
         <p><a href="../index.html">Back to home page</a></p>
         <%}%>
+
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>
 

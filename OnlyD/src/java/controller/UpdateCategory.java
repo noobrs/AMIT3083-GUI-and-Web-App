@@ -15,6 +15,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import jakarta.transaction.UserTransaction;
+import java.util.List;
 import service.CategoryService;
 
 /**
@@ -22,25 +23,32 @@ import service.CategoryService;
  * @author GIGABYTE
  */
 public class UpdateCategory extends HttpServlet {
-    
+
     @PersistenceContext
     EntityManager em;
     @Resource
     UserTransaction utx;
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+
         try {
             String name = request.getParameter("name");
 
-            int status = Integer.parseInt(request.getParameter("status"));
-
-            HttpSession session = request.getSession();
             String code = (String) session.getAttribute("categoryId");
             int id = Integer.parseInt(code);
 
             CategoryService categoryService = new CategoryService(em);
-            Category category = new Category(id, name, status);
+            List<Category> catList = categoryService.findByStatus(1);
+            for (Category c : catList) {
+                if (c.getCategoryname().equals(name) && c.getCategoryid() != id) {
+                    throw new IllegalArgumentException("Category name existed!");
+
+                }
+            }
+            Category category = new Category(id, name, 1);
 
             utx.begin();
             boolean success = categoryService.updateCategory(category);
@@ -49,6 +57,9 @@ public class UpdateCategory extends HttpServlet {
             session.setAttribute("successUpdCategory", success);
             response.sendRedirect("staff/updateCategoryConfirm.jsp");
 
+        } catch (IllegalArgumentException e) {
+            session.setAttribute("updateError", e.getMessage());
+            response.sendRedirect("staff/updateCategoryConfirmation.jsp");
         } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());
         }

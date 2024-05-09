@@ -5,6 +5,7 @@
 package controller;
 
 import entity.Product;
+import entity.Staff;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -30,12 +31,15 @@ public class DeleteProduct extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        
         try {
             ProductService productService = new ProductService(em);
-            HttpSession session = request.getSession();
             Product product = (Product)session.getAttribute("product");
             int id = product.getProductid();
-               
+
+            
             utx.begin();
             boolean success = productService.deleteProduct(id);
             utx.commit();

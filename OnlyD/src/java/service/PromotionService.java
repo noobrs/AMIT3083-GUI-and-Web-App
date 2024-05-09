@@ -4,7 +4,6 @@
  */
 package service;
 
-import entity.Productpromotion;
 import entity.Promotion;
 import jakarta.annotation.Resource;
 import jakarta.persistence.EntityManager;
@@ -14,7 +13,7 @@ import java.util.List;
 
 /**
  *
- * @author danie
+ * @author Danie
  */
 public class PromotionService {
 
@@ -27,143 +26,70 @@ public class PromotionService {
         this.em = em;
     }
 
-    public void addPromotion(Promotion promotion) {
-        em.persist(promotion);
-    }
-
-    public boolean addProductPromotion(List<Productpromotion> newProductpromoList) {
-
-        Productpromotion temp;
-
+    public boolean addPromotion(Promotion promotion) {
         try {
-            for (Productpromotion p : newProductpromoList) {
-                temp = em.find(Productpromotion.class, p.getProductpromotionPK());
-
-                if (temp == null) {
-                    em.persist(p);
-                } else {
-                    return false;
-                }
-            }
+            em.persist(promotion);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    public List<Productpromotion> getPromotionItemsByPromotionId(int promotionId) {
-
-        List<Productpromotion> productpromotionList;
-        try {
-            productpromotionList = (List<Productpromotion>) em.createNamedQuery("Productpromotion.findByPromotionid")
-                    .setParameter("promotionid", promotionId)
-                    .getResultList();
-        } catch (Exception e) {
-            return null;
-        }
-
-        return productpromotionList;
-    }
-    
-    public Promotion findActivePromotionByProductId(int productId){        
-                
-        List<Productpromotion> productpromoLists = em.createNamedQuery("Productpromotion.findByProductid", Productpromotion.class)
-                .setParameter("productid", productId)
-                .getResultList();
-        
-        if(!productpromoLists.isEmpty()){
-            for(Productpromotion pp : productpromoLists){
-                if(pp.getPromotion().getStatus() == Promotion.ACTIVE_STATUS){
-                    return pp.getPromotion();
-                }
-            }
-        }
-        return null;
-    }
-    
-//    public List<Promotion> findActivePromotions(){
-//        List<Promotion> promoLists;
-//        try {
-//            promoLists = em.createNamedQuery("Promotion.findByStatus", Promotion.class)
-//                    .setParameter("status", Promotion.ACTIVE_STATUS)
-//                    .getResultList();
-//            
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return null;
-//        }
-//        return promoLists;
-//    }
-
-    public List<Productpromotion> getPromotionItemsByProductId(int productId) {
-
-        List<Productpromotion> productpromotionList;
-        try {
-            productpromotionList = (List<Productpromotion>) em.createNamedQuery("Productpromotion.findByProductid")
-                    .setParameter("promotionid", productId)
-                    .getResultList();
-        } catch (Exception e) {
-            return null;
-        }
-
-        return productpromotionList;
+    public Promotion findPromotionByPromotionId(int promotionId) {
+        Promotion promo = em.find(Promotion.class, promotionId);
+        return promo;
     }
 
-    public Promotion findPromotionByPromotionId(Integer promotionid) {
-        Promotion promotion;
+    public Promotion findPromotionByPromotionCode(String promoCode) {
+        Promotion promo;
         try {
-            promotion = (Promotion) em.createNamedQuery("Promotion.findByPromotionID")
-                    .setParameter("promotionid", promotionid)
-                    .setParameter("deletedStatus", Promotion.DELETED_STATUS)
+            promo = (Promotion) em.createNamedQuery("Promotion.findByPromotioncode")
+                    .setParameter("promotioncode", promoCode)
                     .getSingleResult();
         } catch (Exception e) {
             return null;
         }
 
-        return promotion;
+        return promo;
     }
 
-    public boolean deletePromotion(Integer promotionid) {
-        Promotion promotion = this.findPromotionByPromotionId(promotionid);
-        if (promotion != null) {
-            em.remove(promotion);
-            return true;
-        }
-        return false;
+    public List<Promotion> findByStatus(int status) {
+        List<Promotion> promoList = em.createNamedQuery("Promotion.findByStatus")
+                .setParameter("status", status)
+                .getResultList();
+        
+        return promoList;
+    }
+    
+    public List<Promotion> findWithoutSelectedStatus(int status){
+        List<Promotion> promoList = em.createNamedQuery("Promotion.findAllWithoutStatus")
+                .setParameter("status", status)
+                .getResultList();
+        
+        return promoList;
     }
 
     public boolean updatePromotion(Promotion promotion) {
-        Promotion tempPromotion = this.findPromotionByPromotionId(promotion.getPromotionid());
-        if (tempPromotion != null) {
-            tempPromotion.setDiscountpercentage(promotion.getDiscountpercentage());
-            tempPromotion.setStartdatetime(promotion.getStartdatetime());
-            tempPromotion.setEnddatetime(promotion.getEnddatetime());
-            tempPromotion.setStatus(promotion.getStatus());
+        Promotion temp = this.findPromotionByPromotionId(promotion.getPromotionid());
+        if (temp != null) {
+            temp.setPromotioncode(promotion.getPromotioncode());
+            temp.setDiscountpercentage(promotion.getDiscountpercentage());
+            temp.setRedemptionquantity(promotion.getRedemptionquantity());
+            temp.setStaffid(promotion.getStaffid());
+            temp.setStatus(promotion.getStatus());
             return true;
         }
         return false;
     }
 
-    public List<Promotion> findAllWithDeletedStatus() {
-        List<Promotion> promotionList;
+    public List<Promotion> findAll() {
+        List<Promotion> promoList;
         try {
-            promotionList = em.createNamedQuery("Promotion.findAllWithDeletedStatus")
-                    .getResultList();
+            promoList = em.createNamedQuery("Promotion.findAll").getResultList();
         } catch (Exception e) {
             return null;
         }
-        return promotionList;
+        return promoList;
     }
 
-    public List<Promotion> findAll() {
-        List<Promotion> promotionList;
-        try {
-            promotionList = em.createNamedQuery("Promotion.findAll")
-                    .setParameter("deletedStatus", Promotion.DELETED_STATUS)
-                    .getResultList();
-        } catch (Exception e) {
-            return null;
-        }
-        return promotionList;
-    }
 }

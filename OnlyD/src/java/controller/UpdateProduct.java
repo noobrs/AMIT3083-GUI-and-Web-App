@@ -12,17 +12,23 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import java.io.IOException;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import jakarta.transaction.UserTransaction;
+import java.nio.file.Paths;
+import service.CategoryService;
 import service.ProductService;
+import service.StaffService;
 
 /**
  *
  * @author GIGABYTE
  */
+@MultipartConfig
 public class UpdateProduct extends HttpServlet {
 
     @PersistenceContext
@@ -32,6 +38,9 @@ public class UpdateProduct extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+        HttpSession session = request.getSession();
+        
         try {
             String name = request.getParameter("name");
           
@@ -43,22 +52,34 @@ public class UpdateProduct extends HttpServlet {
 
             String description = request.getParameter("description");
             
-            String image = request.getParameter("image");
+            Part image = request.getPart("image");
+            String imageURL = Paths.get(image.getSubmittedFileName()).getFileName().toString();
             
-            int status = Integer.parseInt(request.getParameter("status"));
+//            int status = Integer.parseInt(request.getParameter("status"));
 
+            CategoryService catService = new CategoryService(em);
+            
             String categoryidStr = request.getParameter("categoryid");
             int cid = Integer.parseInt(categoryidStr);
-            Category categoryid = new Category(cid);            
+            //Category categoryid = new Category(cid);  
+            Category categoryid = catService.findCategoryByID(cid);
 
-            String sid = request.getParameter("staffid");
-            Staff staffid = new Staff(sid);
-            HttpSession session = request.getSession();
+//            String sid = request.getParameter("staffid");
+//            Staff staffid = new Staff(sid);
+            
+            Staff staff = (Staff)session.getAttribute("staff");
+            
+            // if is admin action
+            if (request.isUserInRole("AdminRole") || staff == null) {
+                StaffService staffService = new StaffService(em);
+                staff = staffService.findStaffByStaffId(Staff.ADMIN_ID);
+            }
+            
             String code = (String) session.getAttribute("productId");
             int id = Integer.parseInt(code);
             
             ProductService productService = new ProductService(em);
-            Product product = new Product(id, name, price, stock, description, image, status, categoryid, staffid);
+            Product product = new Product(id, name, price, stock, description, imageURL, 1, categoryid, staff);
             
             utx.begin();
             boolean success = productService.updateProduct(product);
@@ -68,6 +89,7 @@ public class UpdateProduct extends HttpServlet {
             response.sendRedirect("staff/updateProductConfirm.jsp");
 
         } catch (Exception ex) {
+            ex.printStackTrace();
             response.getWriter().println(ex.getMessage());
         } 
     }

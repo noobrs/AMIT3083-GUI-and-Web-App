@@ -33,8 +33,6 @@ public class ViewCustomer extends HttpServlet {
             List<Customer> custList = custService.findAll();
 
             HttpSession session = request.getSession();
-
-            System.out.println(custList.isEmpty());
             
             session.setAttribute("custList", custList);
             response.sendRedirect("staff/viewCustomer.jsp");

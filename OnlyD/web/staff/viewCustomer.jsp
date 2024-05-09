@@ -9,16 +9,15 @@
         <%@include file="/layout/meta.html"%>
 
     </head>
-    <body style="background-color: #25182E">
+    <body>
         <%@include file="/layout/header.jsp"%>
-
         <div class="container mt-5" style="display: flex; justify-content: center">
             <%
                 List<Customer> custList = (List<Customer>)session.getAttribute("custList");
                 if(custList != null){
             %>
 
-            <table class="table table-striped" style="border: 2px #FFBE00 solid; background-color: window;">
+            <table class="table table-striped tableDeco">
                 <tr style="background-color: #FFBE00">
                     <th>Name</th>
                     <th>Username</th>
@@ -34,8 +33,6 @@
                 </tr>
                 <% } %>
             </table>
-
-
 
             <% } else { %>
             <div style="display: flex; justify-content: center">

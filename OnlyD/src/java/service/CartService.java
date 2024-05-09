@@ -19,17 +19,6 @@ public class CartService {
     public CartService(EntityManager em) {
         this.em = em;
     }
-
-//    public boolean addToCart(Productcart cartItem) {
-//
-//        try {
-//            em.persist(cartItem);
-//            return true;
-//        } catch (Exception e) {
-//            return false;
-//
-//        }
-//    }
     
     public boolean addCart(Productcart cartItem){
         Productcart temp;
@@ -64,34 +53,6 @@ public class CartService {
 
     }
 
-//    public boolean addCartItemQuantity(Productcart existedCartItem) {
-//        
-//        try {
-//            Productcart cartItem = em.find(Productcart.class, existedCartItem.getProductcartPK());
-//            if (cartItem != null) {
-//                cartItem.setQuantity(cartItem.getQuantity() + existedCartItem.getQuantity());
-//                return true;
-//            }
-//            return false;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
-
-//    public boolean updateCartItemQuantity(int customerId, int productId, int newQuantity) {
-//        try {
-//            Productcart cartItem = em.find(Productcart.class, new ProductcartPK(customerId, productId));
-//            if (cartItem != null) {
-//                cartItem.setQuantity(newQuantity);
-//                return true;
-//            }
-//            return false;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return false;
-//        }
-//    }
     public void updateCartItems(List<Productcart> cartItems) {
         for (Productcart cartItem : cartItems) {
             em.merge(cartItem); // Use merge to update existing entities

@@ -36,11 +36,11 @@ public class SearchProduct extends HttpServlet {
             String button = (String) session.getAttribute("productButton");
 
             Product product = productService.findProductByID(id);
-            Category category = product.getCategoryid();
+//            Category category = product.getCategoryid();
             Staff staff = product.getStaffid();
             session.setAttribute("product", product);
-            session.setAttribute("category", category);
-            session.setAttribute("staff", staff);
+//            session.setAttribute("category", category);
+            //session.setAttribute("staff", staff);
             if (button.equals("Delete")) {
                 response.sendRedirect("staff/deleteProductConfirmation.jsp");
             } else {
