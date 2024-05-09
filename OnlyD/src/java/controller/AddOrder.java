@@ -84,6 +84,7 @@ public class AddOrder extends HttpServlet {
                     Product p = productService.findProductByID(id);
                     Productorder po = new Productorder(tempOrderId, id, productcart.getQuantity());
                     p.setStock(p.getStock() - productcart.getQuantity());
+                    
                     utx.begin();
                     productService.updateProduct(p);
                     orderService.addProductOrder(po);
@@ -131,51 +132,6 @@ public class AddOrder extends HttpServlet {
 
     }
 
-    protected void processPromoCode(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-
-        HttpSession session = request.getSession();
-
-        try {
-            String promoCode = request.getParameter("promoCodeEntered");
-            PromotionService promoService = new PromotionService(em);
-
-            Promotion promotion = promoService.findPromotionByPromotionCode(promoCode);
-            if (promotion != null) {
-                if (promotion.getStatus() == Promotion.ACTIVE_STATUS) {
-
-//                    int currentQty = promotion.getRedemptionquantity() - 1;
-//                    promotion.setRedemptionquantity(currentQty);
-//                    if (currentQty == 0) {
-//                        promotion.setStatus(Promotion.REDEEMED_STATUS);
-//                    }
-                    session.setAttribute("promoApplied", promotion);
-                    response.sendRedirect("user/checkout.jsp");
-
-//                    utx.begin();
-//                    boolean success = promoService.updatePromotion(promotion);
-//                    utx.commit();
-//
-//                    if (success) {
-//
-//                    } else {
-//                        response.getWriter().println("fail");
-//                    }
-                } else {
-
-                    response.getWriter().println("promo not same");
-                }
-            } else {
-
-                response.getWriter().println("promo null");
-            }
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            response.getWriter().println(e.getMessage());
-        }
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -188,46 +144,4 @@ public class AddOrder extends HttpServlet {
         processRequest(request, response);
     }
 
-//private void removeFromCart(HttpServletRequest request, HttpServletResponse response) throws IOException{
-//        try {
-//            HttpSession session = request.getSession();
-//            CartService cartService = new CartService(em);
-//            int productId = Integer.parseInt(request.getParameter("productId"));
-//
-//            Customer cust = (Customer) session.getAttribute("customer");
-//
-//            // Check if the customer is logged in
-//            if (cust != null) {
-//                utx.begin();
-//                boolean removed = cartService.removeCartItem(cust.getCustomerID(), productId);
-//
-//                if (removed) {
-//                    utx.commit(); // Commit the transaction
-//
-//                    utx.begin();
-//                    cust = em.find(Customer.class, cust.getCustomerID());
-//                    em.refresh(cust);
-//                    utx.commit();
-//
-//                    // Redirect back to the cart page
-//                    response.sendRedirect("ViewCart");
-//                } else {
-//                    // If removal failed, handle the error
-//                    response.getWriter().println("Failed to remove product from cart");
-//                }
-//            } else {
-//                // If the customer is not logged in, redirect to the login page
-//                session.setAttribute("statusMsg", "Not a user, try to login!");
-//                response.sendRedirect("login.jsp");
-//            }
-//        } catch (NumberFormatException e) {
-//            // Handle invalid product ID parameter
-//            response.getWriter().println("Invalid product ID");
-//            e.printStackTrace();
-//        } catch (Exception e) {
-//            // Handle other exceptions
-//            response.getWriter().println("Error processing the request");
-//            e.printStackTrace();
-//        }
-//    }
 }
