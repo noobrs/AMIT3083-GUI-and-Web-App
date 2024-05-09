@@ -1,36 +1,39 @@
-<%-- 
-    Document   : index
-    Created on : 25 Apr 2024, 8:53:35 AM
-    Author     : Vin Sen
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.util.List"%>
+<%@page import="entity.Product"%>
+<%@page import="entity.Promotion"%>
 <!DOCTYPE html>
+
+<%
+      List<Product> productList = (List<Product>)session.getAttribute("productListImage");
+      List<Promotion> promotionList = (List<Promotion>)session.getAttribute("promotionListHome");
+    if(productList == null || promotionList == null){
+        response.sendRedirect("SearchDetailForHome"); 
+    }
+%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%= application.getInitParameter("storeName")%></title>
-        <%@include file="layout/meta.html"%>
     </head>
     <body>
         <%@include file="layout/header.jsp"%>
         <div class="container">
-            <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin: 50px 0 50px 0">
+            <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" style="margin: 50px 0 50px 0">
                 <div class="carousel-indicators">
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    <% if(productList != null){
+            for(int i = 0; i < productList.size(); i++){ %>
+                    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="<%=i%>" <% if(i==0){ %>class="active"<% } %> aria-label="Slide <%=i+1%>"></button>
+                    <% } } %>
                 </div>
                 <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <img src="layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
+                    <% if(productList != null){
+                        for(int i = 0; i < productList.size(); i++){ 
+                            Product p = productList.get(i); %>
+                    <div class="carousel-item <% if(i==0){ %>active<% } %>">
+                        <a href="ViewProductDetail?productId=<%=p.getProductid()%>"><img  src="<%= request.getContextPath() + "/image/" + p.getImage()%>" class="d-block w-100" alt="Product Image"></a>
                     </div>
-                    <div class="carousel-item">
-                        <img src="layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
-                    </div>
-                    <div class="carousel-item">
-                        <img src="layout/grey_placeholder.jpg" class="d-block w-100" alt="...">
-                    </div>
+                    <% } } %>
                 </div>
                 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -41,48 +44,26 @@
                     <span class="visually-hidden">Next</span>
                 </button>
             </div>
+        </div>
 
 
+        <%if(promotionList != null){%>
+        <%for(Promotion po: promotionList){%>
+        <div class="row">
+            <div class="col-2">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Promotion Code</h5>
 
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <div class="col">
-                    <div class="card">
-                        <img src="layout/grey_placeholder.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="layout/grey_placeholder.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="layout/grey_placeholder.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card">
-                        <img src="layout/grey_placeholder.jpg" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        </div>
+                        <h3><%=po.getPromotioncode()%></h3>
+                        <p class="card-text">Discount Percentage</p>
+                        <h4><%=po.getDiscountpercentage()%></h4>
                     </div>
                 </div>
             </div>
         </div>
+        <% } %>
+        <% } %>
         <%@include file="layout/footer.jsp"%> 
     </body>
 </html>

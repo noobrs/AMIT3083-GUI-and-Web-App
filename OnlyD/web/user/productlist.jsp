@@ -21,7 +21,7 @@
         <div class="container-fluid mt-5">
             <div class="row ">
                 <div class="col-2 yellow_black" style="text-align: center; border-top-right-radius: 10px; border-bottom-right-radius: 10px">
-                    <h4>Search Filter</h4>
+                    <h4 class="mt-3">Search Filter</h4>
                     <form action="../SearchProductByUser" method="get">
                         
                         <div class="input-group" style=" width: fit-content">
