@@ -47,61 +47,79 @@
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card "  style="border: 2px #FFBE00 solid;">
+                    <div class="card-head dashBoard yellow_black">
+                        <h4>Add Product form</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="../AddProduct" method="post" enctype="multipart/form-data">
+                            <table class="table table_deco" border="0">
+                                <tr>
+                                    <td>Name</td>
+                                    <td><input class="form-control " type="text" name="name" required></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>Price</td>
+                                    <td><input class="form-control" type="number" name="price" min="0.00" step="0.01" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Stock</td>
+                                    <td><input class="form-control" type="number" name="stock"  min="0" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Description</td>
+                                    <td><input class="form-control" type="text" name="description" size="50" required></td>
+                                </tr>
+                                <tr>
+                                    <td>Image</td>
+                                    <td> <input class="form-control" type="file" id="fileInput" name="image" accept="image/*" required /></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td><div id="preview"></div></td>
+                                </tr>
+                                <tr>
+                                    <td>Status</td>
+                                    <td><select class="form-select" name="status">
+                                            <option value="0"> Deleted
+                                            <option value="1"> Active
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Category <br> Name</td>
+                                    <td><select class="form-select" name="categoryid">
+                                            <% for (Category category: categoryList){%>
+                                            <option value="<%=category.getCategoryid()%>">
+                                                <%=category.getCategoryname()%>
+                                                <%}%>
+                                        </select>
+                                        <br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Add by</td>
+                                    <td><input class="form-control" type="text" name="staffid" size="50" required></td>
+                                </tr>
 
-        <form action="../AddProduct" method="post" enctype="multipart/form-data">
-            <table border="0">
-                <tr>
-                    <td>Name</td>
-                    <td><input type="text" name="name" required></td>
-                </tr>
-                <tr>
-                    <td>Price</td>
-                    <td><input type="number" name="price" min="0.00" step="0.01" required></td>
-                </tr>
-                <tr>
-                    <td>Stock</td>
-                    <td><input type="number" name="stock"  min="0" required></td>
-                </tr>
-                <tr>
-                    <td>Description</td>
-                    <td><input type="text" name="description" size="50" required></td>
-                </tr>
-                <tr>
-                    <td>Image</td>
-                    <td> <input type="file" id="fileInput" name="image" accept="image/*" required /></td>
-                </tr>
-                <tr>
-                    <td><div id="preview"></div></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td><select name="status">
-                            <option value="0"> Deleted
-                            <option value="1"> Active
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Category Name</td>
-                    <td><select name="categoryid">
-                            <% for (Category category: categoryList){%>
-                            <option value="<%=category.getCategoryid()%>">
-                                <%=category.getCategoryname()%>
-                                <%}%>
-                        </select>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Add by</td>
-                    <td><input type="text" name="staffid" size="50" required></td>
-                </tr>
+
+                            </table>
+                            <div class="dashBoard mt-3">
+                                <input class="btn yellow_black me-2" type="submit" value="Add">
+                                <input class="btn reset_dlt_btn" type="reset" value="Reset">
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
 
 
-            </table>
-            <input type="submit" value="Add">
-            <input type="reset" value="Reset">
-        </form>
         <div>
 
         </div>

@@ -13,41 +13,66 @@
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
-        
-        <%
-            Customer cust = (Customer)session.getAttribute("custFound");
-            if(cust != null){
-        %>
-        <h1>Delete Customer</h1>
-        <form action="../DeleteCustomer" method="POST" onsubmit="return window.confirm('Confirm delete this customer?')">
-            <table>
-                <tr>
-                    <td>Username</td>
-                    <td><%= cust.getUsername() %></td>
-                </tr>
-                <tr>
-                    <td>Name</td>
-                    <td><%= cust.getName() %></td>
-                </tr>
-                <tr>
-                    <td>Email</td>
-                    <td><%= cust.getEmail() %></td>
-                </tr>
-                <tr>
-                    <td>Phone Number</td>
-                    <td><%= cust.getPhoneNumber() %></td>
-                </tr>
-                <input type="submit" value="Delete Customer">
-            </table>
-        </form>
-        <%
-            } else{
-        %>
-        Customer not found
-        <p><a href="../index.jsp">Back to home page</a></p>
-        <%
-            }
-        %>
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+
+                    <%
+                        Customer cust = (Customer)session.getAttribute("custFound");
+                        if(cust != null){
+                    %>
+                    <div class="card-head yellow_black">
+                        <h1>Delete Customer</h1>
+                    </div>
+                    <div>
+                        <form action="../DeleteCustomer" method="POST" onsubmit="return window.confirm('Confirm delete this customer?')">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">   
+                                    Username
+                                </span>
+                                <input type="text" name="staffID" value=" <%= cust.getUsername() %>" readonly>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">   
+                                    Name
+                                </span>
+                                <input type="text" name="staffID" value="<%= cust.getName() %>" readonly>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">   
+                                    Email
+                                </span>
+                                <input type="text" name="staffID" value=" <%= cust.getEmail() %>" readonly>
+                            </div>
+
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">   
+                                    Phone Number
+                                </span>
+                                <input type="text" name="staffID" value=" <%= cust.getPhoneNumber() %>" readonly>
+                            </div>
+
+
+                            <input type="submit" value="Delete Customer">
+
+                        </form>
+                    </div>
+
+                    <%
+                        } else{
+                    %>
+                    Customer not found
+                    <p><a href="../index.jsp">Back to home page</a></p>
+                    <%
+                        }
+                    %>
+                </div>
+            </div>
+        </div>
+
+
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

@@ -20,6 +20,10 @@
         <param-name>storeCopyRight</param-name>
         <param-value>ONLY D. All rights reserved.</param-value>
     </context-param>
+    <context-param>
+        <param-name>indexServlet</param-name>
+        <param-value>SearchDetailForHome</param-value>
+    </context-param>
     <servlet>
         <servlet-name>LogoutServlet</servlet-name>
         <servlet-class>controller.LogoutServlet</servlet-class>
@@ -240,6 +244,10 @@
         <servlet-name>ViewSalesReport</servlet-name>
         <servlet-class>controller.ViewSalesReport</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchDetailForHome</servlet-name>
+        <servlet-class>controller.SearchDetailForHome</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ViewProductToPromo</servlet-name>
         <url-pattern>/ViewProductToPromo</url-pattern>
@@ -459,6 +467,10 @@
     <servlet-mapping>
         <servlet-name>ViewSalesReport</servlet-name>
         <url-pattern>/ViewSalesReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchDetailForHome</servlet-name>
+        <url-pattern>/SearchDetailForHome</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>30</session-timeout>

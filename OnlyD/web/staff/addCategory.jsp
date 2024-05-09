@@ -13,25 +13,37 @@
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-head yellow_black">
+                        <h4 >Add Category</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="../AddCategory" method="post">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black">Category Name</span>
+                                <input class="form-control" type="text" name="name" pattern="^(?i)(?!.\bnull\b).$" title="The word 'NULL' is not allowed.">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black">Status</span>
+                                <select class="form-select" name="status">
+                                    <option value="1"> Active
+                                    <option value="0"> Deleted
+                                </select>
+                            </div>
 
-        <form action="../AddCategory" method="post">
-            <table border="0">
-                <tr>
-                    <td>Category Name</td>
-                    <td><input type="text" name="name" pattern="^(?i)(?!.\bnull\b).$" title="The word 'NULL' is not allowed."></td>
-                </tr>
-                <tr>
-                    <td>Status</td>
-                    <td><select name="status">
-                            <option value="1"> Active
-                            <option value="0"> Deleted
-                        </select>
-                    </td>
-                </tr>
-            </table>    
-            <input type="submit" value="Add">
-            <input type="reset" value="Reset">
-        </form>
+                            <div>
+                                <input class="btn yellow_black me-2" type="submit" value="Add">
+                                <input class="btn reset_dlt_btn" type="reset" value="Reset"> 
+                            </div>
+                            
+                        </form>
+                    </div>  
+                </div>
+            </div>
+        </div>
+
 
         <%@include file="/layout/footer.jsp"%>
     </body>

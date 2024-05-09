@@ -16,7 +16,7 @@
                 <tr>
                     <td>Name</td>
                     <td><input type="text" name="name"
-                               value="<%=category.getCategoryname()%>" pattern="^(?i)(?!.\bnull\b).$" title="The word 'NULL' is not allowed." required></td>
+                               value="<%=category.getCategoryname()%>" required></td>
                 </tr>
             </table>
             <input type="submit" value="Update Category">

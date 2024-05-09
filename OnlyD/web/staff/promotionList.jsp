@@ -12,37 +12,43 @@
             List<Promotion> promoList = (List<Promotion>)session.getAttribute("promoList");
             if(promoList != null){
         %>
-        
+
         <%@include file="/layout/header.jsp"%>
-        
-        <table>
-            <tr>
-                <th>Promo Code</th>
-                <th>Percentage</th>
-                <th>Quantity</th>
-                <th>Status</th>
-                <th>Last Modified</th>
-            </tr>
-            <% for(Promotion p : promoList){ %>
-            <tr>
-                <td><%= p.getPromotioncode() %></td>
-                <td><%= p.getDiscountpercentage() %></td>
-                <td><%= p.getRedemptionquantity() %></td>
-                <td>
-                    <% if(p.getStatus() == Promotion.ACTIVE_STATUS) { %>
-                    Active
-                    <% } else if(p.getStatus() == Promotion.DELETED_STATUS) { %>
-                    Deleted
-                    <% } else if(p.getStatus() == Promotion.REDEEMED_STATUS) { %>
-                    Redeemed
-                    <% } %>
-                </td>
-                <td><%= p.getStaffid().getStaffid() %></td>
-            </tr>
-            <% } %>
-        </table>
-        <% } %>
-        
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-body">
+                        <table class="table table-striped tableDeco" border="1">
+                            <tr style="background-color: #FFBE00">
+                                <th>Promo Code</th>
+                                <th>Percentage</th>
+                                <th>Quantity</th>
+                                <th>Status</th>
+                                <th>Last Modified</th>
+                            </tr>
+                            <% for(Promotion p : promoList){ %>
+                            <tr>
+                                <td><%= p.getPromotioncode() %></td>
+                                <td><%= p.getDiscountpercentage() %></td>
+                                <td><%= p.getRedemptionquantity() %></td>
+                                <td>
+                                    <% if(p.getStatus() == Promotion.ACTIVE_STATUS) { %>
+                                    Active
+                                    <% } else if(p.getStatus() == Promotion.DELETED_STATUS) { %>
+                                    Deleted
+                                    <% } else if(p.getStatus() == Promotion.REDEEMED_STATUS) { %>
+                                    Redeemed
+                                    <% } %>
+                                </td>
+                                <td><%= p.getStaffid().getStaffid() %></td>
+                            </tr>
+                            <% } %>
+                        </table>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

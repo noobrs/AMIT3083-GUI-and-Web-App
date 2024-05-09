@@ -35,8 +35,7 @@ public class SearchProductByUser extends HttpServlet {
             HttpSession session = request.getSession();
             String prefix = request.getParameter("productName");
             String button = request.getParameter("searchButton");
-            int tempId = -1;
-            int i = 0;
+            int tempId = -1;   
             
             // if direct search from header, the cat is null
             List<Category> categoryListT = (List)session.getAttribute("categoryListUser");

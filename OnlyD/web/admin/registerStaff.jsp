@@ -21,23 +21,25 @@
         <div class="mainBody" style="display: flex;
              align-content: center; flex-wrap: wrap">
             <div class="RegisterCard container">
-                <div class="card" style="width: 50%">
-                    <h5 class="card-header">Staff Register page</h5>
+                <div class="card card_deco" style="width: 50%">
+                    <div class="card-header yellow_black">
+                        <h5>Staff Register page</h5>
+                    </div>
                     <div class="card-body">
                         <form action="../staffRegister" method="POST">
                             <h5 class="card-title">Welcome, please enter your:</h5>
 
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Staff ID</span>
+                                <span class="input-group-text yellow_black" id="basic-addon1">Staff ID</span>
                                 <input type="text" name="staffID" value="${reStaffIDValue}" class="form-control" aria-label="StaffID" aria-describedby="basic-addon1" readonly>
                             </div>
                             <div class="input-group mb-3">
-                                <span class="input-group-text" id="basic-addon1">Staff Name</span>
+                                <span class="input-group-text yellow_black" id="basic-addon1">Staff Name</span>
                                 <input type="text" name="staffName" value="${staffNameValue}" class="form-control" pattern="(?=.*[a-zA-Z]).*" placeholder="lengzai" aria-label="StaffName" aria-describedby="basic-addon1" required>
                             </div>
                             <div class="d-flex justify-content-center">
-                                <input class="btn btn-primary me-2" type="submit" value="Sign Up">
-                                <input class="btn btn-primary" type="reset" value="Reset">                              
+                                <input class="btn yellow_black me-2" type="submit" value="Sign Up">
+                                <input class="btn reset_dlt_btn" type="reset" value="Reset">                              
                             </div>
                         </form>
                         <div class="error-message" style="color: red;">

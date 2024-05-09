@@ -16,35 +16,43 @@
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
-        
-        <h1>Search Customer</h1>
-        <table border="0" cellspacing="10">
-            <form action="searchCustomer.jsp" method="POST">
-                <tr>
-                    <td>Customer Username</td>
-                    <td>
-                        <select name="username">
-                            <%
-                                for(Customer c:custList){
-                            %>
-                            <option value="<%=c.getUsername()%>">
-                                <%=c.getUsername()%>
-                            </option>
-                            <%
-                                }
-                            %>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
-                        <input type="submit" value="Delete Customer" name="button"/>
-                        <input type="submit" value="Update Customer" name="button"/>
-                    </td>
-                </tr>
-            </form>
-        </table>
-        
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-head yellow_black">
+                        <h1>Search Customer</h1>
+                    </div>
+                    <div class="card-body">
+                        <form action="searchCustomer.jsp" method="POST">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black" id="basic-addon1">    
+                                    Customer Username
+                                </span>
+                                <select class="form-select" name="username">
+                                    <%
+                                        for(Customer c:custList){
+                                    %>
+                                    <option value="<%=c.getUsername()%>">
+                                        <%=c.getUsername()%>
+                                    </option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
+                            </div>
+
+                            <div>
+                                <input class="btn yellow_black me-2" type="submit" value="Update Customer" name="button"/>  
+                                <input class="btn reset_dlt_btn"  type="submit" value="Delete Customer" name="button"/>                
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

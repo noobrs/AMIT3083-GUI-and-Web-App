@@ -16,36 +16,45 @@
         %>
 
         <%@include file="/layout/header.jsp"%>
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-head yellow_black">
+                        <h1>Update Promotion</h1>
+                    </div>
+                    <div class="card-body">
+                        <% if(promo != null) { %>
+                        <form action="../UpdatePromotion" method="post">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black">
+                                    Promotion Code
+                                </span>
+                                <input class="form-control" type="text" name="promoCode" value="<%=promo.getPromotioncode()%>" required>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black">
+                                    Discount Percentage
+                                </span>
+                                <input class="form-control" type="number" min="0.01" max="100.00" step="0.01" name="discountPercentage" value="<%=promo.getDiscountpercentage()%>">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black">
+                                    Redemption Quantity
+                                </span>
+                                <input class="form-control" type="number" min="1" step="1" name="redemptionQty" value="<%=promo.getRedemptionquantity()%>">
+                            </div>
 
-        <h1>Update Promotion</h1>
-        <% if(promo != null) { %>
-        <form action="../UpdatePromotion" method="post">
-            <table>
-                <tr>
-                    <td>Promotion Code</td>
-                    <td>
-                        <input type="text" name="promoCode" value="<%=promo.getPromotioncode()%>" required>
-                    </td>
-                </tr>
-                <tr>
-                    <td>Discount Percentage</td>
-                    <td>
-                        <input type="number" min="0.01" max="100.00" step="0.01" name="discountPercentage" value="<%=promo.getDiscountpercentage()%>">             
-                    </td>
-                </tr>
-                <tr>
-                    <td>Redemption Quantity</td>
-                    <td>
-                        <input type="number" min="1" step="1" name="redemptionQty" value="<%=promo.getRedemptionquantity()%>">
-                    </td>
-                </tr>
-            </table>
-                    <input type="submit" value="Update Promotion">
-        </form>
-        <% } else { %>
-        Promotion not found
-        <p><a href="<%=request.getContextPath()%>">Back to home page</a></p>
-        <% } %>
+                            <input class="btn yellow_black" type="submit" value="Update Promotion">
+                        </form>
+                        <% } else { %>
+                        Promotion not found
+                        <p><a href="<%=request.getContextPath()%>">Back to home page</a></p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

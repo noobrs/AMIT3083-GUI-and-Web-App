@@ -15,35 +15,42 @@
         %>
 
         <%@include file="/layout/header.jsp"%>
-        <h1>Search Promotion</h1>
-        <% if(promoList != null) { %> 
-        <table border="0" cellspacing="10">
-            <form action="searchPromo.jsp" method="post">
-                <tr>
-                    <td>Promotion List</td>
-                    <td><select name="promoId">
-                            <% for (Promotion p : promoList){%>
-                            <option value="<%=p.getPromotionid()%>">
-                                <%=p.getPromotionid()%>, <%=p.getPromotioncode()%>
-                                <%}%>
-                        </select>
-                        <br>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-head yellow_black">
+                        <h1>Search Promotion</h1>
+                    </div>
+                    <div class="card-body">
+                        <% if(promoList != null) { %> 
+                        <form action="searchPromo.jsp" method="post">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text yellow_black">
+                                    Promotion List</span>
+                                <select class="form-select" name="promoId">
+                                    <% for (Promotion p : promoList){%>
+                                    <option value="<%=p.getPromotionid()%>">
+                                        <%=p.getPromotionid()%>, <%=p.getPromotioncode()%>
+                                        <%}%>
+                                </select>
+                            </div>
 
-                        <!<!-- only admin can delete product -->
-                        <% if(request.isUserInRole("AdminRole")){ %>
-                        
+                            <!<!-- only admin can delete product -->
+                            <% if(request.isUserInRole("AdminRole")){ %>
+
+                            <% } %>
+                            <div>
+                                <input class="btn yellow_black me-2"  type="submit" value="Update Promotion" name="promoButton"/>
+                                <input class="btn reset_dlt_btn"  type="submit" value="Delete Promotion" name="promoButton"/>
+                            </div>
+
+
+                        </form>
                         <% } %>
-                        <input type="submit" value="Delete Promotion" name="promoButton"/>
-                        <input type="submit" value="Update Promotion" name="promoButton"/>
-                    </td>
-                </tr>
-            </form>
-        </table>
-        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

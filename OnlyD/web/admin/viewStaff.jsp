@@ -13,42 +13,47 @@
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>
-        
-        <%
-            List<Staff> staffList = (List<Staff>)session.getAttribute("staffList");
-            if(staffList != null){
-        %>
-        
-        <table border="1">
-            <tr>
-                <th>Staff ID</th>
-                <th>Staff Name</th>
-                <th>Staff Email</th>
-                <th>Staff status</th>
-            </tr>
-            <% for(Staff s:staffList){
-                if(s.getStaffid().equals(Staff.ADMIN_ID)){
-                    continue;
-                }
-            %>
-            <tr>
-                <td><%=s.getStaffid()%></td>
-                <td><%=s.getName()%></td>
-                <td><%=s.getEmail()%></td>
-                <td>
-                <% if(s.getStatus() == Staff.ACTIVE_STATUS){ %>
-                Active
-                <% } else { %>
-                Verifying
-                <% } %>
-                </td>
-            </tr>            
-            <% } %>
-        </table>
-        <% } else { %>
-        <p>Empty Staff Record</p>
-        <% } %>
-        
+        <div class="container mt-5">
+            <div class="dashBoard">
+                <div class="card card_deco"  style="border: 2px #FFBE00 solid;">
+                    <div class="card-body">
+                        <table class="table table-striped tableDeco" border="1">
+                            <%
+                                List<Staff> staffList = (List<Staff>)session.getAttribute("staffList");
+                                if(staffList != null){
+                            %>
+                            <tr style="background-color: #FFBE00">
+                                <th>Staff ID</th>
+                                <th>Staff Name</th>
+                                <th>Staff Email</th>
+                                <th>Staff status</th>
+                            </tr>
+                            <% for(Staff s:staffList){
+                                if(s.getStaffid().equals(Staff.ADMIN_ID)){
+                                    continue;
+                                }
+                            %>
+                            <tr>
+                                <td><%=s.getStaffid()%></td>
+                                <td><%=s.getName()%></td>
+                                <td><%=s.getEmail()%></td>
+                                <td>
+                                    <% if(s.getStatus() == Staff.ACTIVE_STATUS){ %>
+                                    Active
+                                    <% } else { %>
+                                    Verifying
+                                    <% } %>
+                                </td>
+                            </tr>            
+                            <% } %>
+                        </table>
+                        <% } else { %>
+                        <p>Empty Staff Record</p>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
         <%@include file="/layout/footer.jsp"%>
     </body>
 </html>
