@@ -24,7 +24,7 @@
         <%@include file="/layout/header.jsp"%>      
 
         <div class="mainBody mt-5" style="display: flex;
-             align-content: center; flex-wrap: wrap">
+             align-content: center; flex-wrap: wrap; margin-bottom: 270px; ">
 
             <%
             if(verificationStatus != null){

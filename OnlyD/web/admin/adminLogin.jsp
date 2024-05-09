@@ -25,7 +25,7 @@
         <%@include file="/layout/header.jsp"%>  
         
         <div class="mainBody mt-5" style="display: flex;
-             align-content: center; flex-wrap: wrap">
+             align-content: center; flex-wrap: wrap; margin-bottom: 270px; ">
             <div class="loginCard container">
                 <div class="card card_deco" >
                     <h5 class="card-header yellow_black">Admin Login page</h5>

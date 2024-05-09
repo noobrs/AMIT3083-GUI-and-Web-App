@@ -28,7 +28,7 @@
         %>
         
         <div class="mainBody mt-5" style="display: flex;
-             align-content: center; flex-wrap: wrap">
+             align-content: center; flex-wrap: wrap; margin-bottom: 150px; ">
             <div class="loginCard container">
                 <div class="card card_deco">
                     <h5 class="card-header yellow_black">Customer Login page</h5>
