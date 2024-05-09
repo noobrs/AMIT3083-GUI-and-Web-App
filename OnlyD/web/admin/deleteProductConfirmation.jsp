@@ -1,4 +1,3 @@
-<%@include file="staffAuthentication.jsp"%>
 <%@page import="entity.Product"%>
 <html>
     <head></head>
@@ -34,7 +33,7 @@
         </form>
         <%} else {%>
         Product ${product.id} not found
-        <p><a href="../index.html">Back to home page</a></p>
+        <p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>
         <%}%>
         
         <%@include file="/layout/footer.jsp"%>

@@ -25,14 +25,6 @@
                                 <span class="input-group-text yellow_black">Category Name</span>
                                 <input class="form-control" type="text" name="name" pattern="^(?i)(?!.\bnull\b).$" title="The word 'NULL' is not allowed.">
                             </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text yellow_black">Status</span>
-                                <select class="form-select" name="status">
-                                    <option value="1"> Active
-                                    <option value="0"> Deleted
-                                </select>
-                            </div>
-
                             <div>
                                 <input class="btn yellow_black me-2" type="submit" value="Add">
                                 <input class="btn reset_dlt_btn" type="reset" value="Reset"> 

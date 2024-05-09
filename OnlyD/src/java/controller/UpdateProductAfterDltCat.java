@@ -62,7 +62,7 @@ public class UpdateProductAfterDltCat extends HttpServlet {
                 }
             }
 
-            response.sendRedirect("staff/deleteCategoryConfirm.jsp");
+            response.sendRedirect("admin/deleteCategoryConfirm.jsp");
 
         } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());

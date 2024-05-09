@@ -1,5 +1,3 @@
-<%@include file="staffAuthentication.jsp"%>
-
 <%@include file="/layout/header.jsp"%>
 <h3>
     <%
@@ -10,6 +8,6 @@
           out.println("Error: Unable to delete Product.");
     %>
 </h3>
-<p><a href="../index.html">Back to home page</a></p>
+<p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>
 
 <%@include file="/layout/footer.jsp"%>

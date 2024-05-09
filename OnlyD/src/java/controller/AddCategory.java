@@ -34,7 +34,6 @@ public class AddCategory extends HttpServlet {
         HttpSession session = request.getSession();
         try{
             String name = request.getParameter("name");
-            int status = Integer.parseInt(request.getParameter("status"));
             CategoryService categoryService = new CategoryService(em);
             List<Category> catList = categoryService.findByStatus(1);
             
@@ -44,7 +43,7 @@ public class AddCategory extends HttpServlet {
                 }
             }
             
-            Category category = new Category(name, status);
+            Category category = new Category(name, 1);
             utx.begin();
             boolean success = categoryService.addCategory(category);
             utx.commit();

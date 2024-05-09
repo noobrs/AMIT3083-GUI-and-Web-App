@@ -39,7 +39,7 @@ public class SearchCategory extends HttpServlet {
 
             session.setAttribute("category", category);
             if (button.equals("Delete")) {
-                response.sendRedirect("staff/deleteCategoryConfirmation.jsp");
+                response.sendRedirect("admin/deleteCategoryConfirmation.jsp");
             } else {
                 response.sendRedirect("staff/updateCategoryConfirmation.jsp");
             }

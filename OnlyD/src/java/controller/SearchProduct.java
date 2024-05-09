@@ -42,7 +42,7 @@ public class SearchProduct extends HttpServlet {
 //            session.setAttribute("category", category);
             //session.setAttribute("staff", staff);
             if (button.equals("Delete")) {
-                response.sendRedirect("staff/deleteProductConfirmation.jsp");
+                response.sendRedirect("admin/deleteProductConfirmation.jsp");
             } else {
                 session.setAttribute("path","staff/updateProductConfirmation.jsp");
                 response.sendRedirect("GetCategoryForProduct");

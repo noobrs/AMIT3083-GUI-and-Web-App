@@ -69,7 +69,7 @@
         <%  }
           } else { %>
         Staff not found
-        <p><a href="../index.jsp">Back to home page</a></p>
+        <p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>
         <%
             }
         %>

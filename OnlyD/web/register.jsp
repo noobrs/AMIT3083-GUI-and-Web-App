@@ -1,8 +1,3 @@
-<%-- 
-    Document   : RegisterPage
-    Created on : Apr 19, 2024, 10:42:45 AM
-    Author     : danie
---%>
 <%@page import="entity.Customer"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

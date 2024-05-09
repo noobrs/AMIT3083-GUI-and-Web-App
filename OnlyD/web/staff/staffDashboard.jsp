@@ -10,11 +10,6 @@
 <jsp:useBean id="staff" class="entity.Staff" scope="session"></jsp:useBean>
 
 <%@include file="staffAuthentication.jsp"%>
-<%
-//    if(request.isUserInRole("AdminRole")){
-//        request.getRequestDispatcher("/admin/adminDashboard.jsp").forward(request, response);
-//    }
-%>
 
 <!DOCTYPE html>
 <html>
@@ -111,9 +106,6 @@
             </div>
         </div>
 
-
-
-
-            <%@include file="/layout/footer.jsp"%>
+        <%@include file="/layout/footer.jsp"%>
     </body>
 </html>

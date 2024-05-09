@@ -45,7 +45,7 @@ public class DeleteProduct extends HttpServlet {
             utx.commit();
             
             session.setAttribute("successDltProduct", success);
-            response.sendRedirect("staff/deleteProductConfirm.jsp");
+            response.sendRedirect("admin/deleteProductConfirm.jsp");
         } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());
         } 
