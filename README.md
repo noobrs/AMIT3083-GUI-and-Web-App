@@ -10,7 +10,7 @@ Progress
 3.3 Once you have created the database, right click to connect it and click the ‘execute command’.
 3.4 Once you reach that page please copy the sql query below and run it.
 
-4. Start the glassfish server, right click the glassfish and click the view domain admin console. You will be redirected to a page, look at the left side, click default config, then click security, click the realms, double click the admin-realms, click manage user, and click the new. Then key in the User-ID as 'admin', Group List, New Password and Confirm Password and click OK. Then the admin is added. 
+4. Start the glassfish server, right click the glassfish and click the view domain admin console. You will be redirected to a page, look at the left side, click server-config, then click security, click the realms, double click the admin-realms, click manage user, and click the new. Then key in the User-ID as 'admin', Group List, New Password and Confirm Password and click OK. Then the admin is added. 
 
 5. Please make sure the image is in the folder with path (OnlyD\web\image) .
 
