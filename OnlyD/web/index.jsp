@@ -7,7 +7,8 @@
 <%
       List<Product> productList = (List<Product>)session.getAttribute("productListImage");
       List<Promotion> promotionList = (List<Promotion>)session.getAttribute("promotionListHome");
-    if(productList == null || promotionList == null){
+    
+      if(productList == null || promotionList == null){
         response.sendRedirect("SearchDetailForHome"); 
     }
 %>

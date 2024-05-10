@@ -38,7 +38,7 @@ public class SearchProductByUser extends HttpServlet {
             int tempId = -1;   
             
             // if direct search from header, the cat is null
-            List<Category> categoryListT = (List)session.getAttribute("categoryListUser");
+            List<Category> categoryListT = (List<Category>)session.getAttribute("categoryListUser");
             if(categoryListT == null){
                 categoryListT = categoryService.findAll();
                 session.setAttribute("categoryListUser", categoryListT);

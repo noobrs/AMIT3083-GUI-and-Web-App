@@ -39,8 +39,9 @@ public class ViewProduct extends HttpServlet {
             session.setAttribute("productListUser", productList);
             session.setAttribute("categoryListUser", categoryList);
             
-            //response.sendRedirect("user/productlist.jsp");
-            request.getRequestDispatcher("/user/productlist.jsp").forward(request, response);
+            response.sendRedirect("user/productlist.jsp");
+            return;
+            //request.getRequestDispatcher("/user/productlist.jsp").forward(request, response);
         } catch (Exception ex) {
             response.getWriter().println(ex.getMessage());
             ex.printStackTrace();

@@ -18,8 +18,9 @@
           List<Category> categoryList = (List<Category>)session.getAttribute("categoryListUser");
           
           if(productList == null || categoryList == null){
-            //response.sendRedirect("../ViewProduct");
-            request.getRequestDispatcher("/ViewProduct").forward(request, response);
+            response.sendRedirect("../ViewProduct");
+            return;
+            //request.getRequestDispatcher("/ViewProduct").forward(request, response);
             }
           
           String actionMsg = (String)session.getAttribute("actionMsg");
