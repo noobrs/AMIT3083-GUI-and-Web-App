@@ -39,6 +39,7 @@
             });
 
         </script>
+        <link rel="shortcut icon" type="image/x-icon" href="/OnlyD/layout/favicon_onlyD.ico">
     </head>
     <body>
         <%

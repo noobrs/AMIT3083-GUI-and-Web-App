@@ -1,6 +1,8 @@
 <%@page import="entity.Product"%>
 <html>
-    <head></head>
+    <head>
+        <link rel="shortcut icon" type="image/x-icon" href="/OnlyD/layout/favicon_onlyD.ico">
+    </head>
     <body>
 
         <%@include file="/layout/header.jsp"%>

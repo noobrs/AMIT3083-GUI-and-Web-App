@@ -4,6 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Add Promotion</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/OnlyD/layout/favicon_onlyD.ico">
     </head>
     <body>
         <%@include file="/layout/header.jsp"%>

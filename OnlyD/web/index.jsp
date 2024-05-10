@@ -18,7 +18,7 @@
         <link rel="shortcut icon" type="image/x-icon" href="/OnlyD/layout/favicon_onlyD.ico">
     </head>
     <body>
-        <%@include file="layout/header.jsp"%> <%-- testestets --%>
+        <%@include file="layout/header.jsp"%>
         <div class="container">
 
             <%

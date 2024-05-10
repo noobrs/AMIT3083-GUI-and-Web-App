@@ -7,6 +7,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Product List</title>
+        <link rel="shortcut icon" type="image/x-icon" href="/OnlyD/layout/favicon_onlyD.ico">
     </head>
     <body>
 

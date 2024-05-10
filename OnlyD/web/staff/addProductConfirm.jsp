@@ -1,4 +1,9 @@
 <%@include file="staffAuthentication.jsp"%>
+<html>
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="/OnlyD/layout/favicon_onlyD.ico">
+</head>
+<body>
 <%@include file="/layout/header.jsp"%>
 <div class="container mt-5">
     <div class="dashBoard">
@@ -20,3 +25,5 @@
     </div>
 </div>
 <%@include file="/layout/footer.jsp"%>
+</body>
+</html>
