@@ -11,6 +11,13 @@
 
 <%@include file="staffAuthentication.jsp"%>
 
+<%
+    if((Boolean)session.getAttribute("staffVerifying") != null){
+    session.setAttribute("errorMessage", "Please verify your information first!");
+    response.sendRedirect("../staff/firstTimeLogin.jsp");
+    }
+%>
+
 <!DOCTYPE html>
 <html>
     <head>

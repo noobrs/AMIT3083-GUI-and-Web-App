@@ -80,6 +80,7 @@ public class StaffVerification extends HttpServlet {
             session.removeAttribute("errorMessage");
             session.removeAttribute("enteredStaffName");
             session.removeAttribute("enteredStaffEmail");
+            session.removeAttribute("staffVerifying");
             session.setAttribute("verificationStatus", "Verify Successfully!");
             response.sendRedirect("staff/staffLogin.jsp");
 

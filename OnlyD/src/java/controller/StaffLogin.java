@@ -39,27 +39,42 @@ public class StaffLogin extends HttpServlet {
             staff = staffService.findStaffByStaffId(staffID);
 
             // unable to find the staff
-            if (staff == null || (!staff.getPassword().equals(password) && staff.getStatus() != Staff.VERIFICATION_STATUS)) {
-                throw new IllegalArgumentException("Login fail! Incorrect username or password!");
-                                
-            } else if (staff.getStatus() == Staff.VERIFICATION_STATUS) {
-                
-                session.setAttribute("staff", staff);
-                session.setAttribute("isStaff", true);
-                response.sendRedirect("staff/firstTimeLogin.jsp");
-                
-            } else {
-                
-                session.setAttribute("staff", staff);
-                session.setAttribute("isStaff", true);
-                session.setAttribute("loginSucccessMsg", "Staff Login Successfully!");
-                response.sendRedirect("SearchDetailForHome");
+//            if (staff == null || (!staff.getPassword().equals(password) && staff.getStatus() != Staff.VERIFICATION_STATUS)) {
+//                throw new IllegalArgumentException("Login fail! Incorrect username or password!");
+//                                
+//            } else if ((staff.getStatus() == Staff.VERIFICATION_STATUS) && (staff.getPassword().equals(password))) {
+//                
+//                session.setAttribute("staff", staff);
+//                session.setAttribute("isStaff", true);
+//                response.sendRedirect("staff/firstTimeLogin.jsp");
+//                
+//            } else {
+//                
+//                session.setAttribute("staff", staff);
+//                session.setAttribute("isStaff", true);
+//                session.setAttribute("loginSucccessMsg", "Staff Login Successfully!");
+//                response.sendRedirect("SearchDetailForHome");
+//            }
+            if (staff != null) {
+                if ((staff.getPassword().equals(password) && staff.getStatus() == Staff.ACTIVE_STATUS)) {
+                    session.setAttribute("staff", staff);
+                    session.setAttribute("isStaff", true);
+                    session.setAttribute("loginSucccessMsg", "Staff Login Successfully!");
+                    response.sendRedirect("SearchDetailForHome");
+                } else if ((staff.getStatus() == Staff.VERIFICATION_STATUS) && (staff.getPassword().equals(password))) {
+                    session.setAttribute("staff", staff);
+                    session.setAttribute("isStaff", true);
+                    session.setAttribute("staffVerifying", true);
+                    response.sendRedirect("staff/firstTimeLogin.jsp");
+                } else {
+                    throw new IllegalArgumentException("Login fail! Incorrect username or password!");
+                }
             }
 
         } catch (IllegalArgumentException e) {
             session.setAttribute("errorMessage", e.getMessage());
             session.setAttribute("enteredStaffID", staffID);
-            response.sendRedirect("staff/staffLogin.jsp");           
+            response.sendRedirect("staff/staffLogin.jsp");
         } catch (Exception e) {
             session.setAttribute("exceptionMsg", e.getMessage());
         }

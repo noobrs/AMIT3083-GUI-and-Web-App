@@ -29,14 +29,6 @@
         <div class="mainBody mt-5" style="display: flex;
              align-content: center; flex-wrap: wrap">
 
-            <%
-            if(verificationStatus != null){
-            %>
-            <h4 style="text-align: center"><%= verificationStatus %></h4>
-            <%
-                session.removeAttribute("verificationStatus");
-                }
-            %>
             <div class="loginCard container">
                 <div class="card card_deco" >
                     <h1 class="card-header yellow_black">Staff Login page</h1>
@@ -56,6 +48,14 @@
                                 <input class="btn reset_dlt_btn" type="reset" value="Reset">                              
                             </div>
                         </form>
+                        <%
+                            if(verificationStatus != null){
+                        %>
+                        <h4 style="text-align: center"><%= verificationStatus %></h4>
+                        <%
+                            session.removeAttribute("verificationStatus");
+                            }
+                        %>
                         <% if(errorMessage != null) { %>    
                         <div class="error-message" style="color: red;">
                             <%= errorMessage %>

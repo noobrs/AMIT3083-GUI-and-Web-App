@@ -44,7 +44,11 @@
                         <div style="display: flex; justify-content: center; flex-wrap: nowrap">
                             <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                             <a class="btn yellow_black me-2" href="../staff/addCategory.jsp">Add Category</a>
+                            <% if(request.isUserInRole("AdminRole")) { %>
                             <a class="btn yellow_black me-2" href="../LoadCategoryList">Delete/Update Category</a>
+                            <% } else { %>
+                            <a class="btn yellow_black me-2" href="../LoadCategoryList">Update Category</a>
+                            <% } %>
                         </div>
                     </div>
 
