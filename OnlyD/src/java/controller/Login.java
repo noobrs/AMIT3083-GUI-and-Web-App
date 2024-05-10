@@ -52,7 +52,7 @@ public class Login extends HttpServlet {
                 if (request.isUserInRole("AdminRole") || (Boolean) session.getAttribute("isStaff") != null) {
                     session.invalidate();
                     session = request.getSession(true);
-                    loginSucccessMsg += "<br>Your Staff/Admin Account Will Be Logout";
+                    loginSucccessMsg += "<br>Your Staff/Admin Account Will Be Logout!";
                     
                 }
 
