@@ -13,8 +13,13 @@
         <%@include file="/layout/header.jsp"%>
         <%
           int i = 0; 
-          List<Product> productList = (List)session.getAttribute("productListUser");
-          List<Category> categoryList = (List)session.getAttribute("categoryListUser");
+          List<Product> productList = (List<Product>)session.getAttribute("productListUser");
+          List<Category> categoryList = (List<Category>)session.getAttribute("categoryListUser");
+          
+          if(productList == null || categoryList == null){
+            //response.sendRedirect("../ViewProduct");
+            request.getRequestDispatcher("/ViewProduct").forward(request, response);
+            }
           
           String actionMsg = (String)session.getAttribute("actionMsg");
         %>
@@ -50,7 +55,7 @@
                     <p><%=actionMsg%></p>
                     <% session.removeAttribute("actionMsg"); } %>
                     <div class="row row-cols-3" style="margin-left: 30px">
-                        <% if(!productList.isEmpty() || productList != null){ %>
+                        <% if(!productList.isEmpty()){ %>
 
                         <% 
                             for (Product product: productList){ 
@@ -87,9 +92,9 @@
                         %>
 
                         <%
-                            } else{
+                            } else {
                         %>
-                        No product found!
+                        <div>No product found!</div>
                         <% } %>
                     </div>
                 </div>

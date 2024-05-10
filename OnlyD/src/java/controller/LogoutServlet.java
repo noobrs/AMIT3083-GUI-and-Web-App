@@ -26,9 +26,13 @@ public class LogoutServlet extends HttpServlet {
         HttpSession session = request.getSession();
         if(session != null){
             session.invalidate();
+            session = request.getSession(true);
+            session.setAttribute("logoutSuccess", true);
+            response.sendRedirect("logoutSuccess.jsp");
+        } else{
+            response.sendRedirect("SearchDetailForHome");
         }
         
-        response.sendRedirect("/OnlyD");
     }
 
 }

@@ -23,7 +23,7 @@
             <div class="RegisterCard container">
                 <div class="card card_deco" style="width: 50%">
                     <div class="card-header yellow_black">
-                        <h5>Staff Registration</h5>
+                        <h1>Staff Registration</h1>
                     </div>
                     <div class="card-body">
                         <form action="../staffRegister" method="POST">

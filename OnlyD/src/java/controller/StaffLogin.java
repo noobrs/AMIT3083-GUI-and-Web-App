@@ -52,7 +52,7 @@ public class StaffLogin extends HttpServlet {
                 
                 session.setAttribute("staff", staff);
                 session.setAttribute("isStaff", true);
-                response.sendRedirect("staff/staffDashboard.jsp");
+                response.sendRedirect("SearchDetailForHome");
             }
 
         } catch (IllegalArgumentException e) {

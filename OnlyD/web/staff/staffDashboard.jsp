@@ -16,6 +16,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Dashboard</title>
+        
     </head>
     <body>        
         <%@include file="/layout/header.jsp"%>
@@ -34,7 +35,7 @@
                 </div>
                 <div class="card-body">
                     <% if((String)session.getAttribute("statusMsg") != null) { %>
-                    <p><%=(String)session.getAttribute("statusMsg")%></p>
+                    <h4 style="color: red; text-align: center"><%=(String)session.getAttribute("statusMsg")%></h4>
                     <% 
                         session.removeAttribute("statusMsg");
                         } %>

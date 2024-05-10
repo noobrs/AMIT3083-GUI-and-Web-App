@@ -8,7 +8,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="/layout/meta.html"%>
-        <link rel="shortcut icon" type="image/x-icon" href="<%=request.getRequestURL().toString()%>layout/favicon_onlyD.ico">
+        
     </head>
     <body>
         <header style="top: 0; position:relative; width: 100%;">
@@ -67,15 +67,15 @@
                     String userName = "";
 
                     if(request.isUserInRole("AdminRole")){
-                    userName = "Admin";
-                    } else if(staffHead != null){
-                    userName = staffHead.getName();
-                    } else if(custHead != null){
-                    userName = custHead.getName();
+                    userName = ", Admin";
+                    } else if(staffHead != null &&(Boolean) session.getAttribute("isStaff") != null){
+                    userName = " Staff, " + staffHead.getName();
+                    } else if(custHead != null && (Boolean) session.getAttribute("isCustomer") != null){
+                    userName = " User, " + custHead.getName();
                     }
                     %>
                     
-                        Welcome, <%=userName%> | <a href="<%=request.getContextPath()%>/logout">Logout</a> 
+                        Welcome<%=userName%> | <a href="<%=request.getContextPath()%>/logout">Logout</a> 
 
                     <% } else { %>
 

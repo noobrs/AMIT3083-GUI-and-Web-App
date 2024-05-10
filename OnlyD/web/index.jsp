@@ -15,10 +15,22 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title><%= application.getInitParameter("storeName")%></title>
+
     </head>
     <body>
         <%@include file="layout/header.jsp"%>
         <div class="container">
+
+            <%
+            String loginSucccessMsg = (String)session.getAttribute("loginSucccessMsg");
+            if(loginSucccessMsg != null){
+            %>
+            <h4 style="text-align: center"><%= loginSucccessMsg %></h4>
+            <%
+                session.removeAttribute("loginSucccessMsg");
+                }
+            %>
+
             <div id="carouselExampleIndicators" class="carousel carousel-dark slide" data-bs-ride="carousel" style="margin: 50px 0 50px 0">
                 <div class="carousel-indicators">
                     <% if(productList != null){
@@ -49,7 +61,7 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
-            </div>
+                          </div>
 
 
             <h1 style="color:#FFBE00">Use promotion coupon code for discounts !</h1>

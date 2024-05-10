@@ -47,9 +47,13 @@ public class Login extends HttpServlet {
                 throw new IllegalArgumentException("Login fail! Incorrect username or password!");
             } else {
                 
+                String loginSucccessMsg = "Login Successfully!";
+                
                 if (request.isUserInRole("AdminRole") || (Boolean) session.getAttribute("isStaff") != null) {
                     session.invalidate();
                     session = request.getSession(true);
+                    loginSucccessMsg += "<br>Your Staff/Admin Account Will Be Logout";
+                    
                 }
 
                 cust.initializeProductcartList();  // initialize lazy relation to productcart
@@ -57,7 +61,8 @@ public class Login extends HttpServlet {
                 session.setAttribute("customer", cust);
                 cust.setProductcartList(cartService.getCartItems(cust.getCustomerID()));
                 session.setAttribute("isCustomer", true);
-                response.sendRedirect("index.jsp");
+                session.setAttribute("loginSucccessMsg", loginSucccessMsg);
+                response.sendRedirect("SearchDetailForHome");
             }
 
         } catch (IllegalArgumentException e) {

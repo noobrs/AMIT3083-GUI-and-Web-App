@@ -28,7 +28,7 @@
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">
                 <div class="card card_deco" >
-                    <h5 class="card-header yellow_black">Admin Login page</h5>
+                    <h1 class="card-header yellow_black">Admin Login page</h1>
                     <div class="card-body">
                         <form action="j_security_check" method="POST">
                             <h5 class="card-title" style="text-align: left">Welcome, please enter your:</h5>

@@ -50,7 +50,7 @@
                             <span class="input-group-text yellow_black">Shipping address : </span>
                             <textarea class="form-control" type="text" name="price" aria-label="With textarea"
                                       readonly><%= selectedOrder.getShippingaddress()%></textarea>
-                        </div>
+                                      </div>
                     </div>
                     <div class=" mb-2"> 
                         <h4 style="text-align: left">Product Details: </h4>
@@ -103,7 +103,14 @@
                             <input class="form-control" type="text" name="price"
                                    value="<%= selectedOrder.getTotal()%>" readonly>
                         </div>
+                        <% } else { %>
+                        Empty Product Order!
                         <% } %>
+
+                        <div style="display: flex; justify-content: center; flex-wrap: nowrap; margin:20px;">
+                            <a class="btn yellow_black me-2" href="../ViewOrderHistory">Back</a>
+                            <a class="btn yellow_black me-2" href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Home</a>
+                        </div> 
                     </div>
                 </div>
             </div>

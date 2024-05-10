@@ -18,10 +18,9 @@
         String statusMsg = (String)session.getAttribute("statusMsg");
         String errorMessage = (String)session.getAttribute("errorMessage");
         String enteredUsername = (String)session.getAttribute("enteredUsername");
-        
-        if(statusMsg != null){
         %>
-        <div><%= statusMsg %></div>
+        <% if(statusMsg != null){ %>
+        <h4 style="color: red; text-align: center"><%= statusMsg %></h4>
         <%
             session.removeAttribute("statusMsg");
             }
@@ -31,7 +30,7 @@
              align-content: center; flex-wrap: wrap">
             <div class="loginCard container">
                 <div class="card card_deco">
-                    <h5 class="card-header yellow_black">Customer Login page</h5>
+                    <h1 class="card-header yellow_black">Customer Login page</h1>
                     <div class="card-body">
                         <form action="<%=request.getContextPath()%>/Login">
                             <h5 class="card-title" style="text-align: left">Welcome, please enter your:</h5>

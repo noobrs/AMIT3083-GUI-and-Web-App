@@ -31,14 +31,14 @@
             <%
             if(verificationStatus != null){
             %>
-            <div><%= verificationStatus %></div>
+            <h4 style="text-align: center"><%= verificationStatus %></h4>
             <%
                 session.removeAttribute("verificationStatus");
                 }
             %>
             <div class="loginCard container">
                 <div class="card card_deco" >
-                    <h5 class="card-header yellow_black">Staff Login page</h5>
+                    <h1 class="card-header yellow_black">Staff Login page</h1>
                     <div class="card-body">
                         <form action="../StaffLogin">
                             <h5 class="card-title" style="text-align: left">Welcome, please enter your:</h5>

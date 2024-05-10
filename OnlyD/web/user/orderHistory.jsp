@@ -33,7 +33,6 @@
                     <th>Total</th>
                     <th></th>
                 </tr>
-                <% //for(Orders order : orderList){ %>
 
                 <% for(int i = orderList.size()-1; i >= 0; i--){ %>
                 <tr>
@@ -43,14 +42,17 @@
                     <td><a href="../ViewOrderDetails?orderidD=<%=orderList.get(i).getOrderid()%>">Details</a></td>
                 </tr>
 
-
                 <% } %>
             </table>
 
             <% } else { %>
             <p>no order history found!</p>
             <% } %>
+
+            <div style="display: flex; justify-content: center; flex-wrap: nowrap; margin:20px;">
+                <a class="btn yellow_black me-2" href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Home</a>
+            </div> 
         </div>
-    <%@include file="/layout/footer.jsp"%>
-</body>
+        <%@include file="/layout/footer.jsp"%>
+    </body>
 </html>
