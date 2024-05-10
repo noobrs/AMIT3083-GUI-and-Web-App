@@ -1,25 +1,20 @@
 Progress
-Extracts the zip file in your downloads and puts it to any folder you prefer.
+1. Extracts the zip file in your downloads and puts it to any folder you prefer.
 
-Using netbean to open the web app.
-
+2. Using netbean to open the web app.
 2.1 Ensure that your libraries have JDK 11. Otherwise, you will need to add the derby.client.jar yourself.
 
-Go to service and start your glass fish server.
-
+3. Go to service and start your glass fish server.
 3.1 And go database, right click Java db to create database.
-
 3.2 Next you will go to this page, you can enter nbuser as the username and password. For the database name please write onlyddb in lowercase.
-
 3.3 Once you have created the database, right click to connect it and click the ‘execute command’.
-
 3.4 Once you reach that page please copy the sql query below and run it.
 
-Start the glassfish server, right click the glassfish and click the view domain admin console. You will be redirected to a page, look at the left side, click default config, then click security, click the realms, double click the admin-realms, click manage user, and click the new. Then key in the User-ID, Group List, New Password and Confirm Password and click OK. Then the admin is added. 
+4. Start the glassfish server, right click the glassfish and click the view domain admin console. You will be redirected to a page, look at the left side, click default config, then click security, click the realms, double click the admin-realms, click manage user, and click the new. Then key in the User-ID as 'admin', Group List, New Password and Confirm Password and click OK. Then the admin is added. 
 
-Please make sure the image is in the folder with path (OnlyD\web\image) .
+5. Please make sure the image is in the folder with path (OnlyD\web\image) .
 
-Once you have done all the setup above, you should be able to start running our web app now.
+6. Once you have done all the setup above, you should be able to start running our web app now.
 
 SQL Query 
 
@@ -241,9 +236,3 @@ INSERT INTO ProductOrder (OrderID, ProductID, Quantity) VALUES
 (4, 4, 5);
 INSERT INTO ProductOrder (OrderID, ProductID, Quantity) VALUES 
 (5, 5, 5);
-
-
-
-Issue might face
-
-How to add derby.client.jar
