@@ -31,11 +31,6 @@
             
             %>
 
-            <% if(errorMsg != null) { %>
-            <p><%= errorMsg %></p>
-            <% 
-            session.removeAttribute("checkoutErrorMsg"); } %>
-
             <%    
                 if(selected != null){
             %>
@@ -67,7 +62,11 @@
     }
                     %>                
                 </table>
-                <% } %>
+                <% } else { 
+                    session.setAttribute("errorMessage", "No Selected Product!");
+                    response.sendRedirect("../ViewCart");
+                    return;
+                   } %>
 
                 <% 
                     if(promoApplied != null){
@@ -85,7 +84,10 @@
                     <div class="card" style="width: 50%; text-align: center; border: none;">
                         <div>
                             <div class="card-body">
-
+                                <% if(errorMsg != null) { %>
+                                <h4 style="text-align: center"><%= errorMsg %></h4>
+                                <% 
+                                    session.removeAttribute("checkoutErrorMsg"); } %>
 
                                 <div class="input-group mb-3">
                                     <span class="input-group-text yellow_black">Promotion Code</span>

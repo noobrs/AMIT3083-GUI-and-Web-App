@@ -52,6 +52,7 @@ public class StaffLogin extends HttpServlet {
                 
                 session.setAttribute("staff", staff);
                 session.setAttribute("isStaff", true);
+                session.setAttribute("loginSucccessMsg", "Staff Login Successfully!");
                 response.sendRedirect("SearchDetailForHome");
             }
 
@@ -61,7 +62,6 @@ public class StaffLogin extends HttpServlet {
             response.sendRedirect("staff/staffLogin.jsp");           
         } catch (Exception e) {
             session.setAttribute("exceptionMsg", e.getMessage());
-            response.sendError(500);
         }
     }
 

@@ -68,7 +68,7 @@
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black">Price (RM)</span>
                                 <input class="form-control" type="number" name="price"
-                                       value="<%=String.format("%.2f", product.getPrice())%>" min="0.00" step="0.01" required>
+                                       value="<%=String.format("%.2f", product.getPrice())%>" min="0.01" step="0.01" required>
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black">Stock</span>

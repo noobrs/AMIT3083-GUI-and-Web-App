@@ -56,7 +56,7 @@
                                 <span class="input-group-text yellow_black" id="basic-addon1">
                                     Email
                                 </span>
-                                <input class="form-control" type="text" name="staffEmail" value="<%= enteredStaffEmail %>">
+                                <input class="form-control" type="email" name="staffEmail" value="<%= enteredStaffEmail %>">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text yellow_black" id="basic-addon1">
@@ -74,18 +74,21 @@
                                 <a class="btn yellow_black me-2" href="../staff/staffDashboard.jsp">Dashboard</a>
                                 <input class="btn yellow_black me-2" type="submit" value="Update Staff">
                             </div>
-  
+
                         </form> 
 
                     </div>
+                    <% if(errorMessage != null){ %>
+                    <div class="error-message" style="color: red;"><%= errorMessage %></div> 
+                    <%  
+                        session.removeAttribute("errorMessage");
+                        } %>
                 </div>
             </div>
         </div>
 
-        <% if(errorMessage != null){ %>
-        <div><%= errorMessage %></div> 
-        <%  }
-          } else { %>
+
+        <% } else { %>
         Staff not found
         <p><a href="<%=request.getContextPath() + "/" + application.getInitParameter("indexServlet")%>">Back to home page</a></p>
         <%

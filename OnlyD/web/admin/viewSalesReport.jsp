@@ -53,7 +53,7 @@
                 List<Product> prodSoldList = (List<Product>)session.getAttribute("prodSoldList");
                     %>
                     <tr><td>
-                            <div style="width:100%; height:600px; overflow:auto;">
+                            <div style="width:100%; max-height:600px; overflow:auto;">
                                 <table class="table table-striped tableDeco">
                                     <tr>
                                         <th>Product Sold</th>

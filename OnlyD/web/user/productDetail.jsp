@@ -28,6 +28,9 @@
                         <%= p.getDescription() %> 
                     </p>
                     <h3>RM <%= String.format("%.2f", p.getPrice()) %></h3>
+                    <% if(p.getStock() == 0) { %>
+                    <h5>Out of Stock!</h5>
+                    <% } else { %>
                     <h5>In-stock: <%= p.getStock() %></h5>
                     <div> 
                         <% if((Boolean)session.getAttribute("isStaff") == null && !request.isUserInRole("AdminRole")) { %>
@@ -38,7 +41,11 @@
                         </form>
                         <% } %>
                     </div>
+                    <% } %>
 
+                    <div style="display: flex; flex-wrap: nowrap">
+                        <a class="btn me-2" style="background-color: #25182E; color: #FFFFFF;" href="../ViewProduct">Back to Product List</a>
+                    </div> 
                 </div>
             </div>
 

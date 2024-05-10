@@ -29,21 +29,23 @@
                             <span class="input-group-text yellow_black">
                                 Card Number : 
                             </span>
-                            <input class="form-control" type="text" id="cardNumber" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="^(\d{4}[-\s]?){3}\d{4}$" required>
+                            <input class="form-control" type="text" id="cardNumber" name="cardNumber" placeholder="1111-2222-3333-4444" pattern="\d{4}-\d{4}-\d{4}-\d{4}" title="Please enter a valid card number with spaces between every four digits"
+                   maxlength="19" minlength="19" required>
                         </div>
                         <br>
                         <div class="input-group mb-1">
                             <span class="input-group-text yellow_black">
                                 Expiry :
                             </span>
-                            <input class="form-control" type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" required>
+                            <input class="form-control" type="text" id="cardExpiry" name="cardExpiry" placeholder="MM/YY" pattern="^(0[1-9]|1[0-2])\/([0-9]{2})$" title="Please enter a valid expiry date in the format MM/YY" 
+       maxlength="5" minlength="5" required>
                         </div>
                         <br>
                         <div class="input-group mb-1">
                             <span class="input-group-text yellow_black">
                                 CVV :
                             </span>
-                            <input class="form-control" type="text" id="CVC" name="CVC" required placeholder="123" maxlength="3" minlength="3">
+                            <input class="form-control" type="text" id="CVC" name="CVC" required placeholder="123" title="Please enter a valid 3-digit CVV code" maxlength="3" minlength="3">
                         </div>
                         <br>
                         <a href="payment.jsp" class="btn yellow_black">Back</a>

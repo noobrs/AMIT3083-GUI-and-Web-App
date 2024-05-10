@@ -54,7 +54,7 @@
                 <br/><br/>
                 <div class="col-9">
                     <% if(actionMsg != null){ %>
-                    <p><%=actionMsg%></p>
+                    <h4 style="color: red; text-align: center"><%=actionMsg%></h4>
                     <% session.removeAttribute("actionMsg"); } %>
                     <div class="row row-cols-3" style="margin-left: 30px">
                         <% if(!productList.isEmpty()){ %>
@@ -96,7 +96,7 @@
                         <%
                             } else {
                         %>
-                        <div>No product found!</div>
+                        <h4 style="text-align: center">No product found!</h4>
                         <% } %>
                     </div>
                 </div>

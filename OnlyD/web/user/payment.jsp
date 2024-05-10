@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="custAuthentication.jsp"%>
+<%@page import="java.util.List, entity.Productcart" %>
 <!DOCTYPE html>
 <html>
     <head>
