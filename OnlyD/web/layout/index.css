@@ -1,0 +1,88 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 19, 2024, 11:32:25 AM
+    Author     : danie
+*/
+
+.mainBody{
+    height: 100%;
+}
+
+.loginBtn>a{
+    text-decoration: none;
+    color: black;
+}
+.loginBtn>a:hover{
+    color: window;
+}
+
+.loginCard, .RegisterCard, .dashBoard{
+    display: flex;
+    justify-content: center;
+}
+
+.webPage_header{
+    background-color: #FFBE00 !important;
+    color: #FFFFFF !important;
+}
+
+.yellow_black{
+    background-color: #FFBE00;
+    color: #25182E;
+    border: none;
+}
+
+.black_yellow_border{
+    border: 2px #FFBE00 solid;
+    background-color: #25182E;
+    color: #FFBE00;
+    border-radius: 20px;
+    height:50px ;
+}
+
+.dashBoardBtn{
+    width: 250px;
+    height: 40px;
+}
+
+.dashBoardBtn:hover{
+    background-color: #CA1F3D;
+    border:2px #FFBE00 solid;
+    color: #FFFFFF;
+}
+
+.tableDeco{
+    border: 2px #FFBE00 solid;
+    background-color: window;
+}
+
+.cart_order{
+    text-decoration: none !important;
+    color: #25182E !important;
+}
+
+.reset_dlt_btn{
+    background-color: #CA1F3D;
+    color: #FFFFFF;
+}
+
+.card_deco{
+    width: 50%;
+    border: 2px #FFBE00 solid;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+
+.filter_btn{
+    background-color: #25182E;
+    color: #FFFFFF;
+    width: 100px;
+}
+
+.filter_btn:hover{
+    background-color: #FFFFFF!important;
+    color: #25182E!important;
+}

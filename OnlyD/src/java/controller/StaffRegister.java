@@ -1,0 +1,97 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package controller;
+
+import entity.Staff;
+import jakarta.annotation.Resource;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import jakarta.transaction.UserTransaction;
+import java.util.List;
+import service.StaffService;
+
+/**
+ *
+ * @author Vin Sen
+ */
+@WebServlet("/staffRegister")
+public class StaffRegister extends HttpServlet {
+
+    @PersistenceContext
+    EntityManager em;
+    @Resource
+    UserTransaction utx;
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        HttpSession session = request.getSession();
+        StaffService staffService = new StaffService(em);
+        int newStaffID = 0;
+
+        try {
+            List<Staff> staffList = staffService.findAllWithDeletedStatus();
+
+            if (staffList == null || staffList.isEmpty()) {
+                newStaffID = 1;
+            } else {
+                // find latest staff id and plus 1
+                for (int i = 0; i < staffList.size(); i++) {
+                    int temp = Integer.parseInt(staffList.get(i).getStaffid(), 1, 5, 10);
+                    if (newStaffID < temp) {
+                        newStaffID = temp;
+                    }
+                }
+                newStaffID++;
+            }
+
+            session.setAttribute("reStaffIDValue", String.format("S%04d", newStaffID));
+
+            response.sendRedirect("admin/registerStaff.jsp");
+        } catch (Exception e) {
+            response.getWriter().println(e.getMessage());
+        }
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        String staffID = "";
+        String staffName = "";
+        StaffService staffService = new StaffService(em);
+        HttpSession session = request.getSession();
+
+        try {
+            staffID = request.getParameter("staffID");
+            staffName = request.getParameter("staffName").trim();
+
+            // set staff in verification status
+            Staff staff = new Staff(staffID, staffName, Staff.VERIFICATION_STATUS);
+            staff.setPassword(staff.getDefaultPassword());
+
+            utx.begin();
+            staffService.addStaff(staff);
+            utx.commit();
+
+            session.setAttribute("staffRegSuccess", "New staff, " + staff.getName() + " registered successfully.<br>"
+                    + "Default password will be: " + staff.getDefaultPassword() + "<br>");
+            response.sendRedirect("admin/staffRegisterStatus.jsp");
+
+        } catch (Exception e) {
+            request.setAttribute("errorMessage", e.getMessage());
+            //getServletContext().getRequestDispatcher("/registerStaff.jsp").forward(request, response);
+            response.sendRedirect("registerStaff.jsp");
+        }
+    }
+
+}

@@ -1,0 +1,94 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
+ */
+package controller;
+
+import entity.Promotion;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import java.io.IOException;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
+import service.PromotionService;
+
+/**
+ *
+ * @author Vin Sen
+ */
+public class CheckOrder extends HttpServlet {
+
+    @PersistenceContext
+    EntityManager em;
+
+    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        String button = request.getParameter("orderButton");
+        PromotionService promoService = new PromotionService(em);
+
+        try {
+            // check if promo code applied
+            if (button.equals("Apply")) {
+
+                String promoCode = request.getParameter("promoCodeEntered");
+
+                // find active promotion list
+                List<Promotion> promoList = promoService.findByStatus(Promotion.ACTIVE_STATUS);
+
+                for (Promotion p : promoList) {
+                    if (p.getPromotioncode().equals(promoCode)) {
+                        session.setAttribute("promoApplied", p);
+                        response.sendRedirect("user/checkout.jsp");
+                        return;
+                    }
+                }
+                // if unable to find promotion code
+                throw new IllegalArgumentException("Invalid Promotion Code!");
+
+            } else if (button.equals("Remove")) {
+                session.removeAttribute("promoApplied");
+                response.sendRedirect("user/checkout.jsp");
+            } else {
+                // go to payment
+
+                Double subtotal = Double.valueOf(request.getParameter("subtotal"));
+                Double discount = Double.valueOf(request.getParameter("totaldiscount"));
+                Double shippingfee = Double.valueOf(request.getParameter("shippingfee"));
+                Double total = Double.valueOf(request.getParameter("total"));
+
+                session.setAttribute("subtotal", subtotal);
+                session.setAttribute("discount", discount);
+                session.setAttribute("shippingfee", shippingfee);
+                session.setAttribute("total", total);
+
+                response.sendRedirect("user/payment.jsp");
+            }
+        } catch (IllegalArgumentException e) {
+            session.setAttribute("checkoutErrorMsg", e.getMessage());
+            response.sendRedirect("user/checkout.jsp");
+
+        } catch (Exception e) {
+            response.getWriter().println(e.getMessage());
+        }
+
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
+
+}
